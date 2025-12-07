@@ -188,7 +188,7 @@ export const stlSections: Section[] = [
                     <h3 className="text-2xl font-bold text-slate-900 mb-4">一、STL 是什么？为什么要学？</h3>
                     
                     <div className="bg-indigo-50 border border-indigo-100 rounded-xl p-6 mb-6">
-                        <h4 className="font-bold text-indigo-900 mb-2 text-lg">STL 的起源 & 核心思想</h4>
+                        <h4 className="font-bold text-indigo-900 mb-2 text-lg">STL 的起源与必备 & 核心思想</h4>
                         <ul className="list-disc list-inside space-y-2 text-indigo-800 text-sm">
                             <li><strong>全名：</strong> Standard Template Library（标准模板库）。</li>
                             <li><strong>设计者：</strong> Alexander Stepanov 等人，后纳入 C++ 标准。</li>

@@ -3,7 +3,7 @@ import { Section } from '../../types';
 import { CodeBlock } from '../../components/Common/CodeBlock';
 
 const category = 'C++ STL (标准模板库)';
-const group = '2. 起源与必备语法';
+const group = '2. 预备知识';
 
 export const stlBasicExercises: Section[] = [
     {

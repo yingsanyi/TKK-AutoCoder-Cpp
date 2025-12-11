@@ -91,6 +91,9 @@ function AppContent() {
   // State for expanded groups within categories
   const [expandedGroups, setExpandedGroups] = useState<string[]>([]);
 
+  // State for expanded sub-groups within groups
+  const [expandedSubGroups, setExpandedSubGroups] = useState<string[]>([]);
+
   const activeSection = sections.find(s => s.id === activeSectionId);
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
@@ -108,6 +111,14 @@ function AppContent() {
       prev.includes(groupKey) 
         ? prev.filter(g => g !== groupKey) 
         : [...prev, groupKey]
+    );
+  };
+
+  const toggleSubGroup = (subGroupKey: string) => {
+    setExpandedSubGroups(prev =>
+      prev.includes(subGroupKey) 
+        ? prev.filter(g => g !== subGroupKey) 
+        : [...prev, subGroupKey]
     );
   };
 
@@ -129,6 +140,15 @@ function AppContent() {
             if (!prev.includes(groupKey)) return [...prev, groupKey];
             return prev;
         });
+
+        // Expand SubGroup (if exists)
+        if (activeSection.subGroup) {
+          const subGroupKey = `${groupKey}-${activeSection.subGroup}`;
+          setExpandedSubGroups(prev => {
+              if (!prev.includes(subGroupKey)) return [...prev, subGroupKey];
+              return prev;
+          });
+        }
       }
     }
   }, [activeSectionId, activeSection]);
@@ -280,25 +300,89 @@ function AppContent() {
                                     ${theme === 'dark' ? 'border-slate-700' : 'border-slate-200'}
                                  `}>
                                    <div className="space-y-0.5 pl-2">
-                                     {groupSections.map(gs => (
-                                       <button
-                                         key={gs.id}
-                                         title={gs.title}
-                                         onClick={() => {
-                                            setActiveSectionId(gs.id);
-                                            if (window.innerWidth < 768) setIsSidebarOpen(false);
-                                         }}
-                                         className={`
-                                           w-full flex items-center gap-2 px-3 py-1.5 rounded-md text-xs transition-colors
-                                           ${activeSectionId === gs.id
-                                             ? (theme === 'dark' ? 'text-indigo-400 font-medium bg-indigo-500/10' : 'text-indigo-600 font-medium bg-indigo-50')
-                                             : (theme === 'dark' ? 'text-slate-500 hover:text-slate-300 hover:bg-slate-800/30' : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100')}
-                                         `}
-                                       >
-                                         {gs.type === 'lesson' ? <BookOpen size={14} className="shrink-0 opacity-70" /> : gs.type === 'quiz' ? <BookOpen size={14} className="shrink-0 opacity-70 text-purple-400" /> : <Code2 size={14} className="shrink-0 opacity-70" />}
-                                         <span className="truncate">{gs.title}</span>
-                                       </button>
-                                     ))}
+                                     {(() => {
+                                        const renderedSubGroups = new Set<string>();
+                                        return groupSections.map(gs => {
+                                           // --- SubGroup Logic ---
+                                           if (gs.subGroup) {
+                                              if (renderedSubGroups.has(gs.subGroup)) return null;
+                                              renderedSubGroups.add(gs.subGroup);
+
+                                              const subGroupSections = groupSections.filter(s => s.subGroup === gs.subGroup);
+                                              const subGroupKey = `${groupKey}-${gs.subGroup}`;
+                                              const isSubGroupExpanded = expandedSubGroups.includes(subGroupKey);
+
+                                              return (
+                                                <div key={subGroupKey} className="my-1">
+                                                   <button
+                                                      onClick={() => toggleSubGroup(subGroupKey)}
+                                                      className={`
+                                                        w-full flex items-center justify-between px-3 py-1.5 rounded-md text-xs transition-colors
+                                                        ${isSubGroupExpanded
+                                                          ? (theme === 'dark' ? 'text-slate-300' : 'text-slate-800')
+                                                          : (theme === 'dark' ? 'text-slate-500 hover:text-slate-300' : 'text-slate-500 hover:text-slate-700')}
+                                                      `}
+                                                   >
+                                                       <div className="flex items-center gap-2 overflow-hidden">
+                                                           <div className="w-1 h-1 rounded-full bg-current opacity-50 shrink-0" />
+                                                           <span className="truncate font-medium">{gs.subGroup}</span>
+                                                       </div>
+                                                       {isSubGroupExpanded ? <ChevronDown size={10} className="shrink-0 opacity-70"/> : <ChevronRight size={10} className="shrink-0 opacity-70"/>}
+                                                   </button>
+
+                                                   <div className={`
+                                                      overflow-hidden transition-all duration-300 ease-in-out border-l ml-3.5
+                                                      ${isSubGroupExpanded ? 'max-h-[500px] opacity-100 mt-0.5' : 'max-h-0 opacity-0'}
+                                                      ${theme === 'dark' ? 'border-slate-700' : 'border-slate-200'}
+                                                   `}>
+                                                      <div className="space-y-0.5 pl-2">
+                                                         {subGroupSections.map(sgs => (
+                                                            <button
+                                                              key={sgs.id}
+                                                              title={sgs.title}
+                                                              onClick={() => {
+                                                                 setActiveSectionId(sgs.id);
+                                                                 if (window.innerWidth < 768) setIsSidebarOpen(false);
+                                                              }}
+                                                              className={`
+                                                                w-full flex items-center gap-2 px-3 py-1.5 rounded-md text-xs transition-colors
+                                                                ${activeSectionId === sgs.id
+                                                                  ? (theme === 'dark' ? 'text-indigo-400 font-medium bg-indigo-500/10' : 'text-indigo-600 font-medium bg-indigo-50')
+                                                                  : (theme === 'dark' ? 'text-slate-500 hover:text-slate-300 hover:bg-slate-800/30' : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100')}
+                                                              `}
+                                                            >
+                                                              {sgs.type === 'lesson' ? <BookOpen size={14} className="shrink-0 opacity-70" /> : sgs.type === 'quiz' ? <BookOpen size={14} className="shrink-0 opacity-70 text-purple-400" /> : <Code2 size={14} className="shrink-0 opacity-70" />}
+                                                              <span className="truncate">{sgs.title}</span>
+                                                            </button>
+                                                         ))}
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                              );
+                                           }
+
+                                           // --- Normal Item (No SubGroup) ---
+                                           return (
+                                             <button
+                                               key={gs.id}
+                                               title={gs.title}
+                                               onClick={() => {
+                                                  setActiveSectionId(gs.id);
+                                                  if (window.innerWidth < 768) setIsSidebarOpen(false);
+                                               }}
+                                               className={`
+                                                 w-full flex items-center gap-2 px-3 py-1.5 rounded-md text-xs transition-colors
+                                                 ${activeSectionId === gs.id
+                                                   ? (theme === 'dark' ? 'text-indigo-400 font-medium bg-indigo-500/10' : 'text-indigo-600 font-medium bg-indigo-50')
+                                                   : (theme === 'dark' ? 'text-slate-500 hover:text-slate-300 hover:bg-slate-800/30' : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100')}
+                                               `}
+                                             >
+                                               {gs.type === 'lesson' ? <BookOpen size={14} className="shrink-0 opacity-70" /> : gs.type === 'quiz' ? <BookOpen size={14} className="shrink-0 opacity-70 text-purple-400" /> : <Code2 size={14} className="shrink-0 opacity-70" />}
+                                               <span className="truncate">{gs.title}</span>
+                                             </button>
+                                           );
+                                        });
+                                     })()}
                                    </div>
                                  </div>
                                </div>

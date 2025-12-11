@@ -27,7 +27,8 @@ export interface ExerciseData {
 export interface Section {
   id: string;
   category: string;
-  group?: string; // For 3rd level grouping
+  group?: string; // For 2nd level grouping
+  subGroup?: string; // For 3rd level grouping
   title: string;
   type: SectionType;
   content?: ReactNode; // For lesson content

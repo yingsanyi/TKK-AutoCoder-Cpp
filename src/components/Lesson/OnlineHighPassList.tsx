@@ -21,7 +21,20 @@ export const OnlineHighPassList: React.FC<OnlineHighPassListProps> = ({ problems
   const filteredProblems = problems.filter(p => 
     p.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
     p.contest.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  ).sort((a, b) => {
+    // Priority logic: High submission count (>= 80) comes first
+    const isHighTrafficA = a.submitCount >= 80;
+    const isHighTrafficB = b.submitCount >= 80;
+
+    if (isHighTrafficA && !isHighTrafficB) return -1;
+    if (!isHighTrafficA && isHighTrafficB) return 1;
+
+    // Secondary sort: Pass rate descending
+    const passRateA = parseFloat(a.passRate.replace('%', ''));
+    const passRateB = parseFloat(b.passRate.replace('%', ''));
+    
+    return passRateB - passRateA;
+  });
 
   // Pagination logic
   const totalPages = Math.ceil(filteredProblems.length / itemsPerPage);

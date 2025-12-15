@@ -15,7 +15,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 290,
     "url": "https://www.xujcoj.com/home/problem/detail/5669",
     "tags": [
-      "基础"
+      "数学",
+      "数论"
     ]
   },
   {
@@ -25,8 +26,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 217,
     "url": "https://www.xujcoj.com/home/problem/detail/5693",
     "tags": [
-      "数组",
-      "基础"
+      "排序",
+      "数组"
     ]
   },
   {
@@ -36,7 +37,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 221,
     "url": "https://www.xujcoj.com/home/problem/detail/5694",
     "tags": [
-      "基础"
+      "哈希",
+      "计数"
     ]
   },
   {
@@ -46,9 +48,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 264,
     "url": "https://www.xujcoj.com/home/problem/detail/5695",
     "tags": [
-      "循环",
-      "数组",
-      "基础"
+      "字符串",
+      "循环"
     ]
   },
   {
@@ -58,7 +59,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 87,
     "url": "https://www.xujcoj.com/home/problem/detail/5696",
     "tags": [
-      "数组"
+      "数组",
+      "模拟"
     ]
   },
   {
@@ -68,6 +70,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 134,
     "url": "https://www.xujcoj.com/home/problem/detail/5697",
     "tags": [
+      "数学",
       "循环"
     ]
   },
@@ -78,7 +81,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 454,
     "url": "https://www.xujcoj.com/home/problem/detail/5637",
     "tags": [
-      "基础"
+      "数学",
+      "数论"
     ]
   },
   {
@@ -89,7 +93,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "url": "https://www.xujcoj.com/home/problem/detail/5640",
     "tags": [
       "数组",
-      "基础"
+      "字符串"
     ]
   },
   {
@@ -99,7 +103,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 351,
     "url": "https://www.xujcoj.com/home/problem/detail/5642",
     "tags": [
-      "基础"
+      "数学",
+      "数论"
     ]
   },
   {
@@ -109,7 +114,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 525,
     "url": "https://www.xujcoj.com/home/problem/detail/5601",
     "tags": [
-      "基础"
+      "数学",
+      "模运算"
     ]
   },
   {
@@ -119,7 +125,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 193,
     "url": "https://www.xujcoj.com/home/problem/detail/5598",
     "tags": [
-      "基础"
+      "位运算"
     ]
   },
   {
@@ -129,7 +135,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 405,
     "url": "https://www.xujcoj.com/home/problem/detail/5599",
     "tags": [
-      "基础"
+      "数学",
+      "数列"
     ]
   },
   {
@@ -139,6 +146,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 376,
     "url": "https://www.xujcoj.com/home/problem/detail/5602",
     "tags": [
+      "数学",
       "基础"
     ]
   },
@@ -149,7 +157,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 466,
     "url": "https://www.xujcoj.com/home/problem/detail/5600",
     "tags": [
-      "基础"
+      "数学",
+      "数论"
     ]
   },
   {
@@ -179,7 +188,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 260,
     "url": "https://www.xujcoj.com/home/problem/detail/2590",
     "tags": [
-      "循环"
+      "数学",
+      "贪心"
     ]
   },
   {
@@ -189,7 +199,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 12,
     "url": "https://www.xujcoj.com/home/problem/detail/2152",
     "tags": [
-      "基础"
+      "树",
+      "数据结构"
     ]
   },
   {
@@ -200,7 +211,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "url": "https://www.xujcoj.com/home/problem/detail/5429",
     "tags": [
       "数组",
-      "基础"
+      "算法"
     ]
   },
   {
@@ -210,7 +221,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 12,
     "url": "https://www.xujcoj.com/home/problem/detail/5431",
     "tags": [
-      "数学"
+      "数学",
+      "线性代数"
     ]
   },
   {
@@ -230,7 +242,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 53,
     "url": "https://www.xujcoj.com/home/problem/detail/5405",
     "tags": [
-      "基础"
+      "图论",
+      "并查集"
     ]
   },
   {
@@ -260,7 +273,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 18,
     "url": "https://www.xujcoj.com/home/problem/detail/5382",
     "tags": [
-      "基础"
+      "位运算"
     ]
   },
   {
@@ -270,6 +283,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 96,
     "url": "https://www.xujcoj.com/home/contest/2244/problem/5",
     "tags": [
+      "模拟",
       "基础"
     ]
   },
@@ -291,7 +305,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 8,
     "url": "https://www.xujcoj.com/home/problem/detail/5324",
     "tags": [
-      "基础"
+      "数学",
+      "递归"
     ]
   },
   {
@@ -321,7 +336,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 235,
     "url": "https://www.xujcoj.com/home/problem/detail/5036",
     "tags": [
-      "基础"
+      "模拟",
+      "循环"
     ]
   },
   {
@@ -331,6 +347,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 779,
     "url": "https://www.xujcoj.com/home/problem/detail/5005",
     "tags": [
+      "数学",
       "基础"
     ]
   },
@@ -341,6 +358,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 322,
     "url": "https://www.xujcoj.com/home/problem/detail/4925",
     "tags": [
+      "数学",
       "基础"
     ]
   },
@@ -371,7 +389,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 734,
     "url": "https://www.xujcoj.com/home/problem/detail/4823",
     "tags": [
-      "基础"
+      "基础",
+      "排序"
     ]
   },
   {
@@ -411,7 +430,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 58,
     "url": "https://www.xujcoj.com/home/problem/detail/2653",
     "tags": [
-      "基础"
+      "数组",
+      "数学"
     ]
   },
   {
@@ -421,7 +441,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 29,
     "url": "https://www.xujcoj.com/home/contest/1732/problem/6",
     "tags": [
-      "基础"
+      "模拟",
+      "贪心"
     ]
   },
   {
@@ -431,7 +452,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 204,
     "url": "https://www.xujcoj.com/home/problem/detail/1866",
     "tags": [
-      "字符串"
+      "字符串",
+      "排序"
     ]
   },
   {
@@ -461,7 +483,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 175,
     "url": "https://www.xujcoj.com/home/problem/detail/4447",
     "tags": [
-      "基础"
+      "数学",
+      "贪心"
     ]
   },
   {
@@ -491,7 +514,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 86,
     "url": "https://www.xujcoj.com/home/problem/detail/4499",
     "tags": [
-      "字符串"
+      "字符串",
+      "排序"
     ]
   },
   {
@@ -512,7 +536,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "url": "https://www.xujcoj.com/home/problem/detail/1785",
     "tags": [
       "字符串",
-      "基础"
+      "模拟"
     ]
   },
   {
@@ -533,7 +557,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 399,
     "url": "https://www.xujcoj.com/home/problem/detail/4391",
     "tags": [
-      "基础"
+      "数学",
+      "组合"
     ]
   },
   {
@@ -543,7 +568,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 117,
     "url": "https://www.xujcoj.com/home/problem/detail/4389",
     "tags": [
-      "基础"
+      "位运算"
     ]
   },
   {
@@ -554,7 +579,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "url": "https://www.xujcoj.com/home/problem/detail/4359",
     "tags": [
       "数组",
-      "基础"
+      "枚举"
     ]
   },
   {
@@ -564,7 +589,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 175,
     "url": "https://www.xujcoj.com/home/problem/detail/4357",
     "tags": [
-      "基础"
+      "数学",
+      "数组"
     ]
   },
   {
@@ -574,7 +600,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 418,
     "url": "https://www.xujcoj.com/home/problem/detail/4334",
     "tags": [
-      "基础"
+      "字符串"
     ]
   },
   {
@@ -604,7 +630,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 397,
     "url": "https://www.xujcoj.com/home/problem/detail/4303",
     "tags": [
-      "基础"
+      "数学",
+      "模拟"
     ]
   },
   {
@@ -614,7 +641,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 439,
     "url": "https://www.xujcoj.com/home/problem/detail/4304",
     "tags": [
-      "基础"
+      "模拟",
+      "结构体"
     ]
   },
   {
@@ -624,6 +652,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 470,
     "url": "https://www.xujcoj.com/home/problem/detail/4302",
     "tags": [
+      "数学",
       "基础"
     ]
   },
@@ -654,7 +683,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 56,
     "url": "https://www.xujcoj.com/home/problem/detail/4195",
     "tags": [
-      "基础"
+      "模拟"
     ]
   },
   {
@@ -664,7 +693,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 53,
     "url": "https://www.xujcoj.com/home/problem/detail/4198",
     "tags": [
-      "基础"
+      "数学",
+      "字符串"
     ]
   },
   {
@@ -674,7 +704,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 231,
     "url": "https://www.xujcoj.com/home/problem/detail/3978",
     "tags": [
-      "基础"
+      "基础",
+      "枚举"
     ]
   },
   {
@@ -704,7 +735,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 250,
     "url": "https://www.xujcoj.com/home/problem/detail/3971",
     "tags": [
-      "基础"
+      "模拟"
     ]
   },
   {
@@ -724,7 +755,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 110,
     "url": "https://www.xujcoj.com/home/problem/detail/4027",
     "tags": [
-      "基础"
+      "结构体",
+      "排序"
     ]
   },
   {
@@ -734,7 +766,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 112,
     "url": "https://www.xujcoj.com/home/contest/1326/problem/5",
     "tags": [
-      "基础"
+      "基础",
+      "字符串"
     ]
   },
   {
@@ -754,7 +787,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 246,
     "url": "https://www.xujcoj.com/home/problem/detail/3976",
     "tags": [
-      "基础"
+      "基础",
+      "枚举"
     ]
   },
   {
@@ -774,6 +808,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 383,
     "url": "https://www.xujcoj.com/home/problem/detail/3964",
     "tags": [
+      "数位分离",
       "基础"
     ]
   },
@@ -784,8 +819,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 143,
     "url": "https://www.xujcoj.com/home/problem/detail/3958",
     "tags": [
-      "数组",
-      "字符串"
+      "字符串",
+      "排序"
     ]
   },
   {
@@ -795,7 +830,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 102,
     "url": "https://www.xujcoj.com/home/problem/detail/3917",
     "tags": [
-      "基础"
+      "排序",
+      "结构体"
     ]
   },
   {
@@ -805,8 +841,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 355,
     "url": "https://www.xujcoj.com/home/problem/detail/3846",
     "tags": [
-      "数组",
-      "基础"
+      "数论",
+      "数组"
     ]
   },
   {
@@ -816,7 +852,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 161,
     "url": "https://www.xujcoj.com/home/problem/detail/3848",
     "tags": [
-      "基础"
+      "递归",
+      "递推"
     ]
   },
   {
@@ -836,8 +873,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 299,
     "url": "https://www.xujcoj.com/home/problem/detail/3868",
     "tags": [
-      "循环",
-      "基础"
+      "枚举",
+      "数学"
     ]
   },
   {
@@ -847,7 +884,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 247,
     "url": "https://www.xujcoj.com/home/problem/detail/3819",
     "tags": [
-      "基础"
+      "排序",
+      "结构体"
     ]
   },
   {
@@ -857,9 +895,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 38,
     "url": "https://www.xujcoj.com/home/problem/detail/3829",
     "tags": [
-      "循环",
-      "数组",
-      "基础"
+      "数论",
+      "数组"
     ]
   },
   {
@@ -889,7 +926,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 531,
     "url": "https://www.xujcoj.com/home/problem/detail/3770",
     "tags": [
-      "基础"
+      "数组",
+      "贪心"
     ]
   },
   {
@@ -909,7 +947,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 314,
     "url": "https://www.xujcoj.com/home/problem/detail/3766",
     "tags": [
-      "基础"
+      "字符串"
     ]
   },
   {
@@ -949,7 +987,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 137,
     "url": "https://www.xujcoj.com/home/problem/detail/3585",
     "tags": [
-      "数组"
+      "数组",
+      "排序"
     ]
   },
   {
@@ -1000,7 +1039,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 41,
     "url": "https://www.xujcoj.com/home/problem/detail/3507",
     "tags": [
-      "数组"
+      "数组",
+      "贪心"
     ]
   },
   {
@@ -1011,7 +1051,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "url": "https://www.xujcoj.com/home/problem/detail/3432",
     "tags": [
       "数组",
-      "基础"
+      "哈希"
     ]
   },
   {
@@ -1031,7 +1071,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 324,
     "url": "https://www.xujcoj.com/home/problem/detail/3395",
     "tags": [
-      "基础"
+      "模拟",
+      "递归"
     ]
   },
   {
@@ -1041,7 +1082,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 315,
     "url": "https://www.xujcoj.com/home/problem/detail/3397",
     "tags": [
-      "基础"
+      "循环"
     ]
   },
   {
@@ -1051,8 +1092,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 428,
     "url": "https://www.xujcoj.com/home/problem/detail/3361",
     "tags": [
-      "模拟",
-      "基础"
+      "数论",
+      "模拟"
     ]
   },
   {
@@ -1072,7 +1113,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 485,
     "url": "https://www.xujcoj.com/home/problem/detail/3326",
     "tags": [
-      "基础"
+      "数学"
     ]
   },
   {
@@ -1082,6 +1123,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 344,
     "url": "https://www.xujcoj.com/home/problem/detail/3323",
     "tags": [
+      "循环",
       "数学"
     ]
   },
@@ -1092,6 +1134,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 541,
     "url": "https://www.xujcoj.com/home/problem/detail/3324",
     "tags": [
+      "数位分离",
       "基础"
     ]
   },
@@ -1102,7 +1145,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 284,
     "url": "https://www.xujcoj.com/home/problem/detail/3322",
     "tags": [
-      "基础"
+      "数组",
+      "排序"
     ]
   },
   {
@@ -1112,7 +1156,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 181,
     "url": "https://www.xujcoj.com/home/problem/detail/3262",
     "tags": [
-      "基础"
+      "数学",
+      "模运算"
     ]
   },
   {
@@ -1133,8 +1178,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "url": "https://www.xujcoj.com/home/problem/detail/3228",
     "tags": [
       "数组",
-      "字符串",
-      "基础"
+      "字符串"
     ]
   },
   {
@@ -1144,8 +1188,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 28,
     "url": "https://www.xujcoj.com/home/problem/detail/3231",
     "tags": [
-      "数学",
-      "基础"
+      "数学"
     ]
   },
   {
@@ -1155,7 +1198,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 464,
     "url": "https://www.xujcoj.com/home/problem/detail/3222",
     "tags": [
-      "基础"
+      "字符串",
+      "数位分离"
     ]
   },
   {
@@ -1165,7 +1209,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 7,
     "url": "https://www.xujcoj.com/home/problem/detail/3194",
     "tags": [
-      "数组"
+      "数组",
+      "集合"
     ]
   },
   {
@@ -1185,9 +1230,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 356,
     "url": "https://www.xujcoj.com/home/problem/detail/3099",
     "tags": [
-      "模拟",
-      "循环",
-      "字符串"
+      "字符串",
+      "模拟"
     ]
   },
   {
@@ -1217,7 +1261,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 37,
     "url": "https://www.xujcoj.com/home/problem/detail/3023",
     "tags": [
-      "数组"
+      "数组",
+      "排序"
     ]
   },
   {
@@ -1227,7 +1272,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 209,
     "url": "https://www.xujcoj.com/home/problem/detail/3006",
     "tags": [
-      "数学"
+      "数学",
+      "几何"
     ]
   },
   {
@@ -1237,8 +1283,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 28,
     "url": "https://www.xujcoj.com/home/problem/detail/2965",
     "tags": [
-      "数组",
-      "基础"
+      "数论",
+      "数组"
     ]
   },
   {
@@ -1248,7 +1294,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 41,
     "url": "https://www.xujcoj.com/home/problem/detail/2963",
     "tags": [
-      "基础"
+      "基础",
+      "排序"
     ]
   },
   {
@@ -1258,7 +1305,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 285,
     "url": "https://www.xujcoj.com/home/problem/detail/2927",
     "tags": [
-      "基础"
+      "几何",
+      "排序"
     ]
   },
   {
@@ -1268,7 +1316,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 18,
     "url": "https://www.xujcoj.com/home/problem/detail/2902",
     "tags": [
-      "数组",
+      "数学",
       "基础"
     ]
   },
@@ -1279,7 +1327,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 18,
     "url": "https://www.xujcoj.com/home/problem/detail/2910",
     "tags": [
-      "基础"
+      "几何"
     ]
   },
   {
@@ -1289,7 +1337,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 4,
     "url": "https://www.xujcoj.com/home/problem/detail/2907",
     "tags": [
-      "基础"
+      "数论"
     ]
   },
   {
@@ -1299,7 +1347,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 21,
     "url": "https://www.xujcoj.com/home/problem/detail/2893",
     "tags": [
-      "基础"
+      "数学"
     ]
   },
   {
@@ -1319,7 +1367,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 15,
     "url": "https://www.xujcoj.com/home/problem/detail/2901",
     "tags": [
-      "基础"
+      "模拟"
     ]
   },
   {
@@ -1329,8 +1377,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 131,
     "url": "https://www.xujcoj.com/home/problem/detail/2873",
     "tags": [
-      "数学",
-      "基础"
+      "位运算",
+      "数学"
     ]
   },
   {
@@ -1340,7 +1388,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 250,
     "url": "https://www.xujcoj.com/home/problem/detail/2869",
     "tags": [
-      "循环",
+      "字符串",
       "数组"
     ]
   },
@@ -1361,7 +1409,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 145,
     "url": "https://www.xujcoj.com/home/problem/detail/2871",
     "tags": [
-      "字符串"
+      "字符串",
+      "动态规划"
     ]
   },
   {
@@ -1371,6 +1420,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 10,
     "url": "https://www.xujcoj.com/home/problem/detail/2870",
     "tags": [
+      "排序",
       "数组"
     ]
   },
@@ -1381,7 +1431,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 315,
     "url": "https://www.xujcoj.com/home/problem/detail/2812",
     "tags": [
-      "基础"
+      "模拟"
     ]
   },
   {
@@ -1401,7 +1451,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 417,
     "url": "https://www.xujcoj.com/home/problem/detail/2787",
     "tags": [
-      "基础"
+      "位运算"
     ]
   },
   {
@@ -1421,7 +1471,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 297,
     "url": "https://www.xujcoj.com/home/problem/detail/2780",
     "tags": [
-      "基础"
+      "循环"
     ]
   },
   {
@@ -1431,7 +1481,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 315,
     "url": "https://www.xujcoj.com/home/problem/detail/2770",
     "tags": [
-      "基础"
+      "循环"
     ]
   },
   {
@@ -1462,7 +1512,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "url": "https://www.xujcoj.com/home/problem/detail/2670",
     "tags": [
       "模拟",
-      "基础"
+      "二分"
     ]
   },
   {
@@ -1472,7 +1522,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 147,
     "url": "https://www.xujcoj.com/home/contest/602/problem/5",
     "tags": [
-      "基础"
+      "循环"
     ]
   },
   {
@@ -1492,7 +1542,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 159,
     "url": "https://www.xujcoj.com/home/problem/detail/2647",
     "tags": [
-      "基础"
+      "数学",
+      "几何"
     ]
   },
   {
@@ -1502,7 +1553,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 141,
     "url": "https://www.xujcoj.com/home/problem/detail/2645",
     "tags": [
-      "基础"
+      "数学"
     ]
   },
   {
@@ -1512,7 +1563,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 362,
     "url": "https://www.xujcoj.com/home/problem/detail/2539",
     "tags": [
-      "基础"
+      "数位分离",
+      "字符串"
     ]
   },
   {
@@ -1522,6 +1574,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 341,
     "url": "https://www.xujcoj.com/home/problem/detail/2540",
     "tags": [
+      "数学",
       "循环"
     ]
   },
@@ -1532,7 +1585,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 415,
     "url": "https://www.xujcoj.com/home/problem/detail/2541",
     "tags": [
-      "字符串"
+      "字符串",
+      "高精度"
     ]
   },
   {
@@ -1562,7 +1616,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 325,
     "url": "https://www.xujcoj.com/home/problem/detail/2177",
     "tags": [
-      "基础"
+      "几何"
     ]
   },
   {
@@ -1582,7 +1636,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 305,
     "url": "https://www.xujcoj.com/home/problem/detail/2064",
     "tags": [
-      "基础"
+      "几何",
+      "排序"
     ]
   },
   {
@@ -1592,7 +1647,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 297,
     "url": "https://www.xujcoj.com/home/problem/detail/2054",
     "tags": [
-      "基础"
+      "数组",
+      "哈希"
     ]
   },
   {
@@ -1603,7 +1659,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "url": "https://www.xujcoj.com/home/problem/detail/1496",
     "tags": [
       "数学",
-      "基础"
+      "进制转换"
     ]
   },
   {
@@ -1613,7 +1669,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 111,
     "url": "https://www.xujcoj.com/home/problem/detail/2044",
     "tags": [
-      "基础"
+      "数学"
     ]
   },
   {
@@ -1623,7 +1679,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 314,
     "url": "https://www.xujcoj.com/home/problem/detail/1500",
     "tags": [
-      "基础"
+      "循环"
     ]
   },
   {
@@ -1633,7 +1689,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 328,
     "url": "https://www.xujcoj.com/home/problem/detail/2013",
     "tags": [
-      "基础"
+      "数学",
+      "循环"
     ]
   },
   {
@@ -1643,7 +1700,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 188,
     "url": "https://www.xujcoj.com/home/problem/detail/2015",
     "tags": [
-      "基础"
+      "数论"
     ]
   },
   {
@@ -1653,8 +1710,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 222,
     "url": "https://www.xujcoj.com/home/problem/detail/2016",
     "tags": [
-      "数学",
-      "字符串"
+      "循环"
     ]
   },
   {
@@ -1664,7 +1720,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 109,
     "url": "https://www.xujcoj.com/home/problem/detail/1984",
     "tags": [
-      "基础"
+      "几何"
     ]
   },
   {
@@ -1684,7 +1740,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 296,
     "url": "https://www.xujcoj.com/home/problem/detail/1953",
     "tags": [
-      "基础"
+      "几何"
     ]
   },
   {
@@ -1695,7 +1751,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "url": "https://www.xujcoj.com/home/problem/detail/1895",
     "tags": [
       "数组",
-      "基础"
+      "归并排序"
     ]
   },
   {
@@ -1746,8 +1802,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 268,
     "url": "https://www.xujcoj.com/home/problem/detail/1842",
     "tags": [
-      "数学",
-      "基础"
+      "数学"
     ]
   },
   {
@@ -1787,7 +1842,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 215,
     "url": "https://www.xujcoj.com/home/problem/detail/1706",
     "tags": [
-      "基础"
+      "数学"
     ]
   },
   {
@@ -1807,7 +1862,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 274,
     "url": "https://www.xujcoj.com/home/problem/detail/1631",
     "tags": [
-      "基础"
+      "数学"
     ]
   },
   {
@@ -1828,7 +1883,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "url": "https://www.xujcoj.com/home/problem/detail/1627",
     "tags": [
       "数组",
-      "基础"
+      "模拟"
     ]
   },
   {
@@ -1908,7 +1963,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 172,
     "url": "https://www.xujcoj.com/home/problem/detail/1486",
     "tags": [
-      "基础"
+      "数学"
     ]
   },
   {
@@ -1918,7 +1973,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 137,
     "url": "https://www.xujcoj.com/home/problem/detail/1487",
     "tags": [
-      "基础"
+      "数学"
     ]
   },
   {
@@ -1938,7 +1993,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 186,
     "url": "https://www.xujcoj.com/home/problem/detail/1436",
     "tags": [
-      "基础"
+      "排序"
     ]
   },
   {
@@ -1948,7 +2003,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 261,
     "url": "https://www.xujcoj.com/home/problem/detail/1407",
     "tags": [
-      "基础"
+      "模拟",
+      "日期"
     ]
   },
   {
@@ -1968,7 +2024,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 100,
     "url": "https://www.xujcoj.com/home/problem/detail/1409",
     "tags": [
-      "字符串"
+      "字符串",
+      "日期"
     ]
   },
   {
@@ -1978,7 +2035,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 12,
     "url": "https://www.xujcoj.com/home/problem/detail/1332",
     "tags": [
-      "基础"
+      "数位分离",
+      "数学"
     ]
   },
   {
@@ -1988,7 +2046,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 7,
     "url": "https://www.xujcoj.com/home/problem/detail/1333",
     "tags": [
-      "基础"
+      "字符串",
+      "模拟"
     ]
   },
   {
@@ -1998,7 +2057,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 2,
     "url": "https://www.xujcoj.com/home/contest/112/problem/5",
     "tags": [
-      "数组"
+      "日期",
+      "模拟"
     ]
   },
   {
@@ -2008,7 +2068,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 14,
     "url": "https://www.xujcoj.com/home/problem/detail/1041",
     "tags": [
-      "基础"
+      "数论"
     ]
   },
   {
@@ -2018,7 +2078,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 1,
     "url": "https://www.xujcoj.com/home/problem/detail/1311",
     "tags": [
-      "基础"
+      "日期",
+      "数学"
     ]
   },
   {
@@ -2079,7 +2140,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 23,
     "url": "https://www.xujcoj.com/home/problem/detail/1233",
     "tags": [
-      "基础"
+      "数论"
     ]
   },
   {
@@ -2089,7 +2150,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 87,
     "url": "https://www.xujcoj.com/home/problem/detail/1229",
     "tags": [
-      "基础"
+      "模拟"
     ]
   },
   {
@@ -2100,7 +2161,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "url": "https://www.xujcoj.com/home/problem/detail/1225",
     "tags": [
       "模拟",
-      "基础"
+      "数组"
     ]
   },
   {
@@ -2120,7 +2181,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 3,
     "url": "https://www.xujcoj.com/home/problem/detail/1216",
     "tags": [
-      "基础"
+      "日期"
     ]
   },
   {
@@ -2160,7 +2221,8 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     "submitCount": 59,
     "url": "https://www.xujcoj.com/home/problem/detail/1195",
     "tags": [
-      "基础"
+      "字符串",
+      "排序"
     ]
   }
 ];

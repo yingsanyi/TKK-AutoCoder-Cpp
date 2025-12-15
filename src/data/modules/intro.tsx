@@ -24,7 +24,8 @@ import {
   Cog,
   Package,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  Code2
 } from 'lucide-react';
 
 // --- Helper Components ---
@@ -601,7 +602,7 @@ export const introSections: Section[] = [
     title: '1. 为什么我们要学 C++？',
     type: 'lesson',
     content: (
-      <div className="space-y-8 max-w-4xl">
+      <div className="space-y-8">
         <div className="bg-indigo-50 p-6 rounded-xl border border-indigo-100">
           <h3 className="text-lg font-bold text-indigo-900 mb-4 flex items-center gap-2">
             <Zap className="text-indigo-600" />
@@ -667,7 +668,7 @@ export const introSections: Section[] = [
     title: '2. 什么是程序设计语言？',
     type: 'lesson',
     content: (
-      <div className="space-y-10 max-w-4xl">
+      <div className="space-y-10">
         <div className="text-center max-w-2xl mx-auto">
             <p className="text-lg text-slate-700 leading-relaxed">
                 计算机只认识 <strong className="text-indigo-600 font-mono">0</strong> 和 <strong className="text-indigo-600 font-mono">1</strong>（二进制），我们人类说的是自然语言。
@@ -742,7 +743,7 @@ export const introSections: Section[] = [
     title: '3. C++ 程序是如何诞生的？',
     type: 'lesson',
     content: (
-      <div className="space-y-10 max-w-4xl">
+      <div className="space-y-10">
          <div>
             <h3 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
                 <Layers className="text-purple-500" />
@@ -848,7 +849,7 @@ export const introSections: Section[] = [
     title: '4. 动手实践：我的第一个 C++ 程序',
     type: 'lesson',
     content: (
-      <div className="space-y-8 max-w-4xl">
+      <div className="space-y-8">
         <div>
             <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
                 <Monitor className="text-slate-700" />
@@ -920,6 +921,7 @@ int main()               // 3. 主函数：程序的入口，一切从这里开�
             </div>
         </div>
 
+
         <div>
             <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
                 <Keyboard className="text-slate-700" />
@@ -965,7 +967,7 @@ int main()               // 3. 主函数：程序的入口，一切从这里开�
     title: '5. 学习资源与考核',
     type: 'lesson',
     content: (
-      <div className="space-y-8 max-w-4xl">
+      <div className="space-y-8">
         <div>
             <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
                 <Search className="text-blue-500" />
@@ -984,9 +986,9 @@ int main()               // 3. 主函数：程序的入口，一切从这里开�
                 <div className="p-4 bg-white border border-slate-200 rounded-xl">
                     <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1 block">校外平台</span>
                     <div className="flex gap-2 flex-wrap">
-                        <span className="px-2 py-1 bg-slate-100 rounded text-xs text-slate-700 font-medium">LeetCode</span>
-                        <span className="px-2 py-1 bg-slate-100 rounded text-xs text-slate-700 font-medium">牛客网</span>
-                        <span className="px-2 py-1 bg-slate-100 rounded text-xs text-slate-700 font-medium">洛谷</span>
+                        <a href="https://leetcode.cn/" target="_blank" rel="noopener noreferrer" className="px-2 py-1 bg-slate-100 rounded text-xs text-slate-700 font-medium hover:bg-slate-200 transition-colors">LeetCode</a>
+                        <a href="https://www.nowcoder.com/" target="_blank" rel="noopener noreferrer" className="px-2 py-1 bg-slate-100 rounded text-xs text-slate-700 font-medium hover:bg-slate-200 transition-colors">牛客网</a>
+                        <a href="https://www.luogu.com.cn/" target="_blank" rel="noopener noreferrer" className="px-2 py-1 bg-slate-100 rounded text-xs text-slate-700 font-medium hover:bg-slate-200 transition-colors">洛谷</a>
                     </div>
                 </div>
             </div>
@@ -1007,12 +1009,77 @@ int main()               // 3. 主函数：程序的入口，一切从这里开�
                         <p className="text-purple-100 text-sm mb-4">
                             除了问老师，你还有强大的 AI 助教。它们可以帮你解释代码、查错、生成算法思路。
                         </p>
-                        <div className="flex flex-wrap gap-2">
-                            {['ChatGPT', 'Claude', 'Gemini', 'Kimi', 'DeepSeek'].map(ai => (
-                                <span key={ai} className="px-3 py-1 bg-white/10 rounded-full text-xs font-medium border border-white/20 hover:bg-white/20 transition-colors cursor-default">
-                                    {ai}
-                                </span>
-                            ))}
+                        <div className="flex flex-wrap gap-3">
+                            <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full text-xs font-medium border border-white/20 hover:bg-white/20 transition-colors cursor-pointer">
+                                <span>ChatGPT</span>
+                            </a>
+                            <a href="https://claude.ai/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full text-xs font-medium border border-white/20 hover:bg-white/20 transition-colors cursor-pointer">
+                                <span>Claude</span>
+                            </a>
+                            <a href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full text-xs font-medium border border-white/20 hover:bg-white/20 transition-colors cursor-pointer">
+                                <span>Gemini</span>
+                            </a>
+                            <a href="https://kimi.moonshot.cn/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full text-xs font-medium border border-white/20 hover:bg-white/20 transition-colors cursor-pointer">
+                                <span>Kimi</span>
+                            </a>
+                            <a href="https://www.deepseek.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full text-xs font-medium border border-white/20 hover:bg-white/20 transition-colors cursor-pointer">
+                                <span>DeepSeek</span>
+                            </a>
+                            <a href="https://www.doubao.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full text-xs font-medium border border-white/20 hover:bg-white/20 transition-colors cursor-pointer">
+                                <span>豆包</span>
+                            </a>
+                            <a href="https://tongyi.aliyun.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full text-xs font-medium border border-white/20 hover:bg-white/20 transition-colors cursor-pointer">
+                                <span>千问</span>
+                            </a>
+                            <a href="https://grok.x.ai/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full text-xs font-medium border border-white/20 hover:bg-white/20 transition-colors cursor-pointer">
+                                <span>Grok</span>
+                            </a>
+                            <a href="https://chatglm.cn/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full text-xs font-medium border border-white/20 hover:bg-white/20 transition-colors cursor-pointer">
+                                <span>ChatGLM</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                <Code2 className="text-emerald-500" />
+                5.3 AI 编程工具
+            </h3>
+            <div className="bg-gradient-to-r from-emerald-500 to-teal-600 p-6 rounded-xl text-white shadow-lg">
+                <div className="flex items-start gap-4">
+                    <div className="p-3 bg-white/20 rounded-lg backdrop-blur-sm">
+                        <Code2 size={32} />
+                    </div>
+                    <div>
+                        <h4 className="font-bold text-lg mb-2">下一代 IDE 体验</h4>
+                        <p className="text-emerald-50 text-sm mb-4">
+                            工欲善其事，必先利其器。这些集成了 AI 的现代编辑器能极大提升你的编程效率。
+                        </p>
+                        <div className="flex flex-wrap gap-3">
+                            <a href="https://www.trae.cn/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full text-xs font-medium border border-white/20 hover:bg-white/20 transition-colors cursor-pointer">
+                                <span>Trae (大陆版)</span>
+                            </a>
+                            <a href="https://www.trae.ai/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full text-xs font-medium border border-white/20 hover:bg-white/20 transition-colors cursor-pointer">
+                                <span>Trae (国际版)</span>
+                            </a>
+                            <a href="https://www.cursor.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full text-xs font-medium border border-white/20 hover:bg-white/20 transition-colors cursor-pointer">
+                                <span>Cursor</span>
+                            </a>
+                            <a href="https://kiro.dev/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full text-xs font-medium border border-white/20 hover:bg-white/20 transition-colors cursor-pointer">
+                                <span>Kiro</span>
+                            </a>
+                            <a href="https://codeium.com/windsurf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full text-xs font-medium border border-white/20 hover:bg-white/20 transition-colors cursor-pointer">
+                                <span>Windsurf</span>
+                            </a>
+                            <a href="https://claude.ai/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full text-xs font-medium border border-white/20 hover:bg-white/20 transition-colors cursor-pointer">
+                                <span>Claude Code</span>
+                            </a>
+                            <a href="https://antigravity.google/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full text-xs font-medium border border-white/20 hover:bg-white/20 transition-colors cursor-pointer">
+                                <span>Antigravity</span>
+                            </a>
                         </div>
                     </div>
                 </div>

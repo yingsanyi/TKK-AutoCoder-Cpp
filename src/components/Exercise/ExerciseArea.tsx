@@ -104,7 +104,7 @@ export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
   };
 
   return (
-    <div className="flex flex-col h-full max-w-5xl mx-auto p-4 lg:p-8">
+    <div className="flex flex-col h-full max-w-[95%] mx-auto p-4 lg:p-8">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-2">
@@ -332,7 +332,7 @@ export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
                 <ul className="list-disc list-inside space-y-1">
                   {data.hints.map((hint, idx) => (
                     <li key={idx} className="text-amber-800 dark:text-amber-400 text-sm">
-                      <DescriptionRenderer text={hint} />
+                      <DescriptionRenderer text={hint} inline={true} />
                     </li>
                   ))}
                 </ul>

@@ -418,7 +418,7 @@ const IOIllustration = () => (
 
 const TypeCastIllustration = () => (
   <div className="w-full my-12 flex justify-center">
-    <div className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 rounded-3xl p-1 border border-slate-200 dark:border-slate-700 shadow-2xl max-w-4xl w-full">
+    <div className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 rounded-3xl p-1 border border-slate-200 dark:border-slate-700 shadow-2xl w-full">
       <div className="bg-white/50 dark:bg-black/20 backdrop-blur-sm rounded-[1.4rem] overflow-hidden">
         <svg viewBox="0 0 800 500" className="w-full h-auto max-h-[400px]" preserveAspectRatio="xMidYMid meet">
           <defs>

@@ -11,6 +11,7 @@ import { examinationTwoSections } from './modules/examination_2';
 import { examinationThreeSections } from './modules/examination_3';
 import { examinationFourSections } from './modules/examination_4';
 import { examinationFiveSections } from './modules/examination_5';
+import { onlineHighPassSections } from './modules/online_high_pass';
 
 export const sections: Section[] = [
   ...introSections,
@@ -24,5 +25,6 @@ export const sections: Section[] = [
   ...examinationTwoSections,
   ...examinationThreeSections,
   ...examinationFourSections,
-  ...examinationFiveSections
+  ...examinationFiveSections,
+  ...onlineHighPassSections
 ];

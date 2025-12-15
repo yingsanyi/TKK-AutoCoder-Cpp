@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { Menu, BookOpen, Code2, ChevronRight, ChevronDown, GraduationCap, Home, ArrowRight, Sparkles, ExternalLink, Projector } from 'lucide-react';
+import { Menu, BookOpen, Code2, ChevronRight, ChevronLeft, ChevronDown, GraduationCap, Home, ArrowRight, Sparkles, ExternalLink, Projector, Trophy } from 'lucide-react';
 import { sections } from './data/index';
 import { ExerciseArea } from './components/Exercise/ExerciseArea';
 import { QuizArea } from './components/Quiz/QuizArea';
@@ -10,9 +10,9 @@ import { PresentationView } from './components/Presentation/PresentationView';
 
 // --- Components ---
 
-const LandingPage = ({ onStart }: { onStart: () => void }) => (
+const LandingPage = ({ onStart, onGoToOnlineList }: { onStart: () => void, onGoToOnlineList: () => void }) => (
   <div className="min-h-full flex flex-col items-center justify-center p-8 bg-gradient-to-b from-white to-slate-50">
-    <div className="max-w-3xl w-full text-center space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
+    <div className="max-w-5xl w-full text-center space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
       
       {/* Hero Badge */}
       <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/5 border border-slate-900/10 text-slate-600 text-sm font-medium backdrop-blur-sm mx-auto">
@@ -23,7 +23,7 @@ const LandingPage = ({ onStart }: { onStart: () => void }) => (
       {/* Hero Text */}
       <div className="space-y-4">
         <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900" style={{ letterSpacing: '-0.02em' }}>
-          TKK <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600">AutoCoder</span>
+          K-Labs <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600">AutoCoder</span>
         </h1>
         <p className="text-xl md:text-2xl text-slate-500 font-light max-w-2xl mx-auto leading-relaxed">
           沉浸式 C++ 编程教学与练习平台。<br/>
@@ -39,6 +39,14 @@ const LandingPage = ({ onStart }: { onStart: () => void }) => (
         >
           开始学习
           <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
+        </button>
+
+        <button 
+          onClick={onGoToOnlineList}
+          className="group relative inline-flex items-center gap-3 px-8 py-4 bg-indigo-50 text-indigo-700 border border-indigo-100 rounded-full text-lg font-medium transition-all hover:bg-indigo-100 hover:text-indigo-900 hover:border-indigo-200 hover:scale-105 hover:shadow-lg active:scale-95 min-w-[200px] justify-center"
+        >
+          <span>历年线上赛</span>
+          <Trophy size={20} className="text-indigo-500 group-hover:text-indigo-700 transition-transform group-hover:-translate-y-0.5" />
         </button>
 
         <a 
@@ -208,7 +216,7 @@ function AppContent() {
             <div className={`p-6 border-b shrink-0 flex justify-between items-center ${theme === 'dark' ? 'border-slate-800 bg-[#0f172a]' : 'border-slate-200 bg-white'}`}>
               <h1 className={`text-xl font-bold flex items-center gap-2 whitespace-nowrap overflow-hidden tracking-tight ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>
                 <GraduationCap className="text-indigo-400 shrink-0" />
-                <span className="truncate">TKK AutoCoder</span>
+                <span className="truncate">K-Labs AutoCoder</span>
               </h1>
               <div className="md:hidden">
                 <ThemeToggle />
@@ -474,12 +482,17 @@ function AppContent() {
         {/* Scrollable Content Area */}
         <div className="flex-1 overflow-y-auto bg-white scroll-smooth">
           {activeSectionId === 'home' ? (
-             <LandingPage onStart={() => {
-                setActiveSectionId(sections[0].id);
-             }} />
+             <LandingPage 
+               onStart={() => {
+                  setActiveSectionId(sections[0].id);
+               }} 
+               onGoToOnlineList={() => {
+                  setActiveSectionId('online-high-pass-list');
+               }}
+             />
           ) : activeSection ? (
              activeSection.type === 'lesson' ? (
-              <div className="max-w-4xl mx-auto p-6 md:p-12 animate-in fade-in duration-500">
+              <div className="max-w-[95%] mx-auto p-6 md:p-12 animate-in fade-in duration-500">
                  <div className="mb-10 bg-slate-50 dark:bg-slate-800/50 rounded-3xl p-8 md:p-10 border border-slate-100 dark:border-slate-700/50 flex flex-col md:flex-row gap-6 items-start md:items-center relative overflow-hidden group">
                     {/* Decorative Background Pattern */}
                     <div className="absolute top-0 right-0 p-12 opacity-5 dark:opacity-10 transform translate-x-1/3 -translate-y-1/3 pointer-events-none">
@@ -511,29 +524,6 @@ function AppContent() {
                     prose-strong:text-slate-900 prose-strong:font-semibold">
                     {activeSection.content}
                  </div>
-  
-                 {/* Navigation Footer */}
-                 <div className="mt-16 flex justify-between items-center border-t border-slate-100 pt-8">
-                    <div className="text-sm text-slate-400 font-medium">
-                      TKK AutoCoder C++
-                    </div>
-                    {(() => {
-                      const currentIndex = sections.findIndex(s => s.id === activeSectionId);
-                      const nextSection = sections[currentIndex + 1];
-                      if (nextSection) {
-                        return (
-                          <button 
-                            onClick={() => setActiveSectionId(nextSection.id)}
-                            className="group flex items-center gap-2 pl-4 pr-3 py-2 bg-slate-900 text-white rounded-full text-sm font-medium hover:bg-slate-800 transition-all hover:pr-2"
-                          >
-                            下一节: {nextSection.title} 
-                            <ChevronRight size={16} className="transition-transform group-hover:translate-x-1" />
-                          </button>
-                        )
-                      }
-                      return null;
-                    })()}
-                 </div>
               </div>
             ) : activeSection.type === 'quiz' && activeSection.quizData ? (
               <QuizArea data={activeSection.quizData} />
@@ -542,6 +532,61 @@ function AppContent() {
             )
           ) : (
             <div className="p-8 text-center text-slate-500">Section not found</div>
+          )}
+
+          {/* Navigation Footer for All Sections */}
+          {activeSection && (
+             <div className="max-w-[95%] mx-auto px-6 md:px-12 pb-12 mt-8">
+                <div className="flex justify-between items-center border-t border-slate-100 pt-8">
+                    {/* Previous Section */}
+                    <div className="flex-1">
+                        {(() => {
+                            const currentIndex = sections.findIndex(s => s.id === activeSectionId);
+                            const prevSection = sections[currentIndex - 1];
+                            if (prevSection) {
+                                return (
+                                    <button 
+                                        onClick={() => setActiveSectionId(prevSection.id)}
+                                        className="group flex flex-col items-start gap-1 text-left hover:bg-slate-50 p-3 -ml-3 rounded-xl transition-colors"
+                                    >
+                                        <span className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1 group-hover:text-indigo-500 transition-colors">
+                                            <ChevronLeft size={12} /> 上一节
+                                        </span>
+                                        <span className="text-sm font-bold text-slate-700 group-hover:text-indigo-700 transition-colors">
+                                            {prevSection.title}
+                                        </span>
+                                    </button>
+                                );
+                            }
+                            return <div className="text-sm text-slate-400 font-medium pl-3">TKK AutoCoder C++</div>;
+                        })()}
+                    </div>
+
+                    {/* Next Section */}
+                    <div className="flex-1 flex justify-end">
+                        {(() => {
+                            const currentIndex = sections.findIndex(s => s.id === activeSectionId);
+                            const nextSection = sections[currentIndex + 1];
+                            if (nextSection) {
+                                return (
+                                    <button 
+                                        onClick={() => setActiveSectionId(nextSection.id)}
+                                        className="group flex flex-col items-end gap-1 text-right hover:bg-slate-50 p-3 -mr-3 rounded-xl transition-colors"
+                                    >
+                                        <span className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1 group-hover:text-indigo-500 transition-colors">
+                                            下一节 <ChevronRight size={12} />
+                                        </span>
+                                        <span className="text-sm font-bold text-slate-700 group-hover:text-indigo-700 transition-colors">
+                                            {nextSection.title}
+                                        </span>
+                                    </button>
+                                );
+                            }
+                            return null;
+                        })()}
+                    </div>
+                </div>
+             </div>
           )}
         </div>
       </main>

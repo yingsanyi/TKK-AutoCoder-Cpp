@@ -2,13 +2,16 @@ import React from 'react';
 import { CodeBlock } from './CodeBlock';
 
 // Helper component to render description with **bold**, `code` and ```code block``` support
-export const DescriptionRenderer: React.FC<{ text: string }> = ({ text }) => {
+export const DescriptionRenderer: React.FC<{ text: string; className?: string; inline?: boolean }> = ({ text, className = '', inline = false }) => {
   // Split text by ```code block```, **bold** or `code` patterns
   // Priority: Triple backticks first
   const parts = text.split(/(```[\s\S]*?```|\*\*.*?\*\*|`[^`]+?`)/g);
 
+  const Wrapper = inline ? 'span' : 'div';
+  const defaultClasses = inline ? '' : 'text-slate-700 dark:text-slate-300 leading-relaxed space-y-2';
+
   return (
-    <div className="text-slate-700 dark:text-slate-300 leading-relaxed space-y-2">
+    <Wrapper className={`${defaultClasses} ${className}`.trim()}>
       {parts.map((part, index) => {
         // Handle Code Blocks (```language ... ```)
         if (part.startsWith('```') && part.endsWith('```')) {
@@ -43,8 +46,8 @@ export const DescriptionRenderer: React.FC<{ text: string }> = ({ text }) => {
         }
 
         // Handle regular text (preserve newlines if any)
-        return <span key={index} className="whitespace-pre-wrap">{part}</span>;
+        return <span key={index} className={inline ? "" : "whitespace-pre-wrap"}>{part}</span>;
       })}
-    </div>
+    </Wrapper>
   );
 };

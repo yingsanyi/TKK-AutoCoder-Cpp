@@ -74,7 +74,7 @@ export const QuizArea: React.FC<QuizAreaProps> = ({ data }) => {
   const isAllSubmitted = Object.keys(submitted).length === data.questions.length;
 
   return (
-    <div className="max-w-4xl mx-auto p-6 md:p-12">
+    <div className="max-w-[95%] mx-auto p-6 md:p-12">
       <div className="mb-8 border-b border-slate-200 dark:border-slate-700 pb-6">
         <div className="flex items-center gap-2 mb-2">
           <span className="px-3 py-1 bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300 rounded-full text-xs font-bold uppercase tracking-wider">
@@ -101,7 +101,7 @@ export const QuizArea: React.FC<QuizAreaProps> = ({ data }) => {
                 </span>
                 <div className="flex-1">
                   <h3 className="text-lg font-medium text-slate-900 dark:text-white mb-4">
-                    <DescriptionRenderer text={q.question} />
+                    <DescriptionRenderer text={q.question} inline={true} />
                   </h3>
                   
                   {/* Options */}
@@ -141,7 +141,7 @@ export const QuizArea: React.FC<QuizAreaProps> = ({ data }) => {
                               {String.fromCharCode(65 + oIndex)}
                             </span>
                             <span className="flex-1">
-                              <DescriptionRenderer text={option} />
+                              <DescriptionRenderer text={option} inline={true} />
                             </span>
                           </span>
                           {icon}

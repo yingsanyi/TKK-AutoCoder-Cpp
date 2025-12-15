@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { X, ChevronLeft, ChevronRight, Hash, Maximize2, Minimize2 } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, BookOpen, Maximize2, Minimize2 } from 'lucide-react';
 import { Section } from '../../types';
 import { ExerciseArea } from '../Exercise/ExerciseArea';
 import { QuizArea } from '../Quiz/QuizArea';
@@ -162,6 +162,18 @@ export const PresentationView: React.FC<PresentationViewProps> = ({
     }
   }, [subSlideIndex, currentIndex]);
 
+  const goToPrevSection = () => {
+    if (currentIndex > 0) {
+        setCurrentIndex(prev => prev - 1);
+    }
+  };
+
+  const goToNextSection = () => {
+    if (currentIndex < sections.length - 1) {
+        setCurrentIndex(prev => prev + 1);
+    }
+  };
+
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -202,10 +214,10 @@ export const PresentationView: React.FC<PresentationViewProps> = ({
     <div className="fixed inset-0 z-[100] bg-slate-900 text-white flex flex-col animate-in fade-in duration-300">
       
       {/* Top Bar (Controls) */}
-      <div className="flex items-center justify-between p-4 bg-slate-800/50 backdrop-blur-sm border-b border-slate-700/50">
+      <div className="flex items-center justify-between px-4 py-2 bg-slate-800/50 backdrop-blur-sm border-b border-slate-700/50">
         <div className="flex items-center gap-4 text-slate-400 text-sm font-medium">
           <span className="flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700">
-            <Hash size={14} />
+            <BookOpen size={14} />
             {currentIndex + 1}.{subSlideIndex + 1} / {sections.length}
           </span>
           <span className="hidden md:inline truncate max-w-md opacity-75">
@@ -248,34 +260,34 @@ export const PresentationView: React.FC<PresentationViewProps> = ({
       {/* Main Slide Content */}
       <div 
         id="slide-content-container"
-        className="flex-1 overflow-hidden relative"
+        className="flex-1 overflow-hidden relative pb-28 md:pb-32"
       >
-        <div className="h-full w-full flex flex-col items-center justify-center p-2 md:p-4">
+        <div className="h-full w-full flex flex-col items-center justify-center p-1 md:p-2">
           <div className="w-full h-full bg-white dark:bg-slate-800 rounded-2xl shadow-2xl overflow-hidden border border-slate-200 dark:border-slate-700 flex flex-col">
              
              {/* Slide Header */}
-             <div className="bg-gradient-to-r from-indigo-500 to-purple-600 p-6 md:p-8 text-white shrink-0">
-                <div className="flex items-center gap-3 mb-2 opacity-80 text-sm font-bold tracking-widest uppercase">
+             <div className="bg-gradient-to-r from-indigo-500 to-purple-600 p-4 md:p-6 text-white shrink-0">
+                <div className="flex items-center gap-3 mb-1 opacity-80 text-xs md:text-sm font-bold tracking-widest uppercase">
                     {currentSection.category}
                 </div>
-                <h1 className="text-2xl md:text-4xl font-bold leading-tight">
+                <h1 className="text-xl md:text-3xl font-bold leading-tight">
                     {currentSection.title}
                 </h1>
              </div>
 
              {/* Slide Body */}
-             <div className="p-6 md:p-8 text-slate-800 dark:text-slate-200 text-lg md:text-xl leading-relaxed flex-1 flex flex-col overflow-y-auto min-h-0">
-                 {/* 
-                    Injecting a specific class to allow overriding styles for presentation mode 
-                    e.g., larger text, hidden specialized components if needed 
-                 */}
-                 <div className="prose prose-slate dark:prose-invert prose-xl max-w-none presentation-content flex-1 h-full">
-                    {/* Render specific slide content */}
-                    {slides[subSlideIndex]}
-                 </div>
-             </div>
-             
-             {/* Slide Progress Dots (if multiple slides in section) */}
+            <div className="p-4 md:p-6 text-slate-800 dark:text-slate-200 text-lg md:text-xl leading-relaxed flex-1 flex flex-col overflow-y-auto min-h-0">
+                {/* 
+                   Injecting a specific class to allow overriding styles for presentation mode 
+                   e.g., larger text, hidden specialized components if needed 
+                */}
+                <div className="prose prose-slate dark:prose-invert prose-xl max-w-none presentation-content flex-1 h-full">
+                   {/* Render specific slide content */}
+                   {slides[subSlideIndex]}
+                </div>
+            </div>
+            
+            {/* Slide Progress Dots (if multiple slides in section) */}
              {slides.length > 1 && (
                  <div className="p-4 flex justify-center gap-2 border-t border-slate-100 dark:border-slate-700/50 bg-slate-50 dark:bg-slate-800/50">
                      {slides.map((_, idx) => (
@@ -291,29 +303,66 @@ export const PresentationView: React.FC<PresentationViewProps> = ({
       </div>
 
       {/* Bottom Navigation Bar */}
-      <div className="p-6 flex justify-center items-center gap-8 pb-8">
-        <button 
-          onClick={goToPrev}
-          disabled={currentIndex === 0 && subSlideIndex === 0}
-          className="p-4 rounded-full bg-slate-800 hover:bg-slate-700 disabled:opacity-30 disabled:hover:bg-slate-800 transition-all text-white shadow-lg border border-slate-700"
-        >
-          <ChevronLeft size={32} />
-        </button>
+      <div className="p-4 md:p-6 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-8 pb-8 bg-slate-900/90 backdrop-blur-sm border-t border-slate-800 absolute bottom-0 left-0 right-0 z-50">
+          {/* Left: Previous Section */}
+          <div className="w-full md:w-1/4 flex justify-start order-2 md:order-1">
+            {currentIndex > 0 && (
+                <button 
+                    onClick={goToPrevSection} 
+                    className="flex flex-col items-start group hover:bg-slate-800/50 p-2 rounded-lg transition-colors text-left"
+                >
+                   <div className="text-xs text-slate-500 uppercase font-bold group-hover:text-indigo-400 transition-colors flex items-center gap-1">
+                      <ChevronLeft size={12} /> 上一节
+                   </div>
+                   <div className="text-sm font-bold truncate max-w-[150px] md:max-w-[200px] text-slate-300 group-hover:text-white transition-colors">
+                      {sections[currentIndex-1].title}
+                   </div>
+                </button>
+            )}
+          </div>
 
-        <div className="h-1.5 w-64 bg-slate-800 rounded-full overflow-hidden">
-            <div 
-                className="h-full bg-indigo-500 transition-all duration-300 ease-out"
-                style={{ width: `${((currentIndex * slides.length + subSlideIndex + 1) / (sections.length * slides.length)) * 100}%` }} // Approx progress
-            />
-        </div>
+          {/* Center: Slide Controls */}
+          <div className="flex items-center gap-6 order-1 md:order-2">
+            <button 
+              onClick={goToPrev}
+              disabled={currentIndex === 0 && subSlideIndex === 0}
+              className="p-4 rounded-full bg-slate-800 hover:bg-slate-700 disabled:opacity-30 disabled:hover:bg-slate-800 transition-all text-white shadow-lg border border-slate-700"
+            >
+              <ChevronLeft size={32} />
+            </button>
 
-        <button 
-          onClick={goToNext}
-          disabled={currentIndex === sections.length - 1 && subSlideIndex === slides.length - 1}
-          className="p-4 rounded-full bg-slate-800 hover:bg-slate-700 disabled:opacity-30 disabled:hover:bg-slate-800 transition-all text-white shadow-lg border border-slate-700"
-        >
-          <ChevronRight size={32} />
-        </button>
+            <div className="h-1.5 w-48 md:w-64 bg-slate-800 rounded-full overflow-hidden">
+                <div 
+                    className="h-full bg-indigo-500 transition-all duration-300 ease-out"
+                    style={{ width: `${((currentIndex * slides.length + subSlideIndex + 1) / (sections.length * slides.length)) * 100}%` }} // Approx progress
+                />
+            </div>
+
+            <button 
+              onClick={goToNext}
+              disabled={currentIndex === sections.length - 1 && subSlideIndex === slides.length - 1}
+              className="p-4 rounded-full bg-slate-800 hover:bg-slate-700 disabled:opacity-30 disabled:hover:bg-slate-800 transition-all text-white shadow-lg border border-slate-700"
+            >
+              <ChevronRight size={32} />
+            </button>
+          </div>
+
+          {/* Right: Next Section */}
+          <div className="w-full md:w-1/4 flex justify-end order-3">
+            {currentIndex < sections.length - 1 && (
+                <button 
+                    onClick={goToNextSection} 
+                    className="flex flex-col items-end group hover:bg-slate-800/50 p-2 rounded-lg transition-colors text-right"
+                >
+                   <div className="text-xs text-slate-500 uppercase font-bold group-hover:text-indigo-400 transition-colors flex items-center gap-1">
+                      下一节 <ChevronRight size={12} />
+                   </div>
+                   <div className="text-sm font-bold truncate max-w-[150px] md:max-w-[200px] text-slate-300 group-hover:text-white transition-colors">
+                      {sections[currentIndex+1].title}
+                   </div>
+                </button>
+            )}
+          </div>
       </div>
 
     </div>

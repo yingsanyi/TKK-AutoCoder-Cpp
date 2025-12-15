@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { Menu, BookOpen, Code2, ChevronRight, ChevronDown, GraduationCap, Home, ArrowRight, Sparkles, ExternalLink } from 'lucide-react';
+import { Menu, BookOpen, Code2, ChevronRight, ChevronDown, GraduationCap, Home, ArrowRight, Sparkles, ExternalLink, Projector } from 'lucide-react';
 import { sections } from './data/index';
 import { ExerciseArea } from './components/Exercise/ExerciseArea';
 import { QuizArea } from './components/Quiz/QuizArea';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { ThemeToggle } from './components/Theme/ThemeToggle';
 import { DrawingCanvas } from './components/Presentation/DrawingCanvas';
+import { PresentationView } from './components/Presentation/PresentationView';
 
 // --- Components ---
 
@@ -81,6 +82,9 @@ function AppContent() {
   const [sidebarWidth, setSidebarWidth] = useState(288); // Default 18rem (288px)
   const [isResizing, setIsResizing] = useState(false);
   const sidebarRef = useRef<HTMLElement>(null);
+  
+  // Presentation mode state
+  const [isPresentationMode, setIsPresentationMode] = useState(false);
 
   // Get unique categories
   const categories = Array.from(new Set(sections.map(s => s.category)));
@@ -427,10 +431,27 @@ function AppContent() {
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col h-full overflow-hidden w-full relative bg-white">
+        
+        {isPresentationMode && (
+            <PresentationView 
+               sections={sections}
+               initialSectionId={activeSectionId}
+               onClose={() => setIsPresentationMode(false)}
+               onSectionChange={setActiveSectionId}
+            />
+         )}
+
         {/* Top Mobile Bar */}
         <header className="md:hidden bg-white/80 backdrop-blur-md border-b border-slate-200 p-4 flex items-center justify-between sticky top-0 z-10 shrink-0">
           <h2 className="font-semibold text-slate-800 truncate pr-4">{activeSection ? activeSection.title : 'TKK AutoCoder'}</h2>
           <div className="flex items-center gap-2">
+            <button 
+              onClick={() => setIsPresentationMode(true)} 
+              className="p-2 hover:bg-slate-100 rounded-full text-slate-600 shrink-0"
+              title="演示模式"
+            >
+              <Projector size={20} />
+            </button>
             <ThemeToggle />
             <button onClick={toggleSidebar} className="p-2 hover:bg-slate-100 rounded-full text-slate-600 shrink-0">
               <Menu size={24} />
@@ -439,7 +460,14 @@ function AppContent() {
         </header>
 
         {/* Desktop Theme Toggle (Floating) */}
-        <div className="hidden md:block absolute top-6 right-6 z-50">
+        <div className="hidden md:flex absolute top-6 right-6 z-50 items-center gap-3">
+          <button
+            onClick={() => setIsPresentationMode(true)}
+            className="p-2.5 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-full shadow-sm border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all hover:scale-105"
+            title="进入演示模式"
+          >
+            <Projector size={20} />
+          </button>
           <ThemeToggle />
         </div>
 
@@ -452,13 +480,28 @@ function AppContent() {
           ) : activeSection ? (
              activeSection.type === 'lesson' ? (
               <div className="max-w-4xl mx-auto p-6 md:p-12 animate-in fade-in duration-500">
-                 <div className="mb-10 border-b border-slate-100 pb-6">
-                    <div className="flex items-center gap-2 text-indigo-600 mb-4">
-                      <span className="text-[10px] font-bold uppercase tracking-widest bg-indigo-50 px-2 py-1 rounded text-indigo-700 border border-indigo-100">
-                        {activeSection.category}
-                      </span>
+                 <div className="mb-10 bg-slate-50 dark:bg-slate-800/50 rounded-3xl p-8 md:p-10 border border-slate-100 dark:border-slate-700/50 flex flex-col md:flex-row gap-6 items-start md:items-center relative overflow-hidden group">
+                    {/* Decorative Background Pattern */}
+                    <div className="absolute top-0 right-0 p-12 opacity-5 dark:opacity-10 transform translate-x-1/3 -translate-y-1/3 pointer-events-none">
+                         {activeSection.type === 'lesson' ? <BookOpen size={200} /> : activeSection.type === 'quiz' ? <GraduationCap size={200} /> : <Code2 size={200} />}
                     </div>
-                    <h1 className="text-3xl md:text-4xl font-bold text-slate-900 break-words tracking-tight">{activeSection.title}</h1>
+                    
+                    {/* Icon Box */}
+                    <div className="relative p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 shrink-0 text-indigo-600 dark:text-indigo-400 group-hover:scale-105 transition-transform duration-500 ease-out">
+                        {activeSection.type === 'lesson' ? <BookOpen size={32} strokeWidth={1.5} /> : activeSection.type === 'quiz' ? <GraduationCap size={32} strokeWidth={1.5} /> : <Code2 size={32} strokeWidth={1.5} />}
+                    </div>
+
+                    <div className="relative z-10">
+                        <div className="flex items-center gap-2 mb-3">
+                            <span className="h-px w-6 bg-indigo-400/50"></span>
+                            <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider">
+                                {activeSection.category}
+                            </span>
+                        </div>
+                        <h1 className="text-2xl md:text-4xl font-bold text-slate-900 dark:text-white leading-tight tracking-tight">
+                            {activeSection.title}
+                        </h1>
+                    </div>
                  </div>
                  
                  <div className="prose prose-slate prose-lg max-w-none 

@@ -1,4 +1,6 @@
 import { Section } from '../types';
+import { introSections } from './modules/intro';
+import { basicsSections } from './modules/basics';
 import { arraysSections } from './modules/arrays';
 import { stringsSections } from './modules/strings';
 import { pointersSections } from './modules/pointers';
@@ -10,6 +12,8 @@ import { examinationFourSections } from './modules/examination_4';
 import { examinationFiveSections } from './modules/examination_5';
 
 export const sections: Section[] = [
+  ...introSections,
+  ...basicsSections,
   ...arraysSections,
   ...stringsSections,
   ...pointersSections,

@@ -3,6 +3,8 @@ import { ExerciseData } from '../../types';
 import { Play, RotateCcw, CheckCircle2, AlertCircle, Terminal, Loader2, XCircle, Trash2 } from 'lucide-react';
 import { CodeBlock } from '../Common/CodeBlock';
 import { DescriptionRenderer } from '../Common/DescriptionRenderer';
+import Editor from 'react-simple-code-editor';
+import { Highlight, themes } from 'prism-react-renderer';
 
 interface ExerciseAreaProps {
   data: ExerciseData;
@@ -190,11 +192,34 @@ export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
                   </span>
                   <span className="text-slate-500">GCC 10.2.0</span>
                </div>
-               <textarea
+               <Editor
                 value={userCode}
-                onChange={(e) => setUserCode(e.target.value)}
-                className="w-full flex-1 p-4 font-mono text-sm bg-[#1e1e1e] text-slate-200 resize-none focus:outline-none leading-relaxed"
-                spellCheck={false}
+                onValueChange={code => setUserCode(code)}
+                highlight={code => (
+                  <Highlight theme={themes.vsDark} code={code} language="cpp">
+                    {({ tokens, getLineProps, getTokenProps }) => (
+                      <>
+                        {tokens.map((line, i) => (
+                          <div {...getLineProps({ line, key: i })}>
+                            {line.map((token, key) => (
+                              <span {...getTokenProps({ token, key })} />
+                            ))}
+                          </div>
+                        ))}
+                      </>
+                    )}
+                  </Highlight>
+                )}
+                padding={16}
+                style={{
+                  fontFamily: 'monospace',
+                  fontSize: 14,
+                  backgroundColor: '#1e1e1e',
+                  color: '#f8f8f2',
+                  minHeight: '100%',
+                }}
+                className="font-mono text-sm leading-relaxed"
+                textareaClassName="focus:outline-none"
               />
             </div>
 

@@ -155,7 +155,7 @@ export const DrawingCanvas = () => {
     return (
         <button
             onClick={() => { setIsMenuOpen(true); setIsActive(true); }}
-            className="fixed bottom-6 right-6 z-50 p-4 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 transition-all hover:scale-110 flex items-center justify-center group"
+            className="fixed bottom-6 right-6 z-[10001] p-4 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 transition-all hover:scale-110 flex items-center justify-center group"
             title="开启演示模式 (画笔)"
         >
             <MonitorPlay size={24} className="group-hover:animate-pulse" />
@@ -168,7 +168,7 @@ export const DrawingCanvas = () => {
       {/* Canvas Layer */}
       <canvas
         ref={canvasRef}
-        className={`fixed inset-0 z-[9999] touch-none ${isActive ? 'pointer-events-auto' : 'pointer-events-none'}`}
+        className={`fixed inset-0 z-[10002] touch-none ${isActive ? 'pointer-events-auto' : 'pointer-events-none'}`}
         style={{ 
             display: 'block',
             cursor: isActive ? getCursor(tool) : 'default'
@@ -183,7 +183,7 @@ export const DrawingCanvas = () => {
       />
 
       {/* Toolbar */}
-      <div className="fixed bottom-6 right-6 z-[10000] flex flex-col gap-2 items-end animate-in slide-in-from-bottom-10 fade-in duration-300">
+      <div className="fixed bottom-6 right-6 z-[10003] flex flex-col gap-2 items-end animate-in slide-in-from-bottom-10 fade-in duration-300">
          
          {/* Controls */}
          <div className="bg-white dark:bg-slate-800 p-2 rounded-xl shadow-2xl border border-slate-200 dark:border-slate-700 flex flex-col gap-2 backdrop-blur-sm bg-white/90 dark:bg-slate-800/90">

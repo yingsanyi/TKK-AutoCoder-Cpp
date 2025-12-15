@@ -4,9 +4,10 @@ export type SectionType = 'lesson' | 'exercise' | 'quiz';
 
 export interface QuizQuestion {
   id: number;
+  type?: 'single' | 'multiple';
   question: string;
   options: string[];
-  correctAnswer: number; // Index 0-based
+  correctAnswer: number | string | number[]; // Index 0-based or string answer or array of indices
   explanation?: string;
 }
 

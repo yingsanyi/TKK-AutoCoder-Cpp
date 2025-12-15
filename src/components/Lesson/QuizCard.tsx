@@ -1,5 +1,6 @@
 import React from 'react';
 import { ChevronRight, Zap } from 'lucide-react';
+import { DescriptionRenderer } from '../Common/DescriptionRenderer';
 
 export const QuizCard = ({ title, question, code, answer, type = 'basic', className = '' }: { title: string, question: string, code?: string, answer: React.ReactNode, type?: 'basic' | 'challenge', className?: string }) => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -17,7 +18,9 @@ export const QuizCard = ({ title, question, code, answer, type = 'basic', classN
                 {title}
             </h4>
         </div>
-        <p className="text-sm text-slate-600 dark:text-slate-300 mb-3 font-medium">{question}</p>
+        <div className="text-sm text-slate-600 dark:text-slate-300 mb-3 font-medium">
+            <DescriptionRenderer text={question} />
+        </div>
         
         {code && (
             <div className="mb-4 text-sm">
@@ -38,7 +41,7 @@ export const QuizCard = ({ title, question, code, answer, type = 'basic', classN
         <div className={`grid transition-all duration-300 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100 mt-4' : 'grid-rows-[0fr] opacity-0'}`}>
             <div className="overflow-hidden">
                 <div className="p-4 bg-slate-50 dark:bg-slate-900/50 rounded-lg border border-slate-100 dark:border-slate-800/50 text-sm text-slate-600 dark:text-slate-400">
-                    {answer}
+                    {typeof answer === 'string' ? <DescriptionRenderer text={answer} /> : answer}
                 </div>
             </div>
         </div>

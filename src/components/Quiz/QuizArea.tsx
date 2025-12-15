@@ -28,10 +28,45 @@ export const QuizArea: React.FC<QuizAreaProps> = ({ data }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const isCorrect = (qIndex: number) => {
+    const q = data.questions[qIndex];
+    const selected = selections[qIndex];
+    
+    // 如果是基于索引的答案（旧版数据）
+    if (typeof q.correctAnswer === 'number') {
+      return selected === q.correctAnswer;
+    }
+    
+    // 如果是基于字符串内容的答案（新版数据）
+    if (typeof q.correctAnswer === 'string') {
+      // 找到选项文本匹配正确答案的索引
+      const correctIndex = q.options.findIndex(opt => {
+        // 移除选项前缀如 "A. " 或 "1. " 进行比较，或者直接比较
+        // 这里假设 options 数组中的字符串直接包含答案内容，或者包含前缀
+        // 简单起见，我们假设 options 中的内容包含正确答案字符串
+        return opt.includes(q.correctAnswer as string);
+      });
+      return selected === correctIndex;
+    }
+    
+    return false;
+  };
+
+  const getCorrectIndex = (qIndex: number) => {
+    const q = data.questions[qIndex];
+    if (typeof q.correctAnswer === 'number') return q.correctAnswer;
+    
+    if (typeof q.correctAnswer === 'string') {
+      return q.options.findIndex(opt => opt.includes(q.correctAnswer as string));
+    }
+    
+    return -1;
+  };
+
   const getScore = () => {
     let correct = 0;
     data.questions.forEach((q, idx) => {
-      if (selections[idx] === q.correctAnswer) correct++;
+      if (isCorrect(idx)) correct++;
     });
     return correct;
   };
@@ -55,7 +90,8 @@ export const QuizArea: React.FC<QuizAreaProps> = ({ data }) => {
       <div className="space-y-8">
         {data.questions.map((q, qIndex) => {
           const isSubmitted = submitted[qIndex];
-          const isCorrect = selections[qIndex] === q.correctAnswer;
+          const correctIdx = getCorrectIndex(qIndex);
+          const isCurrentCorrect = selections[qIndex] === correctIdx;
           
           return (
             <div key={q.id} className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-6 shadow-sm">
@@ -79,10 +115,10 @@ export const QuizArea: React.FC<QuizAreaProps> = ({ data }) => {
                       }
 
                       if (isSubmitted) {
-                        if (oIndex === q.correctAnswer) {
+                        if (oIndex === correctIdx) {
                           optionClass = "border-green-500 bg-green-50 dark:bg-green-900/30 text-green-900 dark:text-green-300 ring-1 ring-green-500";
                           icon = <CheckCircle2 size={16} className="text-green-600 dark:text-green-400" />;
-                        } else if (selections[qIndex] === oIndex && oIndex !== q.correctAnswer) {
+                        } else if (selections[qIndex] === oIndex && oIndex !== correctIdx) {
                           optionClass = "border-red-300 bg-red-50 dark:bg-red-900/30 text-red-900 dark:text-red-300";
                           icon = <XCircle size={16} className="text-red-500 dark:text-red-400" />;
                         } else {
@@ -131,15 +167,15 @@ export const QuizArea: React.FC<QuizAreaProps> = ({ data }) => {
                       </button>
                     ) : (
                       <div className={`flex items-start gap-3 p-4 rounded-lg w-full ${
-                        isCorrect ? 'bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-green-300' : 'bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-300'
+                        isCurrentCorrect ? 'bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-green-300' : 'bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-300'
                       }`}>
-                        {isCorrect ? (
+                        {isCurrentCorrect ? (
                            <CheckCircle2 size={20} className="shrink-0 mt-0.5" />
                         ) : (
                            <AlertCircle size={20} className="shrink-0 mt-0.5" />
                         )}
                         <div>
-                           <p className="font-bold text-sm mb-1">{isCorrect ? '回答正确' : '回答错误'}</p>
+                           <p className="font-bold text-sm mb-1">{isCurrentCorrect ? '回答正确' : '回答错误'}</p>
                            <div className="text-sm opacity-90">
                              <DescriptionRenderer text={q.explanation} />
                            </div>

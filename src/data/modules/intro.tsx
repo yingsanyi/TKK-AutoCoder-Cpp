@@ -870,6 +870,25 @@ export const introSections: Section[] = [
                     </div>
                 </div>
             </div>
+
+            <div className="mt-6 bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                 <h4 className="font-bold text-slate-900 mb-3">环境搭建参考图</h4>
+                 <div className="rounded-lg overflow-hidden border border-slate-100">
+                    <img 
+                        src="/images/WechatIMG448.jpg" 
+                        alt="编程环境搭建参考" 
+                        className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
+                        onError={(e) => {
+                            e.currentTarget.style.display = 'none';
+                            const errorMsg = document.createElement('div');
+                            errorMsg.className = 'p-8 text-center text-slate-400 bg-slate-50 text-sm';
+                            errorMsg.innerText = '图片未找到。请将 WechatIMG448.jpg 上传至 public/images/ 目录';
+                            e.currentTarget.parentElement?.appendChild(errorMsg);
+                        }}
+                    />
+                 </div>
+                 <p className="text-xs text-slate-500 mt-2 text-center">图示：环境配置参考</p>
+            </div>
         </div>
 
         <div>

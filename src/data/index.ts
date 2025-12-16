@@ -5,6 +5,7 @@ import { selectionLoopsSections } from './modules/selection_loops';
 import { arraysSections } from './modules/arrays';
 import { stringsSections } from './modules/strings';
 import { pointersSections } from './modules/pointers';
+import { pointerArraysSections } from './modules/pointer_arrays';
 import { stlSections } from './modules/stl';
 import { examinationSections } from './modules/examination';
 import { examinationTwoSections } from './modules/examination_2';
@@ -20,6 +21,7 @@ export const sections: Section[] = [
   ...arraysSections,
   ...stringsSections,
   ...pointersSections,
+  ...pointerArraysSections,
   ...stlSections,
   ...examinationSections,
   ...examinationTwoSections,

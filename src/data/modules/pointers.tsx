@@ -2552,13 +2552,7 @@ int main()
           explanation: "p 是底层 const (指向常量的指针)，不能通过 p 改 a。但 a 本身不是 const，可以直接改。a 变 10 后，*p 读出来也是 10。"
         },
         // 26-30
-        {
-          id: 26,
-          question: "执行以下代码后输出什么？\n```cpp\nvoid f(int *p) { static int a = 10; p = &a; }\nint main() {\n    int b = 5;\n    int *ptr = &b;\n    f(ptr);\n    cout << *ptr;\n} \n```",
-          options: ["5", "10", "不确定", "编译错误"],
-          correctAnswer: 0,
-          explanation: "f 中的 p 是形参 (值传递)，p=&a 只改变了形参的指向，不影响实参 ptr。ptr 仍指向 b (5)。"
-        },
+
 
 
         {

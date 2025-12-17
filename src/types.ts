@@ -17,12 +17,19 @@ export interface QuizData {
   questions: QuizQuestion[];
 }
 
+export interface TestCase {
+  input: string;
+  output?: string;
+  description?: string;
+}
+
 export interface ExerciseData {
   title: string;
   description: string;
   initialCode: string;
   solutionCode: string;
   hints: string[];
+  testCases?: TestCase[];
 }
 
 export interface Section {

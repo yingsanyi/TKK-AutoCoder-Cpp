@@ -2141,6 +2141,10 @@ int main() {
     return 0;
 }`,
       hints: ['传参时用 &a, &b', '函数内用 *a, *b 访问和修改值'],
+      testCases: [
+        { input: "10 20", output: "20 10", description: "示例 1" },
+        { input: "-5 100", output: "100 -5", description: "示例 2 (负数)" }
+      ],
       solutionCode: `#include <iostream>
 using namespace std;
 
@@ -2194,6 +2198,10 @@ int main() {
     return 0;
 }`,
       hints: ['双指针法：首尾向中间靠拢', '交换 *left 和 *right'],
+      testCases: [
+        { input: "5 1 2 3 4 5", output: "5 4 3 2 1", description: "5 个元素" },
+        { input: "6 10 20 30 40 50 60", output: "60 50 40 30 20 10", description: "6 个元素" }
+      ],
       solutionCode: `#include <iostream>
 using namespace std;
 
@@ -2262,6 +2270,10 @@ int main() {
     return 0;
 }`,
       hints: ['初始化 maxVal/minVal 为 arr[0]', '遍历数组，更新 *maxVal 等', '注意是通过指针修改外部变量'],
+      testCases: [
+        { input: "5 10 20 5 30 15", output: "30 3 5 2", description: "普通测试" },
+        { input: "6 1 2 3 4 5 6", output: "6 5 1 0", description: "升序数组" }
+      ],
       solutionCode: `#include <iostream>
 using namespace std;
 
@@ -2320,8 +2332,13 @@ void reverse(int *arr, int n) {
 }
 
 int main() {
-    int arr[] = {1, 2, 3, 4, 5, 6};
-    int n = 6;
+    int n;
+    // 输入数组长度
+    if (!(cin >> n)) return 0;
+    
+    int arr[100];
+    // 输入数组元素
+    for(int i=0; i<n; i++) cin >> arr[i];
     
     cout << "Before: ";
     for(int i=0; i<n; i++) cout << arr[i] << " ";
@@ -2335,6 +2352,10 @@ int main() {
     return 0;
 }`,
       hints: ['left 指向 arr，right 指向 arr + n - 1', '当 left < right 时循环交换'],
+      testCases: [
+        { input: "6 1 2 3 4 5 6", output: "After:  6 5 4 3 2 1 ", description: "6 个元素" },
+        { input: "5 10 20 30 40 50", output: "After:  50 40 30 20 10 ", description: "5 个元素" }
+      ],
       solutionCode: `#include <iostream>
 using namespace std;
 
@@ -2351,18 +2372,21 @@ void reverse(int *arr, int n) {
 }
 
 int main() {
-    int arr[] = {1, 2, 3, 4, 5, 6};
-    int n = 6;
-    
-    cout << "Before: ";
-    for(int i=0; i<n; i++) cout << arr[i] << " ";
-    cout << endl;
+    int n;
+    if (cin >> n) {
+        int arr[100];
+        for(int i=0; i<n; i++) cin >> arr[i];
+        
+        cout << "Before: ";
+        for(int i=0; i<n; i++) cout << arr[i] << " ";
+        cout << endl;
 
-    reverse(arr, n);
-    
-    cout << "After:  ";
-    for(int i=0; i<n; i++) cout << arr[i] << " ";
-    cout << endl;
+        reverse(arr, n);
+        
+        cout << "After:  ";
+        for(int i=0; i<n; i++) cout << arr[i] << " ";
+        cout << endl;
+    }
     return 0;
 }`
     }
@@ -2385,8 +2409,14 @@ void findMinMax(int arr[], int n, int &minVal, int &maxVal) {
 }
 
 int main() {
-    int arr[] = {5, 12, 3, 9, 1, 8};
-    int n = 6;
+    int n;
+    // 输入数组长度
+    if (!(cin >> n)) return 0;
+    
+    int arr[100];
+    // 输入数组元素
+    for(int i=0; i<n; i++) cin >> arr[i];
+
     int minV, maxV;
     
     findMinMax(arr, n, minV, maxV);
@@ -2395,6 +2425,10 @@ int main() {
     return 0;
 }`,
       hints: ['先初始化 minVal = maxVal = arr[0]', '遍历数组更新 minVal 和 maxVal'],
+      testCases: [
+        { input: "6 5 12 3 9 1 8", output: "Min: 1, Max: 12", description: "示例测试" },
+        { input: "5 -1 -5 -10 -2 0", output: "Min: -10, Max: 0", description: "负数测试" }
+      ],
       solutionCode: `#include <iostream>
 using namespace std;
 
@@ -2408,13 +2442,16 @@ void findMinMax(int arr[], int n, int &minVal, int &maxVal) {
 }
 
 int main() {
-    int arr[] = {5, 12, 3, 9, 1, 8};
-    int n = 6;
-    int minV, maxV;
-    
-    findMinMax(arr, n, minV, maxV);
-    
-    cout << "Min: " << minV << ", Max: " << maxV << endl;
+    int n;
+    if (cin >> n) {
+        int arr[100];
+        for (int i = 0; i < n; i++) cin >> arr[i];
+        
+        int minV, maxV;
+        findMinMax(arr, n, minV, maxV);
+        
+        cout << "Min: " << minV << ", Max: " << maxV << endl;
+    }
     return 0;
 }`
     }
@@ -2442,7 +2479,9 @@ void deleteArray(int *arr) {
 }
 
 int main() {
-    int n = 5;
+    int n;
+    if (!(cin >> n)) return 0;
+    
     int* p = createArray(n);
     
     if(p) {
@@ -2456,6 +2495,10 @@ int main() {
     return 0;
 }`,
       hints: ['new int[n]', 'delete[] arr', '注意 new[] 和 delete[] 配对'],
+      testCases: [
+        { input: "5", output: "Array: 1 2 3 4 5 \nMemory freed.", description: "n=5" },
+        { input: "3", output: "Array: 1 2 3 \nMemory freed.", description: "n=3" }
+      ],
       solutionCode: `#include <iostream>
 using namespace std;
 
@@ -2470,16 +2513,18 @@ void deleteArray(int *arr) {
 }
 
 int main() {
-    int n = 5;
-    int* p = createArray(n);
-    
-    if(p) {
-        cout << "Array: ";
-        for(int i=0; i<n; i++) cout << p[i] << " ";
-        cout << endl;
+    int n;
+    if (cin >> n) {
+        int* p = createArray(n);
         
-        deleteArray(p);
-        cout << "Memory freed." << endl;
+        if(p) {
+            cout << "Array: ";
+            for(int i=0; i<n; i++) cout << p[i] << " ";
+            cout << endl;
+            
+            deleteArray(p);
+            cout << "Memory freed." << endl;
+        }
     }
     return 0;
 }`
@@ -2504,12 +2549,19 @@ int myStrlen(const char *str) {
 }
 
 int main() {
-    const char* s = "Hello C++";
+    char s[100];
+    // 读取一行字符串
+    cin.getline(s, 100);
+    
     cout << "String: " << s << endl;
     cout << "Length: " << myStrlen(s) << endl;
     return 0;
 }`,
       hints: ['定义指针 p 指向 str', 'while (*p != \'\\0\') p++', '长度 = p - str'],
+      testCases: [
+        { input: "Hello C++", output: "String: Hello C++\nLength: 9", description: "带空格的字符串" },
+        { input: "ABC", output: "String: ABC\nLength: 3", description: "普通字符串" }
+      ],
       solutionCode: `#include <iostream>
 using namespace std;
 
@@ -2522,7 +2574,9 @@ int myStrlen(const char *str) {
 }
 
 int main() {
-    const char* s = "Hello C++";
+    char s[100];
+    cin.getline(s, 100);
+    
     cout << "String: " << s << endl;
     cout << "Length: " << myStrlen(s) << endl;
     return 0;
@@ -2549,7 +2603,9 @@ void sortPointers(int *arr[], int n) {
 }
 
 int main() {
-    int a=30, b=10, c=20;
+    int a, b, c;
+    if (!(cin >> a >> b >> c)) return 0;
+    
     int *arr[] = {&a, &b, &c}; // arr 存的是 a,b,c 的地址
     
     cout << "Before: " << *arr[0] << " " << *arr[1] << " " << *arr[2] << endl;
@@ -2560,6 +2616,11 @@ int main() {
     return 0;
 }`,
       hints: ['比较条件: if (*arr[j] > *arr[j+1])', '交换动作: int* temp = arr[j]; arr[j] = arr[j+1]; ...'],
+      testCases: [
+        { input: "30 10 20", output: "Before: 30 10 20\nAfter:  10 20 30", description: "乱序" },
+        { input: "1 2 3", output: "Before: 1 2 3\nAfter:  1 2 3", description: "已排序" },
+        { input: "3 2 1", output: "Before: 3 2 1\nAfter:  1 2 3", description: "逆序" }
+      ],
       solutionCode: `#include <iostream>
 using namespace std;
 
@@ -2578,14 +2639,16 @@ void sortPointers(int *arr[], int n) {
 }
 
 int main() {
-    int a=30, b=10, c=20;
-    int *arr[] = {&a, &b, &c};
-    
-    cout << "Before: " << *arr[0] << " " << *arr[1] << " " << *arr[2] << endl;
-    
-    sortPointers(arr, 3);
-    
-    cout << "After:  " << *arr[0] << " " << *arr[1] << " " << *arr[2] << endl;
+    int a, b, c;
+    if (cin >> a >> b >> c) {
+        int *arr[] = {&a, &b, &c};
+        
+        cout << "Before: " << *arr[0] << " " << *arr[1] << " " << *arr[2] << endl;
+        
+        sortPointers(arr, 3);
+        
+        cout << "After:  " << *arr[0] << " " << *arr[1] << " " << *arr[2] << endl;
+    }
     return 0;
 }`
     }

@@ -19,6 +19,7 @@ interface ExecutionResult {
 
 export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
   const [userCode, setUserCode] = useState(data.initialCode);
+  const [stdin, setStdin] = useState('');
   const [activeTab, setActiveTab] = useState<'edit' | 'solution'>('edit');
   
   // Execution states
@@ -31,6 +32,7 @@ export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
   // Reset state when exercise changes
   useEffect(() => {
     setUserCode(data.initialCode);
+    setStdin('');
     setActiveTab('edit');
     setOutput(null);
     setExecutionError(null);
@@ -64,7 +66,8 @@ export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
             {
               content: userCode
             }
-          ]
+          ],
+          stdin: stdin,
         }),
       });
 
@@ -104,7 +107,7 @@ export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
   };
 
   return (
-    <div className="flex flex-col h-full max-w-[95%] mx-auto p-4 lg:p-8">
+    <div className="flex flex-col min-h-full max-w-[95%] mx-auto p-4 lg:p-8">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-2">
@@ -182,7 +185,7 @@ export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
       <div className="flex-1 flex flex-col gap-4">
         {activeTab === 'edit' ? (
           <>
-            <div className="min-h-[300px] h-[400px] relative rounded-xl overflow-hidden border border-slate-300 dark:border-slate-700 shadow-inner group flex flex-col bg-[#1e1e1e]">
+            <div className="min-h-[400px] relative rounded-xl overflow-hidden border border-slate-300 dark:border-slate-700 shadow-inner group flex flex-col bg-[#1e1e1e]">
                <div className="bg-[#1e1e1e] text-slate-400 text-xs px-4 py-2 flex items-center justify-between border-b border-slate-700 select-none">
                   <span className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-red-500"></span>
@@ -221,6 +224,37 @@ export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
                 className="font-mono text-sm leading-relaxed"
                 textareaClassName="focus:outline-none"
               />
+            </div>
+
+            {/* Standard Input Area */}
+            <div className="rounded-xl overflow-hidden border border-slate-300 dark:border-slate-700 shadow-sm flex flex-col bg-white dark:bg-slate-800">
+                <div className="bg-slate-100 dark:bg-slate-900 px-4 py-2 text-xs font-bold text-slate-500 uppercase tracking-wider border-b border-slate-200 dark:border-slate-700 flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                        <Terminal size={12} />
+                        标准输入 (Stdin)
+                    </div>
+                    {data.testCases && data.testCases.length > 0 && (
+                        <div className="flex gap-2 flex-wrap justify-end">
+                            <span className="hidden sm:inline text-slate-400 font-normal normal-case mr-1">预设输入:</span>
+                            {data.testCases.map((tc, idx) => (
+                                <button
+                                    key={idx}
+                                    onClick={() => setStdin(tc.input)}
+                                    className="px-2 py-0.5 text-[10px] bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded hover:bg-indigo-50 dark:hover:bg-indigo-900/50 hover:text-indigo-600 dark:hover:text-indigo-400 text-slate-600 dark:text-slate-300 transition-colors"
+                                    title={tc.description ? `${tc.description}\n输入内容:\n${tc.input}` : `输入内容:\n${tc.input}`}
+                                >
+                                    用例 {idx + 1}
+                                </button>
+                            ))}
+                        </div>
+                    )}
+                </div>
+                <textarea 
+                    className="w-full h-24 bg-white dark:bg-[#1e1e1e] text-slate-800 dark:text-slate-200 p-3 font-mono text-sm resize-y focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-600"
+                    placeholder="如果程序包含 cin，请在此处输入数据（例如：10 20）..."
+                    value={stdin}
+                    onChange={(e) => setStdin(e.target.value)}
+                />
             </div>
 
             {/* Terminal Output Area */}

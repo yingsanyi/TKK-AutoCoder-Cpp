@@ -17,27 +17,27 @@ export const solutions: Record<string, SolutionData> = {
 using namespace std;
 
 int main() {
-        int n;
-        cin >> n; // 输入案例数
-        for(int kase = 0; kase < n; kase++) {
-                int a, b, c, m;
-                cin >> a >> b >> c >> m;
-                int total = 0; // 总份数
-                int code[100]; // 用数组保存每天写的代码份数
-                code[0] = a;
-                code[1] = b;
-                total = a + b;
-                // 计算从第3天到第m天的代码数
-                for(int i = 2; i < m; i++) {
-                int next = code[i-1] + code[i-2] - c;
-                if(next < 1) next = 1; // 如果当天代码数小于1，设为1
-                code[i] = next;
-                total += next;
-                }
-                if(m == 1) total = a; // 特判只有一天
-                cout << total << endl;
+    int n;
+    cin >> n; // 输入案例数
+    for(int kase = 0; kase < n; kase++) {
+        int a, b, c, m;
+        cin >> a >> b >> c >> m;
+        int total = 0; // 总份数
+        int code[100]; // 用数组保存每天写的代码份数
+        code[0] = a;
+        code[1] = b;
+        total = a + b;
+        // 计算从第3天到第m天的代码数
+        for(int i = 2; i < m; i++) {
+            int next = code[i-1] + code[i-2] - c;
+            if(next < 1) next = 1; // 如果当天代码数小于1，设为1
+            code[i] = next;
+            total += next;
         }
-        return 0;
+        if(m == 1) total = a; // 特判只有一天
+        cout << total << endl;
+    }
+    return 0;
 }
 \`\`\`
 
@@ -70,34 +70,34 @@ int main() {
 using namespace std;
 
 int main() {
-        int n;
-        cin >> n; // 案例数
-        for(int kase = 0; kase < n; kase++) {
-                int a, c;
-                double b;
-                cin >> a >> b >> c;
-                double temp[2000005];
-                for(int i = 0; i < c; i++) {
-                cin >> temp[i];
-                }
-                int day = -1;
-                // 对每一天，从第 a 天检查是否达标（连续 a 天不小于 b）
-                for(int i = a - 1; i < c; i++) {
-                bool ok = true;
-                for(int j = i - a + 1; j <= i; j++) {
-                                if(temp[j] < b) {
-                                        ok = false;
-                                        break;
-                                }
-                }
-                if(ok) {
-                                day = i + 1; // 下标0起，所以加1
-                                break;
-                }
-                }
-                cout << day << endl;
+    int n;
+    cin >> n; // 案例数
+    for(int kase = 0; kase < n; kase++) {
+        int a, c;
+        double b;
+        cin >> a >> b >> c;
+        double temp[2000005];
+        for(int i = 0; i < c; i++) {
+            cin >> temp[i];
         }
-        return 0;
+        int day = -1;
+        // 对每一天，从第 a 天检查是否达标（连续 a 天不小于 b）
+        for(int i = a - 1; i < c; i++) {
+            bool ok = true;
+            for(int j = i - a + 1; j <= i; j++) {
+                if(temp[j] < b) {
+                    ok = false;
+                    break;
+                }
+            }
+            if(ok) {
+                day = i + 1; // 下标0起，所以加1
+                break;
+            }
+        }
+        cout << day << endl;
+    }
+    return 0;
 }
 \`\`\`
 
@@ -140,28 +140,28 @@ int main() {
 using namespace std;
 
 int main() {
-        int n;
-        cin >> n; // 组数
-        for(int kase = 0; kase < n; kase++) {
-                int m;
-                cin >> m;
-                int ans1 = 0, ans2 = 0;
-                long long maxProduct = 0; // 乘积可能非常大，要用long long保存
-                bool isFirst = true;      // 标记是否为首组，首组一定赋值
-                for(int i = 0; i < m; i++) {
-                int x, y;
-                cin >> x >> y;
-                long long prod = (long long)x * y;
-                if(isFirst || prod > maxProduct) {
-                                maxProduct = prod;
-                                ans1 = x;
-                                ans2 = y;
-                                isFirst = false;
-                }
-                }
-                cout << ans1 << " " << ans2 << endl;
+    int n;
+    cin >> n; // 组数
+    for(int kase = 0; kase < n; kase++) {
+        int m;
+        cin >> m;
+        int ans1 = 0, ans2 = 0;
+        long long maxProduct = 0; // 乘积可能非常大，要用long long保存
+        bool isFirst = true;      // 标记是否为首组，首组一定赋值
+        for(int i = 0; i < m; i++) {
+            int x, y;
+            cin >> x >> y;
+            long long prod = (long long)x * y;
+            if(isFirst || prod > maxProduct) {
+                maxProduct = prod;
+                ans1 = x;
+                ans2 = y;
+                isFirst = false;
+            }
         }
-        return 0;
+        cout << ans1 << " " << ans2 << endl;
+    }
+    return 0;
 }
 \`\`\`
 
@@ -196,21 +196,21 @@ int main() {
 using namespace std;
 
 int main() {
-        int n;
-        cin >> n; // 案例数量
-        for(int kase = 0; kase < n; kase++) {
-                int a, b;
-                cin >> a >> b;
-                // 0倍也算整数倍（即只要有一个为0就成立）
-                if(a == 0 || b == 0) {
-                cout << "Yes" << endl;
-                } else if(a % b == 0 || b % a == 0) {
-                cout << "Yes" << endl;
-                } else {
-                cout << "No" << endl;
-                }
+    int n;
+    cin >> n; // 案例数量
+    for(int kase = 0; kase < n; kase++) {
+        int a, b;
+        cin >> a >> b;
+        // 0倍也算整数倍（即只要有一个为0就成立）
+        if(a == 0 || b == 0) {
+            cout << "Yes" << endl;
+        } else if(a % b == 0 || b % a == 0) {
+            cout << "Yes" << endl;
+        } else {
+            cout << "No" << endl;
         }
-        return 0;
+    }
+    return 0;
 }
 \`\`\`
 
@@ -244,32 +244,32 @@ int main() {
 using namespace std;
 
 int main() {
-        int n;
-        cin >> n; // 案例数
-        for(int kase = 0; kase < n; kase++) {
-                int a, b, c;
-                cin >> a >> b >> c;
-                // 方程ax + b = c，转化为 ax = c - b，即 x = (c - b) / a
-                if(a == 0) {
-                if(b == c) {
-                                // 0x + b = b，x可取任意值，此时最小正整数解为1
-                                cout << 1 << endl;
-                } else {
-                                // 0x + b = c，b!=c，无解
-                                cout << "None" << endl;
-                }
-                } else {
-                int right = c - b;
-                if(right % a == 0) {
-                                int x = right / a;
-                                // 唯一解
-                                cout << x << endl;
-                } else {
-                                cout << "None" << endl;
-                }
-                }
+    int n;
+    cin >> n; // 案例数
+    for(int kase = 0; kase < n; kase++) {
+        int a, b, c;
+        cin >> a >> b >> c;
+        // 方程ax + b = c，转化为 ax = c - b，即 x = (c - b) / a
+        if(a == 0) {
+            if(b == c) {
+                // 0x + b = b，x可取任意值，此时最小正整数解为1
+                cout << 1 << endl;
+            } else {
+                // 0x + b = c，b!=c，无解
+                cout << "None" << endl;
+            }
+        } else {
+            int right = c - b;
+            if(right % a == 0) {
+                int x = right / a;
+                // 唯一解
+                cout << x << endl;
+            } else {
+                cout << "None" << endl;
+            }
         }
-        return 0;
+    }
+    return 0;
 }
 \`\`\`
 
@@ -306,29 +306,29 @@ int main() {
 using namespace std;
 
 int main() {
-        int n;
-        cin >> n;
-        while(n--) {
-                long long x, y;
-                cin >> x >> y;
+    int n;
+    cin >> n;
+    while(n--) {
+        long long x, y;
+        cin >> x >> y;
 
-                long long a = 1, b = 1, c;
-                long long ans = 0;
+        long long a = 1, b = 1, c;
+        long long ans = 0;
 
-                for(long long i = 1; i <= y; i++) {
-                if(i > 2) {
-                                c = (a + b) % 1000;
-                                a = b;
-                                b = c;
-                }
-                if(i >= x) {
-                                ans += b;
-                }
-                }
-
-                cout << ans << endl;
+        for(long long i = 1; i <= y; i++) {
+            if(i > 2) {
+                c = (a + b) % 1000;
+                a = b;
+                b = c;
+            }
+            if(i >= x) {
+                ans += b;
+            }
         }
-        return 0;
+
+        cout << ans << endl;
+    }
+    return 0;
 }
 \`\`\`
 
@@ -382,30 +382,30 @@ int main() {
 using namespace std;
 
 long long phi(long long m) {
-        long long res = m;
-        for(long long i = 2; i * i <= m; i++) {
-                if(m % i == 0) {
-                while(m % i == 0) m /= i;
-                res = res / i * (i - 1);
-                }
+    long long res = m;
+    for(long long i = 2; i * i <= m; i++) {
+        if(m % i == 0) {
+            while(m % i == 0) m /= i;
+            res = res / i * (i - 1);
         }
-        if(m > 1) res = res / m * (m - 1);
-        return res;
+    }
+    if(m > 1) res = res / m * (m - 1);
+    return res;
 }
 
 int main() {
-        int n;
-        cin >> n;
-        while(n--) {
-                long long m;
-                cin >> m;
-                if(m == 1) {
-                cout << 0 << endl;
-                } else {
-                cout << phi(m) << endl;
-                }
+    int n;
+    cin >> n;
+    while(n--) {
+        long long m;
+        cin >> m;
+        if(m == 1) {
+            cout << 0 << endl;
+        } else {
+            cout << phi(m) << endl;
         }
-        return 0;
+    }
+    return 0;
 }
 \`\`\`
 
@@ -431,30 +431,30 @@ int main() {
 using namespace std;
 
 int main() {
-        int n;
-        cin >> n;
-        while(n--) {
-                long long m;
-                cin >> m;
+    int n;
+    cin >> n;
+    while(n--) {
+        long long m;
+        cin >> m;
 
-                // 从第1组开始累加，找到m所在的组
-                long long sum = 0;
-                long long pos = 1;
+        // 从第1组开始累加，找到m所在的组
+        long long sum = 0;
+        long long pos = 1;
 
-                while(sum < m) {
-                sum += pos;
-                if(sum < m) {
-                                pos++;
-                }
-                }
-
-                // pos是第几个字母组，对26取模得到是哪个字母
-                int letter = (pos - 1) % 26;
-                char result = 'A' + letter;
-
-                cout << result << endl;
+        while(sum < m) {
+            sum += pos;
+            if(sum < m) {
+                pos++;
+            }
         }
-        return 0;
+
+        // pos是第几个字母组，对26取模得到是哪个字母
+        int letter = (pos - 1) % 26;
+        char result = 'A' + letter;
+
+        cout << result << endl;
+    }
+    return 0;
 }
 \`\`\`
 
@@ -523,39 +523,39 @@ using namespace std;
 
 // 计算n的因子数量
 int countFactors(long long n) {
-        int count = 0;
-        long long i;
-        for(i = 1; i * i < n; i++) {
-                if(n % i == 0) {
-                count += 2;  // i和n/i都是因子
-                }
+    int count = 0;
+    long long i;
+    for(i = 1; i * i < n; i++) {
+        if(n % i == 0) {
+            count += 2;  // i和n/i都是因子
         }
-        // 处理完全平方数的情况
-        if(i * i == n) {
-                count++;
-        }
-        return count;
+    }
+    // 处理完全平方数的情况
+    if(i * i == n) {
+        count++;
+    }
+    return count;
 }
 
 int main() {
-        int n;
-        cin >> n;
-        while(n--) {
-                long long a, b;
-                cin >> a >> b;
+    int n;
+    cin >> n;
+    while(n--) {
+        long long a, b;
+        cin >> a >> b;
 
-                int factorsA = countFactors(a);
-                int factorsB = countFactors(b);
+        int factorsA = countFactors(a);
+        int factorsB = countFactors(b);
 
-                if(factorsA > factorsB) {
-                cout << "A" << endl;
-                } else if(factorsB > factorsA) {
-                cout << "B" << endl;
-                } else {
-                cout << "draw" << endl;
-                }
+        if(factorsA > factorsB) {
+            cout << "A" << endl;
+        } else if(factorsB > factorsA) {
+            cout << "B" << endl;
+        } else {
+            cout << "draw" << endl;
         }
-        return 0;
+    }
+    return 0;
 }
 \`\`\`
 
@@ -664,83 +664,83 @@ int daysInMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
 // 判断日期date(月份m1,日期d1)是否在范围[a月b日, c月d日]内
 bool inRange(int m1, int d1, int a, int b, int c, int d) {
-        // 将日期转换为年内第几天进行比较
-        int date1 = 0, dateA = 0, dateC = 0;
+    // 将日期转换为年内第几天进行比较
+    int date1 = 0, dateA = 0, dateC = 0;
 
-        for(int i = 1; i < m1; i++) date1 += daysInMonth[i];
-        date1 += d1;
+    for(int i = 1; i < m1; i++) date1 += daysInMonth[i];
+    date1 += d1;
 
-        for(int i = 1; i < a; i++) dateA += daysInMonth[i];
-        dateA += b;
+    for(int i = 1; i < a; i++) dateA += daysInMonth[i];
+    dateA += b;
 
-        for(int i = 1; i < c; i++) dateC += daysInMonth[i];
-        dateC += d;
+    for(int i = 1; i < c; i++) dateC += daysInMonth[i];
+    dateC += d;
 
-        return date1 >= dateA && date1 <= dateC;
+    return date1 >= dateA && date1 <= dateC;
 }
 
 int main() {
-        int n;
-        cin >> n;
-        while(n--) {
-                int m;
-                cin >> m;
+    int n;
+    cin >> n;
+    while(n--) {
+        int m;
+        cin >> m;
 
-                // 存储所有条件
-                int a[105], b[105], c[105], d[105];
-                char answer[105];
+        // 存储所有条件
+        int a[105], b[105], c[105], d[105];
+        char answer[105];
 
-                for(int i = 0; i < m; i++) {
-                cin >> a[i] >> b[i] >> c[i] >> d[i] >> answer[i];
-                }
-
-                int validCount = 0;
-                int resultMonth = 0, resultDay = 0;
-
-                // 枚举1月1日到12月31日的每一天
-                for(int month = 1; month <= 12; month++) {
-                for(int day = 1; day <= daysInMonth[month]; day++) {
-                                bool valid = true;
-
-                                // 检查当前日期是否满足所有条件
-                                for(int i = 0; i < m; i++) {
-                                        bool isInRange = inRange(month, day, a[i], b[i], c[i], d[i]);
-
-                                        // 如果回答是Y，但不在范围内，矛盾
-                                        if(answer[i] == 'Y' && !isInRange) {
-                                valid = false;
-                                break;
-                                        }
-                                        // 如果回答是N，但在范围内，矛盾
-                                        if(answer[i] == 'N' && isInRange) {
-                                valid = false;
-                                break;
-                                        }
-                                }
-
-                                if(valid) {
-                                        validCount++;
-                                        resultMonth = month;
-                                        resultDay = day;
-
-                                        // 优化：如果已经找到超过1个答案，可以提前结束
-                                        if(validCount > 1) {
-                                break;
-                                        }
-                                }
-                }
-                if(validCount > 1) break;
-                }
-
-                if(validCount == 0) {
-                cout << "-1" << endl;
-                } else if(validCount == 1) {
-                cout << resultMonth << " " << resultDay << endl;
-                } else {
-                cout << ">1" << endl;
-                }
+        for(int i = 0; i < m; i++) {
+            cin >> a[i] >> b[i] >> c[i] >> d[i] >> answer[i];
         }
-        return 0;
+
+        int validCount = 0;
+        int resultMonth = 0, resultDay = 0;
+
+        // 枚举1月1日到12月31日的每一天
+        for(int month = 1; month <= 12; month++) {
+            for(int day = 1; day <= daysInMonth[month]; day++) {
+                bool valid = true;
+
+                // 检查当前日期是否满足所有条件
+                for(int i = 0; i < m; i++) {
+                    bool isInRange = inRange(month, day, a[i], b[i], c[i], d[i]);
+
+                    // 如果回答是Y，但不在范围内，矛盾
+                    if(answer[i] == 'Y' && !isInRange) {
+                        valid = false;
+                        break;
+                    }
+                    // 如果回答是N，但在范围内，矛盾
+                    if(answer[i] == 'N' && isInRange) {
+                        valid = false;
+                        break;
+                    }
+                }
+
+                if(valid) {
+                    validCount++;
+                    resultMonth = month;
+                    resultDay = day;
+
+                    // 优化：如果已经找到超过1个答案，可以提前结束
+                    if(validCount > 1) {
+                        break;
+                    }
+                }
+            }
+            if(validCount > 1) break;
+        }
+
+        if(validCount == 0) {
+            cout << "-1" << endl;
+        } else if(validCount == 1) {
+            cout << resultMonth << " " << resultDay << endl;
+        } else {
+            cout << ">1" << endl;
+        }
+    }
+    return 0;
 }
 \`\`\`
 
@@ -850,49 +850,49 @@ using namespace std;
 
 // 判断是否是闰年
 bool isLeapYear(int year) {
-        if(year % 100 == 0) {
-                return year % 400 == 0;
-        } else {
-                return year % 4 == 0;
-        }
+    if(year % 100 == 0) {
+        return year % 400 == 0;
+    } else {
+        return year % 4 == 0;
+    }
 }
 
 int main() {
-        int birthYear, birthMonth, birthDay;
-        int todayYear, todayMonth, todayDay;
+    int birthYear, birthMonth, birthDay;
+    int todayYear, todayMonth, todayDay;
 
-        cin >> birthYear >> birthMonth >> birthDay;
-        cin >> todayYear >> todayMonth >> todayDay;
+    cin >> birthYear >> birthMonth >> birthDay;
+    cin >> todayYear >> todayMonth >> todayDay;
 
-        // 先计算年份差
-        int age = todayYear - birthYear;
+    // 先计算年份差
+    int age = todayYear - birthYear;
 
-        // 处理生日是2月29日的特殊情况
-        int actualBirthMonth = birthMonth;
-        int actualBirthDay = birthDay;
-        if(birthMonth == 2 && birthDay == 29) {
-                // 如果今年不是闰年，生日按2月28日算
-                if(!isLeapYear(todayYear)) {
-                actualBirthDay = 28;
-                }
+    // 处理生日是2月29日的特殊情况
+    int actualBirthMonth = birthMonth;
+    int actualBirthDay = birthDay;
+    if(birthMonth == 2 && birthDay == 29) {
+        // 如果今年不是闰年，生日按2月28日算
+        if(!isLeapYear(todayYear)) {
+            actualBirthDay = 28;
         }
+    }
 
-        // 判断今年是否已经过生日
-        bool hadBirthday = false;
-        if(todayMonth > actualBirthMonth) {
-                hadBirthday = true;
-        } else if(todayMonth == actualBirthMonth && todayDay >= actualBirthDay) {
-                hadBirthday = true;
-        }
+    // 判断今年是否已经过生日
+    bool hadBirthday = false;
+    if(todayMonth > actualBirthMonth) {
+        hadBirthday = true;
+    } else if(todayMonth == actualBirthMonth && todayDay >= actualBirthDay) {
+        hadBirthday = true;
+    }
 
-        // 如果今年还没过生日，年龄要减1
-        if(!hadBirthday) {
-                age--;
-        }
+    // 如果今年还没过生日，年龄要减1
+    if(!hadBirthday) {
+        age--;
+    }
 
-        cout << age;
+    cout << age;
 
-        return 0;
+    return 0;
 }
 \`\`\`
 
@@ -928,11 +928,11 @@ int main() {
 
 \`\`\`
 bool isLeapYear(int year) {
-        if(year % 100 == 0) {        // 整百年
-                return year % 400 == 0;   // 必须是400的倍数
-        } else {                      // 非整百年
-                return year % 4 == 0;     // 必须是4的倍数
-        }
+    if(year % 100 == 0) {        // 整百年
+        return year % 400 == 0;   // 必须是400的倍数
+    } else {                      // 非整百年
+        return year % 4 == 0;     // 必须是4的倍数
+    }
 }
 \`\`\`
 
@@ -940,9 +940,9 @@ bool isLeapYear(int year) {
 
 \`\`\`
 if(birthMonth == 2 && birthDay == 29) {
-        if(!isLeapYear(todayYear)) {
-                actualBirthDay = 28;  // 非闰年按2月28日算
-        }
+    if(!isLeapYear(todayYear)) {
+        actualBirthDay = 28;  // 非闰年按2月28日算
+    }
 }
 \`\`\`
 
@@ -1024,57 +1024,57 @@ if(birthMonth == 2 && birthDay == 29) {
 using namespace std;
 
 int main() {
-        int n;
-        cin >> n;
-        while(n--) {
-                long long a, b, c, x;
-                cin >> a >> b >> c >> x;
+    int n;
+    cin >> n;
+    while(n--) {
+        long long a, b, c, x;
+        cin >> a >> b >> c >> x;
 
-                // 计算公差
-                long long d = b - a;
+        // 计算公差
+        long long d = b - a;
 
-                // 特判：检查公差是否一致（验证是否为等差数列）
-                // 实际题目保证是等差数列，这步可省略
-                // if(c - b != d) { ... }
+        // 特判：检查公差是否一致（验证是否为等差数列）
+        // 实际题目保证是等差数列，这步可省略
+        // if(c - b != d) { ... }
 
-                // 如果公差<=0，数列不递增
-                if(d <= 0) {
-                // 检查第一项是否大于x
-                if(a > x) {
-                                cout << 1 << endl;
+        // 如果公差<=0，数列不递增
+        if(d <= 0) {
+            // 检查第一项是否大于x
+            if(a > x) {
+                cout << 1 << endl;
+            } else {
+                cout << -1 << endl;
+            }
+        } else {
+            // 公差>0，数列递增
+            // 第n项：an = a + (n-1)*d
+            // 要找最小的n使得 a + (n-1)*d > x
+            // 即 (n-1)*d > x - a
+            // 即 n-1 > (x - a) / d
+            // 即 n > (x - a) / d + 1
+
+            if(a > x) {
+                // 第一项就满足
+                cout << 1 << endl;
+            } else {
+                // 计算需要第几项
+                // n > (x - a) / d + 1
+                // n >= floor((x - a) / d) + 2
+
+                long long diff = x - a;
+                long long k = diff / d;  // 向下取整
+
+                // 验证第k+1项是否满足
+                long long item = a + k * d;
+                if(item > x) {
+                    cout << k + 1 << endl;
                 } else {
-                                cout << -1 << endl;
+                    cout << k + 2 << endl;
                 }
-                } else {
-                // 公差>0，数列递增
-                // 第n项：an = a + (n-1)*d
-                // 要找最小的n使得 a + (n-1)*d > x
-                // 即 (n-1)*d > x - a
-                // 即 n-1 > (x - a) / d
-                // 即 n > (x - a) / d + 1
-
-                if(a > x) {
-                                // 第一项就满足
-                                cout << 1 << endl;
-                } else {
-                                // 计算需要第几项
-                                // n > (x - a) / d + 1
-                                // n >= floor((x - a) / d) + 2
-
-                                long long diff = x - a;
-                                long long k = diff / d;  // 向下取整
-
-                                // 验证第k+1项是否满足
-                                long long item = a + k * d;
-                                if(item > x) {
-                                        cout << k + 1 << endl;
-                                } else {
-                                        cout << k + 2 << endl;
-                                }
-                }
-                }
+            }
         }
-        return 0;
+    }
+    return 0;
 }
 \`\`\`
 
@@ -1169,15 +1169,15 @@ int main() {
 1. 读入 a, b, c, x
 2. 计算公差 d = b - a
 3. 如果 d <= 0:
-        如果 a > x: 输出 1
-        否则: 输出 -1
+    如果 a > x: 输出 1
+    否则: 输出 -1
 4. 否则 (d > 0):
-        如果 a > x: 输出 1
-        否则:
-                    计算 k = (x - a) / d
-                    计算第 k+1 项的值
-                    如果第 k+1 项 > x: 输出 k+1
-                    否则: 输出 k+2
+    如果 a > x: 输出 1
+    否则:
+          计算 k = (x - a) / d
+          计算第 k+1 项的值
+          如果第 k+1 项 > x: 输出 k+1
+          否则: 输出 k+2
 \`\`\`
 
 1. **为什么需要验证边界**
@@ -1204,58 +1204,58 @@ using namespace std;
 
 // 计算最大公约数
 long long gcd(long long a, long long b) {
-        while(b != 0) {
-                long long temp = b;
-                b = a % b;
-                a = temp;
-        }
-        return a;
+    while(b != 0) {
+        long long temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
 }
 
 // 计算n的所有质因数之和
 int sumOfPrimeFactors(long long n) {
-        int sum = 0;
+    int sum = 0;
 
-        // 处理因子2
-        if(n % 2 == 0) {
-                sum += 2;
-                while(n % 2 == 0) {
-                n /= 2;
-                }
+    // 处理因子2
+    if(n % 2 == 0) {
+        sum += 2;
+        while(n % 2 == 0) {
+            n /= 2;
         }
+    }
 
-        // 处理奇数因子，从3开始
-        for(long long i = 3; i * i <= n; i += 2) {
-                if(n % i == 0) {
-                sum += i;
-                while(n % i == 0) {
-                                n /= i;
-                }
-                }
+    // 处理奇数因子，从3开始
+    for(long long i = 3; i * i <= n; i += 2) {
+        if(n % i == 0) {
+            sum += i;
+            while(n % i == 0) {
+                n /= i;
+            }
         }
+    }
 
-        // 如果n>1，说明n本身是一个质数
-        if(n > 1) {
-                sum += n;
-        }
+    // 如果n>1，说明n本身是一个质数
+    if(n > 1) {
+        sum += n;
+    }
 
-        return sum;
+    return sum;
 }
 
 int main() {
-        int n;
-        cin >> n;
-        while(n--) {
-                long long a, b;
-                cin >> a >> b;
+    int n;
+    cin >> n;
+    while(n--) {
+        long long a, b;
+        cin >> a >> b;
 
-                // a和b的公共质因数 = gcd(a,b)的质因数
-                long long g = gcd(a, b);
-                int result = sumOfPrimeFactors(g);
+        // a和b的公共质因数 = gcd(a,b)的质因数
+        long long g = gcd(a, b);
+        int result = sumOfPrimeFactors(g);
 
-                cout << result << endl;
-        }
-        return 0;
+        cout << result << endl;
+    }
+    return 0;
 }
 \`\`\`
 
@@ -1307,72 +1307,72 @@ using namespace std;
 
 // 简单的排序函数（冒泡排序）
 void bubbleSort(int arr[], int n) {
-        for(int i = 0; i < n - 1; i++) {
-                for(int j = 0; j < n - 1 - i; j++) {
-                if(arr[j] > arr[j + 1]) {
-                                int temp = arr[j];
-                                arr[j] = arr[j + 1];
-                                arr[j + 1] = temp;
-                }
-                }
+    for(int i = 0; i < n - 1; i++) {
+        for(int j = 0; j < n - 1 - i; j++) {
+            if(arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
         }
+    }
 }
 
 int main() {
-        int n;
-        cin >> n;
-        while(n--) {
-                int m;
-                cin >> m;
+    int n;
+    cin >> n;
+    while(n--) {
+        int m;
+        cin >> m;
 
-                int nums[1005];
-                for(int i = 0; i < m; i++) {
-                cin >> nums[i];
-                }
-
-                int a;
-                cin >> a;
-
-                // 排序
-                bubbleSort(nums, m);
-
-                // 去重：将重复的数字标记为一个特殊值
-                int unique[1005];
-                int uniqueCount = 0;
-                unique[0] = nums[0];
-                uniqueCount = 1;
-
-                for(int i = 1; i < m; i++) {
-                if(nums[i] != nums[i - 1]) {
-                                unique[uniqueCount] = nums[i];
-                                uniqueCount++;
-                }
-                }
-
-                // 检查是否存在a个连续的整数
-                bool found = false;
-                for(int i = 0; i <= uniqueCount - a; i++) {
-                // 检查从i开始的a个数是否连续
-                bool consecutive = true;
-                for(int j = 0; j < a - 1; j++) {
-                                if(unique[i + j + 1] != unique[i + j] + 1) {
-                                        consecutive = false;
-                                        break;
-                                }
-                }
-                if(consecutive) {
-                                found = true;
-                                break;
-                }
-                }
-
-                if(found) {
-                cout << "Yes" << endl;
-                } else {
-                cout << "No" << endl;
-                }
+        int nums[1005];
+        for(int i = 0; i < m; i++) {
+            cin >> nums[i];
         }
-        return 0;
+
+        int a;
+        cin >> a;
+
+        // 排序
+        bubbleSort(nums, m);
+
+        // 去重：将重复的数字标记为一个特殊值
+        int unique[1005];
+        int uniqueCount = 0;
+        unique[0] = nums[0];
+        uniqueCount = 1;
+
+        for(int i = 1; i < m; i++) {
+            if(nums[i] != nums[i - 1]) {
+                unique[uniqueCount] = nums[i];
+                uniqueCount++;
+            }
+        }
+
+        // 检查是否存在a个连续的整数
+        bool found = false;
+        for(int i = 0; i <= uniqueCount - a; i++) {
+            // 检查从i开始的a个数是否连续
+            bool consecutive = true;
+            for(int j = 0; j < a - 1; j++) {
+                if(unique[i + j + 1] != unique[i + j] + 1) {
+                    consecutive = false;
+                    break;
+                }
+            }
+            if(consecutive) {
+                found = true;
+                break;
+            }
+        }
+
+        if(found) {
+            cout << "Yes" << endl;
+        } else {
+            cout << "No" << endl;
+        }
+    }
+    return 0;
 }
 \`\`\`
 
@@ -1397,16 +1397,16 @@ int main() {
 
 \`\`\`
 void bubbleSort(int arr[], int n) {
-        for(int i = 0; i < n - 1; i++) {
-                for(int j = 0; j < n - 1 - i; j++) {
-                if(arr[j] > arr[j + 1]) {
-                                // 交换
-                                int temp = arr[j];
-                                arr[j] = arr[j + 1];
-                                arr[j + 1] = temp;
-                }
-                }
+    for(int i = 0; i < n - 1; i++) {
+        for(int j = 0; j < n - 1 - i; j++) {
+            if(arr[j] > arr[j + 1]) {
+                // 交换
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
         }
+    }
 }
 \`\`\`
 
@@ -1419,10 +1419,10 @@ unique[0] = nums[0];  // 第一个数直接加入
 uniqueCount = 1;
 
 for(int i = 1; i < m; i++) {
-        if(nums[i] != nums[i - 1]) {  // 与前一个不同
-                unique[uniqueCount] = nums[i];
-                uniqueCount++;
-        }
+    if(nums[i] != nums[i - 1]) {  // 与前一个不同
+        unique[uniqueCount] = nums[i];
+        uniqueCount++;
+    }
 }
 \`\`\`
 
@@ -1430,17 +1430,17 @@ for(int i = 1; i < m; i++) {
 
 \`\`\`
 for(int i = 0; i <= uniqueCount - a; i++) {
-        bool consecutive = true;
-        for(int j = 0; j < a - 1; j++) {
-                if(unique[i + j + 1] != unique[i + j] + 1) {
-                consecutive = false;
-                break;
-                }
+    bool consecutive = true;
+    for(int j = 0; j < a - 1; j++) {
+        if(unique[i + j + 1] != unique[i + j] + 1) {
+            consecutive = false;
+            break;
         }
-        if(consecutive) {
-                found = true;
-                break;
-        }
+    }
+    if(consecutive) {
+        found = true;
+        break;
+    }
 }
 \`\`\`
 
@@ -1515,36 +1515,36 @@ for(int i = 0; i <= uniqueCount - a; i++) {
 using namespace std;
 
 int main() {
-        int n;
-        cin >> n;
-        while(n--) {
-                int a;
-                cin >> a;
+    int n;
+    cin >> n;
+    while(n--) {
+        int a;
+        cin >> a;
 
-                int prev;
-                cin >> prev;  // 读入第一项
+        int prev;
+        cin >> prev;  // 读入第一项
 
-                bool isIncreasing = true;
+        bool isIncreasing = true;
 
-                // 从第二项开始检查
-                for(int i = 1; i < a; i++) {
-                int current;
-                cin >> current;
+        // 从第二项开始检查
+        for(int i = 1; i < a; i++) {
+            int current;
+            cin >> current;
 
-                if(current < prev) {
-                                isIncreasing = false;
-                }
+            if(current < prev) {
+                isIncreasing = false;
+            }
 
-                prev = current;
-                }
-
-                if(isIncreasing) {
-                cout << "Yes" << endl;
-                } else {
-                cout << "No" << endl;
-                }
+            prev = current;
         }
-        return 0;
+
+        if(isIncreasing) {
+            cout << "Yes" << endl;
+        } else {
+            cout << "No" << endl;
+        }
+    }
+    return 0;
 }
 \`\`\`
 
@@ -1565,10 +1565,10 @@ int main() {
 \`\`\`
 读入第一项作为prev
 for 第2项到第a项:
-        读入current
-        if current < prev:
-                不是递增数列
-        prev = current  // 更新prev
+    读入current
+    if current < prev:
+        不是递增数列
+    prev = current  // 更新prev
 \`\`\`
 
 1. **为什么不需要数组**
@@ -1635,14 +1635,14 @@ for 第2项到第a项:
 
 \`\`\`
 for(int i = 1; i < a; i++) {
-        int current;
-        cin >> current;
+    int current;
+    cin >> current;
 
-        if(isIncreasing && current < prev) {
-                isIncreasing = false;
-        }
+    if(isIncreasing && current < prev) {
+        isIncreasing = false;
+    }
 
-        prev = current;
+    prev = current;
 }
 \`\`\`
 
@@ -1688,65 +1688,65 @@ using namespace std;
 
 // 计算n的因子数量
 long long countDivisors(long long n) {
-        if(n == 1) return 1;
+    if(n == 1) return 1;
 
-        long long count = 0;
-        long long i;
+    long long count = 0;
+    long long i;
 
-        // 遍历到sqrt(n)
-        for(i = 1; i * i < n; i++) {
-                if(n % i == 0) {
-                count += 2;  // i和n/i都是因子
-                }
+    // 遍历到sqrt(n)
+    for(i = 1; i * i < n; i++) {
+        if(n % i == 0) {
+            count += 2;  // i和n/i都是因子
         }
+    }
 
-        // 如果n是完全平方数，i*i==n，只算一次
-        if(i * i == n) {
-                count++;
-        }
+    // 如果n是完全平方数，i*i==n，只算一次
+    if(i * i == n) {
+        count++;
+    }
 
-        return count;
+    return count;
 }
 
 int main() {
-        int n;
-        cin >> n;
-        while(n--) {
-                long long m, a;
-                cin >> m >> a;
+    int n;
+    cin >> n;
+    while(n--) {
+        long long m, a;
+        cin >> m >> a;
 
-                long long sum = 0;
-                long long current = m;
+        long long sum = 0;
+        long long current = m;
 
-                // 计算前a项
-                for(long long i = 0; i < a; i++) {
-                sum += current;
+        // 计算前a项
+        for(long long i = 0; i < a; i++) {
+            sum += current;
 
-                // 计算下一项（当前项的因子数）
-                long long nextValue = countDivisors(current);
-                current = nextValue;
+            // 计算下一项（当前项的因子数）
+            long long nextValue = countDivisors(current);
+            current = nextValue;
 
-                // 优化：如果current变成1或2，后面会循环
-                // 1的因子数是1，2的因子数是2
-                // 所以会在1和2之间循环
-                if(current == 1) {
-                                // 剩余项都是1
-                                long long remaining = a - i - 1;
-                                sum += remaining;
-                                break;
-                }
-                if(current == 2 && i + 1 < a) {
-                                // 当前是2，下一项是2的因子数=2
-                                // 会一直是2
-                                long long remaining = a - i - 1;
-                                sum += remaining * 2;
-                                break;
-                }
-                }
-
-                cout << sum << endl;
+            // 优化：如果current变成1或2，后面会循环
+            // 1的因子数是1，2的因子数是2
+            // 所以会在1和2之间循环
+            if(current == 1) {
+                // 剩余项都是1
+                long long remaining = a - i - 1;
+                sum += remaining;
+                break;
+            }
+            if(current == 2 && i + 1 < a) {
+                // 当前是2，下一项是2的因子数=2
+                // 会一直是2
+                long long remaining = a - i - 1;
+                sum += remaining * 2;
+                break;
+            }
         }
-        return 0;
+
+        cout << sum << endl;
+    }
+    return 0;
 }
 \`\`\`
 
@@ -1771,24 +1771,24 @@ int main() {
 
 \`\`\`
 long long countDivisors(long long n) {
-        if(n == 1) return 1;
+    if(n == 1) return 1;
 
-        long long count = 0;
-        long long i;
+    long long count = 0;
+    long long i;
 
-        // 遍历到sqrt(n)
-        for(i = 1; i * i < n; i++) {
-                if(n % i == 0) {
-                count += 2;  // i和n/i都是因子
-                }
+    // 遍历到sqrt(n)
+    for(i = 1; i * i < n; i++) {
+        if(n % i == 0) {
+            count += 2;  // i和n/i都是因子
         }
+    }
 
-        // 如果n是完全平方数
-        if(i * i == n) {
-                count++;
-        }
+    // 如果n是完全平方数
+    if(i * i == n) {
+        count++;
+    }
 
-        return count;
+    return count;
 }
 \`\`\`
 
@@ -1920,72 +1920,72 @@ long long countDivisors(long long n) {
 using namespace std;
 
 int main() {
-        int n;
-        cin >> n;
-        while(n--) {
-                int m;
-                cin >> m;
+    int n;
+    cin >> n;
+    while(n--) {
+        int m;
+        cin >> m;
 
-                // 统计每个余数的出现次数
-                int count[4] = {0};  // count[i]表示模4余i的数有多少个
+        // 统计每个余数的出现次数
+        int count[4] = {0};  // count[i]表示模4余i的数有多少个
 
-                for(int i = 0; i < m; i++) {
-                int num;
-                cin >> num;
-                int remainder = ((num % 4) + 4) % 4;  // 处理负数
-                count[remainder]++;
-                }
-
-                bool found = false;
-
-                // 枚举所有可能的三个余数组合
-                // (r1 + r2 + r3) % 4 == 0
-
-                // 情况1: 三个数都是余0 (0+0+0=0)
-                if(count[0] >= 3) {
-                found = true;
-                }
-
-                // 情况2: 三个数都是余2 (2+2+2=6, 6%4=2) - 不满足
-                // 实际上 2+2+2=6 % 4 = 2，不是0
-
-                // 情况3: 一个余0，一个余0，一个余0 - 已在情况1
-
-                // 情况4: 一个余0，两个余2 (0+2+2=4, 4%4=0)
-                if(count[0] >= 1 && count[2] >= 2) {
-                found = true;
-                }
-
-                // 情况5: 两个余0，一个余0 - 已在情况1
-
-                // 情况6: 一个余1，一个余1，一个余2 (1+1+2=4, 4%4=0)
-                if(count[1] >= 2 && count[2] >= 1) {
-                found = true;
-                }
-
-                // 情况7: 一个余1，一个余3，一个余0 (1+3+0=4, 4%4=0)
-                if(count[1] >= 1 && count[3] >= 1 && count[0] >= 1) {
-                found = true;
-                }
-
-                // 情况8: 一个余2，一个余2，一个余0 - 已在情况4
-
-                // 情况9: 一个余3，一个余3，一个余2 (3+3+2=8, 8%4=0)
-                if(count[3] >= 2 && count[2] >= 1) {
-                found = true;
-                }
-
-                // 情况10: 一个余1，一个余2，一个余1 - 已在情况6
-
-                // 情况11: 一个余0，一个余1，一个余3 - 已在情况7
-
-                if(found) {
-                cout << "Yes" << endl;
-                } else {
-                cout << "No" << endl;
-                }
+        for(int i = 0; i < m; i++) {
+            int num;
+            cin >> num;
+            int remainder = ((num % 4) + 4) % 4;  // 处理负数
+            count[remainder]++;
         }
-        return 0;
+
+        bool found = false;
+
+        // 枚举所有可能的三个余数组合
+        // (r1 + r2 + r3) % 4 == 0
+
+        // 情况1: 三个数都是余0 (0+0+0=0)
+        if(count[0] >= 3) {
+            found = true;
+        }
+
+        // 情况2: 三个数都是余2 (2+2+2=6, 6%4=2) - 不满足
+        // 实际上 2+2+2=6 % 4 = 2，不是0
+
+        // 情况3: 一个余0，一个余0，一个余0 - 已在情况1
+
+        // 情况4: 一个余0，两个余2 (0+2+2=4, 4%4=0)
+        if(count[0] >= 1 && count[2] >= 2) {
+            found = true;
+        }
+
+        // 情况5: 两个余0，一个余0 - 已在情况1
+
+        // 情况6: 一个余1，一个余1，一个余2 (1+1+2=4, 4%4=0)
+        if(count[1] >= 2 && count[2] >= 1) {
+            found = true;
+        }
+
+        // 情况7: 一个余1，一个余3，一个余0 (1+3+0=4, 4%4=0)
+        if(count[1] >= 1 && count[3] >= 1 && count[0] >= 1) {
+            found = true;
+        }
+
+        // 情况8: 一个余2，一个余2，一个余0 - 已在情况4
+
+        // 情况9: 一个余3，一个余3，一个余2 (3+3+2=8, 8%4=0)
+        if(count[3] >= 2 && count[2] >= 1) {
+            found = true;
+        }
+
+        // 情况10: 一个余1，一个余2，一个余1 - 已在情况6
+
+        // 情况11: 一个余0，一个余1，一个余3 - 已在情况7
+
+        if(found) {
+            cout << "Yes" << endl;
+        } else {
+            cout << "No" << endl;
+        }
+    }
+    return 0;
 }
 \`\`\`
 
@@ -2128,53 +2128,53 @@ using namespace std;
 
 // 判断是否为闰年
 bool isLeapYear(int year) {
-        if(year % 400 == 0) {
-                return true;
-        }
-        if(year % 100 == 0) {
-                return false;
-        }
-        if(year % 4 == 0) {
-                return true;
-        }
+    if(year % 400 == 0) {
+        return true;
+    }
+    if(year % 100 == 0) {
         return false;
+    }
+    if(year % 4 == 0) {
+        return true;
+    }
+    return false;
 }
 
 // 获取某年某月的天数
 int getDaysInMonth(int year, int month) {
-        int days[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-        // 索引0不用，1-12对应1-12月
+    int days[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    // 索引0不用，1-12对应1-12月
 
-        if(month == 2 && isLeapYear(year)) {
-                return 29;
-        }
-        return days[month];
+    if(month == 2 && isLeapYear(year)) {
+        return 29;
+    }
+    return days[month];
 }
 
 int main() {
-        int y, m, d;
-        cin >> y >> m >> d;
+    int y, m, d;
+    cin >> y >> m >> d;
 
-        // 输出连续三个月的天数
-        for(int i = 0; i < 3; i++) {
-                int currentYear = y;
-                int currentMonth = m + i;
+    // 输出连续三个月的天数
+    for(int i = 0; i < 3; i++) {
+        int currentYear = y;
+        int currentMonth = m + i;
 
-                // 处理月份跨年
-                while(currentMonth > 12) {
-                currentMonth -= 12;
-                currentYear++;
-                }
-
-                int days = getDaysInMonth(currentYear, currentMonth);
-
-                if(i > 0) {
-                cout << " ";
-                }
-                cout << days;
+        // 处理月份跨年
+        while(currentMonth > 12) {
+            currentMonth -= 12;
+            currentYear++;
         }
 
-        return 0;
+        int days = getDaysInMonth(currentYear, currentMonth);
+
+        if(i > 0) {
+            cout << " ";
+        }
+        cout << days;
+    }
+
+    return 0;
 }
 \`\`\`
 
@@ -2199,10 +2199,10 @@ int main() {
 
 \`\`\`
 bool isLeapYear(int year) {
-        if(year % 400 == 0) return true;      // 400的倍数是闰年
-        if(year % 100 == 0) return false;     // 100的倍数但非400的倍数是平年
-        if(year % 4 == 0) return true;        // 4的倍数但非100的倍数是闰年
-        return false;                          // 其他是平年
+    if(year % 400 == 0) return true;      // 400的倍数是闰年
+    if(year % 100 == 0) return false;     // 100的倍数但非400的倍数是平年
+    if(year % 4 == 0) return true;        // 4的倍数但非100的倍数是闰年
+    return false;                          // 其他是平年
 }
 \`\`\`
 
@@ -2210,12 +2210,12 @@ bool isLeapYear(int year) {
 
 \`\`\`
 int getDaysInMonth(int year, int month) {
-        int days[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    int days[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-        if(month == 2 && isLeapYear(year)) {
-                return 29;
-        }
-        return days[month];
+    if(month == 2 && isLeapYear(year)) {
+        return 29;
+    }
+    return days[month];
 }
 \`\`\`
 
@@ -2225,8 +2225,8 @@ int getDaysInMonth(int year, int month) {
 int currentMonth = m + i;  // i=0,1,2
 
 while(currentMonth > 12) {
-        currentMonth -= 12;
-        currentYear++;
+    currentMonth -= 12;
+    currentYear++;
 }
 \`\`\`
 
@@ -2234,12 +2234,12 @@ while(currentMonth > 12) {
 
 \`\`\`
 for(int i = 0; i < 3; i++) {
-        // ... 计算天数 ...
+    // ... 计算天数 ...
 
-        if(i > 0) {
-                cout << " ";  // 从第二个数开始前面加空格
-        }
-        cout << days;
+    if(i > 0) {
+        cout << " ";  // 从第二个数开始前面加空格
+    }
+    cout << days;
 }
 \`\`\`
 
@@ -2327,8 +2327,8 @@ for(int i = 0; i < 3; i++) {
 \`\`\`
 // 直接用if-else判断月份
 if(currentMonth > 12) {
-        currentMonth -= 12;
-        currentYear++;
+    currentMonth -= 12;
+    currentYear++;
 }
 \`\`\`
 
@@ -2353,53 +2353,53 @@ if(currentMonth > 12) {
 using namespace std;
 
 int main() {
-        int n;
-        cin >> n;
-        while(n--) {
-                int m;
-                cin >> m;
+    int n;
+    cin >> n;
+    while(n--) {
+        int m;
+        cin >> m;
 
-                bool hasZero = false;  // 是否有0
-                int count2 = 0;  // 因子2的个数
-                int count5 = 0;  // 因子5的个数
+        bool hasZero = false;  // 是否有0
+        int count2 = 0;  // 因子2的个数
+        int count5 = 0;  // 因子5的个数
 
-                for(int i = 0; i < m; i++) {
-                long long num;
-                cin >> num;
+        for(int i = 0; i < m; i++) {
+            long long num;
+            cin >> num;
 
-                // 如果有0，结果就是0
-                if(num == 0) {
-                                hasZero = true;
-                }
+            // 如果有0，结果就是0
+            if(num == 0) {
+                hasZero = true;
+            }
 
-                // 处理负数，取绝对值
-                if(num < 0) {
-                                num = -num;
-                }
+            // 处理负数，取绝对值
+            if(num < 0) {
+                num = -num;
+            }
 
-                // 统计因子2的个数
-                while(num > 0 && num % 2 == 0) {
-                                count2++;
-                                num /= 2;
-                }
+            // 统计因子2的个数
+            while(num > 0 && num % 2 == 0) {
+                count2++;
+                num /= 2;
+            }
 
-                // 统计因子5的个数
-                while(num > 0 && num % 5 == 0) {
-                                count5++;
-                                num /= 5;
-                }
-                }
-
-                // 如果有0，输出1
-                if(hasZero) {
-                cout << 1 << endl;
-                } else {
-                // 尾数0的个数 = min(因子2的个数, 因子5的个数)
-                int zeros = (count2 < count5) ? count2 : count5;
-                cout << zeros << endl;
-                }
+            // 统计因子5的个数
+            while(num > 0 && num % 5 == 0) {
+                count5++;
+                num /= 5;
+            }
         }
-        return 0;
+
+        // 如果有0，输出1
+        if(hasZero) {
+            cout << 1 << endl;
+        } else {
+            // 尾数0的个数 = min(因子2的个数, 因子5的个数)
+            int zeros = (count2 < count5) ? count2 : count5;
+            cout << zeros << endl;
+        }
+    }
+    return 0;
 }
 \`\`\`
 
@@ -2429,14 +2429,14 @@ int main() {
 \`\`\`
 // 统计因子2
 while(num > 0 && num % 2 == 0) {
-        count2++;
-        num /= 2;
+    count2++;
+    num /= 2;
 }
 
 // 统计因子5
 while(num > 0 && num % 5 == 0) {
-        count5++;
-        num /= 5;
+    count5++;
+    num /= 5;
 }
 \`\`\`
 
@@ -2566,52 +2566,52 @@ while(num > 0 && num % 5 == 0) {
 using namespace std;
 
 int main() {
-        int T;
-        cin >> T;
-        while(T--) {
-                long long N;
-                cin >> N;
+    int T;
+    cin >> T;
+    while(T--) {
+        long long N;
+        cin >> N;
 
-                // 特殊情况：N=0
-                if(N == 0) {
-                cout << 10 << endl;
-                continue;
-                }
-
-                // 特殊情况：N=1
-                if(N == 1) {
-                cout << 1 << endl;
-                continue;
-                }
-
-                // 统计每个数字(2-9)需要的个数
-                int count[10] = {0};
-                long long temp = N;
-
-                // 从9到2进行质因数分解
-                for(int d = 9; d >= 2; d--) {
-                while(temp % d == 0) {
-                                count[d]++;
-                                temp /= d;
-                }
-                }
-
-                // 如果temp不为1，说明N包含大于9的质因数
-                // 或者包含质因数不在2-9范围内，无法用单个数字表示
-                if(temp != 1) {
-                cout << -1 << endl;
-                continue;
-                }
-
-                // 从小到大输出数字，组成最小的Q
-                for(int d = 2; d <= 9; d++) {
-                for(int i = 0; i < count[d]; i++) {
-                                cout << d;
-                }
-                }
-                cout << endl;
+        // 特殊情况：N=0
+        if(N == 0) {
+            cout << 10 << endl;
+            continue;
         }
-        return 0;
+
+        // 特殊情况：N=1
+        if(N == 1) {
+            cout << 1 << endl;
+            continue;
+        }
+
+        // 统计每个数字(2-9)需要的个数
+        int count[10] = {0};
+        long long temp = N;
+
+        // 从9到2进行质因数分解
+        for(int d = 9; d >= 2; d--) {
+            while(temp % d == 0) {
+                count[d]++;
+                temp /= d;
+            }
+        }
+
+        // 如果temp不为1，说明N包含大于9的质因数
+        // 或者包含质因数不在2-9范围内，无法用单个数字表示
+        if(temp != 1) {
+            cout << -1 << endl;
+            continue;
+        }
+
+        // 从小到大输出数字，组成最小的Q
+        for(int d = 2; d <= 9; d++) {
+            for(int i = 0; i < count[d]; i++) {
+                cout << d;
+            }
+        }
+        cout << endl;
+    }
+    return 0;
 }
 \`\`\`
 
@@ -2648,10 +2648,10 @@ int main() {
 
 \`\`\`
 for(int d = 9; d >= 2; d--) {
-        while(temp % d == 0) {
-                count[d]++;
-                temp /= d;
-        }
+    while(temp % d == 0) {
+        count[d]++;
+        temp /= d;
+    }
 }
 \`\`\`
 
@@ -2659,8 +2659,8 @@ for(int d = 9; d >= 2; d--) {
 
 \`\`\`
 if(temp != 1) {
-        cout << -1 << endl;
-        continue;
+    cout << -1 << endl;
+    continue;
 }
 \`\`\`
 
@@ -2668,9 +2668,9 @@ if(temp != 1) {
 
 \`\`\`
 for(int d = 2; d <= 9; d++) {
-        for(int i = 0; i < count[d]; i++) {
-                cout << d;
-        }
+    for(int i = 0; i < count[d]; i++) {
+        cout << d;
+    }
 }
 \`\`\`
 

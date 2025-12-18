@@ -70,19 +70,7 @@ export const OnlineHighPassList: React.FC<OnlineHighPassListProps> = ({ problems
   return (
     <div className="space-y-6" id="problem-list-top">
       <div className="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 p-4 bg-slate-50 dark:bg-slate-900/50 rounded-lg border border-slate-100 dark:border-slate-800/50">
-            <div className="flex flex-col items-center justify-center p-2">
-                <span className="text-sm text-slate-500 dark:text-slate-400">题目总数</span>
-                <span className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">{totalProblems}</span>
-            </div>
-            <div className="flex flex-col items-center justify-center p-2 border-l border-slate-200 dark:border-slate-700">
-                <span className="text-sm text-slate-500 dark:text-slate-400">排序逻辑</span>
-                <span className="text-sm font-bold text-slate-700 dark:text-slate-300 mt-1 text-center">
-                    优先展示高热度题目（提交数 ≥ 80）<br/>
-                    组内按通过率降序排列
-                </span>
-            </div>
-        </div>
+
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
             <div className="flex items-center gap-3">
@@ -132,7 +120,7 @@ export const OnlineHighPassList: React.FC<OnlineHighPassListProps> = ({ problems
             <thead>
               <tr className="border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 text-sm">
                 <th className="py-3 px-4 font-semibold w-16">序号</th>
-                <th className="py-3 px-4 font-semibold">题目名称</th>
+                <th className="py-3 px-4 font-semibold">ID：题目</th>
                 <th className="py-3 px-4 font-semibold">所属比赛</th>
                 <th className="py-3 px-4 font-semibold">知识点</th>
                 <th className="py-3 px-4 font-semibold w-32">通过率 / 提交</th>
@@ -178,9 +166,10 @@ export const OnlineHighPassList: React.FC<OnlineHighPassListProps> = ({ problems
                                 {problem.passRate}
                             </span>
                         </div>
-                        <span className="text-[10px] text-slate-400">
-                            Submit: {problem.submitCount}
-                        </span>
+                        <div className="flex justify-between text-[10px] text-slate-400">
+                            <span>AC: {problem.acCount}</span>
+                            <span>Submit: {problem.submitCount}</span>
+                        </div>
                     </div>
                   </td>
                   <td className="py-3 px-4">

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { ExternalLink, Trophy, Search, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ExternalLink, Trophy, Search, ChevronLeft, ChevronRight, BookOpen, X } from 'lucide-react';
 import { OnlineProblem } from '../../data/modules/online_high_pass_data';
+import { solutions, SolutionData } from '../../data/modules/solution_data';
+import { MarkdownRenderer } from '../Common/MarkdownRenderer';
 
 interface OnlineHighPassListProps {
   problems: OnlineProblem[];
@@ -11,6 +13,12 @@ export const OnlineHighPassList: React.FC<OnlineHighPassListProps> = ({ problems
   const [currentPage, setCurrentPage] = useState(1);
   const [jumpPage, setJumpPage] = useState('');
   const [itemsPerPage, setItemsPerPage] = useState(15);
+  const [selectedSolution, setSelectedSolution] = useState<SolutionData | null>(null);
+
+  const getProblemId = (title: string) => {
+    const match = title.match(/^(\d+)/);
+    return match ? match[1] : '';
+  };
   const getTags = (p: OnlineProblem) => {
     const t = p.title;
     const tags: string[] = [];
@@ -147,12 +155,13 @@ export const OnlineHighPassList: React.FC<OnlineHighPassListProps> = ({ problems
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 text-sm">
-                <th className="py-3 px-4 font-semibold w-16">序号</th>
+                <th className="py-3 px-4 font-semibold whitespace-nowrap">序号</th>
                 <th className="py-3 px-4 font-semibold">ID：题目</th>
-                <th className="py-3 px-4 font-semibold">所属比赛</th>
+                <th className="py-3 px-4 font-semibold whitespace-nowrap">所属比赛</th>
                 <th className="py-3 px-4 font-semibold">知识点</th>
-                <th className="py-3 px-4 font-semibold w-32">通过率 / 提交</th>
-                <th className="py-3 px-4 font-semibold w-24">操作</th>
+                <th className="py-3 px-4 font-semibold whitespace-nowrap">通过率 / 提交</th>
+                <th className="py-3 px-4 font-semibold text-center whitespace-nowrap">解析</th>
+                <th className="py-3 px-4 font-semibold whitespace-nowrap">操作</th>
               </tr>
             </thead>
             <tbody className="text-sm">
@@ -200,6 +209,19 @@ export const OnlineHighPassList: React.FC<OnlineHighPassListProps> = ({ problems
                         </div>
                     </div>
                   </td>
+                  <td className="py-3 px-4 text-center">
+                    {solutions[getProblemId(problem.title)] ? (
+                      <button
+                        onClick={() => setSelectedSolution(solutions[getProblemId(problem.title)])}
+                        className="inline-flex items-center justify-center p-1.5 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 rounded-lg transition-colors"
+                        title="查看解析"
+                      >
+                        <BookOpen size={18} />
+                      </button>
+                    ) : (
+                      <span className="text-slate-300 dark:text-slate-600">-</span>
+                    )}
+                  </td>
                   <td className="py-3 px-4">
                     <a 
                       href={problem.url} 
@@ -215,7 +237,7 @@ export const OnlineHighPassList: React.FC<OnlineHighPassListProps> = ({ problems
               
               {filteredProblems.length === 0 && (
                 <tr>
-                  <td colSpan={6} className="py-8 text-center text-slate-500 dark:text-slate-400">
+                  <td colSpan={7} className="py-8 text-center text-slate-500 dark:text-slate-400">
                     没有找到匹配的题目
                   </td>
                 </tr>
@@ -301,6 +323,44 @@ export const OnlineHighPassList: React.FC<OnlineHighPassListProps> = ({ problems
           </div>
         )}
       </div>
+
+      {/* Solution Modal */}
+      {selectedSolution && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm animate-in fade-in duration-200">
+          <div 
+            className="bg-white dark:bg-slate-800 w-full max-w-4xl max-h-[90vh] rounded-2xl shadow-2xl flex flex-col animate-in zoom-in-95 duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between p-6 border-b border-slate-100 dark:border-slate-700">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg text-indigo-600 dark:text-indigo-400">
+                  <BookOpen size={24} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white">题目解析</h3>
+                  <p className="text-sm text-slate-500 dark:text-slate-400 font-mono mt-0.5">
+                    {selectedSolution.id}：{selectedSolution.title}
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => setSelectedSolution(null)}
+                className="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700/50 rounded-lg transition-colors"
+              >
+                <X size={24} />
+              </button>
+            </div>
+
+            {/* Content */}
+            <div className="flex-1 overflow-y-auto p-6 md:p-8">
+              <div className="prose prose-slate dark:prose-invert max-w-none">
+                <MarkdownRenderer content={selectedSolution.content} />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

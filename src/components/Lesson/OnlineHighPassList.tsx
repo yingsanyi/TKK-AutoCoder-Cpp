@@ -11,6 +11,34 @@ export const OnlineHighPassList: React.FC<OnlineHighPassListProps> = ({ problems
   const [currentPage, setCurrentPage] = useState(1);
   const [jumpPage, setJumpPage] = useState('');
   const [itemsPerPage, setItemsPerPage] = useState(15);
+  const getTags = (p: OnlineProblem) => {
+    const t = p.title;
+    const tags: string[] = [];
+    const add = (tag: string) => { if (!tags.includes(tag)) tags.push(tag); };
+    if (/字符串|字母|字母表|重组的字符串|名字和成绩/.test(t)) add('字符串');
+    if (/日期|星期|月份|纪念日|校庆日|比日期|时间|打卡时间|第几天/.test(t)) add('日期处理');
+    if (/质数|因数|互质|欧拉|强质数|完全平方数/.test(t)) add('数论');
+    if (/斐波那契/.test(t)) { add('模拟'); add('数学'); };
+    if (/星号阵列/.test(t)) { add('数学'); add('因子'); };
+    if (/乘积|总和|最大值|最大分差|数字和|几个0|几个6|0和1|整数倍/.test(t)) add('数学');
+    if (/等差数列|数列/.test(t)) { add('数学'); add('数列'); };
+    if (/四边形|坐标|平行四边形|长方形/.test(t)) add('几何');
+    if (/韩信分兵/.test(t)) add('数论');
+    if (/家长会|优秀的成绩|大佬|年龄|递增数列|乘积最大的两个数|总和最大/.test(t)) { add('数组'); add('排序'); };
+    if (/输出/.test(t)) add('输出格式');
+    if (/广播操/.test(t)) { add('数列'); add('模拟'); };
+    if (/猜数字/.test(t)) { add('字符串'); add('模拟'); };
+    if (/回文数/.test(t)) add('字符串');
+    if (/总和为4|满足条件的/.test(t)) { add('枚举'); add('子集和'); };
+    if (/英文字母|字母表/.test(t)) add('字符串');
+    if (/21世纪/.test(t)) add('日期处理');
+    if (/拆解/.test(t)) add('数学');
+    if (/下雨了/.test(t)) add('模拟');
+    if (/复数乘法/.test(t)) add('数学');
+    if (/转专业/.test(t)) { add('哈希'); add('数组'); };
+    if (tags.length === 0) add('模拟');
+    return tags.slice(0, 3);
+  };
 
   // Reset to first page when search term changes or items per page changes
   useEffect(() => {
@@ -146,7 +174,7 @@ export const OnlineHighPassList: React.FC<OnlineHighPassListProps> = ({ problems
                   </td>
                   <td className="py-3 px-4">
                     <div className="flex flex-wrap gap-1">
-                      {problem.tags.map(tag => (
+                      {(problem.tags.length ? problem.tags : getTags(problem)).map(tag => (
                         <span key={tag} className="px-1.5 py-0.5 rounded text-[10px] font-medium bg-indigo-50 text-indigo-600 dark:bg-indigo-900/30 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-800/50">
                           {tag}
                         </span>

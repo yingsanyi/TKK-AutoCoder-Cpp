@@ -16,7 +16,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     submitCount: 261,
     acCount: 134,
     url: 'https://www.xujcoj.com/home/problem/detail/1407',
-    tags: []
+    tags: ['条件判断', '模拟']
   },
   {
     contest: '18-19(1)第4次线上赛',
@@ -25,7 +25,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     submitCount: 314,
     acCount: 155,
     url: 'https://www.xujcoj.com/home/problem/detail/1500',
-    tags: []
+    tags: ['循环', '输出格式', '模拟']
   },
   {
     contest: '17-18(1)第5次线上赛',
@@ -34,7 +34,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     submitCount: 267,
     acCount: 90,
     url: 'https://www.xujcoj.com/home/problem/detail/1548',
-    tags: []
+    tags: ['数学', '几何']
   },
   {
     contest: '17-18(2)第1次线上赛',
@@ -43,7 +43,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     submitCount: 275,
     acCount: 42,
     url: 'https://www.xujcoj.com/home/problem/detail/1629',
-    tags: []
+    tags: ['排序', '滑动窗口']
   },
   {
     contest: '17-18(2)第1次线上赛',
@@ -52,7 +52,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     submitCount: 374,
     acCount: 143,
     url: 'https://www.xujcoj.com/home/problem/detail/1630',
-    tags: []
+    tags: ['字符串', '日期处理']
   },
   {
     contest: '18-19(1)第1次线上赛',
@@ -61,7 +61,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     submitCount: 388,
     acCount: 94,
     url: 'https://www.xujcoj.com/home/problem/detail/1944',
-    tags: []
+    tags: ['数学', '排序', '集合']
   },
   {
     contest: '18-19(1)第1次线上赛',
@@ -70,7 +70,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     submitCount: 79,
     acCount: 14,
     url: 'https://www.xujcoj.com/home/problem/detail/1945',
-    tags: []
+    tags: ['字符串', '日期处理']
   },
   {
     contest: '18-19(1)第2次线上赛',
@@ -79,7 +79,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     submitCount: 257,
     acCount: 49,
     url: 'https://www.xujcoj.com/home/problem/detail/1981',
-    tags: []
+    tags: ['贪心', '数组']
   },
   {
     contest: '18-19(1)第2次线上赛',
@@ -88,7 +88,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     submitCount: 117,
     acCount: 37,
     url: 'https://www.xujcoj.com/home/problem/detail/1983',
-    tags: []
+    tags: ['贪心', '数学']
   },
   {
     contest: '18-19(1)第5次线上赛',
@@ -97,7 +97,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     submitCount: 17,
     acCount: 2,
     url: 'https://www.xujcoj.com/home/problem/detail/2011',
-    tags: []
+    tags: ['动态规划', '数论']
   },
   {
     contest: '18-19(1)第3次线上赛',
@@ -106,7 +106,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     submitCount: 324,
     acCount: 113,
     url: 'https://www.xujcoj.com/home/problem/detail/2014',
-    tags: []
+    tags: ['数学', '模拟']
   },
   {
     contest: '22-23(2)第3次线上赛',
@@ -115,7 +115,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     submitCount: 137,
     acCount: 72,
     url: 'https://www.xujcoj.com/home/problem/detail/3992',
-    tags: []
+    tags: ['数学', '因子', '循环']
   },
   {
     contest: '18-19(1)第6次线上赛',
@@ -124,7 +124,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     submitCount: 33,
     acCount: 6,
     url: 'https://www.xujcoj.com/home/problem/detail/2071',
-    tags: []
+    tags: ['字符串', '子串匹配']
   },
   {
     contest: '18-19(1)第6次线上赛',
@@ -133,7 +133,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     submitCount: 327,
     acCount: 109,
     url: 'https://www.xujcoj.com/home/problem/detail/2073',
-    tags: []
+    tags: ['字符串', '替换']
   },
   {
     contest: '18-19(2)第1次线上赛',
@@ -142,7 +142,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     submitCount: 391,
     acCount: 155,
     url: 'https://www.xujcoj.com/home/problem/detail/2173',
-    tags: []
+    tags: ['模拟', '时间处理']
   },
   {
     contest: '18-19(2)第1次线上赛',
@@ -151,7 +151,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     submitCount: 109,
     acCount: 36,
     url: 'https://www.xujcoj.com/home/problem/detail/2174',
-    tags: []
+    tags: ['字符串', '数学']
   },
   {
     contest: '18-19(2)第1次线上赛',
@@ -160,7 +160,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     submitCount: 205,
     acCount: 71,
     url: 'https://www.xujcoj.com/home/problem/detail/2175',
-    tags: []
+    tags: ['哈希', '字符串']
   },
   {
     contest: '18-19(2)第1次线上赛',
@@ -169,7 +169,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     submitCount: 325,
     acCount: 189,
     url: 'https://www.xujcoj.com/home/problem/detail/2177',
-    tags: []
+    tags: ['几何', '向量']
   },
   {
     contest: '18-19(2)第2次线上赛',
@@ -178,7 +178,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     submitCount: 243,
     acCount: 96,
     url: 'https://www.xujcoj.com/home/problem/detail/2236',
-    tags: []
+    tags: ['模拟', '数学']
   },
   {
     contest: '19-20(1)第1次线上赛',
@@ -187,7 +187,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     submitCount: 362,
     acCount: 230,
     url: 'https://www.xujcoj.com/home/problem/detail/2539',
-    tags: []
+    tags: ['字符串', '数学']
   },
   {
     contest: '19-20(1)第1次线上赛',
@@ -196,7 +196,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     submitCount: 341,
     acCount: 221,
     url: 'https://www.xujcoj.com/home/problem/detail/2540',
-    tags: []
+    tags: ['数学', '数列']
   },
   {
     contest: '19-20(1)第1次线上赛',

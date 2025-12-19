@@ -185,6 +185,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, cla
         type: 'ul' | 'ol';
         content: string;
         level: number;
+        start?: number;
         children: ListNode[];
       }
 
@@ -198,6 +199,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, cla
         const leadingSpaces = line.search(/\S|$/);
         let type: 'ul' | 'ol' = 'ul';
         let content = '';
+        let start: number | undefined;
 
         if (trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
           type = 'ul';
@@ -206,13 +208,19 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, cla
           const match = trimmed.match(/^(\d+)\.\s+(.*)/);
           if (match) {
             type = 'ol';
+            start = parseInt(match[1], 10);
             content = match[2].trim();
           } else {
+            if (stack.length > 0) {
+              const lastNode = stack[stack.length - 1];
+              lastNode.content += ' ' + trimmed;
+              return;
+            }
             return;
           }
         }
 
-        const node: ListNode = { type, content, level: leadingSpaces, children: [] };
+        const node: ListNode = { type, content, level: leadingSpaces, start, children: [] };
 
         // Find parent
         while (stack.length > 0 && stack[stack.length - 1].level >= leadingSpaces) {
@@ -254,7 +262,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, cla
             : "list-decimal list-outside ml-5 space-y-1";
           
           return (
-            <Tag key={i} className={className}>
+            <Tag key={i} className={className} start={group[0].start}>
               {group.map((node, j) => (
                 <li key={j} className="pl-1">
                   {renderInline(node.content)}
@@ -269,10 +277,74 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, cla
       return <div key={keyPrefix} className="my-2">{renderNodes(root)}</div>;
     };
 
+    // Table parsing logic
+    const renderTable = (lines: string[], keyPrefix: number) => {
+      if (lines.length < 2) return null;
+      
+      const headerLine = lines[0];
+      const separatorLine = lines[1];
+      const bodyLines = lines.slice(2);
+      
+      const parseRow = (line: string) => {
+        return line.trim().replace(/^\||\|$/g, '').split('|').map(cell => cell.trim());
+      };
+      
+      const headers = parseRow(headerLine);
+      const alignments = parseRow(separatorLine).map(cell => {
+        const c = cell.trim();
+        if (c.startsWith(':') && c.endsWith(':')) return 'center';
+        if (c.endsWith(':')) return 'right';
+        return 'left';
+      });
+      
+      const getAlignClass = (align: string) => {
+        switch(align) {
+            case 'center': return 'text-center';
+            case 'right': return 'text-right';
+            default: return 'text-left';
+        }
+      };
+      
+      return (
+        <div key={`table-${keyPrefix}`} className="overflow-x-auto my-4 border rounded-lg border-slate-200 dark:border-slate-700">
+          <table className="w-full text-left text-sm">
+            <thead className="bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+              <tr>
+                {headers.map((header, i) => (
+                  <th key={i} className={`px-4 py-2 font-semibold text-slate-900 dark:text-slate-100 ${getAlignClass(alignments[i])}`}>
+                    {renderInline(header)}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+              {bodyLines.map((line, i) => {
+                const cells = parseRow(line);
+                return (
+                  <tr key={i} className="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                    {cells.map((cell, j) => (
+                      <td key={j} className={`px-4 py-2 ${getAlignClass(alignments[j])}`}>
+                        {renderInline(cell)}
+                      </td>
+                    ))}
+                     {/* Fill missing cells */}
+                     {Array.from({ length: Math.max(0, headers.length - cells.length) }).map((_, j) => (
+                         <td key={cells.length + j} className="px-4 py-2"></td>
+                    ))}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      );
+    };
+
     // Split text into lines to handle block elements (Headers, Lists, Quotes)
         const lines = part.split('\n');
         const renderedBlocks: React.ReactNode[] = [];
         let listLines: string[] = [];
+        let tableLines: string[] = [];
 
         const flushList = (keyPrefix: number) => {
             if (listLines.length > 0) {
@@ -281,16 +353,53 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, cla
             }
         };
 
+        const flushTable = (keyPrefix: number) => {
+            if (tableLines.length > 0) {
+                renderedBlocks.push(renderTable(tableLines, keyPrefix));
+                tableLines = [];
+            }
+        };
+
+        const flushAll = (keyPrefix: number) => {
+            flushList(keyPrefix);
+            flushTable(keyPrefix);
+        };
+
         lines.forEach((line, lineIdx) => {
             const trimmed = line.trim();
+            
+            // Check if inside table
+            if (tableLines.length > 0) {
+                if (line.trim().includes('|')) {
+                    tableLines.push(line);
+                    return;
+                } else {
+                    flushTable(lineIdx);
+                }
+            }
+
             if (!trimmed) {
-                flushList(lineIdx);
+                if (listLines.length > 0) {
+                    listLines.push(line);
+                } else {
+                    flushAll(lineIdx);
+                }
                 return;
+            }
+
+            // Check for new table start
+            if (trimmed.includes('|')) {
+                const nextLine = lines[lineIdx + 1];
+                if (nextLine && nextLine.trim().match(/^[\s|:-]+$/) && nextLine.includes('-')) {
+                    flushAll(lineIdx);
+                    tableLines.push(line);
+                    return;
+                }
             }
 
             // Headers
             if (trimmed.startsWith('#')) {
-                flushList(lineIdx);
+                flushAll(lineIdx);
                 const level = trimmed.match(/^#+/)?.[0].length || 1;
                 const text = trimmed.slice(level).trim();
                 const HeaderTag = `h${Math.min(level + 2, 6)}` as React.ElementType; // Start from h3
@@ -310,7 +419,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, cla
 
             // Blockquotes
             if (trimmed.startsWith('>')) {
-                flushList(lineIdx);
+                flushAll(lineIdx);
                 const text = trimmed.slice(1).trim();
                 renderedBlocks.push(
                     <div key={`${index}-${lineIdx}`} className="border-l-4 border-indigo-500 bg-slate-50 dark:bg-slate-800/50 p-4 my-4 rounded-r-lg italic text-slate-600 dark:text-slate-400">
@@ -323,13 +432,23 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, cla
             // Lists
             // Check if it's a list item
             if (trimmed.startsWith('- ') || trimmed.startsWith('* ') || /^\d+\.\s+/.test(trimmed)) {
+                // If there's a pending table, flush it first
+                flushTable(lineIdx);
+                
+                // Add to list lines
+                listLines.push(line);
+                return;
+            }
+            
+            // Check if it's an indented line following a list item (multiline list item content)
+            if (listLines.length > 0 && /^\s+/.test(line)) {
                 listLines.push(line);
                 return;
             }
             
             // Horizontal Rule
             if (trimmed === '---' || trimmed === '***') {
-                flushList(lineIdx);
+                flushAll(lineIdx);
                 renderedBlocks.push(
                     <hr key={`${index}-${lineIdx}`} className="my-6 border-slate-200 dark:border-slate-700" />
                 );
@@ -337,7 +456,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, cla
             }
 
             // Regular Paragraph
-            flushList(lineIdx);
+            flushAll(lineIdx);
             renderedBlocks.push(
                 <p key={`${index}-${lineIdx}`} className="my-2">
                     {renderInline(trimmed)}
@@ -345,7 +464,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, cla
             );
         });
 
-        flushList(lines.length);
+        flushAll(lines.length);
 
         return <div key={index}>{renderedBlocks}</div>;
       })}

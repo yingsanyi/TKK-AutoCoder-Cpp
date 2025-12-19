@@ -14,6 +14,7 @@ export const OnlineHighPassList: React.FC<OnlineHighPassListProps> = ({ problems
   const [jumpPage, setJumpPage] = useState('');
   const [itemsPerPage, setItemsPerPage] = useState(15);
   const [selectedSolution, setSelectedSolution] = useState<SolutionData | null>(null);
+  const [activeTab, setActiveTab] = useState(0);
 
   const getProblemId = (title: string) => {
     const match = title.match(/^(\d+)/);
@@ -212,7 +213,10 @@ export const OnlineHighPassList: React.FC<OnlineHighPassListProps> = ({ problems
                   <td className="py-3 px-4 text-center">
                     {solutions[getProblemId(problem.title)] ? (
                       <button
-                        onClick={() => setSelectedSolution(solutions[getProblemId(problem.title)])}
+                        onClick={() => {
+                          setSelectedSolution(solutions[getProblemId(problem.title)]);
+                          setActiveTab(0);
+                        }}
                         className="inline-flex items-center justify-center p-1.5 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 rounded-lg transition-colors"
                         title="查看解析"
                       >
@@ -354,8 +358,32 @@ export const OnlineHighPassList: React.FC<OnlineHighPassListProps> = ({ problems
 
             {/* Content */}
             <div className="flex-1 overflow-y-auto p-6 md:p-8">
+              {selectedSolution.answers && selectedSolution.answers.length > 1 && (
+                <div className="flex gap-2 mb-6 border-b border-slate-200 dark:border-slate-700 pb-1">
+                  {selectedSolution.answers.map((ans, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setActiveTab(idx)}
+                      className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors relative top-[1px] ${
+                        activeTab === idx
+                          ? 'bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 border border-slate-200 dark:border-slate-700 border-b-white dark:border-b-slate-800'
+                          : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50'
+                      }`}
+                    >
+                      {ans.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+              
               <div className="prose prose-slate dark:prose-invert max-w-none">
-                <MarkdownRenderer content={selectedSolution.content} />
+                <MarkdownRenderer 
+                  content={
+                    selectedSolution.answers && selectedSolution.answers.length > 0
+                      ? selectedSolution.answers[activeTab].content
+                      : selectedSolution.content
+                  } 
+                />
               </div>
             </div>
           </div>

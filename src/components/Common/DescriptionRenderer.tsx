@@ -30,7 +30,7 @@ export const DescriptionRenderer: React.FC<{ text: string; className?: string; i
             }
             return (
                 <div key={index} className="my-2 not-prose">
-                    <CodeBlock code={code.trim()} language={language} />
+                    <CodeBlock code={code} language={language} />
                 </div>
             );
         }

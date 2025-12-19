@@ -384,6 +384,14 @@ export const OnlineHighPassList: React.FC<OnlineHighPassListProps> = ({ problems
                       : selectedSolution.content
                   } 
                 />
+                
+                {selectedSolution.answers && selectedSolution.answers.length > 0 && selectedSolution.content.includes('**解析**') && (
+                  <div className="mt-8 pt-8 border-t border-slate-200 dark:border-slate-700">
+                    <MarkdownRenderer 
+                      content={'**解析**' + selectedSolution.content.split('**解析**').slice(1).join('**解析**')} 
+                    />
+                  </div>
+                )}
               </div>
             </div>
           </div>

@@ -225,6 +225,322 @@ for(int i = 0; i <= uniqueCount - a; i++) {
     4. **锻炼基本算法实现能力**
 `
   },
+  "2539": {
+    id: "2539",
+    title: "反向输出四位数",
+    content: `
+> [https://www.xujcoj.com/home/problem/detail/2539](https://www.xujcoj.com/home/problem/detail/2539)
+
+**答案：**
+
+\`\`\`cpp
+#include<iostream>
+using namespace std;
+
+int main(){
+    int n;
+    cin >> n;
+    
+    while(n){
+        cout << n % 10;
+        n /= 10;
+    }
+    
+    return 0;
+}
+\`\`\`
+
+**或使用字符串：**
+
+\`\`\`cpp
+#include<iostream>
+#include<string>
+using namespace std;
+
+int main(){
+    string s;
+    cin >> s;
+    
+    for(int i = s.length() - 1; i >= 0; i--){
+        cout << s[i];
+    }
+    
+    return 0;
+}
+\`\`\`
+
+**解析**：
+
+**核心思路**：从后往前逐位输出
+
+**方法1 - 取模法**：
+
+\`\`\`
+输入：1280
+
+n % 10 = 0 → 输出0，n变为128
+n % 10 = 8 → 输出8，n变为12
+n % 10 = 2 → 输出2，n变为1
+n % 10 = 1 → 输出1，n变为0
+
+输出：0821
+\`\`\`
+
+**方法2 - 字符串法**：
+
+\`\`\`
+输入："1280"
+从索引3到0倒序输出：s[3]=0, s[2]=8, s[1]=2, s[0]=1
+输出：0821
+\`\`\`
+
+**典型例子**：
+
+\`\`\`
+1000 → 0001（保留前导0）
+9876 → 6789
+5005 → 5005（回文数）
+\`\`\`
+
+**易错点**：
+
+❌ **错误1：先计算反转整数再输出**
+
+\`\`\`cpp
+int reversed = 0;
+while(n){
+    reversed = reversed * 10 + n % 10;
+    n /= 10;
+}
+cout << reversed;  // 1280 → 821（丢失前导0）
+\`\`\`
+
+❌ **错误2：多余换行**
+
+\`\`\`cpp
+cout << n % 10 << endl;  // 题目要求不换行
+\`\`\`
+
+**关键点**：
+
+- 逐位输出自动保留前导0
+- 不换行
+`
+  },
+  "2770": {
+    id: "2770",
+    title: "菱形阵列",
+    content: `
+> https://www.xujcoj.com/home/problem/detail/2770
+
+**解析**：
+
+**核心思路**：菱形 = 上半部分（含中间行）+ 下半部分
+
+**样例分析**（m=4）：
+
+\`\`\`
+   *        行1: 3空格 + * + 0空格
+  * *       行2: 2空格 + * + 1空格 + *
+ *   *      行3: 1空格 + * + 3空格 + *
+*     *     行4: 0空格 + * + 5空格 + *（中间行）
+ *   *      行5: 1空格 + * + 3空格 + *
+  * *       行6: 2空格 + * + 1空格 + *
+   *        行7: 3空格 + * + 0空格
+\`\`\`
+
+**规律总结**：
+
+对于第 i 行（1 ≤ i ≤ m，上半部分）：
+
+- 前导空格数：\`m - i\`
+- 星号间空格数：\`2*i - 3\`（i=1时为0）
+- 总宽度：\`2*i - 1\`
+
+对于下半部分：倒序输出第 1 到 m-1 行
+
+**具体实现**：
+
+\`\`\`
+第i行输出流程：
+1. 输出 (m-i) 个空格
+2. 输出第一个 *
+3. 如果不是第一行：
+   - 输出 (2*i-3) 个空格
+   - 输出第二个 *
+4. 换行
+\`\`\`
+
+**典型例子**：
+
+**m=2**：
+
+\`\`\`
+ *
+* *
+ *
+\`\`\`
+
+**m=3**：
+
+\`\`\`
+  *
+ * *
+*   *
+ * *
+  *
+\`\`\`
+
+**m=5**：
+
+\`\`\`
+    *
+   * *
+  *   *
+ *     *
+*       *
+ *     *
+  *   *
+   * *
+    *
+\`\`\`
+
+**易错点**：
+
+❌ **错误1：行末多余空格**
+
+\`\`\`cpp
+for(int j = 1; j <= 2 * i - 1; j++){
+    if(j == 1 || j == 2 * i - 1)
+        cout << "*";
+    else
+        cout << " ";
+}
+// 正确：只在需要的位置输出空格
+\`\`\`
+
+❌ **错误2：输出实心菱形**
+
+\`\`\`cpp
+for(int j = 1; j <= 2 * i - 1; j++){
+    cout << "*";  // 错误：全部输出星号
+}
+// 应该只在两端输出星号
+\`\`\`
+
+❌ **错误3：下半部分包含中间行**
+
+\`\`\`cpp
+for(int i = m; i >= 1; i--)  // 错误：重复输出中间行
+// 应该：for(int i = m - 1; i >= 1; i--)
+\`\`\`
+
+❌ **错误4：第一行输出两个星号**
+
+\`\`\`cpp
+if(j == 1 || j == 2 * i - 1){
+    cout << "*";
+}
+// 当i=1时，2*i-1=1，只有一个星号位置，这是正确的
+// 但要注意条件判断：j==1 且 j==2*i-1同时成立时只输出一次
+\`\`\`
+
+**关键点**：
+
+- 空心菱形只在两端输出星号
+- 每行末尾不能有多余空格
+- 下半部分不包含中间行（从m-1开始）
+- 第一行只有一个星号
+`,
+    answers: [
+      {
+        label: "基础解法",
+        content: `\`\`\`cpp
+#include<iostream>
+using namespace std;
+
+int main(){
+    int m;
+    cin >> m;
+    
+    // 上半部分（包括中间行）
+    for(int i = 1; i <= m; i++){
+        // 输出前导空格
+        for(int j = 1; j <= m - i; j++){
+            cout << " ";
+        }
+        
+        // 输出星号
+        for(int j = 1; j <= 2 * i - 1; j++){
+            if(j == 1 || j == 2 * i - 1){
+                cout << "*";  // 两端的星号
+            } else {
+                cout << " ";  // 中间的空格
+            }
+        }
+        cout << endl;
+    }
+    
+    // 下半部分
+    for(int i = m - 1; i >= 1; i--){
+        // 输出前导空格
+        for(int j = 1; j <= m - i; j++){
+            cout << " ";
+        }
+        
+        // 输出星号
+        for(int j = 1; j <= 2 * i - 1; j++){
+            if(j == 1 || j == 2 * i - 1){
+                cout << "*";  // 两端的星号
+            } else {
+                cout << " ";  // 中间的空格
+            }
+        }
+        cout << endl;
+    }
+    
+    return 0;
+}
+\`\`\``
+      },
+      {
+        label: "优化写法",
+        content: `\`\`\`cpp
+#include<iostream>
+using namespace std;
+
+int main(){
+    int m;
+    cin >> m;
+    
+    // 上半部分
+    for(int i = 1; i <= m; i++){
+        for(int j = 1; j <= m - i; j++) cout << " ";
+        cout << "*";
+        if(i > 1){
+            for(int j = 1; j <= 2 * i - 3; j++) cout << " ";
+            cout << "*";
+        }
+        cout << endl;
+    }
+    
+    // 下半部分
+    for(int i = m - 1; i >= 1; i--){
+        for(int j = 1; j <= m - i; j++) cout << " ";
+        cout << "*";
+        if(i > 1){
+            for(int j = 1; j <= 2 * i - 3; j++) cout << " ";
+            cout << "*";
+        }
+        cout << endl;
+    }
+    
+    return 0;
+}
+\`\`\``
+      }
+    ]
+  },
   "2583": {
     id: "2583",
     title: "等差数列 -2",
@@ -1097,7 +1413,7 @@ int main() {
 
 4. **初始化技巧**
 
-    \`\`\`cpp
+\`\`\`cpp
 int maxScore = 0;    // 最高分初始化为0（成绩最小值）
 int minScore = 100;  // 最低分初始化为100（成绩最大值）
 
@@ -1109,13 +1425,13 @@ int minScore = 100;  // 最低分初始化为100（成绩最大值）
 
 5. **更新最值的逻辑**
 
-    \`\`\`cpp
+\`\`\`cpp
 if(score > maxScore) {
-    maxScore = score;  // 找到更大的，更新最高分
+maxScore = score;  // 找到更大的，更新最高分
 }
 
 if(score < minScore) {
-    minScore = score;  // 找到更小的，更新最低分
+minScore = score;  // 找到更小的，更新最低分
 }
 
 \`\`\`
@@ -1124,7 +1440,7 @@ if(score < minScore) {
 
     - **输入：5个成绩：40 100 80 90 65**
 
-    \`\`\`
+\`\`\`
 初始：maxScore=0, minScore=100
 
 i=0: score=40
@@ -1198,27 +1514,27 @@ i=4: score=65
 
 12. **替代方法：使用数组**
 
-    \`\`\`cpp
+\`\`\`cpp
 #include <iostream>
 #include <algorithm>
 using namespace std;
 
 int main() {
-    int n;
-    cin >> n;
+int n;
+cin >> n;
 
-    int scores[100];
-    for(int i = 0; i < n; i++) {
-        cin >> scores[i];
-    }
+int scores[100];
+for(int i = 0; i < n; i++) {
+    cin >> scores[i];
+}
 
-    // 找最大值和最小值
-    int maxScore = *max_element(scores, scores + n);
-    int minScore = *min_element(scores, scores + n);
+// 找最大值和最小值
+int maxScore = *max_element(scores, scores + n);
+int minScore = *min_element(scores, scores + n);
 
-    cout << maxScore - minScore;
+cout << maxScore - minScore;
 
-    return 0;
+return 0;
 }
 
 \`\`\`
@@ -1229,27 +1545,27 @@ int main() {
 
 13. **替代方法：排序**
 
-    \`\`\`cpp
+\`\`\`cpp
 #include <iostream>
 #include <algorithm>
 using namespace std;
 
 int main() {
-    int n;
-    cin >> n;
+int n;
+cin >> n;
 
-    int scores[100];
-    for(int i = 0; i < n; i++) {
-        cin >> scores[i];
-    }
+int scores[100];
+for(int i = 0; i < n; i++) {
+    cin >> scores[i];
+}
 
-    // 排序
-    sort(scores, scores + n);
+// 排序
+sort(scores, scores + n);
 
-    // 最大分差 = 最后一个 - 第一个
-    cout << scores[n-1] - scores[0];
+// 最大分差 = 最后一个 - 第一个
+cout << scores[n-1] - scores[0];
 
-    return 0;
+return 0;
 }
 
 \`\`\`
@@ -1268,16 +1584,16 @@ int main() {
 
 15. **初始化的其他方法**
 
-    \`\`\`cpp
+\`\`\`cpp
 // 方法1：使用第一个数初始化
 int maxScore, minScore;
 cin >> maxScore;
 minScore = maxScore;
 
 for(int i = 1; i < n; i++) {  // 从第2个开始
-    int score;
-    cin >> score;
-    // 更新最值...
+int score;
+cin >> score;
+// 更新最值...
 }
 
 // 方法2：使用极值初始化
@@ -1301,7 +1617,7 @@ int minScore = 100;     // 成绩最大值
 
 17. **完整的算法流程**
 
-    \`\`\`
+\`\`\`
 1. 读入学生数量n
 2. 初始化maxScore=0, minScore=100
 3. 循环n次：
@@ -2963,11 +3279,11 @@ int main() {
 
 3. **字符判断**
 
-    \`\`\`cpp
+\`\`\`cpp
 if(s[i] >= 'A' && s[i] <= 'Z') {
-    // 大写字母
+// 大写字母
 } else if(s[i] >= 'a' && s[i] <= 'z') {
-    // 小写字母
+// 小写字母
 }
 
 \`\`\`
@@ -2977,7 +3293,7 @@ if(s[i] >= 'A' && s[i] <= 'Z') {
 
 4. **字符串拼接**
 
-    \`\`\`cpp
+\`\`\`cpp
 upper += s[i];  // 将字符添加到字符串末尾
 
 \`\`\`
@@ -3037,16 +3353,16 @@ upper += s[i];  // 将字符添加到字符串末尾
 
 10. **替代方法1：使用数组**
 
-    \`\`\`cpp
+\`\`\`cpp
 char upper[25], lower[25];
 int upIdx = 0, lowIdx = 0;
 
 for(int i = 0; i < s.length(); i++) {
-    if(s[i] >= 'A' && s[i] <= 'Z') {
-        upper[upIdx++] = s[i];
-    } else {
-        lower[lowIdx++] = s[i];
-    }
+if(s[i] >= 'A' && s[i] <= 'Z') {
+    upper[upIdx++] = s[i];
+} else {
+    lower[lowIdx++] = s[i];
+}
 }
 upper[upIdx] = '\\0';
 lower[lowIdx] = '\\0';
@@ -3064,7 +3380,7 @@ cout << upper << lower << endl;
 
 12. **替代方法3：使用库函数**
 
-    \`\`\`cpp
+\`\`\`cpp
 #include <algorithm>
 #include <cctype>
 
@@ -3073,11 +3389,11 @@ cin >> s;
 
 string upper, lower;
 for(char c : s) {
-    if(isupper(c)) {
-        upper += c;
-    } else {
-        lower += c;
-    }
+if(isupper(c)) {
+    upper += c;
+} else {
+    lower += c;
+}
 }
 cout << upper << lower << endl;
 
@@ -3103,7 +3419,7 @@ cout << upper << lower << endl;
 
 14. **完整的算法流程**
 
-    \`\`\`
+\`\`\`
 1. 读入案例数量n
 2. 对每组案例：
 a. 读入字符串s
@@ -3221,7 +3537,7 @@ int main() {
 
 2. **算法过程（以"AlPhaBet"为例）**
 
-    \`\`\`
+\`\`\`
 初始：AlPhaBet, pos=0
 
 i=0: s[0]='A'是大写
@@ -3268,10 +3584,10 @@ i=6,7: 都是小写，跳过
 
 4. **移动操作详解**
 
-    \`\`\`cpp
+\`\`\`cpp
 // 将[pos, i-1]的字符向后移动一位
 for(int j = i; j > pos; j--) {
-    s[j] = s[j-1];
+s[j] = s[j-1];
 }
 s[pos] = temp;
 
@@ -3281,7 +3597,7 @@ s[pos] = temp;
 
     - 例如：将位置1的字符移到位置3
 
-        \`\`\`
+\`\`\`
 原始：A l P h a
 ↑   ↑
 pos  i
@@ -3294,7 +3610,7 @@ pos  i
 
         正确的是：
 
-        \`\`\`
+\`\`\`
 步骤1：s[3]=s[2] → A l P P a
 步骤2：s[2]=s[1] → A l l P a
 步骤3：s[1]=temp('P') → A P l P a (错！)
@@ -3303,7 +3619,7 @@ pos  i
 
         让我重新分析：
 
-        \`\`\`
+\`\`\`
 原始：A P l h a (i=2时的状态，要移动'P')
 ↑ ↑
 pos i
@@ -3319,7 +3635,7 @@ j=1: s[1]=s[0] → A A P h a (错！)
 5. **重新理解移动过程**
     以 "AlP" 为例，当i=2时：
 
-    \`\`\`
+\`\`\`
 原始：A l P
 pos=1, i=2
 
@@ -3336,7 +3652,7 @@ s[1] = temp → A P l ✓
 
 6. **完整示例：AaBbAa**
 
-    \`\`\`
+\`\`\`
 初始：AaBbAa, pos=0
 
 i=0: 'A'大写
@@ -3370,7 +3686,7 @@ i=4: 'A'大写
 
     让我重新算：
 
-    \`\`\`
+\`\`\`
 初始：AaBbAa, pos=0
 
 i=0: 'A'大写, pos=0→1
@@ -3404,7 +3720,7 @@ pos=3
 
     - 位置0:'A', 1:'a', 2:'B', 3:'b', 4:'A', 5:'a'
 
-    \`\`\`
+\`\`\`
 i=5: s[5]='a'是小写，不是'A'！
 i=4: s[4]='A'是大写
 
@@ -3412,7 +3728,7 @@ i=4: s[4]='A'是大写
 
     重新来：
 
-    \`\`\`
+\`\`\`
 初始：A a B b A a (索引0-5)
 
 i=0: 'A'大写, pos=0
@@ -3473,7 +3789,7 @@ i=5: 'a'小写，跳过
 
 11. **完整的算法流程**
 
-    \`\`\`
+\`\`\`
 1. 初始化pos=0
 2. 遍历字符串(i从0到len-1)：
 a. 如果s[i]是大写字母：
@@ -3489,10 +3805,10 @@ b. 如果s[i]是小写字母：
 
 12. **代码关键点**
 
-    \`\`\`cpp
+\`\`\`cpp
 // 从后向前移动，避免覆盖
 for(int j = i; j > pos; j--) {
-    s[j] = s[j-1];
+s[j] = s[j-1];
 }
 
 \`\`\`
@@ -4481,14 +4797,14 @@ int main() {
 
 1. **复数乘法公式**
 
-    \`\`\`
+\`\`\`
 (a + bi) × (c + di) = ?
 
 \`\`\`
 
     展开：
 
-    \`\`\`
+\`\`\`
 = a·c + a·di + bi·c + bi·di
 = ac + adi + bci + bdi²
 
@@ -4496,7 +4812,7 @@ int main() {
 
     因为 **i² = -1**：
 
-    \`\`\`
+\`\`\`
 = ac + adi + bci + bd(-1)
 = ac + adi + bci - bd
 = (ac - bd) + (ad + bc)i
@@ -4510,7 +4826,7 @@ int main() {
 
 2. **推导过程详解**
 
-    \`\`\`
+\`\`\`
 第一个复数：a + bi
 第二个复数：c + di
 
@@ -4532,7 +4848,7 @@ int main() {
 
     方法1：用公式
 
-    \`\`\`
+\`\`\`
 实部 = ac - bd = 1×3 - 2×4 = 3 - 8 = -5
 虚部 = ad + bc = 1×4 + 2×3 = 4 + 6 = 10
 
@@ -4540,7 +4856,7 @@ int main() {
 
     方法2：展开验证
 
-    \`\`\`
+\`\`\`
 (1 + 2i)(3 + 4i)
 = 1×3 + 1×4i + 2i×3 + 2i×4i
 = 3 + 4i + 6i + 8i²
@@ -4563,7 +4879,7 @@ int main() {
 
 5. **代码说明**
 
-    \`\`\`cpp
+\`\`\`cpp
 int real = a * c - b * d;  // 实部：ac - bd
 int imag = a * d + b * c;  // 虚部：ad + bc
 
@@ -4621,7 +4937,7 @@ int imag = a * d + b * c;  // 虚部：ad + bc
 
     或记为：
 
-    \`\`\`
+\`\`\`
 (a + bi)(c + di)
 实部：首×首 - 尾×尾 = ac - bd
 虚部：首×尾 + 尾×首 = ad + bc
@@ -4637,7 +4953,7 @@ int imag = a * d + b * c;  // 虚部：ad + bc
 
 13. **完整的算法流程**
 
-    \`\`\`
+\`\`\`
 1. 读入a, b, c, d
 2. 计算实部 = a×c - b×d
 3. 计算虚部 = a×d + b×c
@@ -4664,7 +4980,7 @@ int imag = a * d + b * c;  // 虚部：ad + bc
 16. **扩展：复数除法**
         如果题目问除法：
 
-    \`\`\`
+\`\`\`
 (a + bi) ÷ (c + di) = ?
 
 方法：分子分母同乘共轭复数(c - di)
@@ -4687,7 +5003,7 @@ int imag = a * d + b * c;  // 虚部：ad + bc
 
 18. **公式记忆口诀**
 
-    \`\`\`
+\`\`\`
 复数相乘别慌张，
 展开合并用i方。
 实部：首首减尾尾，
@@ -5224,94 +5540,94 @@ int main(){
 
 2. **核心概念区分**
 
-   \`\`\`
-   做出时刻 arr[i]：从比赛开始到做出某题的总时间
-   花费时间 time[i]：做某题实际花了多少时间
-   
-   例如：arr = [10, 15, 30, 80, 50, 150]
-   
-   含义：
-   - 题1在第10分钟做出
-   - 题2在第15分钟做出
-   - 题3在第30分钟做出
-   - 题4在第80分钟做出
-   - 题5在第50分钟做出
-   - 题6在第150分钟做出
-   \`\`\`
+\`\`\`
+做出时刻 arr[i]：从比赛开始到做出某题的总时间
+花费时间 time[i]：做某题实际花了多少时间
+
+例如：arr = [10, 15, 30, 80, 50, 150]
+
+含义：
+- 题1在第10分钟做出
+- 题2在第15分钟做出
+- 题3在第30分钟做出
+- 题4在第80分钟做出
+- 题5在第50分钟做出
+- 题6在第150分钟做出
+\`\`\`
 
 3. **算法思路**
 
    **第一步：计算当前小分**
 
-   \`\`\`cpp
-   sum_before = arr[0] + arr[1] + ... + arr[5]
-              = 10 + 15 + 30 + 80 + 50 + 150
-              = 335
-   \`\`\`
+\`\`\`cpp
+sum_before = arr[0] + arr[1] + ... + arr[5]
+           = 10 + 15 + 30 + 80 + 50 + 150
+           = 335
+\`\`\`
 
    **第二步：排序得到实际做题顺序**
 
-   \`\`\`cpp
-   bubbleSort(arr, 6);
-   // 排序前：[10, 15, 30, 80, 50, 150]
-   // 排序后：[10, 15, 30, 50, 80, 150]
-   
-   实际做题顺序：
-   10min → 15min → 30min → 50min → 80min → 150min
-   \`\`\`
+\`\`\`cpp
+bubbleSort(arr, 6);
+// 排序前：[10, 15, 30, 80, 50, 150]
+// 排序后：[10, 15, 30, 50, 80, 150]
+
+实际做题顺序：
+10min → 15min → 30min → 50min → 80min → 150min
+\`\`\`
 
    **第三步：计算每题花费时间**
 
-   \`\`\`cpp
-   time[0] = 10 - 0 = 10分钟
-   time[1] = 15 - 10 = 5分钟
-   time[2] = 30 - 15 = 15分钟
-   time[3] = 50 - 30 = 20分钟
-   time[4] = 80 - 50 = 30分钟
-   time[5] = 150 - 80 = 70分钟
-   
-   time = [10, 5, 15, 20, 30, 70]
-   \`\`\`
+\`\`\`cpp
+time[0] = 10 - 0 = 10分钟
+time[1] = 15 - 10 = 5分钟
+time[2] = 30 - 15 = 15分钟
+time[3] = 50 - 30 = 20分钟
+time[4] = 80 - 50 = 30分钟
+time[5] = 150 - 80 = 70分钟
+
+time = [10, 5, 15, 20, 30, 70]
+\`\`\`
 
    **第四步：对花费时间排序（贪心策略）**
 
-   \`\`\`cpp
-   bubbleSort(time, 6);
-   // 排序前：[10, 5, 15, 20, 30, 70]
-   // 排序后：[5, 10, 15, 20, 30, 70]
-   \`\`\`
+\`\`\`cpp
+bubbleSort(time, 6);
+// 排序前：[10, 5, 15, 20, 30, 70]
+// 排序后：[5, 10, 15, 20, 30, 70]
+\`\`\`
 
    **第五步：计算最优小分**
 
-   \`\`\`cpp
-   按最优顺序做题：
-   
-   i=0: accumulated = 0 + 5 = 5
-        sum_after += 5 → 5
-        
-   i=1: accumulated = 5 + 10 = 15
-        sum_after += 15 → 20
-        
-   i=2: accumulated = 15 + 15 = 30
-        sum_after += 30 → 50
-        
-   i=3: accumulated = 30 + 20 = 50
-        sum_after += 50 → 100
-        
-   i=4: accumulated = 50 + 30 = 80
-        sum_after += 80 → 180
-        
-   i=5: accumulated = 80 + 70 = 150
-        sum_after += 150 → 330
-   
-   sum_after = 330
-   \`\`\`
+\`\`\`cpp
+按最优顺序做题：
+
+i=0: accumulated = 0 + 5 = 5
+     sum_after += 5 → 5
+     
+i=1: accumulated = 5 + 10 = 15
+     sum_after += 15 → 20
+     
+i=2: accumulated = 15 + 15 = 30
+     sum_after += 30 → 50
+     
+i=3: accumulated = 30 + 20 = 50
+     sum_after += 50 → 100
+     
+i=4: accumulated = 50 + 30 = 80
+     sum_after += 80 → 180
+     
+i=5: accumulated = 80 + 70 = 150
+     sum_after += 150 → 330
+
+sum_after = 330
+\`\`\`
 
    **第六步：输出差值**
 
-   \`\`\`cpp
-   335 - 330 = 5
-   \`\`\`
+\`\`\`cpp
+335 - 330 = 5
+\`\`\`
 
 4. **贪心策略原理**
 
@@ -5319,17 +5635,17 @@ int main(){
 
    **分析**：假设3道题，花费时间为 t1, t2, t3
 
-   \`\`\`
-   顺序：t1 → t2 → t3
-   
-   做出时刻：
-   - 题1做完：t1
-   - 题2做完：t1 + t2
-   - 题3做完：t1 + t2 + t3
-   
-   小分 = t1 + (t1+t2) + (t1+t2+t3)
-        = 3t1 + 2t2 + 1t3
-   \`\`\`
+\`\`\`
+顺序：t1 → t2 → t3
+
+做出时刻：
+- 题1做完：t1
+- 题2做完：t1 + t2
+- 题3做完：t1 + t2 + t3
+
+小分 = t1 + (t1+t2) + (t1+t2+t3)
+     = 3t1 + 2t2 + 1t3
+\`\`\`
 
    **规律发现**：
 
@@ -5352,20 +5668,20 @@ int main(){
 
 5. **冒泡排序详解**
 
-   \`\`\`cpp
-   void bubbleSort(int arr[], int n){
-       for(int i = 0; i < n - 1; i++){           // 外层循环n-1轮
-           for(int j = 0; j < n - 1 - i; j++){   // 内层循环递减
-               if(arr[j] > arr[j + 1]){          // 相邻元素比较
-                   // 交换
-                   int temp = arr[j];
-                   arr[j] = arr[j + 1];
-                   arr[j + 1] = temp;
-               }
-           }
-       }
-   }
-   \`\`\`
+\`\`\`cpp
+void bubbleSort(int arr[], int n){
+    for(int i = 0; i < n - 1; i++){           // 外层循环n-1轮
+        for(int j = 0; j < n - 1 - i; j++){   // 内层循环递减
+            if(arr[j] > arr[j + 1]){          // 相邻元素比较
+                // 交换
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+\`\`\`
 
    **工作原理**：
 
@@ -5384,35 +5700,35 @@ int main(){
 
    **输入**：\`10 15 30 80 50 150\`
 
-   \`\`\`
-   步骤1：读入并计算当前小分
-   arr = [10, 15, 30, 80, 50, 150]
-   sum_before = 335
-   
-   步骤2：排序arr数组
-   bubbleSort(arr, 6)
-   arr = [10, 15, 30, 50, 80, 150]
-   
-   步骤3：计算花费时间
-   time[0] = 10
-   time[1] = 15 - 10 = 5
-   time[2] = 30 - 15 = 15
-   time[3] = 50 - 30 = 20
-   time[4] = 80 - 50 = 30
-   time[5] = 150 - 80 = 70
-   time = [10, 5, 15, 20, 30, 70]
-   
-   步骤4：排序time数组
-   bubbleSort(time, 6)
-   time = [5, 10, 15, 20, 30, 70]
-   
-   步骤5：计算最优小分
-   accumulated = [5, 15, 30, 50, 80, 150]
-   sum_after = 5+15+30+50+80+150 = 330
-   
-   步骤6：输出
-   335 - 330 = 5 ✓
-   \`\`\`
+\`\`\`
+步骤1：读入并计算当前小分
+arr = [10, 15, 30, 80, 50, 150]
+sum_before = 335
+
+步骤2：排序arr数组
+bubbleSort(arr, 6)
+arr = [10, 15, 30, 50, 80, 150]
+
+步骤3：计算花费时间
+time[0] = 10
+time[1] = 15 - 10 = 5
+time[2] = 30 - 15 = 15
+time[3] = 50 - 30 = 20
+time[4] = 80 - 50 = 30
+time[5] = 150 - 80 = 70
+time = [10, 5, 15, 20, 30, 70]
+
+步骤4：排序time数组
+bubbleSort(time, 6)
+time = [5, 10, 15, 20, 30, 70]
+
+步骤5：计算最优小分
+accumulated = [5, 15, 30, 50, 80, 150]
+sum_after = 5+15+30+50+80+150 = 330
+
+步骤6：输出
+335 - 330 = 5 ✓
+\`\`\`
 
 7. **代码关键点**
 
@@ -5452,31 +5768,31 @@ int main(){
 
    ❌ **不排序arr就计算time**：
 
-   \`\`\`cpp
-   // 错误：arr顺序不对
-   time[3] = arr[3] - arr[2] = 80 - 30 = 50  // 错误！
-   time[4] = arr[4] - arr[3] = 50 - 80 = -30 // 负数！
-   \`\`\`
+\`\`\`cpp
+// 错误：arr顺序不对
+time[3] = arr[3] - arr[2] = 80 - 30 = 50  // 错误！
+time[4] = arr[4] - arr[3] = 50 - 80 = -30 // 负数！
+\`\`\`
 
    ❌ **忘记排序time**：
 
-   \`\`\`cpp
-   // 不排序time，无法得到最优顺序
-   \`\`\`
+\`\`\`cpp
+// 不排序time，无法得到最优顺序
+\`\`\`
 
    ❌ **输出sum_after而不是差值**：
 
-   \`\`\`cpp
-   cout << sum_after << endl;  // 错误
-   cout << sum_before - sum_after << endl;  // 正确
-   \`\`\`
+\`\`\`cpp
+cout << sum_after << endl;  // 错误
+cout << sum_before - sum_after << endl;  // 正确
+\`\`\`
 
    ❌ **冒泡排序写错**：
 
-   \`\`\`cpp
-   for(int j = 0; j < n; j++)  // 错误：会越界
-   for(int j = 0; j < n-1-i; j++)  // 正确
-   \`\`\`
+\`\`\`cpp
+for(int j = 0; j < n; j++)  // 错误：会越界
+for(int j = 0; j < n-1-i; j++)  // 正确
+\`\`\`
 
 10. **优化空间**
 
@@ -5484,34 +5800,34 @@ int main(){
 
     **优化1**：使用选择排序（代码更简洁）
 
-    \`\`\`cpp
-    void selectionSort(int arr[], int n){
-        for(int i = 0; i < n-1; i++){
-            int minIdx = i;
-            for(int j = i+1; j < n; j++){
-                if(arr[j] < arr[minIdx]) minIdx = j;
-            }
-            swap(arr[i], arr[minIdx]);
+\`\`\`cpp
+void selectionSort(int arr[], int n){
+    for(int i = 0; i < n-1; i++){
+        int minIdx = i;
+        for(int j = i+1; j < n; j++){
+            if(arr[j] < arr[minIdx]) minIdx = j;
         }
+        swap(arr[i], arr[minIdx]);
     }
-    \`\`\`
+}
+\`\`\`
 
     **优化2**：提前终止的冒泡排序
 
-    \`\`\`cpp
-    void bubbleSort(int arr[], int n){
-        for(int i = 0; i < n-1; i++){
-            bool swapped = false;
-            for(int j = 0; j < n-1-i; j++){
-                if(arr[j] > arr[j+1]){
-                    swap(arr[j], arr[j+1]);
-                    swapped = true;
-                }
+\`\`\`cpp
+void bubbleSort(int arr[], int n){
+    for(int i = 0; i < n-1; i++){
+        bool swapped = false;
+        for(int j = 0; j < n-1-i; j++){
+            if(arr[j] > arr[j+1]){
+                swap(arr[j], arr[j+1]);
+                swapped = true;
             }
-            if(!swapped) break;  // 已排序，提前结束
         }
+        if(!swapped) break;  // 已排序，提前结束
     }
-    \`\`\`
+}
+\`\`\`
 
 11. **总结**
 
@@ -5570,9 +5886,9 @@ int main(){
 
    **通项公式**：
 
-   \`\`\`
-   an = a1 + (n-1) × d
-   \`\`\`
+\`\`\`
+an = a1 + (n-1) × d
+\`\`\`
 
    其中：
 
@@ -5598,45 +5914,45 @@ int main(){
 
    根据通项公式：
 
-   \`\`\`
-   数列[a] = a1 + (a-1) × diff = b  ......(1)
-   数列[c] = a1 + (c-1) × diff = d  ......(2)
-   \`\`\`
+\`\`\`
+数列[a] = a1 + (a-1) × diff = b  ......(1)
+数列[c] = a1 + (c-1) × diff = d  ......(2)
+\`\`\`
 
    **求公差**：用(2)式减去(1)式
 
-   \`\`\`
-   [a1 + (c-1)×diff] - [a1 + (a-1)×diff] = d - b
-   
-   a1 + (c-1)×diff - a1 - (a-1)×diff = d - b
-   
-   (c-1)×diff - (a-1)×diff = d - b
-   
-   [(c-1) - (a-1)] × diff = d - b
-   
-   (c - a) × diff = d - b
-   
-   diff = (d - b) / (c - a)
-   \`\`\`
+\`\`\`
+[a1 + (c-1)×diff] - [a1 + (a-1)×diff] = d - b
+
+a1 + (c-1)×diff - a1 - (a-1)×diff = d - b
+
+(c-1)×diff - (a-1)×diff = d - b
+
+[(c-1) - (a-1)] × diff = d - b
+
+(c - a) × diff = d - b
+
+diff = (d - b) / (c - a)
+\`\`\`
 
    **求第n项**：
 
-   \`\`\`
-   数列[n] = b + (n - a) × diff
-   \`\`\`
+\`\`\`
+数列[n] = b + (n - a) × diff
+\`\`\`
 
    **为什么是 b + (n-a)×diff？**
 
    从第a项到第n项，需要经过 (n-a) 个公差：
 
-   \`\`\`
-   第a项 → 第(a+1)项 → ... → 第n项
-   
-   共 (n-a) 步，每步增加 diff
-   
-   所以：数列[n] = 数列[a] + (n-a) × diff
-                  = b + (n-a) × diff
-   \`\`\`
+\`\`\`
+第a项 → 第(a+1)项 → ... → 第n项
+
+共 (n-a) 步，每步增加 diff
+
+所以：数列[n] = 数列[a] + (n-a) × diff
+               = b + (n-a) × diff
+\`\`\`
 
 4. **样例详细计算**
 
@@ -5650,57 +5966,57 @@ int main(){
 
    **步骤1**：计算公差
 
-   \`\`\`
-   diff = (d - b) / (c - a)
-        = (5 - 3) / (3 - 2)
-        = 2 / 1
-        = 2
-   \`\`\`
+\`\`\`
+diff = (d - b) / (c - a)
+     = (5 - 3) / (3 - 2)
+     = 2 / 1
+     = 2
+\`\`\`
 
    **步骤2**：计算第4项
 
-   \`\`\`
-   result = b + (n - a) × diff
-          = 3 + (4 - 2) × 2
-          = 3 + 2 × 2
-          = 3 + 4
-          = 7
-   \`\`\`
+\`\`\`
+result = b + (n - a) × diff
+       = 3 + (4 - 2) × 2
+       = 3 + 2 × 2
+       = 3 + 4
+       = 7
+\`\`\`
 
    **验证**：还原整个数列
 
-   \`\`\`
-   公差diff = 2
-   第2项 = 3
-   第3项 = 3 + 2 = 5 ✓
-   第4项 = 5 + 2 = 7 ✓
-   
-   完整数列：..., 1, 3, 5, 7, 9, ...
-   \`\`\`
+\`\`\`
+公差diff = 2
+第2项 = 3
+第3项 = 3 + 2 = 5 ✓
+第4项 = 5 + 2 = 7 ✓
+
+完整数列：..., 1, 3, 5, 7, 9, ...
+\`\`\`
 
 5. **另一种理解方式**
 
    **从第a项推到第n项**：
 
-   \`\`\`
-   第a项：b
-   第(a+1)项：b + diff
-   第(a+2)项：b + 2×diff
-   ...
-   第n项：b + (n-a)×diff
-   \`\`\`
+\`\`\`
+第a项：b
+第(a+1)项：b + diff
+第(a+2)项：b + 2×diff
+...
+第n项：b + (n-a)×diff
+\`\`\`
 
    **示例**（a=2, b=3, diff=2, n=4）：
 
-   \`\`\`
-   第2项：3
-   第3项：3 + 2 = 5
-   第4项：3 + 2×2 = 7
-   
-   从第2项到第4项，走了(4-2)=2步
-   每步增加2，共增加4
-   所以第4项 = 3 + 4 = 7
-   \`\`\`
+\`\`\`
+第2项：3
+第3项：3 + 2 = 5
+第4项：3 + 2×2 = 7
+
+从第2项到第4项，走了(4-2)=2步
+每步增加2，共增加4
+所以第4项 = 3 + 4 = 7
+\`\`\`
 
 6. **公式总结**
 
@@ -5711,37 +6027,37 @@ int main(){
 
    **求解公式**：
 
-   \`\`\`cpp
-   // 公差
-   diff = (d - b) / (c - a)
-   
-   // 第n项
-   result = b + (n - a) × diff
-   
-   // 或者（从第c项推导）
-   result = d + (n - c) × diff
-   \`\`\`
+\`\`\`cpp
+// 公差
+diff = (d - b) / (c - a)
+
+// 第n项
+result = b + (n - a) × diff
+
+// 或者（从第c项推导）
+result = d + (n - c) × diff
+\`\`\`
 
 7. **两种计算方法对比**
 
    **方法1**：从第a项推导
 
-   \`\`\`cpp
-   result = b + (n - a) × diff
-   \`\`\`
+\`\`\`cpp
+result = b + (n - a) × diff
+\`\`\`
 
    **方法2**：从第c项推导
 
-   \`\`\`cpp
-   result = d + (n - c) × diff
-   \`\`\`
+\`\`\`cpp
+result = d + (n - c) × diff
+\`\`\`
 
    **验证**（用样例）：
 
-   \`\`\`
-   方法1：result = 3 + (4-2)×2 = 3 + 4 = 7 ✓
-   方法2：result = 5 + (4-3)×2 = 5 + 2 = 7 ✓
-   \`\`\`
+\`\`\`
+方法1：result = 3 + (4-2)×2 = 3 + 4 = 7 ✓
+方法2：result = 5 + (4-3)×2 = 5 + 2 = 7 ✓
+\`\`\`
 
    两种方法结果相同，选择任意一种即可。
 
@@ -5753,88 +6069,88 @@ int main(){
 
    **例子**：
 
-   \`\`\`
-   如果第2项=3，第3项=4.5，公差=1.5（不是整数）
-   
-   题目保证不会出现这种情况
-   所以可以放心使用整数除法
-   \`\`\`
+\`\`\`
+如果第2项=3，第3项=4.5，公差=1.5（不是整数）
+
+题目保证不会出现这种情况
+所以可以放心使用整数除法
+\`\`\`
 
 9. **边界情况**
 
    **情况1**：n = a（求的就是已知项）
 
-   \`\`\`
-   result = b + (a - a) × diff
-          = b + 0
-          = b ✓
-   \`\`\`
+\`\`\`
+result = b + (a - a) × diff
+       = b + 0
+       = b ✓
+\`\`\`
 
    **情况2**：n = c（求的就是已知项）
 
-   \`\`\`
-   result = b + (c - a) × diff
-          = b + (c - a) × (d-b)/(c-a)
-          = b + (d - b)
-          = d ✓
-   \`\`\`
+\`\`\`
+result = b + (c - a) × diff
+       = b + (c - a) × (d-b)/(c-a)
+       = b + (d - b)
+       = d ✓
+\`\`\`
 
    **情况3**：n < a 或 n > c（求其他项）
 
-   \`\`\`
-   公式同样适用，向前或向后推导
-   
-   例如：a=2, b=3, diff=2, n=1
-   result = 3 + (1-2)×2 = 3 + (-2) = 1
-   
-   验证：数列是 1, 3, 5, 7, ... ✓
-   \`\`\`
+\`\`\`
+公式同样适用，向前或向后推导
+
+例如：a=2, b=3, diff=2, n=1
+result = 3 + (1-2)×2 = 3 + (-2) = 1
+
+验证：数列是 1, 3, 5, 7, ... ✓
+\`\`\`
 
 10. **完整推导过程图解**
 
-    \`\`\`
-    等差数列：... → 第a项 → ... → 第c项 → ... → 第n项 → ...
-                     ↓              ↓              ↓
-                     b              d              ?
-    
-    步骤1：求公差
-    从第a项到第c项，共(c-a)步
-    值的变化：d - b
-    公差 = (d-b) / (c-a)
-    
-    步骤2：求第n项
-    从第a项到第n项，共(n-a)步
-    值的变化：(n-a) × diff
-    第n项 = b + (n-a) × diff
-    \`\`\`
+\`\`\`
+等差数列：... → 第a项 → ... → 第c项 → ... → 第n项 → ...
+                 ↓              ↓              ↓
+                 b              d              ?
+
+步骤1：求公差
+从第a项到第c项，共(c-a)步
+值的变化：d - b
+公差 = (d-b) / (c-a)
+
+步骤2：求第n项
+从第a项到第n项，共(n-a)步
+值的变化：(n-a) × diff
+第n项 = b + (n-a) × diff
+\`\`\`
 
 11. **代码优化版本**
 
     **版本1**：直接计算（最简洁）
 
-    \`\`\`cpp
-    int main(){
-        int a, b, c, d, n;
-        cin >> a >> b >> c >> d >> n;
-        cout << b + (n - a) * ((d - b) / (c - a));
-        return 0;
-    }
-    \`\`\`
+\`\`\`cpp
+int main(){
+    int a, b, c, d, n;
+    cin >> a >> b >> c >> d >> n;
+    cout << b + (n - a) * ((d - b) / (c - a));
+    return 0;
+}
+\`\`\`
 
     **版本2**：分步计算（推荐，可读性好）
 
-    \`\`\`cpp
-    int main(){
-        int a, b, c, d, n;
-        cin >> a >> b >> c >> d >> n;
-        
-        int diff = (d - b) / (c - a);
-        int result = b + (n - a) * diff;
-        
-        cout << result;
-        return 0;
-    }
-    \`\`\`
+\`\`\`cpp
+int main(){
+    int a, b, c, d, n;
+    cin >> a >> b >> c >> d >> n;
+    
+    int diff = (d - b) / (c - a);
+    int result = b + (n - a) * diff;
+    
+    cout << result;
+    return 0;
+}
+\`\`\`
 
 12. **复杂度分析**
 
@@ -5847,41 +6163,41 @@ int main(){
 
     ❌ **忘记求公差**：
 
-    \`\`\`cpp
-    // 错误：直接用d-b作为差值
-    result = b + (n - a) * (d - b);
-    \`\`\`
+\`\`\`cpp
+// 错误：直接用d-b作为差值
+result = b + (n - a) * (d - b);
+\`\`\`
 
     ❌ **公差公式错误**：
 
-    \`\`\`cpp
-    // 错误：分子分母写反
-    diff = (c - a) / (d - b);
-    \`\`\`
+\`\`\`cpp
+// 错误：分子分母写反
+diff = (c - a) / (d - b);
+\`\`\`
 
     ❌ **第n项公式错误**：
 
-    \`\`\`cpp
-    // 错误：用n而不是(n-a)
-    result = b + n * diff;
-    \`\`\`
+\`\`\`cpp
+// 错误：用n而不是(n-a)
+result = b + n * diff;
+\`\`\`
 
     ❌ **多余的换行**：
 
-    \`\`\`cpp
-    // 题目要求：不要换行
-    cout << result << endl;  // 错误
-    cout << result;          // 正确
-    \`\`\`
+\`\`\`cpp
+// 题目要求：不要换行
+cout << result << endl;  // 错误
+cout << result;          // 正确
+\`\`\`
 
 14. **总结**
 
     **核心公式**：
 
-    \`\`\`
-    公差 diff = (d - b) / (c - a)
-    第n项 = b + (n - a) × diff
-    \`\`\`
+\`\`\`
+公差 diff = (d - b) / (c - a)
+第n项 = b + (n - a) × diff
+\`\`\`
 
     **解题步骤**：
 
@@ -5896,5 +6212,842 @@ int main(){
     - 用两点求公差
     - 从已知点推到未知点
 `
+  },
+  "3768": {
+    id: "3768",
+    title: "Hello TKK",
+    content: `
+**答案：**
+
+\`\`\`cpp
+#include<iostream>
+using namespace std;
+
+int main(){
+    int year, month, day;
+    cin >> year >> month >> day;
+    
+    cout << "Hello TKK " << year << "." << month << "." << day;
+    
+    return 0;
+}
+\`\`\`
+
+**解析**：
+
+1. **题目理解**
+
+   **输入**：三个整数，表示年、月、日
+
+   **输出**：\`Hello TKK yyyy.mm.dd\` 格式的字符串
+
+   **注意**：
+
+   - 输出不换行
+   - 年、月、日之间用 \`.\` 分隔
+   - 月、日**不需要补零**（直接输出数字）
+
+2. **样例分析**
+
+   **输入**：\`2022 9 8\`
+
+   **输出**：\`Hello TKK 2022.9.8\`
+
+   **关键点**：
+
+   - 9月不输出为09
+   - 8日不输出为08
+   - 直接输出数字即可
+
+3. **输出格式详解**
+
+\`\`\`cpp
+cout << "Hello TKK " << year << "." << month << "." << day;
+\`\`\`
+
+   **分解**：
+
+\`\`\`
+"Hello TKK "  → Hello TKK（后面有空格）
+year          → 2022
+"."           → .
+month         → 9
+"."           → .
+day           → 8
+
+组合：Hello TKK 2022.9.8
+\`\`\`
+
+4. **常见错误**
+
+   ❌ **多余的换行**：
+
+\`\`\`cpp
+cout << "Hello TKK " << year << "." << month << "." << day << endl;
+// 题目要求：不要换行
+\`\`\`
+
+   ❌ **忘记空格**：
+
+\`\`\`cpp
+cout << "Hello TKK" << year << "." << month << "." << day;
+// 输出：Hello TKK2022.9.8（TKK和2022之间没有空格）
+\`\`\`
+
+   ❌ **补零（过度理解）**：
+
+\`\`\`cpp
+// 错误：题目不需要补零
+if(month < 10) cout << "0";
+cout << month;
+// 会输出：Hello TKK 2022.09.08（错误）
+\`\`\`
+
+   ❌ **分隔符错误**：
+
+\`\`\`cpp
+cout << "Hello TKK " << year << "/" << month << "/" << day;
+// 输出：Hello TKK 2022/9/8（应该用点号.）
+\`\`\`
+
+5. **代码变体**
+
+   **方法1**：一行输出（推荐）
+
+\`\`\`cpp
+cout << "Hello TKK " << year << "." << month << "." << day;
+\`\`\`
+
+   **方法2**：分行输出
+
+\`\`\`cpp
+cout << "Hello TKK ";
+cout << year << ".";
+cout << month << ".";
+cout << day;
+\`\`\`
+
+   **方法3**：使用printf
+
+\`\`\`cpp
+printf("Hello TKK %d.%d.%d", year, month, day);
+\`\`\`
+
+6. **测试用例**
+
+   **测试1**：
+
+\`\`\`
+输入：2022 9 8
+输出：Hello TKK 2022.9.8
+\`\`\`
+
+   **测试2**：
+
+\`\`\`
+输入：2023 12 25
+输出：Hello TKK 2023.12.25
+\`\`\`
+
+   **测试3**：
+
+\`\`\`
+输入：2000 1 1
+输出：Hello TKK 2000.1.1
+\`\`\`
+
+   **测试4**：
+
+\`\`\`
+输入：1999 10 10
+输出：Hello TKK 1999.10.10
+\`\`\`
+
+7. **为什么不需要补零**
+
+   **对比**：
+
+\`\`\`
+题目要求：2022.9.8
+日期格式：2022.09.08（补零格式）
+\`\`\`
+
+   **判断依据**：样例输出
+
+\`\`\`
+样例输出：Hello TKK 2022.9.8
+
+可以看到9月和8日都没有补零
+所以直接输出数字即可
+\`\`\`
+
+8. **完整代码（带注释）**
+
+\`\`\`cpp
+#include<iostream>
+using namespace std;
+
+int main(){
+    int year, month, day;
+    
+    // 读入年月日
+    cin >> year >> month >> day;
+    
+    // 输出格式化字符串（不换行）
+    cout << "Hello TKK " << year << "." << month << "." << day;
+    
+    return 0;
+}
+\`\`\`
+
+9. **复杂度分析**
+
+   - **时间复杂度**：O(1)
+     - 只有输入输出操作
+   - **空间复杂度**：O(1)
+     - 只使用三个整型变量
+
+10. **相似题目扩展**
+
+    **如果要求补零**（假设）：
+
+\`\`\`cpp
+#include<iostream>
+#include<iomanip>
+using namespace std;
+
+int main(){
+    int year, month, day;
+    cin >> year >> month >> day;
+    
+    cout << "Hello TKK " << year << "."
+         << setfill('0') << setw(2) << month << "."
+         << setfill('0') << setw(2) << day;
+    
+    return 0;
+}
+\`\`\`
+
+    **使用printf补零**（假设）：
+
+\`\`\`cpp
+printf("Hello TKK %d.%02d.%02d", year, month, day);
+// %02d 表示至少输出2位数字，不足补0
+\`\`\`
+
+11. **注意事项总结**
+
+    ✓ **必须做到**：
+
+    - "Hello TKK" 后面有空格
+    - 年月日之间用 \`.\` 分隔
+    - 不换行（不加endl）
+    - 不补零（直接输出数字）
+
+    ✗ **不要做**：
+
+    - 不要换行
+    - 不要补零
+    - 不要用其他分隔符（如/或-）
+    - 不要忘记TKK后的空格
+
+12. **总结**
+
+    这是一道**简单的格式化输出题**，考查：
+
+    - 基本的输入输出操作
+    - 字符串输出
+    - 输出格式控制
+
+    **关键点**：
+
+    - 严格按照样例格式输出
+    - 注意空格位置
+    - 不要多余的换行
+    - 不需要补零
+`
+  },
+  "4027": {
+    id: "4027",
+    title: "名字和成绩",
+    content: `
+**答案：**
+
+\`\`\`cpp
+#include<iostream>
+#include<string>
+using namespace std;
+
+int main(){
+    string name[5];
+    int score[5];
+    
+    // 读入5个学生的名字和成绩
+    for(int i = 0; i < 5; i++){
+        cin >> name[i] >> score[i];
+    }
+    
+    // 冒泡排序（按成绩降序排序）
+    for(int i = 0; i < 4; i++){
+        for(int j = 0; j < 4 - i; j++){
+            if(score[j] < score[j + 1]){
+                // 交换成绩
+                int tempScore = score[j];
+                score[j] = score[j + 1];
+                score[j + 1] = tempScore;
+                
+                // 交换名字
+                string tempName = name[j];
+                name[j] = name[j + 1];
+                name[j + 1] = tempName;
+            }
+        }
+    }
+    
+    // 输出排名第3的学生（索引为2）
+    cout << name[2] << " " << score[2] << endl;
+    
+    return 0;
+}
+\`\`\`
+
+**解析**：
+
+1. **题目理解**
+
+   **输入**：5个学生的名字和成绩
+
+   **输出**：排名第3的学生信息
+
+   **关键**：
+
+   - 排名第3 = 成绩第3高
+   - 需要对成绩排序
+   - 排序时名字要跟着成绩一起移动
+
+2. **排序策略**
+
+   **降序排序**（从高到低）：
+
+\`\`\`
+排序后：
+索引0 → 排名第1（最高分）
+索引1 → 排名第2
+索引2 → 排名第3 ← 要输出的
+索引3 → 排名第4
+索引4 → 排名第5（最低分）
+\`\`\`
+
+3. **样例详细分析**
+
+   **输入**：
+
+\`\`\`
+AAA 70
+BBB 90
+CCC 100
+DDD 80
+EEE 60
+\`\`\`
+
+   **排序前**：
+
+\`\`\`
+索引  名字  成绩
+0    AAA   70
+1    BBB   90
+2    CCC   100
+3    DDD   80
+4    EEE   60
+\`\`\`
+
+   **排序后**（按成绩降序）：
+
+\`\`\`
+索引  名字  成绩  排名
+0    CCC   100   第1
+1    BBB   90    第2
+2    DDD   80    第3 ← 输出
+3    AAA   70    第4
+4    EEE   60    第5
+\`\`\`
+
+   **输出**：\`DDD 80\`
+
+4. **冒泡排序详解**
+
+\`\`\`cpp
+for(int i = 0; i < 4; i++){              // 外层4轮
+    for(int j = 0; j < 4 - i; j++){      // 内层递减
+        if(score[j] < score[j + 1]){     // 降序：前面比后面小就交换
+            // 交换成绩
+            int tempScore = score[j];
+            score[j] = score[j + 1];
+            score[j + 1] = tempScore;
+            
+            // 同时交换名字（保持对应关系）
+            string tempName = name[j];
+            name[j] = name[j + 1];
+            name[j + 1] = tempName;
+        }
+    }
+}
+\`\`\`
+
+   **关键点**：
+
+   - \`score[j] < score[j + 1]\`：降序条件（小的往后放）
+   - 交换成绩的同时必须交换名字
+   - 保持名字和成绩的对应关系
+
+5. **排序过程演示**
+
+   **初始**：
+
+\`\`\`
+AAA-70, BBB-90, CCC-100, DDD-80, EEE-60
+\`\`\`
+
+   **第1轮**（找最大值放最前）：
+
+\`\`\`
+j=0: 70<90, 交换   → BBB-90, AAA-70, CCC-100, DDD-80, EEE-60
+j=1: 70<100, 交换  → BBB-90, CCC-100, AAA-70, DDD-80, EEE-60
+j=2: 100>70, 不换  → BBB-90, CCC-100, AAA-70, DDD-80, EEE-60
+j=3: 70<80, 交换   → BBB-90, CCC-100, DDD-80, AAA-70, EEE-60
+
+第1轮后（最大值100已在正确位置）
+\`\`\`
+
+   继续执行后续轮次...
+
+   **最终**：
+
+\`\`\`
+CCC-100, BBB-90, DDD-80, AAA-70, EEE-60
+\`\`\`
+
+6. **为什么是降序排序**
+
+   **降序**（从高到低）：
+
+   - 索引2就是第3名
+   - 直接输出 \`name[2]\` 和 \`score[2]\`
+
+   **如果是升序**（从低到高）：
+
+   - 索引2是第4名（倒数第2）
+   - 需要输出 \`name[4-2]\` 即 \`name[2]\`（计算复杂）
+
+   **结论**：降序更直观
+
+7. **使用结构体的版本**
+
+   **更优雅的写法**：
+
+\`\`\`cpp
+#include<iostream>
+#include<string>
+using namespace std;
+
+struct Student{
+    string name;
+    int score;
+};
+
+int main(){
+    Student stu[5];
+    
+    // 读入数据
+    for(int i = 0; i < 5; i++){
+        cin >> stu[i].name >> stu[i].score;
+    }
+    
+    // 冒泡排序
+    for(int i = 0; i < 4; i++){
+        for(int j = 0; j < 4 - i; j++){
+            if(stu[j].score < stu[j + 1].score){
+                // 交换整个结构体
+                Student temp = stu[j];
+                stu[j] = stu[j + 1];
+                stu[j + 1] = temp;
+            }
+        }
+    }
+    
+    // 输出第3名
+    cout << stu[2].name << " " << stu[2].score << endl;
+    
+    return 0;
+}
+\`\`\`
+
+   **优点**：
+
+   - 数据封装更好
+   - 交换操作更简洁
+   - 代码可读性更高
+
+8. **选择排序版本**
+
+\`\`\`cpp
+#include<iostream>
+#include<string>
+using namespace std;
+
+int main(){
+    string name[5];
+    int score[5];
+    
+    for(int i = 0; i < 5; i++){
+        cin >> name[i] >> score[i];
+    }
+    
+    // 选择排序（降序）
+    for(int i = 0; i < 5; i++){
+        int maxIdx = i;
+        for(int j = i + 1; j < 5; j++){
+            if(score[j] > score[maxIdx]){
+                maxIdx = j;
+            }
+        }
+        // 交换
+        int tempScore = score[i];
+        score[i] = score[maxIdx];
+        score[maxIdx] = tempScore;
+        
+        string tempName = name[i];
+        name[i] = name[maxIdx];
+        name[maxIdx] = tempName;
+    }
+    
+    cout << name[2] << " " << score[2] << endl;
+    
+    return 0;
+}
+\`\`\`
+
+9. **不排序的方法**（仅适用于5个数）
+
+   **思路**：找第3大的数
+
+\`\`\`cpp
+#include<iostream>
+#include<string>
+using namespace std;
+
+int main(){
+    string name[5];
+    int score[5];
+    
+    for(int i = 0; i < 5; i++){
+        cin >> name[i] >> score[i];
+    }
+    
+    // 找第3大的成绩
+    for(int i = 0; i < 5; i++){
+        int rank = 1;  // 当前成绩的排名
+        for(int j = 0; j < 5; j++){
+            if(score[j] > score[i]){
+                rank++;
+            }
+        }
+        if(rank == 3){
+            cout << name[i] << " " << score[i] << endl;
+            break;
+        }
+    }
+    
+    return 0;
+}
+\`\`\`
+
+   **原理**：
+
+   - 统计有多少个成绩比当前成绩高
+   - 如果有2个成绩比它高，那它就是第3名
+
+10. **测试用例**
+
+    **测试1**：
+
+\`\`\`
+输入：
+AAA 70
+BBB 90
+CCC 100
+DDD 80
+EEE 60
+
+排序后：100, 90, 80, 70, 60
+输出：DDD 80
+\`\`\`
+
+    **测试2**：
+
+\`\`\`
+输入：
+A 50
+B 40
+C 30
+D 20
+E 10
+
+排序后：50, 40, 30, 20, 10
+输出：C 30
+\`\`\`
+
+    **测试3**：
+
+\`\`\`
+输入：
+Tom 95
+Jerry 85
+Mike 75
+Lucy 65
+Mary 55
+
+排序后：95, 85, 75, 65, 55
+输出：Mike 75
+\`\`\`
+
+11. **常见错误**
+
+    ❌ **升序排序导致索引错误**：
+
+\`\`\`cpp
+// 升序后：60, 70, 80, 90, 100
+// 索引2是80，但这是第2名，不是第3名
+cout << name[2] << " " << score[2];  // 错误
+\`\`\`
+
+    ❌ **只交换成绩，不交换名字**：
+
+\`\`\`cpp
+if(score[j] < score[j + 1]){
+    swap(score[j], score[j + 1]);
+    // 忘记交换名字！
+}
+// 导致名字和成绩不对应
+\`\`\`
+
+    ❌ **忘记输出空格**：
+
+\`\`\`cpp
+cout << name[2] << score[2] << endl;  // 缺少空格
+// 正确：
+cout << name[2] << " " << score[2] << endl;
+\`\`\`
+
+    ❌ **数组越界**：
+
+\`\`\`cpp
+for(int j = 0; j < 5; j++){  // j最大是4
+    if(score[j] < score[j + 1]){  // j=4时，j+1=5越界！
+\`\`\`
+
+12. **复杂度分析**
+
+    **时间复杂度**：
+
+    - 冒泡排序：O(n²) = O(25)
+    - 对于5个元素：常数时间
+
+    **空间复杂度**：
+
+    - O(n) = O(5)
+    - 两个数组存储名字和成绩
+
+13. **关键点总结**
+
+    **核心思路**：
+
+    1. 读入5个学生的名字和成绩
+    2. 按成绩降序排序（同时移动名字）
+    3. 输出索引为2的学生信息
+
+    **注意事项**：
+
+    - 降序排序（从高到低）
+    - 交换成绩时必须同时交换名字
+    - 输出格式：\`名字 空格 成绩 换行\`
+    - 保证成绩不重复，不需要处理并列情况
+
+14. **总结**
+
+    这道题考查：
+
+    - 数组的使用
+    - 排序算法（冒泡或选择）
+    - 多个数组同步操作
+    - 字符串的读取和输出
+
+    **推荐方法**：
+
+    - 初学者：使用两个数组 + 冒泡排序
+    - 进阶：使用结构体 + 排序
+    - 优化：直接找第3大的数（不完全排序）
+`,
+    answers: [
+    {
+      label: "标准解法 (冒泡排序)",
+      content: `
+\`\`\`cpp
+#include<iostream>
+#include<string>
+using namespace std;
+
+int main(){
+    string name[5];
+    int score[5];
+
+    // 读入5个学生的名字和成绩
+    for(int i = 0; i < 5; i++){
+        cin >> name[i] >> score[i];
+    }
+
+    // 冒泡排序（按成绩降序排序）
+    for(int i = 0; i < 4; i++){
+        for(int j = 0; j < 4 - i; j++){
+            if(score[j] < score[j + 1]){
+                // 交换成绩
+                int tempScore = score[j];
+                score[j] = score[j + 1];
+                score[j + 1] = tempScore;
+
+                // 交换名字
+                string tempName = name[j];
+                name[j] = name[j + 1];
+                name[j + 1] = tempName;
+            }
+        }
+    }
+
+    // 输出排名第3的学生（索引为2）
+    cout << name[2] << " " << score[2] << endl;
+
+    return 0;
+}
+\`\`\`
+`
+    },
+    {
+      label: "结构体版本",
+      content: `
+\`\`\`cpp
+#include<iostream>
+#include<string>
+using namespace std;
+
+struct Student{
+    string name;
+    int score;
+};
+
+int main(){
+    Student stu[5];
+
+    // 读入数据
+    for(int i = 0; i < 5; i++){
+        cin >> stu[i].name >> stu[i].score;
+    }
+
+    // 冒泡排序
+    for(int i = 0; i < 4; i++){
+        for(int j = 0; j < 4 - i; j++){
+            if(stu[j].score < stu[j + 1].score){
+                // 交换整个结构体
+                Student temp = stu[j];
+                stu[j] = stu[j + 1];
+                stu[j + 1] = temp;
+            }
+        }
+    }
+
+    // 输出第3名
+    cout << stu[2].name << " " << stu[2].score << endl;
+
+    return 0;
+}
+\`\`\`
+`
+    },
+    {
+      label: "选择排序版本",
+      content: `
+\`\`\`cpp
+#include<iostream>
+#include<string>
+using namespace std;
+
+int main(){
+    string name[5];
+    int score[5];
+
+    for(int i = 0; i < 5; i++){
+        cin >> name[i] >> score[i];
+    }
+
+    // 选择排序（降序）
+    for(int i = 0; i < 5; i++){
+        int maxIdx = i;
+        for(int j = i + 1; j < 5; j++){
+            if(score[j] > score[maxIdx]){
+                maxIdx = j;
+            }
+        }
+        // 交换
+        int tempScore = score[i];
+        score[i] = score[maxIdx];
+        score[maxIdx] = tempScore;
+
+        string tempName = name[i];
+        name[i] = name[maxIdx];
+        name[maxIdx] = tempName;
+    }
+
+    cout << name[2] << " " << score[2] << endl;
+
+    return 0;
+}
+\`\`\`
+`
+    },
+    {
+      label: "不排序版本 (找第3大)",
+      content: `
+\`\`\`cpp
+#include<iostream>
+#include<string>
+using namespace std;
+
+int main(){
+    string name[5];
+    int score[5];
+
+    for(int i = 0; i < 5; i++){
+        cin >> name[i] >> score[i];
+    }
+
+    // 找第3大的成绩
+    for(int i = 0; i < 5; i++){
+        int rank = 1;  // 当前成绩的排名
+        for(int j = 0; j < 5; j++){
+            if(score[j] > score[i]){
+                rank++;
+            }
+        }
+        if(rank == 3){
+            cout << name[i] << " " << score[i] << endl;
+            break;
+        }
+    }
+
+    return 0;
+}
+\`\`\`
+`
+    }
+    ]
   },
 };

@@ -171,7 +171,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, cla
           }
           return (
             <div key={index} className="not-prose">
-              <CodeBlock code={code.trim()} language={language} />
+              <CodeBlock code={code} language={language} />
             </div>
           );
         }

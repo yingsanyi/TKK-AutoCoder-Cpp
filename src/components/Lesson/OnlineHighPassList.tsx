@@ -15,6 +15,7 @@ export const OnlineHighPassList: React.FC<OnlineHighPassListProps> = ({ problems
   const [itemsPerPage, setItemsPerPage] = useState(15);
   const [selectedSolution, setSelectedSolution] = useState<SolutionData | null>(null);
   const [activeTab, setActiveTab] = useState(0);
+  const [sortMode, setSortMode] = useState<'default' | 'pass_desc' | 'pass_asc'>('default');
 
   const getProblemId = (title: string) => {
     const match = title.match(/^(\d+)/);
@@ -53,23 +54,27 @@ export const OnlineHighPassList: React.FC<OnlineHighPassListProps> = ({ problems
   useEffect(() => {
     setCurrentPage(1);
     setJumpPage('');
-  }, [searchTerm, itemsPerPage]);
+  }, [searchTerm, itemsPerPage, sortMode]);
 
-  const filteredProblems = problems.filter(p => 
+  const filtered = problems.filter(p => 
     p.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
     p.contest.toLowerCase().includes(searchTerm.toLowerCase())
-  ).sort((a, b) => {
-    // Priority logic: High submission count (>= 80) comes first
+  );
+  const filteredProblems = [...filtered].sort((a, b) => {
+    const passRateA = parseFloat(a.passRate.replace('%', '')) || 0;
+    const passRateB = parseFloat(b.passRate.replace('%', '')) || 0;
+    if (sortMode === 'pass_desc') {
+      if (passRateB !== passRateA) return passRateB - passRateA;
+      return b.submitCount - a.submitCount;
+    }
+    if (sortMode === 'pass_asc') {
+      if (passRateA !== passRateB) return passRateA - passRateB;
+      return a.submitCount - b.submitCount;
+    }
     const isHighTrafficA = a.submitCount >= 80;
     const isHighTrafficB = b.submitCount >= 80;
-
     if (isHighTrafficA && !isHighTrafficB) return -1;
     if (!isHighTrafficA && isHighTrafficB) return 1;
-
-    // Secondary sort: Pass rate descending
-    const passRateA = parseFloat(a.passRate.replace('%', ''));
-    const passRateB = parseFloat(b.passRate.replace('%', ''));
-    
     return passRateB - passRateA;
   });
 
@@ -134,6 +139,18 @@ export const OnlineHighPassList: React.FC<OnlineHighPassListProps> = ({ problems
                   <option value={30}>30 条</option>
                   <option value={50}>50 条</option>
                   <option value={100}>100 条</option>
+                </select>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-slate-500 dark:text-slate-400 whitespace-nowrap">排序:</span>
+                <select
+                  value={sortMode}
+                  onChange={(e) => setSortMode(e.target.value as 'default' | 'pass_desc' | 'pass_asc')}
+                  className="px-2 py-1.5 text-sm rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                >
+                  <option value="default">综合（热度优先）</option>
+                  <option value="pass_desc">通过率 高→低</option>
+                  <option value="pass_asc">通过率 低→高</option>
                 </select>
               </div>
 
@@ -356,6 +373,31 @@ export const OnlineHighPassList: React.FC<OnlineHighPassListProps> = ({ problems
               </button>
             </div>
 
+            {/* Link Block directly under header, above answer tabs and content */}
+            {(() => {
+              const modalProblem = problems.find(p => getProblemId(p.title) === selectedSolution.id);
+              const extractUrl = (text: string) => {
+                const m1 = text.match(/\((https?:\/\/[^)]+)\)/);
+                if (m1) return m1[1];
+                const m2 = text.match(/https?:\/\/[^\s)]+/);
+                if (m2) return m2[0];
+                return null;
+              };
+              const resolvedUrl = modalProblem?.url || extractUrl(selectedSolution.content) || `https://www.xujcoj.com/home/problem/detail/${selectedSolution.id}`;
+              return resolvedUrl ? (
+                <div className="mx-6 md:mx-8 mt-4 border-l-4 border-indigo-500 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-r-lg italic text-slate-600 dark:text-slate-400">
+                  <a
+                    href={resolvedUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-indigo-600 dark:text-indigo-400 hover:underline inline-flex items-center gap-0.5 break-all"
+                  >
+                    {resolvedUrl} <ExternalLink size={12} />
+                  </a>
+                </div>
+              ) : null;
+            })()}
+
             {/* Content */}
             <div className="flex-1 overflow-y-auto p-6 md:p-8">
               {selectedSolution.answers && selectedSolution.answers.length > 1 && (
@@ -377,13 +419,26 @@ export const OnlineHighPassList: React.FC<OnlineHighPassListProps> = ({ problems
               )}
               
               <div className="prose prose-slate dark:prose-invert max-w-none">
-                <MarkdownRenderer 
-                  content={
-                    selectedSolution.answers && selectedSolution.answers.length > 0
-                      ? selectedSolution.answers[activeTab].content
-                      : selectedSolution.content
-                  } 
-                />
+                {(() => {
+                  const isAnswersMode = selectedSolution.answers && selectedSolution.answers.length > 0;
+                  const baseText = isAnswersMode ? selectedSolution.answers[activeTab].content : selectedSolution.content;
+                  const stripLeadingLink = (text: string) => {
+                    const lines = text.split('\n');
+                    for (let i = 0; i < lines.length; i++) {
+                      const l = lines[i].trim();
+                      if (!l) continue;
+                      const isMdQuoteLink = l.startsWith('>') && /https?:\/\/[^\s)]+/.test(l);
+                      const isPlainUrl = /^https?:\/\/[^\s)]+$/.test(l);
+                      if (isMdQuoteLink || isPlainUrl) {
+                        lines.splice(i, 1);
+                      }
+                      break;
+                    }
+                    return lines.join('\n');
+                  };
+                  const displayText = stripLeadingLink(baseText);
+                  return <MarkdownRenderer content={displayText} />;
+                })()}
                 
                 {selectedSolution.answers && selectedSolution.answers.length > 0 && selectedSolution.content.includes('**解析**') && (
                   <div className="mt-8 pt-8 border-t border-slate-200 dark:border-slate-700">

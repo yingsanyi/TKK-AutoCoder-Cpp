@@ -825,7 +825,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     passRate: '59.70%',
     submitCount: 134,
     acCount: 80,
-    url: 'https://www.xujcoj.com/home/problem/detail/5697',
+    url: 'https://www.xujcoj.com/home/problem/detail/4016',
     tags: []
   },
   {

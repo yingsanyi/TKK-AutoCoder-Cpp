@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { Menu, BookOpen, Code2, ChevronRight, ChevronLeft, ChevronDown, GraduationCap, Home, ArrowRight, Sparkles, ExternalLink, Projector, Trophy } from 'lucide-react';
+import { Menu, BookOpen, Code2, ChevronRight, ChevronLeft, ChevronDown, GraduationCap, Home, ArrowRight, Sparkles, ExternalLink, Projector, Trophy, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
 import { sections } from './data/index';
 import { ExerciseArea } from './components/Exercise/ExerciseArea';
 import { QuizArea } from './components/Quiz/QuizArea';
@@ -85,6 +85,7 @@ function AppContent() {
   const { theme } = useTheme();
   const [activeSectionId, setActiveSectionId] = useState<string>('home');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isDesktopSidebarOpen, setIsDesktopSidebarOpen] = useState(true);
   
   // Sidebar resizing state
   const [sidebarWidth, setSidebarWidth] = useState(288); // Default 18rem (288px)
@@ -202,9 +203,10 @@ function AppContent() {
         ref={sidebarRef}
         style={{ width: isSidebarOpen ? '100%' : undefined }}
         className={`
-          fixed inset-y-0 left-0 z-30 transform transition-transform duration-200 ease-in-out
+          fixed inset-y-0 left-0 z-30 transform transition-all duration-300 ease-in-out
           md:relative md:translate-x-0 flex flex-col border-r 
           ${isSidebarOpen ? 'translate-x-0 w-[80%]' : '-translate-x-full'}
+          ${!isDesktopSidebarOpen ? 'md:w-0 md:border-none md:overflow-hidden' : ''}
           ${theme === 'dark' ? 'dark bg-[#0f172a] text-slate-300 border-slate-800' : 'bg-white text-slate-600 border-slate-200'}
         `}
       >
@@ -218,8 +220,17 @@ function AppContent() {
                 <GraduationCap className="text-indigo-400 shrink-0" />
                 <span className="truncate">K-Labs AutoCoder</span>
               </h1>
-              <div className="md:hidden">
-                <ThemeToggle />
+              <div className="flex items-center gap-2">
+                <button 
+                  onClick={() => setIsDesktopSidebarOpen(false)}
+                  className="hidden md:flex p-1.5 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"
+                  title="收起侧边栏"
+                >
+                  <PanelLeftClose size={18} />
+                </button>
+                <div className="md:hidden">
+                  <ThemeToggle />
+                </div>
               </div>
             </div>
 
@@ -432,7 +443,7 @@ function AppContent() {
 
         {/* Drag Handle */}
         <div 
-          className="hidden md:block absolute right-0 top-0 bottom-0 w-1 cursor-col-resize hover:bg-indigo-500/50 transition-colors z-40 active:bg-indigo-500"
+          className={`hidden md:block absolute right-0 top-0 bottom-0 w-1 cursor-col-resize hover:bg-indigo-500/50 transition-colors z-40 active:bg-indigo-500 ${!isDesktopSidebarOpen ? 'hidden' : ''}`}
           onMouseDown={startResizing}
         />
       </aside>
@@ -466,6 +477,19 @@ function AppContent() {
             </button>
           </div>
         </header>
+
+        {/* Desktop Sidebar Toggle (When Closed) */}
+        {!isDesktopSidebarOpen && (
+          <div className="hidden md:flex absolute top-6 left-6 z-50 items-center gap-3">
+             <button
+               onClick={() => setIsDesktopSidebarOpen(true)}
+               className="p-2.5 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-full shadow-sm border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all hover:scale-105"
+               title="展开侧边栏"
+             >
+               <PanelLeftOpen size={20} />
+             </button>
+          </div>
+        )}
 
         {/* Desktop Theme Toggle (Floating) */}
         <div className="hidden md:flex absolute top-6 right-6 z-50 items-center gap-3">

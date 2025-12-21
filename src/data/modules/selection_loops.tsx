@@ -12,7 +12,8 @@ import {
   AlertTriangle, 
   Lightbulb, 
   Scale,
-  ListOrdered
+  ListOrdered,
+  FunctionSquare
 } from 'lucide-react';
 
 // --- Visual Components ---

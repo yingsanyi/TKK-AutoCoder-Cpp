@@ -33,9 +33,9 @@ const renderInline = (text: string): React.ReactNode[] => {
       if (endIdx !== -1) {
         const math = remaining.slice(2, endIdx);
         try {
-          const html = katex.renderToString(math, { displayMode: false, throwOnError: false });
+          const html = katex.renderToString(math, { displayMode: true, throwOnError: false });
           tokens.push(
-            <span key={key++} dangerouslySetInnerHTML={{ __html: html }} className="inline-math" />
+            <span key={key++} dangerouslySetInnerHTML={{ __html: html }} className="block-math" />
           );
         } catch (e) {
           tokens.push(<span key={key++}>$$ {math} $$</span>);
@@ -340,11 +340,13 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, cla
       );
     };
 
-    // Split text into lines to handle block elements (Headers, Lists, Quotes)
+    // Split text into lines to handle block elements (Headers, Lists, Quotes, Block Math)
         const lines = part.split('\n');
         const renderedBlocks: React.ReactNode[] = [];
         let listLines: string[] = [];
         let tableLines: string[] = [];
+        let inMathBlock = false;
+        let mathBuffer = '';
 
         const flushList = (keyPrefix: number) => {
             if (listLines.length > 0) {
@@ -368,6 +370,38 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, cla
         lines.forEach((line, lineIdx) => {
             const trimmed = line.trim();
             
+            if (inMathBlock) {
+                const closeIdx = trimmed.indexOf('$$');
+                if (closeIdx !== -1) {
+                    mathBuffer += trimmed.slice(0, closeIdx);
+                    flushAll(lineIdx);
+                    try {
+                        const html = katex.renderToString(mathBuffer.trim(), { displayMode: true, throwOnError: false });
+                        renderedBlocks.push(
+                            <div key={`math-${index}-${lineIdx}`} dangerouslySetInnerHTML={{ __html: html }} className="block-math" />
+                        );
+                    } catch (e) {
+                        renderedBlocks.push(
+                            <pre key={`math-${index}-${lineIdx}`} className="bg-slate-50 dark:bg-slate-900 p-3 rounded">{`$$\n${mathBuffer}\n$$`}</pre>
+                        );
+                    }
+                    inMathBlock = false;
+                    mathBuffer = '';
+                    const remainder = trimmed.slice(closeIdx + 2).trim();
+                    if (remainder) {
+                        renderedBlocks.push(
+                            <p key={`${index}-${lineIdx}-post`} className="my-2">
+                                {renderInline(remainder)}
+                            </p>
+                        );
+                    }
+                    return;
+                } else {
+                    mathBuffer += line + '\n';
+                    return;
+                }
+            }
+
             // Check if inside table
             if (tableLines.length > 0) {
                 if (line.trim().includes('|')) {
@@ -385,6 +419,36 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, cla
                     flushAll(lineIdx);
                 }
                 return;
+            }
+
+            if (trimmed.startsWith('$$')) {
+                const endIdx = trimmed.indexOf('$$', 2);
+                if (endIdx !== -1) {
+                    const math = trimmed.slice(2, endIdx);
+                    flushAll(lineIdx);
+                    try {
+                        const html = katex.renderToString(math, { displayMode: true, throwOnError: false });
+                        renderedBlocks.push(
+                            <div key={`math-${index}-${lineIdx}`} dangerouslySetInnerHTML={{ __html: html }} className="block-math" />
+                        );
+                    } catch (e) {
+                        renderedBlocks.push(<span key={`math-${index}-${lineIdx}`}>{`$$ ${math} $$`}</span>);
+                    }
+                    const remainder = trimmed.slice(endIdx + 2).trim();
+                    if (remainder) {
+                        renderedBlocks.push(
+                            <p key={`${index}-${lineIdx}-post`} className="my-2">
+                                {renderInline(remainder)}
+                            </p>
+                        );
+                    }
+                    return;
+                } else {
+                    flushAll(lineIdx);
+                    inMathBlock = true;
+                    mathBuffer = trimmed.slice(2) ? trimmed.slice(2) + '\n' : '';
+                    return;
+                }
             }
 
             // Check for new table start

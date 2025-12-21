@@ -2,6 +2,7 @@ import { Section } from '../types';
 import { introSections } from './modules/intro';
 import { basicsSections } from './modules/basics';
 import { selectionLoopsSections } from './modules/selection_loops';
+import { functionsSections } from './modules/functions';
 import { arraysSections } from './modules/arrays';
 import { stringsSections } from './modules/strings';
 import { pointersSections } from './modules/pointers';
@@ -18,6 +19,7 @@ export const sections: Section[] = [
   ...introSections,
   ...basicsSections,
   ...selectionLoopsSections,
+  ...functionsSections,
   ...arraysSections,
   ...stringsSections,
   ...pointersSections,

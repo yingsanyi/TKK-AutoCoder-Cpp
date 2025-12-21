@@ -26,7 +26,9 @@ export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
   const [isRunning, setIsRunning] = useState(false);
   const [output, setOutput] = useState<ExecutionResult | null>(null);
   const [executionError, setExecutionError] = useState<string | null>(null);
-  
+  const [runtime, setRuntime] = useState<{ language: string; version: string } | null>(null);
+  const [runtimeLoading, setRuntimeLoading] = useState(false);
+
   const consoleEndRef = useRef<HTMLDivElement>(null);
 
   // Reset state when exercise changes
@@ -37,6 +39,32 @@ export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
     setOutput(null);
     setExecutionError(null);
   }, [data]);
+
+  useEffect(() => {
+    const fetchRuntimes = async () => {
+      setRuntimeLoading(true);
+      try {
+        const res = await fetch('https://emkc.org/api/v2/piston/runtimes');
+        const arr = await res.json();
+        const match = Array.isArray(arr)
+          ? arr.find((rt: any) => {
+              const aliases: string[] = Array.isArray(rt.aliases) ? rt.aliases : [];
+              return rt.language === 'cpp' || aliases.includes('cpp') || aliases.includes('c++');
+            })
+          : null;
+        if (match) {
+          setRuntime({ language: match.language, version: match.version });
+        } else {
+          setRuntime({ language: 'cpp', version: '10.2.0' });
+        }
+      } catch {
+        setRuntime({ language: 'cpp', version: '10.2.0' });
+      } finally {
+        setRuntimeLoading(false);
+      }
+    };
+    fetchRuntimes();
+  }, []);
 
   // Auto-scroll to console when output updates
   useEffect(() => {
@@ -54,25 +82,38 @@ export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
     setActiveTab('edit');
 
     try {
+      const controller = new AbortController();
+      const t = setTimeout(() => controller.abort(), 15000);
       const response = await fetch('https://emkc.org/api/v2/piston/execute', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          language: 'cpp',
-          version: '10.2.0', // GCC version
+          language: runtime?.language ?? 'cpp',
+          version: runtime?.version ?? '10.2.0',
           files: [
             {
               content: userCode
             }
           ],
           stdin: stdin,
+          compile_timeout: 10000,
+          run_timeout: 4000,
         }),
+        signal: controller.signal,
       });
+      clearTimeout(t);
 
       if (!response.ok) {
-        throw new Error('网络请求失败，请稍后重试');
+        let msg = `服务不可用（HTTP ${response.status}）`;
+        try {
+          const err = await response.json();
+          if (err && err.message) {
+            msg = `${err.message}（HTTP ${response.status}）`;
+          }
+        } catch {}
+        throw new Error(msg);
       }
 
       const result = await response.json();
@@ -89,7 +130,13 @@ export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
         throw new Error('无法解析服务器响应');
       }
     } catch (err) {
-      setExecutionError(err instanceof Error ? err.message : '运行代码时发生未知错误');
+      const msg =
+        err instanceof Error
+          ? /AbortError/i.test(err.name)
+            ? '请求超时或网络异常，请重试'
+            : err.message
+          : '运行代码时发生未知错误';
+      setExecutionError(msg);
     } finally {
       setIsRunning(false);
     }
@@ -193,7 +240,7 @@ export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
                     <span className="w-2 h-2 rounded-full bg-green-500"></span>
                     <span className="ml-2 text-slate-300 font-mono">main.cpp</span>
                   </span>
-                  <span className="text-slate-500">GCC 10.2.0</span>
+                  <span className="text-slate-500">C++ {runtime?.version ?? '10.2.0'}</span>
                </div>
                <Editor
                 value={userCode}

@@ -114,54 +114,56 @@ export const OnlineHighPassList: React.FC<OnlineHighPassListProps> = ({ problems
       <div className="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
 
 
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg text-indigo-600 dark:text-indigo-400">
-                <Trophy size={24} />
+            <div className="flex flex-col md:flex-row md:flex-wrap justify-between items-center gap-4 mb-6">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg text-indigo-600 dark:text-indigo-400">
+                  <Trophy size={24} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white">历年线上赛高通过率题目</h3>
+                  <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+                    共收录 {problems.length} 道题目，帮助你快速刷题
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white">历年线上赛高通过率题目</h3>
-                <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-                  共收录 {problems.length} 道题目，帮助你快速刷题
-                </p>
-              </div>
-            </div>
-            
-            <div className="flex items-center gap-4 w-full md:w-auto">
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-slate-500 dark:text-slate-400 whitespace-nowrap">每页显示:</span>
-                <select
-                  value={itemsPerPage}
-                  onChange={(e) => setItemsPerPage(Number(e.target.value))}
-                  className="px-2 py-1.5 text-sm rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                >
-                  <option value={15}>15 条</option>
-                  <option value={30}>30 条</option>
-                  <option value={50}>50 条</option>
-                  <option value={100}>100 条</option>
-                </select>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-slate-500 dark:text-slate-400 whitespace-nowrap">排序:</span>
-                <select
-                  value={sortMode}
-                  onChange={(e) => setSortMode(e.target.value as 'default' | 'pass_desc' | 'pass_asc')}
-                  className="px-2 py-1.5 text-sm rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                >
-                  <option value="default">综合（热度优先）</option>
-                  <option value="pass_desc">通过率 高→低</option>
-                  <option value="pass_asc">通过率 低→高</option>
-                </select>
+              
+            <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 w-full md:w-auto min-w-0">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between sm:justify-start gap-4 w-full sm:w-auto basis-full sm:basis-auto">
+                <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto min-w-0">
+                  <span className="text-sm text-slate-500 dark:text-slate-400 whitespace-nowrap">每页显示:</span>
+                  <select
+                    value={itemsPerPage}
+                    onChange={(e) => setItemsPerPage(Number(e.target.value))}
+                    className="flex-1 sm:flex-none min-w-0 sm:w-48 md:w-56 px-2 py-1.5 text-sm rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  >
+                    <option value={15}>15 条</option>
+                    <option value={30}>30 条</option>
+                    <option value={50}>50 条</option>
+                    <option value={100}>100 条</option>
+                  </select>
+                </div>
+                <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto min-w-0">
+                  <span className="text-sm text-slate-500 dark:text-slate-400 whitespace-nowrap">排序:</span>
+                  <select
+                    value={sortMode}
+                    onChange={(e) => setSortMode(e.target.value as 'default' | 'pass_desc' | 'pass_asc')}
+                    className="flex-1 sm:flex-none min-w-0 sm:w-48 md:w-56 px-2 py-1.5 text-sm rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  >
+                    <option value="default">综合（热度优先）</option>
+                    <option value="pass_desc">通过率 高→低</option>
+                    <option value="pass_asc">通过率 低→高</option>
+                  </select>
+                </div>
               </div>
 
-              <div className="relative flex-1 md:w-64">
+              <div className="relative w-full sm:flex-1 min-w-0">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <Search size={16} className="text-slate-400" />
                 </div>
                 <input
                   type="text"
                   placeholder="搜索题目或比赛..."
-                  className="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"
+                  className="w-full max-w-full pl-10 pr-4 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -273,7 +275,7 @@ export const OnlineHighPassList: React.FC<OnlineHighPassListProps> = ({ problems
               显示第 <span className="font-medium text-slate-900 dark:text-slate-200">{indexOfFirstItem + 1}</span> 到 <span className="font-medium text-slate-900 dark:text-slate-200">{Math.min(indexOfLastItem, filteredProblems.length)}</span> 条，共 <span className="font-medium text-slate-900 dark:text-slate-200">{filteredProblems.length}</span> 条
             </div>
             
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center justify-center sm:justify-end gap-2">
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
@@ -321,7 +323,7 @@ export const OnlineHighPassList: React.FC<OnlineHighPassListProps> = ({ problems
                 <ChevronRight size={16} />
               </button>
 
-              <form onSubmit={handleJumpPage} className="flex items-center gap-2 ml-2 border-l border-slate-200 dark:border-slate-700 pl-4">
+              <form onSubmit={handleJumpPage} className="flex items-center gap-2 w-full sm:w-auto justify-center sm:justify-start sm:ml-2 sm:border-l border-slate-200 dark:border-slate-700 sm:pl-4 mt-2 sm:mt-0">
                 <span className="text-sm text-slate-500 dark:text-slate-400">跳至</span>
                 <input
                   type="number"

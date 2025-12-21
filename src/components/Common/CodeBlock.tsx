@@ -36,7 +36,16 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({ code, language = 'cpp', la
         language={language}
       >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <pre style={style} className="p-4 overflow-x-auto text-sm font-mono leading-relaxed whitespace-pre">
+          <pre
+            style={{
+              ...style,
+              fontFamily:
+                'Courier New, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace',
+              fontVariantLigatures: 'none',
+              letterSpacing: 0
+            }}
+            className="p-4 overflow-x-auto text-sm font-mono leading-relaxed whitespace-pre"
+          >
             {tokens.map((line, i) => (
               <div key={i} {...getLineProps({ line })}>
                 {line.map((token, key) => (

@@ -4,6 +4,7 @@ import { OnlineHighPassList } from '../../components/Lesson/OnlineHighPassList';
 import { onlineHighPassProblems } from './online_high_pass_data';
 import { SectionHeader } from '../../components/Lesson/SectionHeader';
 import { ListChecks } from 'lucide-react';
+import { DescriptionRenderer } from '../../components/Common/DescriptionRenderer';
 
 export const onlineHighPassSections: Section[] = [
   {
@@ -56,9 +57,9 @@ export const onlineHighPassSections: Section[] = [
             <div className="border-t border-slate-200 dark:border-slate-700 pt-4">
               <h4 className="font-bold text-slate-900 dark:text-white text-base">E. 字符串（拼接、输入、类型对比、常用操作）</h4>
               <ul className="list-disc list-inside text-sm mt-2 space-y-1 ml-6 md:ml-8">
-                <li>字符串拼接：<code>string</code> 的拼接/追加 vs C 风格字符数组的拼接；注意容量、性能与缓冲区安全。</li>
-                <li>字符串输入：<code>cin</code> 与 <code>getline()</code>：<code>cin</code> 以空白分隔；<code>getline</code> 读整行；混用时注意残留换行导致读空行。</li>
-                <li><code>string</code> 与 <code>char[]</code>：<code>string</code> 更安全、自动管理长度；<code>char[]</code> 需要 <code>'\\0'</code> 结尾与手动容量管理；二者转换规则与常见坑。</li>
+                <li><DescriptionRenderer text={"字符串拼接：`string` 的拼接/追加 vs C 风格字符数组的拼接；注意容量、性能与缓冲区安全。"} inline={true} /></li>
+                <li><DescriptionRenderer text={"字符串输入：`cin` 与 `getline()`：`cin` 以空白分隔；`getline` 读整行；混用时注意残留换行导致读空行。"} inline={true} /></li>
+                <li><DescriptionRenderer text={"`string` 与 `char[]`：`string` 更安全、自动管理长度；`char[]` 需要 `'\\\\0'` 结尾与手动容量管理；二者转换规则与常见坑。"} inline={true} /></li>
                 <li>字符串方法：切片/子串、查找子串：子串提取（起始位置、长度、越界）；查找返回位置/未找到标记；正向/反向查找与从指定位置查找。</li>
               </ul>
             </div>
@@ -113,7 +114,7 @@ export const onlineHighPassSections: Section[] = [
             <div className="border-t border-slate-200 dark:border-slate-700 pt-4">
               <h4 className="font-bold text-slate-900 dark:text-white text-base">E. 随机数与区间输出（常见应用题）</h4>
               <ul className="list-disc list-inside text-sm mt-2 space-y-1 ml-6 md:ml-8">
-                <li>生成 ([a,b])：映射到闭区间；处理 a&gt;b 的情况（交换或按题意）</li>
+                <li><DescriptionRenderer text={"生成 `([a,b])`：映射到闭区间；处理 `a>b` 的情况（交换或按题意）"} inline={true} /></li>
                 <li>打印指定个数：循环次数控制；输出格式（分隔符/换行）</li>
                 <li>注意：是否允许重复、是否需要“每次不同”（种子问题，若题目要求）</li>
               </ul>
@@ -129,7 +130,7 @@ export const onlineHighPassSections: Section[] = [
               <h4 className="font-bold text-slate-900 dark:text-white text-base">G. 数学判断：质数（高频）</h4>
               <ul className="list-disc list-inside text-sm mt-2 space-y-1 ml-6 md:ml-8">
                 <li>特判：小于 2 不是质数；2 是质数；偶数快速排除</li>
-                <li>循环到 sqrt(n) 的思路（减少复杂度）</li>
+                <li><DescriptionRenderer text={"循环到 `sqrt(n)` 的思路（减少复杂度）"} inline={true} /></li>
                 <li>常见变体：区间内质数、统计质数个数、分解质因数</li>
               </ul>
             </div>

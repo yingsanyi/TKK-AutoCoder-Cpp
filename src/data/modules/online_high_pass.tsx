@@ -61,7 +61,7 @@ export const onlineHighPassSections: Section[] = [
               <ul className="list-disc list-inside text-sm mt-2 space-y-1 ml-6 md:ml-8">
                 <li><DescriptionRenderer text={"字符串拼接：`string` 的拼接/追加 vs C 风格字符数组的拼接；注意容量、性能与缓冲区安全。"} inline={true} /></li>
                 <li><DescriptionRenderer text={"字符串输入：`cin` 与 `getline()`：`cin` 以空白分隔；`getline` 读整行；混用时注意残留换行导致读空行。"} inline={true} /></li>
-                <li><DescriptionRenderer text={"`string` 与 `char[]`：`string` 更安全、自动管理长度；`char[]` 需要 `'\\\\0'` 结尾与手动容量管理；二者转换规则与常见坑。"} inline={true} /></li>
+                <li><DescriptionRenderer text={"`string` 与 `char[]`：`string` 更安全、自动管理长度；`char[]` 需要 `'\\0'` 结尾与手动容量管理；二者转换规则与常见坑。"} inline={true} /></li>
                 <li>字符串方法：切片/子串、查找子串：子串提取（起始位置、长度、越界）；查找返回位置/未找到标记；正向/反向查找与从指定位置查找。</li>
               </ul>
             </div>

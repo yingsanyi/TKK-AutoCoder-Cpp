@@ -6,6 +6,8 @@ import { SectionHeader } from '../../components/Lesson/SectionHeader';
 import { ListChecks } from 'lucide-react';
 import { DescriptionRenderer } from '../../components/Common/DescriptionRenderer';
 
+ 
+
 export const onlineHighPassSections: Section[] = [
   {
     id: 'online-high-pass-list',
@@ -146,5 +148,5 @@ export const onlineHighPassSections: Section[] = [
         </div>
       </div>
     )
-  }
+  },
 ];

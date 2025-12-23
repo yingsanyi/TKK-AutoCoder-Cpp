@@ -4,8 +4,8 @@ import { SectionHeader } from '../../components/Lesson/SectionHeader';
 import { ListChecks } from 'lucide-react';
 import { DescriptionRenderer } from '../../components/Common/DescriptionRenderer';
 import { parseReviewMarkdown } from '../../utils/reviewParser';
-import exercisesMd from '../../../docs/题目.md?raw';
-import exercisesMd2 from '../../../docs/题目2.md?raw';
+import exercisesMd from '../../../docs/review_questions_1.md?raw';
+import exercisesMd2 from '../../../docs/review_questions_2.md?raw';
 
 const { quizData, exercises } = parseReviewMarkdown(exercisesMd);
 const { quizData: quizData2, exercises: exercises2 } = parseReviewMarkdown(exercisesMd2);

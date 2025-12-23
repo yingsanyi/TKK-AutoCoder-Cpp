@@ -121,8 +121,13 @@ export const parseReviewMarkdown = (markdown: string): { quizData: QuizData, exe
         }
 
         const contentLines = lines.slice(1, contentEndIdx);
-        const codeBlock = contentLines.join('\n');
+        let codeBlock = contentLines.join('\n');
         
+        // If code block is not wrapped in ```, wrap it
+        if (codeBlock.trim() && !codeBlock.trim().startsWith('```')) {
+            codeBlock = `\`\`\`cpp\n${codeBlock}\n\`\`\``;
+        }
+
         // Options
         const optionsLines = lines.slice(contentEndIdx, answerIdx).join(' ');
         // Split options: A. ... B. ...
@@ -145,10 +150,10 @@ export const parseReviewMarkdown = (markdown: string): { quizData: QuizData, exe
 
         quizQuestions.push({
             id: parseFloat(idStr), // Use parsed ID or index
-            question: formatInlineCode(questionText),
+            question: formatInlineCode(questionText) + `\n\n${codeBlock}`,
             options: options.length > 0 ? options : ["See description"],
             correctAnswer: correctAnswer,
-            explanation: formatInlineCode(explanation) + `\n\n\`\`\`cpp\n${codeBlock}\n\`\`\``
+            explanation: formatInlineCode(explanation)
         });
       }
     } else if (currentSectionType === 'exercise') {

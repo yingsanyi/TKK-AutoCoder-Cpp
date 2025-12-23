@@ -10214,4 +10214,1073 @@ int main()
 | **复合统计**   | \`cnt++\`                       | 同一个计数器 \`cnt\` 累加了两种不同性质（数值性质和字符性质）的满足次数。 |
 `
   },
+  "3993": {
+    id: "3993",
+    title: "星号阵列-24",
+    content: `
+> https://www.xujcoj.com/home/problem/detail/3993
+
+**答案：**
+
+\`\`\`cpp
+#include<iostream>
+using namespace std;
+int main()
+{
+    int n;
+    cin >> n;
+    while (n--)
+    {
+        int a, b;
+        cin >> a;
+        while (true)
+        {
+            for (int i = 0; i < a; i++)
+            {
+                cout << "*";
+            }
+            cout << endl;
+            if (a == 1) break;
+            for (b = 2; b * b <= a; b++)
+            {
+                if (a % b == 0) break;
+            }
+            if (a % b == 0) a = a / b;
+            else a = 1;
+        }
+    }
+    return 0;
+}
+\`\`\`
+
+**解析**：
+
+1. 输入部分
+   先输入测试案例数量 n，表示需要处理的星号阵列组数。
+   每组案例输入一个正整数 a，表示第一行星号的数量（a ≤ 100）。
+2. 策略与步骤
+   外层 while (n--) 循环
+   用于依次处理每一组测试案例。
+   读取当前案例的初始星号数量 a。
+   使用 while(true) 循环逐行输出星号阵列：
+   每一轮循环输出当前行的 a 个星号。
+   输出完成后换行。
+   终止条件判断：
+   如果当前星号数量 a == 1，说明已经到达最后一行，跳出循环。
+   计算下一行星号数量：
+   从 b = 2 开始遍历，寻找 a 的最小因子（不包含 1 和自身）。
+   一旦找到因子 b，则 a / b 即为 a 的最大非自身因子。
+   若在遍历过程中未找到因子，说明 a 是质数，则下一行星号数量直接设为 1。
+   更新 a 的值，进入下一轮循环，继续输出星号。
+`
+  },
+  "2177": {
+    id: "2177",
+    title: "平行四边形",
+    content: `
+> https://www.xujcoj.com/home/problem/detail/2177
+
+**答案：**
+
+\`\`\`cpp
+#include<iostream>
+using namespace std;
+int main()
+{
+    int n;
+    cin >> n;
+    while (n--)
+    {
+        int x1, y1, x2, y2, x3, y3;
+        cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;
+        int x4 = x1 + x3 - x2;
+        int y4 = y1 + y3 - y2;
+        cout << x4 << " " << y4 << endl;
+    }
+    return 0;
+}
+\`\`\`
+
+**解析**：
+
+1. 输入部分
+   先输入测试案例数量 n，表示需要处理的案例组数。
+   每组案例输入 6 个整数：x1, y1, x2, y2, x3, y3，分别表示三个已知点的坐标。
+2. 策略与步骤
+   外层 while (n--) 循环：依次处理每组数据。
+   根据向量或平行四边形性质计算第四个点：
+   x4 = x1 + x3 - x2，y4 = y1 + y3 - y2。
+   等价于从点 (x1, y1) 出发，加上向量 (x3 - x2, y3 - y2)。
+3. 注意事项
+   每组测试案例独立计算并输出结果，输出后立即换行。
+   输入和输出均为整数运算，不涉及浮点数误差问题。
+`
+  },
+  "3971": {
+    id: "3971",
+    title: "日期-2",
+    content: `
+> https://www.xujcoj.com/home/problem/detail/3971
+
+**答案：**
+
+\`\`\`cpp
+#include<iostream>
+using namespace std;
+bool isLeap(int y)
+{
+    return y % 400 == 0 && y % 3200 != 0 || y % 4 == 0 && y % 100 != 0;
+}
+int main()
+{
+    int days[] = { 0,31,28,31,30,31,30,31,31,30,31,30,31 };
+    int n;
+    cin >> n;
+    while (n--)
+    {
+        int y, m, d;
+        cin >> y >> m >> d;
+        if (isLeap(y))
+        {
+            days[2] = 29;
+            cout << 366 << " " << days[m] << endl;
+        }
+        else
+        {
+            days[2] = 28;
+            cout << 365 << " " << days[m] << endl;
+        }
+    }
+    return 0;
+}
+\`\`\`
+
+**解析**：
+
+1. 输入部分
+   输入案例数 n；每组输入 y, m, d。
+2. 策略与步骤
+   闰年判断：y 是 400 的倍数且不是 3200 的倍数，或 y 是 4 的倍数且不是 100 的倍数。
+   根据闰年设置 2 月天数，输出当年总天数和当月天数。
+3. 注意事项
+   每组独立计算与输出；输出顺序严格对应输入。
+`
+  },
+  "3432": {
+    id: "3432",
+    title: "没出现的数字",
+    content: `
+> https://www.xujcoj.com/home/problem/detail/3432
+
+**答案：**
+
+\`\`\`cpp
+#include<iostream>
+using namespace std;
+int main()
+{
+    int n;
+    cin >> n;
+    while (n--)
+    {
+        int m, cnt = 0;
+        bool a[10] = { 0 };
+        cin >> m;
+        while (m > 0)
+        {
+            a[m % 10] = true;
+            m = m / 10;
+        }
+        for (int i = 0; i < 10; i++)
+        {
+            cnt += a[i];
+        }
+        cout << 10 - cnt << endl;
+    }
+    return 0;
+}
+\`\`\`
+
+**解析**：
+
+1. 输入部分
+   输入 n 组案例；每组输入一个正整数 m（≤ 1e9）。
+2. 策略与步骤
+   使用布尔数组 a[10] 记录 0~9 是否出现；数位分离 m%10 标记出现；统计出现的计数 cnt；输出 10-cnt。
+3. 注意事项
+   每组独立；数组初值为 false；按输入顺序输出。
+`
+  },
+  "2645": {
+    id: "2645",
+    title: "三天花完的钱",
+    content: `
+> https://www.xujcoj.com/home/problem/detail/2645
+
+**答案：**
+
+\`\`\`cpp
+#include<iostream>
+using namespace std;
+int main()
+{
+    int n;
+    cin >> n;
+    while (n--)
+    {
+        int a;
+        cin >> a;
+        int cnt = 0;
+        for (int i = 1; i <= (a - 3) / 3; i++)//i表示第一天花的钱
+        {
+            int m;
+            if ((a - i) % 2 != 0)
+            {
+                m = (a - i) / 2;
+            }
+            else
+            {
+                m = (a - i) / 2 - 1;
+            }
+            cnt = cnt + (m - i);
+        }
+        cout << cnt << endl;
+    }
+    return 0;
+}
+\`\`\`
+
+**解析**：
+
+1️⃣ 输入部分
+   输入 n 组；每组给总额 a（a ≤ 1500）。
+2️⃣ 策略与步骤
+   第一日 i 范围 1..(a-3)/3；第二日最大值 m 根据奇偶：(a-i)/2 或 (a-i)/2-1；组合数累加 m-i。
+3️⃣ 注意事项
+   三天金额为正且严格递增；每组独立。
+`
+  },
+  "2016": {
+    id: "2016",
+    title: "星号阵列-14",
+    content: `
+> https://www.xujcoj.com/home/problem/detail/2016
+
+**答案：**
+
+\`\`\`cpp
+#include <iostream>
+using namespace std;
+int main() {
+    int n;
+    cin >> n;
+    while (n--) {
+        int m;
+        cin >> m; 
+        for (int i = 0; i < m; i++) {
+            cout << "*";
+        }
+        cout << endl;
+        for (int i = 0; i < m-1; i++) {
+                cout << "*";
+                for (int j = 0; j < m - i - 3; j++) {
+                    cout << " ";
+                }
+                if (i < m -2) {
+                    cout << "*";
+                }
+                cout << endl;
+        }
+    }
+}
+\`\`\`
+
+**解析**：
+
+1️⃣ 输入部分
+   输入 n；每组输入 m（m ≥ 3）。
+2️⃣ 策略与步骤
+   第一行输出 m 个星；随后 i=0..m-2，通过左右星与中间空格 m-i-3 构成倒三角形；最后一行仅左星。
+3️⃣ 注意事项
+   每组独立；行末无多余空格。
+`
+  },
+  "4304": {
+    id: "4304",
+    title: "比日期",
+    content: `
+> https://www.xujcoj.com/home/problem/detail/4304
+
+**答案：**
+
+\`\`\`cpp
+#include<iostream>
+using namespace std;
+int main()
+{
+    int y1, m1, d1, y2, m2, d2;
+    cin >> y1 >> m1 >> d1 >> y2 >> m2 >> d2;
+    if (y1 == y2 && m1 == m2 && d1 == d2)
+    {
+        cout << "Same";
+    }
+    else if (y1 < y2 || y1 == y2 && m1 < m2 || y1 == y2 && m1 == m2 && d1 < d2)
+    {
+        cout << "Early";
+    }
+    else
+    {
+        cout << "Late";
+    }
+    return 0;
+}
+\`\`\`
+
+**解析**：
+
+1️⃣ 输入部分
+   输入两个日期 y1,m1,d1 与 y2,m2,d2。
+2️⃣ 策略与步骤
+   先判断完全相同 → "Same"；否则按 年→月→日 判断先后：更早输出 "Early"，否则 "Late"。
+3️⃣ 输出部分
+   输出单词，不额外换行或空格。
+`
+  },
+  "1500": {
+    id: "1500",
+    title: "画矩形",
+    content: `
+> https://www.xujcoj.com/home/problem/detail/1500
+
+**答案：**
+
+\`\`\`cpp
+#include<iostream>
+using namespace std;
+int main()
+{
+    int m, n, d;
+    char c;
+    cin >> m >> n >> c >> d;
+    for (int i = 1; i <= m; i++)
+    {
+        for (int j = 1; j <= n; j++)
+        {
+            if (d == 0)
+            {
+                if (i == 1 || i == m || j == 1 || j == n)cout << c;
+                else cout << " ";
+            }
+            else if (d == 1)
+            {
+                cout << c;
+            }
+        }
+        cout << endl;
+    }
+    return 0;
+}
+\`\`\`
+
+**解析**：
+
+1️⃣ 输入部分
+   一组输入：m（高）、n（宽）、c（字符）、d（0空心/1实心）。
+2️⃣ 策略与步骤
+   空心：首尾行或首尾列输出 c，其它位置空格；实心：全部输出 c；每行末换行。
+3️⃣ 注意事项
+   行列循环边界正确；输出整齐无多余空格。
+`
+  },
+  "4357": {
+    id: "4357",
+    title: "斐波那契程序员-3",
+    content: `
+> https://www.xujcoj.com/home/problem/detail/4357
+
+**答案：**
+
+\`\`\`cpp
+#include<iostream>
+using namespace std;
+//返回a数组前d项之和
+int getSum(int a[], int d)
+{
+    int sum = 0;
+    for (int i = 0; i < d; i++)
+    {
+        sum += a[i];
+    }
+    return sum;
+}
+int main()
+{
+    int n;
+    cin >> n;
+    while (n--)
+    {
+        int a[10], m;
+        for (int i = 0; i < 10; i++)
+        {
+            cin >> a[i];
+        }
+        cin >> m;
+        if (m <= 10) cout << getSum(a, m) << endl;
+        else
+        {
+            int pre = getSum(a, 10), cur;
+            for (int i = 11; i <= m; i++)
+            {
+                cur = pre % 100;
+                pre += cur;
+            }
+            cout << pre << endl;
+        }
+    }
+    return 0;
+}
+\`\`\`
+
+**解析**：
+
+1️⃣ 输入部分
+   每组输入 10 天代码量与总天数 m（1 ≤ m ≤ 10^5）。
+2️⃣ 策略与步骤
+   前十天求和 pre；若 m≤10 输出前 m 天之和；否则第 11 天起每日用 pre%100 并累加到 pre，直到第 m 天。
+3️⃣ 注意事项
+   使用 %100 控制每日新增量；整型溢出风险低。
+`
+  },
+  "4359": {
+    id: "4359",
+    title: "满足条件的数字和",
+    content: `
+> https://www.xujcoj.com/home/problem/detail/4359
+
+**答案：**
+
+\`\`\`cpp
+#include<iostream>
+using namespace std;
+int main()
+{
+    int n;
+    cin >> n;
+    while (n--)
+    {
+        int m, p, a[100], sum = 0;
+        cin >> m >> p;
+        for (int i = 0; i < m; i++)
+        {
+            cin >> a[i];
+        }
+        for (int i = 0; i < m; i++)
+        {
+            int cnt = 0;
+            for (int j = 0; j < m; j++)
+            {
+                if (i != j && a[j] % a[i] == 0)
+                {
+                    cnt++;
+                }
+            }
+            if (cnt >= p) sum += a[i];
+        }
+        cout << sum << endl;
+    }
+    return 0;
+}
+\`\`\`
+
+**解析**：
+
+1️⃣ 输入部分
+   每组输入 m 与 p，及 m 个正整数。
+2️⃣ 策略与步骤
+   对每个 a[i] 统计其作为其他数字因子的次数 cnt；若 cnt≥p 加入总和；输出总和。
+3️⃣ 注意事项
+   自身不参与统计；双重循环即可满足规模。
+`
+  },
+  "4448": {
+    id: "4448",
+    title: "英文字母",
+    content: `
+> https://www.xujcoj.com/home/problem/detail/4448
+
+**答案：**
+
+\`\`\`cpp
+#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+    int n;
+    cin >> n;
+    while (n--)
+    {
+        string a;
+        cin >> a;
+        int f[26] = {0}, cnt = 0;
+        for (int i = 0; i < a.length(); i++)
+        {
+            char b = a[i];
+            if (isupper(b)) f[b - 'A'] = 1;
+            else f[b - 'a'] = 1;
+        }
+        for (int i = 0; i < 26; i++)
+        {
+            cnt += f[i];
+        }
+        if (cnt == 26) cout << "Yes" << endl;
+        else cout << "No" << endl;
+    }
+    return 0;
+}
+\`\`\`
+
+**解析**：
+
+1️⃣ 输入部分
+   每组输入一段仅包含大小写英文字母的字符串。
+2️⃣ 策略与步骤
+   使用 f[26] 记录出现过的字母，大小写统一映射；统计出现的不同字母数 cnt；判断是否为 26。
+3️⃣ 输出部分
+   输出 "Yes" 或 "No"。
+`
+  },
+  "3767": {
+    id: "3767",
+    title: "优秀的成绩",
+    content: `
+> https://www.xujcoj.com/home/problem/detail/3767
+
+**答案：**
+
+\`\`\`cpp
+#include<iostream>
+using namespace std;
+int main()
+{
+    int a, b, c;
+    cin >> a >> b >> c;
+    if (a + b + c >= 90 * 3 && a >= 85 && b >= 85 && c >= 85)
+    {
+        cout << "Excellent";
+    }
+    else
+    {
+        cout << "Not Excellent";
+    }
+    return 0;
+}
+\`\`\`
+
+**解析**：
+
+1️⃣ 输入部分
+   输入三门课程成绩 a, b, c。
+2️⃣ 策略与步骤
+   单科均 ≥85，且总分 ≥270（平均分 ≥90）才判定优秀。
+3️⃣ 输出部分
+   满足则输出 "Excellent"，否则 "Not Excellent"。
+`
+  },
+  "4302": {
+    id: "4302",
+    title: "数的乘积",
+    content: `
+> https://www.xujcoj.com/home/problem/detail/4302
+
+**答案：**
+
+\`\`\`cpp
+#include<iostream>
+using namespace std;
+int main()
+{
+    int a, neg = 0, pos = 0;
+    for (int i = 0; i < 4; i++)
+    {
+        cin >> a;
+        if (a > 0) pos++;
+        else if (a < 0) neg++;
+    }
+    if (pos >= 1 && neg >= 1)
+    {
+        cout << "Yes";
+    }
+    else
+    {
+        cout << "No";
+    }
+    return 0;
+}
+\`\`\`
+
+**解析**：
+
+1️⃣ 输入部分
+   输入 4 个整数。
+2️⃣ 策略与步骤
+   至少一个正数且至少一个负数 → 存在乘积为负的组合 → "Yes"；否则 "No"。
+3️⃣ 注意事项
+   0 不影响负乘积的产生。
+`
+  },
+  "3361": {
+    id: "3361",
+    title: "静默的质数",
+    content: `
+> https://www.xujcoj.com/home/problem/detail/3361
+
+**答案：**
+
+\`\`\`cpp
+#include<iostream>
+#include<cmath>
+using namespace std;
+bool isPrime(int n)
+{
+    if (n < 2)
+    {
+        return false;
+    }
+    for (int i = 2; i <= sqrt(n); i++)
+    {
+        if (n % i == 0)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+int main()
+{
+    int n;
+    cin >> n;
+    while (n--)
+    {
+        int m, a, cnt = 0;
+        cin >> m >> a;
+        for (int i = a; i < a + m; i++)
+        {
+            if (isPrime(i)) cnt++;
+        }
+        cout << cnt << endl;
+    }
+    return 0;
+}
+\`\`\`
+
+**解析**：
+
+1️⃣ 输入部分
+   输入 n 组，每组 m 与 a。
+2️⃣ 策略与步骤
+   统计区间 [a, a+m-1] 内的质数个数，试除到 √n。
+3️⃣ 输出部分
+   每组输出质数的计数。
+`
+  },
+  "4446": {
+    id: "4446",
+    title: "打卡时间",
+    content: `
+> https://www.xujcoj.com/home/problem/detail/4446
+
+**答案：**
+
+\`\`\`cpp
+#include <iostream>
+using namespace std;
+int main()
+{
+    int a, b, am, bm, sum = 0;
+    cin >> a;
+    am = a / 100 * 60 + a % 100;
+    for (int i = 0; i < 5; i++)
+    {
+        cin >> b;
+        bm = b / 100 * 60 + b % 100;
+        if (bm > am) sum += (bm - am);
+    }
+    cout << sum;
+    return 0;
+}
+\`\`\`
+
+**解析**：
+
+1️⃣ 输入部分
+   规定时间 a 与 5 天打卡时间 b（HHMM）。
+2️⃣ 策略与步骤
+   转分钟比较；迟到则累加差值。
+3️⃣ 输出部分
+   输出总迟到分钟数。
+`
+  },
+  "2883": {
+    id: "2883",
+    title: "互质问题",
+    content: `
+> https://www.xujcoj.com/home/problem/detail/2883
+
+**答案：**
+
+\`\`\`cpp
+#include<iostream>
+using namespace std;
+int getGCD(int a, int b)
+{
+    return b == 0 ? a : getGCD(b, a % b);
+}
+int main()
+{
+    int n;
+    cin >> n;
+    while (n--)
+    {
+        int m, p;
+        cin >> m;
+        int a[2000], c[2000];
+        for (int i = 0; i < m; i++)
+        {
+            cin >> a[i];
+        }
+        c[0] = 1;
+        int max = c[0];
+        for (int i = 1; i < m; i++)
+        {
+            c[i] = 1;
+            for (int j = 0; j < i; j++)
+            {
+                if (c[j] >= c[i] && getGCD(a[i], a[j]) == 1)
+                {
+                    c[i] = c[j] + 1;
+                }
+            }
+            if (c[i] > max) max = c[i];
+        }
+        cout << m - max << endl;
+    }
+    return 0;
+}
+\`\`\`
+
+**解析**：
+
+1️⃣ 输入部分
+   每组输入 m 个数。
+2️⃣ 策略与步骤
+   欧几里得算法求 gcd；DP 维护以 i 结尾的最长互质子序列长度 c[i]；答案为 m-max。
+3️⃣ 输出部分
+   输出最少删除的数字个数。
+`
+  },
+  "3819": {
+    id: "3819",
+    title: "谁是大佬",
+    content: `
+> https://www.xujcoj.com/home/problem/detail/3819
+
+**答案：**
+
+\`\`\`cpp
+#include<iostream>
+using namespace std;
+int main()
+{
+    int n;
+    cin >> n;
+    while (n--)
+    {
+        int m, max = -1, maxno = -1;
+        cin >> m;
+        for (int i = 1; i <= m; i++)
+        {
+            int a;
+            cin >> a;
+            if (a > max)
+            {
+                max = a;
+                maxno = i;
+            }
+        }
+        cout << maxno << endl;
+    }
+    return 0;
+}
+\`\`\`
+
+**解析**：
+
+1️⃣ 输入部分
+   每组输入 m 个成绩。
+2️⃣ 策略与步骤
+   单次扫描记录最大值及其学号。
+3️⃣ 输出部分
+   输出最高分学生的学号。
+`
+  },
+  "2927": {
+    id: "2927",
+    title: "最近的坐标点",
+    content: `
+> https://www.xujcoj.com/home/problem/detail/2927
+
+**答案：**
+
+\`\`\`cpp
+#include<iostream>
+using namespace std;
+int main()
+{
+    double x1, y1, x2, y2, x3, y3, d, xmin, ymin, dmin;
+    cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;
+    xmin = x1; ymin = y1; dmin = x1 * x1 + y1 * y1;
+    d = x2 * x2 + y2 * y2;
+    if (d < dmin)
+    {
+        dmin = d;
+        xmin = x2;
+        ymin = y2;
+    }
+    d = x3 * x3 + y3 * y3;
+    if (d < dmin)
+    {
+        dmin = d;
+        xmin = x3;
+        ymin = y3;
+    }
+    cout << "(" << xmin << "," << ymin << ")";
+    return 0;
+}
+\`\`\`
+
+**解析**：
+
+1️⃣ 输入部分
+   输入三个点坐标。
+2️⃣ 策略与步骤
+   比较到原点的距离平方，选择最小者。
+3️⃣ 输出部分
+   输出最近点坐标，格式 "(x,y)"。
+`
+  },
+  "4334": {
+    id: "4334",
+    title: "字母表",
+    content: `
+> https://www.xujcoj.com/home/problem/detail/4334
+
+**答案：**
+
+\`\`\`cpp
+#include<iostream>
+using namespace std;
+int main()
+{
+    char a;
+    cin >> a;
+    for (char i = 'A'; i <= 'Z'; i++)
+    {
+        if (i != toupper(a)) cout << i;
+    }
+    cout << endl;
+    for (char i = 'a'; i <= 'z'; i++)
+    {
+        if (i != tolower(a)) cout << i;
+    }
+    cout << endl;
+    return 0;
+}
+\`\`\`
+
+**解析**：
+
+1️⃣ 输入部分
+   输入一个字母 a。
+2️⃣ 策略与步骤
+   分别输出去除对应大小写后的字母序列。
+3️⃣ 输出部分
+   两行输出，大写与小写各一行。
+`
+  },
+  "4024": {
+    id: "4024",
+    title: "0和1",
+    content: `
+> https://www.xujcoj.com/home/problem/detail/4024
+
+**答案：**
+
+\`\`\`cpp
+#include<iostream>
+#include<string>
+using namespace std;
+int main()
+{
+    int n;
+    cin >> n;
+    while (n--)
+    {
+        int a, b;
+        cin >> a >> b;
+        string s = to_string(a + b);
+        if (s.find("01") != -1 || s.find("10") != -1) cout << "Yes" << endl;
+        else cout << "No" << endl;
+    }
+    return 0;
+}
+\`\`\`
+
+**解析**：
+
+1️⃣ 输入部分
+   每组输入 a、b。
+2️⃣ 策略与步骤
+   将 a+b 转为字符串，判断是否含相邻子串 "01" 或 "10"。
+3️⃣ 输出部分
+   输出 "Yes" 或 "No"。
+`
+  },
+  "2910": {
+    id: "2910",
+    title: "四边形",
+    content: `
+> https://www.xujcoj.com/home/problem/detail/2910
+
+**答案：**
+
+\`\`\`cpp
+#include<iostream>
+using namespace std;
+int main()
+{
+    int T;
+    cin >> T;
+    while (T--)
+    {
+        int a, b, c, d;
+        cin >> a >> b >> c >> d;
+        if (a >= b + c + d || b >= a + c + d || c >= a + b + d || d >= a + b + c)
+        {
+            cout << "No" << endl;
+        }
+        else
+        {
+            cout << "Yes" << endl;
+        }
+    }
+    return 0;
+}
+\`\`\`
+
+**解析**：
+
+1️⃣ 判定规则
+   任意边长度均小于其他三边之和，否则不能构成四边形。
+2️⃣ 实现步骤
+   四个条件取或，满足其一则输出 "No"，否则 "Yes"。
+3️⃣ 输出部分
+   每组输出一行。
+`
+  },
+  "3764": {
+    id: "3764",
+    title: "老人与海",
+    content: `
+> https://www.xujcoj.com/home/problem/detail/3764
+
+**答案：**
+
+\`\`\`cpp
+#include <iostream>
+using namespace std;
+int main() {
+    long long a;
+    cin >> a;
+    int lv = 1;
+    while (a > 0) {
+        if (lv < 50) {
+            lv++;
+            a--;
+        } else {
+            long long need = lv - 48; // 升一级所需鱼
+            if (a >= need) {
+                lv++;
+                a -= need;
+            } else {
+                break; // 鱼不够升下一级
+            }
+        }
+    }
+    cout << lv;
+    return 0;
+}
+\`\`\`
+
+**解析**：
+
+1️⃣ 输入部分
+   输入钓到的鱼数量 a（long long）。
+2️⃣ 策略与步骤
+   lv<50：每条鱼+1；lv≥50：升一级需要 lv-48 条鱼；不足时停止。
+3️⃣ 输出部分
+   输出最终技能点 lv。
+`
+  },
+  "2931": {
+    id: "2931",
+    title: "声音的频率",
+    content: `
+> https://www.xujcoj.com/home/problem/detail/2931
+
+**答案：**
+
+\`\`\`cpp
+#include<iostream>
+using namespace std;
+int main()
+{
+    int f, min = 20001, max = 19;
+    for (int i = 0; i < 5; i++)
+    {
+        cin >> f;
+        if (f >= 20 && f <= 20000)
+        {
+            if (f < min)
+            {
+                min = f;
+            }
+            if (f > max)
+            {
+                max = f;
+            }
+        }
+    }
+    if (min == 20001)
+    {
+        cout << -1;
+    }
+    else
+    {
+        cout << min << " " << max;
+    }
+    return 0;
+}
+\`\`\`
+
+**解析**：
+
+1️⃣ 输入部分
+   输入 5 个频率。
+2️⃣ 策略与步骤
+   过滤可听范围 [20,20000]；记录最小与最大；若无则输出 -1。
+3️⃣ 输出部分
+   有则输出 "min max"，否则 -1。
+`
+  },
 };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { QuizData } from '../../types';
 import { CheckCircle2, XCircle, AlertCircle, RefreshCw } from 'lucide-react';
-import { DescriptionRenderer } from '../Common/DescriptionRenderer';
+import { MarkdownRenderer } from '../Common/MarkdownRenderer';
 
 interface QuizAreaProps {
   data: QuizData;
@@ -100,9 +100,9 @@ export const QuizArea: React.FC<QuizAreaProps> = ({ data }) => {
                   {qIndex + 1}
                 </span>
                 <div className="flex-1">
-                  <h3 className="text-lg font-medium text-slate-900 dark:text-white mb-4">
-                    <DescriptionRenderer text={q.question} inline={true} />
-                  </h3>
+                  <div className="text-lg font-medium text-slate-900 dark:text-white mb-4">
+                    <MarkdownRenderer content={q.question} />
+                  </div>
                   
                   {/* Options */}
                   <div className="space-y-3">
@@ -141,7 +141,7 @@ export const QuizArea: React.FC<QuizAreaProps> = ({ data }) => {
                               {String.fromCharCode(65 + oIndex)}
                             </span>
                             <span className="flex-1">
-                              <DescriptionRenderer text={option} inline={true} />
+                              <MarkdownRenderer content={option} className="!space-y-0" />
                             </span>
                           </span>
                           {icon}
@@ -177,7 +177,7 @@ export const QuizArea: React.FC<QuizAreaProps> = ({ data }) => {
                         <div>
                            <p className="font-bold text-sm mb-1">{isCurrentCorrect ? '回答正确' : '回答错误'}</p>
                            <div className="text-sm opacity-90">
-                             <DescriptionRenderer text={q.explanation} />
+                             <MarkdownRenderer content={q.explanation || ''} className="!space-y-1" />
                            </div>
                         </div>
                       </div>

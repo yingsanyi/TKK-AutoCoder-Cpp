@@ -1,11 +1,13 @@
 import React from 'react';
 import { CodeBlock } from './CodeBlock';
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
 
-// Helper component to render description with **bold**, `code` and ```code block``` support
+// Helper component to render description with **bold**, `code`, ```code block``` and $math$ support
 export const DescriptionRenderer: React.FC<{ text: string; className?: string; inline?: boolean }> = ({ text, className = '', inline = false }) => {
-  // Split text by ```code block```, **bold** or `code` patterns
+  // Split text by ```code block```, **bold**, `code` or $math$ patterns
   // Priority: Triple backticks first
-  const parts = text.split(/(```[\s\S]*?```|\*\*.*?\*\*|`[^`]+?`)/g);
+  const parts = text.split(/(```[\s\S]*?```|\*\*.*?\*\*|`[^`]+?`|\$[^$]+?\$)/g);
 
   const Wrapper = inline ? 'span' : 'div';
   const defaultClasses = inline ? '' : 'text-slate-700 dark:text-slate-300 leading-relaxed space-y-2';
@@ -43,6 +45,17 @@ export const DescriptionRenderer: React.FC<{ text: string; className?: string; i
         // Handle Inline Code (`...`)
         if (part.startsWith('`') && part.endsWith('`')) {
           return <code key={index} className="bg-slate-100 dark:bg-slate-700 px-1.5 py-0.5 rounded text-indigo-700 dark:text-indigo-300 font-mono text-sm border border-slate-200 dark:border-slate-600 mx-0.5">{part.slice(1, -1)}</code>;
+        }
+
+        // Handle Math ($...$)
+        if (part.startsWith('$') && part.endsWith('$')) {
+            const math = part.slice(1, -1);
+            try {
+                const html = katex.renderToString(math, { displayMode: false, throwOnError: false });
+                return <span key={index} dangerouslySetInnerHTML={{ __html: html }} className="inline-math mx-1" />;
+            } catch (e) {
+                return <span key={index}>{part}</span>;
+            }
         }
 
         // Handle regular text (preserve newlines if any)

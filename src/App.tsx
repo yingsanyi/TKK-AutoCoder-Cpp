@@ -347,7 +347,13 @@ function AppContent() {
                                                       `}
                                                    >
                                                        <div className="flex items-center gap-2 overflow-hidden">
-                                                           <div className="w-1 h-1 rounded-full bg-current opacity-50 shrink-0" />
+                                                           {gs.subGroup.includes('编程') ? (
+                                                               <BookOpen size={14} className={`shrink-0 ${isSubGroupExpanded ? 'text-indigo-500' : 'opacity-70'}`} />
+                                                           ) : gs.subGroup.includes('选择') ? (
+                                                               <BookOpen size={14} className={`shrink-0 ${isSubGroupExpanded ? 'text-purple-500' : 'opacity-70'}`} />
+                                                           ) : (
+                                                               <div className="w-1 h-1 rounded-full bg-current opacity-50 shrink-0" />
+                                                           )}
                                                            <span className="truncate font-medium">{gs.subGroup}</span>
                                                        </div>
                                                        {isSubGroupExpanded ? <ChevronDown size={10} className="shrink-0 opacity-70"/> : <ChevronRight size={10} className="shrink-0 opacity-70"/>}

@@ -162,7 +162,9 @@ export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
             练习模式
           </span>
         </div>
-        <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">{data.title}</h2>
+        <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
+          <DescriptionRenderer text={data.title} inline={true} />
+        </h2>
         <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-6 rounded-xl shadow-sm prose prose-slate dark:prose-invert max-w-none">
           <DescriptionRenderer text={data.description} />
         </div>

@@ -6,7 +6,7 @@ import { DescriptionRenderer } from '../../components/Common/DescriptionRenderer
 import { parseProgrammingMarkdown, parseReviewMarkdown } from '../../utils/reviewParser';
 import exercisesMd from '../../../docs/review_questions_1.md?raw';
 import exercisesMd2 from '../../../docs/review_questions_2.md?raw';
-import programmingMd from '../../../docs/期末/编程题目.md?raw';
+import programmingMd from '../../../docs/final/programming_exercises.md?raw';
 
 const { quizData } = parseReviewMarkdown(exercisesMd);
 const { quizData: quizData2 } = parseReviewMarkdown(exercisesMd2);

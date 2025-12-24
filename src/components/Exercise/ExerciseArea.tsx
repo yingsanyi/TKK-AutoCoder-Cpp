@@ -28,8 +28,62 @@ export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
   const [executionError, setExecutionError] = useState<string | null>(null);
   const [runtime, setRuntime] = useState<{ language: string; version: string } | null>(null);
   const [runtimeLoading, setRuntimeLoading] = useState(false);
+  const [pistonBaseUrl, setPistonBaseUrl] = useState<string>(() => {
+    try {
+      const saved = localStorage.getItem('piston_base_url');
+      return (saved && saved.trim()) || 'https://emkc.org/api/v2/piston';
+    } catch {
+      return 'https://emkc.org/api/v2/piston';
+    }
+  });
+  const [pistonResolvedBaseUrl, setPistonResolvedBaseUrl] = useState<string | null>(null);
+  const [showPistonSettings, setShowPistonSettings] = useState(false);
+  const [pistonBaseUrlDraft, setPistonBaseUrlDraft] = useState<string>(() => {
+    try {
+      const saved = localStorage.getItem('piston_base_url');
+      return (saved && saved.trim()) || 'https://emkc.org/api/v2/piston';
+    } catch {
+      return 'https://emkc.org/api/v2/piston';
+    }
+  });
 
   const consoleEndRef = useRef<HTMLDivElement>(null);
+
+  const buildPistonUrl = (base: string, apiPath: string) => {
+    const b = base.replace(/\/+$/, '');
+    const p = apiPath.replace(/^\/+/, '');
+    return `${b}/${p}`;
+  };
+
+  const getPistonBaseCandidates = () => {
+    const candidates: string[] = [];
+    const add = (v: string) => {
+      const trimmed = v.trim().replace(/\/+$/, '');
+      if (!trimmed) return;
+      if (!candidates.includes(trimmed)) candidates.push(trimmed);
+    };
+
+    add(pistonBaseUrl);
+    if (/\/piston$/i.test(pistonBaseUrl)) add(pistonBaseUrl.replace(/\/piston$/i, ''));
+    add('https://emkc.org/api/v2/piston');
+    add('https://emkc.org/api/v2');
+
+    return candidates;
+  };
+
+  const makeFriendlyFetchError = (err: unknown, triedUrls: string[]) => {
+    const tried = triedUrls.length > 0 ? `已尝试：${triedUrls.join(' 、')}` : '';
+    if (err instanceof Error) {
+      if (/AbortError/i.test(err.name)) {
+        return `请求超时或网络异常，请重试。${tried ? `\n${tried}` : ''}`;
+      }
+      if (/Failed to fetch/i.test(err.message)) {
+        return `无法连接到在线编译服务（Failed to fetch）。可能原因：网络不可达/被拦截、浏览器插件拦截、跨域请求失败。\n${tried || '你可以在“服务”里改成可访问的 Piston 地址。'}`;
+      }
+      return `${err.message}${tried ? `\n${tried}` : ''}`;
+    }
+    return `运行代码时发生未知错误${tried ? `\n${tried}` : ''}`;
+  };
 
   // Reset state when exercise changes
   useEffect(() => {
@@ -44,8 +98,22 @@ export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
     const fetchRuntimes = async () => {
       setRuntimeLoading(true);
       try {
-        const res = await fetch('https://emkc.org/api/v2/piston/runtimes');
-        const arr = await res.json();
+        const bases = getPistonBaseCandidates();
+        let arr: any = null;
+        let usedBase: string | null = null;
+        for (const base of bases) {
+          try {
+            const res = await fetch(buildPistonUrl(base, 'runtimes'));
+            if (!res.ok) continue;
+            const json = await res.json();
+            if (Array.isArray(json)) {
+              arr = json;
+              usedBase = base;
+              break;
+            }
+          } catch {}
+        }
+        if (usedBase) setPistonResolvedBaseUrl(usedBase);
         const match = Array.isArray(arr)
           ? arr.find((rt: any) => {
               const aliases: string[] = Array.isArray(rt.aliases) ? rt.aliases : [];
@@ -84,36 +152,49 @@ export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
     try {
       const controller = new AbortController();
       const t = setTimeout(() => controller.abort(), 15000);
-      const response = await fetch('https://emkc.org/api/v2/piston/execute', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          language: runtime?.language ?? 'cpp',
-          version: runtime?.version ?? '10.2.0',
-          files: [
-            {
-              content: userCode
-            }
-          ],
-          stdin: stdin,
-          compile_timeout: 10000,
-          run_timeout: 4000,
-        }),
-        signal: controller.signal,
-      });
+      const bases = getPistonBaseCandidates();
+      const triedUrls: string[] = [];
+      let response: Response | null = null;
+      let lastErr: unknown = null;
+
+      for (const base of bases) {
+        const url = buildPistonUrl(base, 'execute');
+        triedUrls.push(url);
+        try {
+          const res = await fetch(url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              language: runtime?.language ?? 'cpp',
+              version: runtime?.version ?? '10.2.0',
+              files: [
+                {
+                  content: userCode
+                }
+              ],
+              stdin: stdin,
+              compile_timeout: 10000,
+              run_timeout: 4000,
+            }),
+            signal: controller.signal,
+          });
+          if (res.ok) {
+            response = res;
+            setPistonResolvedBaseUrl(base);
+            break;
+          }
+          lastErr = new Error(`服务不可用（HTTP ${res.status}）`);
+        } catch (e) {
+          lastErr = e;
+          if (controller.signal.aborted) break;
+        }
+      }
       clearTimeout(t);
 
-      if (!response.ok) {
-        let msg = `服务不可用（HTTP ${response.status}）`;
-        try {
-          const err = await response.json();
-          if (err && err.message) {
-            msg = `${err.message}（HTTP ${response.status}）`;
-          }
-        } catch {}
-        throw new Error(msg);
+      if (!response) {
+        throw new Error(makeFriendlyFetchError(lastErr ?? new Error('请求失败'), triedUrls));
       }
 
       const result = await response.json();
@@ -130,13 +211,7 @@ export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
         throw new Error('无法解析服务器响应');
       }
     } catch (err) {
-      const msg =
-        err instanceof Error
-          ? /AbortError/i.test(err.name)
-            ? '请求超时或网络异常，请重试'
-            : err.message
-          : '运行代码时发生未知错误';
-      setExecutionError(msg);
+      setExecutionError(makeFriendlyFetchError(err, []));
     } finally {
       setIsRunning(false);
     }
@@ -198,6 +273,17 @@ export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
         </div>
         
         <div className="flex items-center gap-3">
+          <button
+            onClick={() => {
+              setShowPistonSettings(v => !v);
+              setPistonBaseUrlDraft(pistonBaseUrl);
+            }}
+            className="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 text-sm flex items-center gap-1 transition-colors px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800"
+            disabled={isRunning}
+            title="配置在线编译服务地址"
+          >
+            服务
+          </button>
           <button 
             onClick={() => setUserCode(data.initialCode)}
             className="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 text-sm flex items-center gap-1 transition-colors px-3 py-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800"
@@ -229,6 +315,56 @@ export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
           </button>
         </div>
       </div>
+
+      {showPistonSettings && (
+        <div className="mb-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4">
+          <div className="flex flex-col gap-3">
+            <div className="text-xs text-slate-500 dark:text-slate-400">
+              在线编译服务地址（Base URL），示例：`https://emkc.org/api/v2/piston` 或你的自建 `.../api/v2`
+            </div>
+            <div className="flex flex-col md:flex-row gap-2">
+              <input
+                value={pistonBaseUrlDraft}
+                onChange={(e) => setPistonBaseUrlDraft(e.target.value)}
+                className="flex-1 px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+                placeholder="https://emkc.org/api/v2/piston"
+                disabled={isRunning}
+              />
+              <button
+                onClick={() => {
+                  const next = pistonBaseUrlDraft.trim() || 'https://emkc.org/api/v2/piston';
+                  setPistonBaseUrl(next);
+                  try {
+                    localStorage.setItem('piston_base_url', next);
+                  } catch {}
+                  setShowPistonSettings(false);
+                }}
+                className="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold disabled:opacity-60 disabled:cursor-not-allowed"
+                disabled={isRunning}
+              >
+                保存
+              </button>
+              <button
+                onClick={() => {
+                  const next = 'https://emkc.org/api/v2/piston';
+                  setPistonBaseUrl(next);
+                  setPistonBaseUrlDraft(next);
+                  try {
+                    localStorage.removeItem('piston_base_url');
+                  } catch {}
+                }}
+                className="px-4 py-2 rounded-lg bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-800 dark:text-slate-100 text-sm font-semibold disabled:opacity-60 disabled:cursor-not-allowed"
+                disabled={isRunning}
+              >
+                恢复默认
+              </button>
+            </div>
+            <div className="text-xs text-slate-500 dark:text-slate-400 font-mono">
+              当前使用：{pistonResolvedBaseUrl ?? pistonBaseUrl}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Editor & Content Area */}
       <div className="flex-1 flex flex-col gap-4">

@@ -1248,49 +1248,478 @@ int main(){
     answers: [
       {
         label: "循环法（推荐）",
+        content: "```cpp\n#include<iostream>\n#include<string>\n#include<algorithm>\nusing namespace std;\nchar getChar(int x){\n    if(x < 10) return x + '0';\n    else return x - 10 + 'A';\n}\nint main(){\n    int n, k;\n    cin >> n >> k;\n    string ans = \"\";\n    if(n == 0) cout << 0;\n    else{\n        while(n){\n            ans += getChar(n % k);\n            n /= k;\n        }\n        reverse(ans.begin(), ans.end());\n        cout << ans;\n    }\n    return 0;\n}\n```"
+      },
+      {
+        label: "递归法",
+        content: "```cpp\n#include<iostream>\nusing namespace std;\nvoid convert(int n, int k){\n    if(n == 0) return;\n    convert(n / k, k);\n    int t = n % k;\n    if(t < 10) cout << t;\n    else cout << (char)(t - 10 + 'A');\n}\nint main(){\n    int n, k;\n    cin >> n >> k;\n    if(n == 0) cout << 0;\n    else convert(n, k);\n    return 0;\n}\n```"
+      }
+    ]
+  },
+  "4017": {
+    id: "4017",
+    title: "21世纪的第几天",
+    content: `
+> https://www.xujcoj.com/home/problem/detail/4017
+
+**答案：**
+
+\`\`\`cpp
+#include<iostream>
+using namespace std;
+
+// 判断是否为闰年
+bool isLeapYear(int year){
+    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+
+int main(){
+    int n;
+    cin >> n;
+    
+    while(n--){
+        int year, month, day;
+        cin >> year >> month >> day;
+        
+        long long totalDays = 0;
+        
+        // 1. 累加从2000年到year-1年的所有天数
+        for(int y = 2000; y < year; y++){
+            if(isLeapYear(y)){
+                totalDays += 366;
+            } else {
+                totalDays += 365;
+            }
+        }
+        
+        // 2. 累加year年从1月到month-1月的天数
+        int daysInMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        for(int m = 1; m < month; m++){
+            if(m == 2 && isLeapYear(year)){
+                totalDays += 29;
+            } else {
+                totalDays += daysInMonth[m];
+            }
+        }
+        
+        // 3. 加上当月的天数
+        totalDays += day;
+        
+        cout << totalDays << endl;
+    }
+    
+    return 0;
+}
+\`\`\`
+
+**解析**：
+
+**核心思路**：
+1. 21世纪从2000年1月1日开始（第1天）
+2. 计算从2000年1月1日到给定日期的总天数
+3. 分三部分累加：
+   - 从2000年到year-1年的完整年份天数
+   - year年从1月到month-1月的完整月份天数
+   - month月的day天
+
+**样例分析**：
+
+**案例1：2000年1月1日**
+\`\`\`
+步骤1：完整年份天数
+  从2000到1999年（无完整年份）
+  天数 = 0
+
+步骤2：完整月份天数
+  从1月到0月（无完整月份）
+  天数 = 0
+
+步骤3：当月天数
+  1月的第1天
+  天数 = 1
+
+总天数 = 0 + 0 + 1 = 1
+\`\`\`
+
+**案例2：2001年1月1日**
+\`\`\`
+步骤1：完整年份天数
+  2000年
+  2000 % 400 = 0 → 闰年
+  天数 = 366
+
+步骤2：完整月份天数
+  从1月到0月（无完整月份）
+  天数 = 0
+
+步骤3：当月天数
+  1月的第1天
+  天数 = 1
+
+总天数 = 366 + 0 + 1 = 367
+\`\`\`
+
+**闰年判断**：
+
+**规则**：
+- 能被400整除：闰年
+- 能被4整除但不能被100整除：闰年
+- 其他：平年
+
+**21世纪的闰年**：
+\`\`\`
+2000年：2000 % 400 = 0 → 闰年（366天）
+2004年：2004 % 4 = 0 且 2004 % 100 ≠ 0 → 闰年（366天）
+2008年：2008 % 4 = 0 且 2008 % 100 ≠ 0 → 闰年（366天）
+2012年：闰年
+2016年：闰年
+2020年：闰年
+...
+2096年：闰年
+
+2001, 2002, 2003, 2005, 2006, 2007, 2009, 2010, 2011, ...：平年（365天）
+\`\`\`
+
+**典型例子**：
+
+**例1：2000年12月31日**
+\`\`\`
+完整年份：无
+完整月份：1月到11月
+  1月(31) + 2月(29,闰年) + 3月(31) + 4月(30) + 5月(31) + 6月(30)
+  + 7月(31) + 8月(31) + 9月(30) + 10月(31) + 11月(30)
+  = 31+29+31+30+31+30+31+31+30+31+30 = 335天
+当月天数：31天
+
+总天数 = 0 + 335 + 31 = 366
+\`\`\`
+
+**例2：2000年2月29日**
+\`\`\`
+完整年份：无
+完整月份：1月(31天)
+当月天数：29天
+
+总天数 = 0 + 31 + 29 = 60
+\`\`\`
+
+**例3：2000年3月1日**
+\`\`\`
+完整年份：无
+完整月份：1月(31) + 2月(29,闰年) = 60天
+当月天数：1天
+
+总天数 = 0 + 60 + 1 = 61
+\`\`\`
+
+**例4：2004年3月1日**
+\`\`\`
+完整年份：2000(366) + 2001(365) + 2002(365) + 2003(365)
+         = 366 + 1095 = 1461天
+完整月份：1月(31) + 2月(29,2004是闰年) = 60天
+当月天数：1天
+
+总天数 = 1461 + 60 + 1 = 1522
+\`\`\`
+
+**例5：2002年6月15日**
+\`\`\`
+完整年份：2000(366) + 2001(365) = 731天
+完整月份：1-5月
+  2002年不是闰年，2月28天
+  31 + 28 + 31 + 30 + 31 = 151天
+当月天数：15天
+
+总天数 = 731 + 151 + 15 = 897
+\`\`\`
+
+**例6：2010年1月1日**
+\`\`\`
+从2000到2009共10年
+闰年：2000, 2004, 2008（3个）
+平年：2001, 2002, 2003, 2005, 2006, 2007, 2009（7个）
+
+完整年份：3×366 + 7×365 = 1098 + 2555 = 3653天
+完整月份：0
+当月天数：1天
+
+总天数 = 3653 + 0 + 1 = 3654
+\`\`\`
+
+**月份天数表**：
+
+\`\`\`
+月份  平年  闰年
+1月   31   31
+2月   28   29  ← 唯一不同
+3月   31   31
+4月   30   30
+5月   31   31
+6月   30   30
+7月   31   31
+8月   31   31
+9月   30   30
+10月  31   31
+11月  30   30
+12月  31   31
+\`\`\`
+
+**易错点**：
+
+❌ **错误1：忘记2000年是闰年**
+\`\`\`cpp
+// 2000年能被400整除，是闰年
+// 2000年有366天，不是365天
+\`\`\`
+
+❌ **错误2：循环边界错误**
+\`\`\`cpp
+for(int y = 2000; y <= year; y++){  // 错误：包含了当前年
+    totalDays += isLeapYear(y) ? 366 : 365;
+}
+// 应该：for(int y = 2000; y < year; y++)
+// 当前年只累加部分月份
+\`\`\`
+
+❌ **错误3：月份循环边界错误**
+\`\`\`cpp
+for(int m = 1; m <= month; m++){  // 错误：包含了当前月
+    totalDays += daysInMonth[m];
+}
+// 应该：for(int m = 1; m < month; m++)
+// 当前月只累加部分天数
+\`\`\`
+
+❌ **错误4：闰年判断错误**
+\`\`\`cpp
+bool isLeapYear(int year){
+    return year % 4 == 0;  // 错误
+}
+// 1900年能被4整除但不是闰年（被100整除但不被400整除）
+\`\`\`
+
+❌ **错误5：固定2月天数**
+\`\`\`cpp
+int daysInMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+totalDays += daysInMonth[2];  // 错误：固定28天
+// 应该判断year是否为闰年
+\`\`\`
+
+❌ **错误6：数组下标越界**
+\`\`\`cpp
+int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+totalDays += daysInMonth[month];  // 错误：month=1时访问daysInMonth[1]=28（2月）
+// 应该让数组从下标0开始不用，或者用daysInMonth[month-1]
+\`\`\`
+
+**计算流程图示**：
+
+\`\`\`
+2004年3月5日是21世纪第几天？
+
+┌─────────────────────────────────────┐
+│ 步骤1：完整年份                      │
+│ 2000年(366) + 2001年(365)           │
+│ + 2002年(365) + 2003年(365)         │
+│ = 1461天                            │
+└─────────────────────────────────────┘
+              ↓
+┌─────────────────────────────────────┐
+│ 步骤2：完整月份（2004年1-2月）      │
+│ 1月(31) + 2月(29,闰年)              │
+│ = 60天                              │
+└─────────────────────────────────────┘
+              ↓
+┌─────────────────────────────────────┐
+│ 步骤3：当月天数                      │
+│ 3月的第5天 = 5天                    │
+└─────────────────────────────────────┘
+              ↓
+┌─────────────────────────────────────┐
+│ 总天数 = 1461 + 60 + 5 = 1526      │
+└─────────────────────────────────────┘
+\`\`\`
+
+**优化版代码（避免重复计算）**：
+
+\`\`\`cpp
+#include<iostream>
+using namespace std;
+
+bool isLeapYear(int year){
+    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+
+int main(){
+    int n;
+    cin >> n;
+    
+    while(n--){
+        int year, month, day;
+        cin >> year >> month >> day;
+        
+        long long totalDays = 0;
+        
+        // 累加完整年份
+        for(int y = 2000; y < year; y++){
+            totalDays += isLeapYear(y) ? 366 : 365;
+        }
+        
+        // 累加完整月份
+        int daysInMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        for(int m = 1; m < month; m++){
+            totalDays += daysInMonth[m];
+            if(m == 2 && isLeapYear(year)){
+                totalDays += 1;  // 闰年2月多一天
+            }
+        }
+        
+        // 加上当月天数
+        totalDays += day;
+        
+        cout << totalDays << endl;
+    }
+    
+    return 0;
+}
+\`\`\`
+
+**测试数据**：
+\`\`\`
+输入：
+8
+2000 1 1
+2001 1 1
+2000 12 31
+2000 2 29
+2000 3 1
+2004 3 1
+2002 6 15
+2010 1 1
+
+输出：
+1
+367
+366
+60
+61
+1522
+897
+3654
+\`\`\`
+
+**验证计算**：
+\`\`\`
+2000/1/1: 0 + 0 + 1 = 1 ✓
+2001/1/1: 366 + 0 + 1 = 367 ✓
+2000/12/31: 0 + 335 + 31 = 366 ✓
+2000/2/29: 0 + 31 + 29 = 60 ✓
+2000/3/1: 0 + (31+29) + 1 = 61 ✓
+2004/3/1: 1461 + (31+29) + 1 = 1522 ✓
+2002/6/15: 731 + 151 + 15 = 897 ✓
+2010/1/1: 3653 + 0 + 1 = 3654 ✓
+\`\`\`
+
+**关键点**：
+- 21世纪从2000年1月1日开始（第1天）
+- 2000年是闰年（能被400整除），有366天
+- 闰年判断：(year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)
+- 分三步累加：完整年份 + 完整月份 + 当月天数
+- 循环不包含当前年和当前月：y < year, m < month
+- 闰年2月29天，平年2月28天
+- 数据类型用long long（21世纪最多36525天，int够用，但为安全用long long）
+`,
+    answers: [
+      {
+        label: "参考答案",
         content: `\`\`\`cpp
 #include<iostream>
-#include<string>
-#include<algorithm>
 using namespace std;
-char getChar(int x){
-    if(x < 10) return x + '0';
-    else return x - 10 + 'A';
+
+// 判断是否为闰年
+bool isLeapYear(int year){
+    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 }
+
 int main(){
-    int n, k;
-    cin >> n >> k;
-    string ans = "";
-    if(n == 0) cout << 0;
-    else{
-        while(n){
-            ans += getChar(n % k);
-            n /= k;
+    int n;
+    cin >> n;
+    
+    while(n--){
+        int year, month, day;
+        cin >> year >> month >> day;
+        
+        long long totalDays = 0;
+        
+        // 1. 累加从2000年到year-1年的所有天数
+        for(int y = 2000; y < year; y++){
+            if(isLeapYear(y)){
+                totalDays += 366;
+            } else {
+                totalDays += 365;
+            }
         }
-        reverse(ans.begin(), ans.end());
-        cout << ans;
+        
+        // 2. 累加year年从1月到month-1月的天数
+        int daysInMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        for(int m = 1; m < month; m++){
+            if(m == 2 && isLeapYear(year)){
+                totalDays += 29;
+            } else {
+                totalDays += daysInMonth[m];
+            }
+        }
+        
+        // 3. 加上当月的天数
+        totalDays += day;
+        
+        cout << totalDays << endl;
     }
+    
     return 0;
 }
 \`\`\``
       },
       {
-        label: "递归法",
+        label: "优化版代码",
         content: `\`\`\`cpp
 #include<iostream>
 using namespace std;
-void convert(int n, int k){
-    if(n == 0) return;
-    convert(n / k, k);
-    int t = n % k;
-    if(t < 10) cout << t;
-    else cout << (char)(t - 10 + 'A');
+
+bool isLeapYear(int year){
+    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 }
+
 int main(){
-    int n, k;
-    cin >> n >> k;
-    if(n == 0) cout << 0;
-    else convert(n, k);
+    int n;
+    cin >> n;
+    
+    while(n--){
+        int year, month, day;
+        cin >> year >> month >> day;
+        
+        long long totalDays = 0;
+        
+        // 累加完整年份
+        for(int y = 2000; y < year; y++){
+            totalDays += isLeapYear(y) ? 366 : 365;
+        }
+        
+        // 累加完整月份
+        int daysInMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        for(int m = 1; m < month; m++){
+            totalDays += daysInMonth[m];
+            if(m == 2 && isLeapYear(year)){
+                totalDays += 1;  // 闰年2月多一天
+            }
+        }
+        
+        // 加上当月天数
+        totalDays += day;
+        
+        cout << totalDays << endl;
+    }
+    
     return 0;
 }
 \`\`\``

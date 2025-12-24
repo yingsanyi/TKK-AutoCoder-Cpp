@@ -281,6 +281,47 @@ int main() {
 2. 使用误差判断小数部分为 0
 `
   },
+"3978": {
+    id: "3978",
+    title: "符合条件的数-3",
+    content: `
+> https://www.xujcoj.com/home/problem/detail/3978
+
+**答案：**
+
+\`\`\`cpp
+#include<iostream>
+using namespace std;
+int main()
+{
+    int n;
+    cin >> n;
+    while(n--)
+    {
+        long long a, b;
+        cin >> a >> b;
+        long long c;
+        int target = b % 10;
+        for(c = 1; ; c++)
+        {
+            if((a + c) % 10 == target)
+            {
+                cout << c << endl;
+                break;
+            }
+        }
+    }
+    return 0;
+}
+\`\`\`
+
+**解析：**
+
+1. 题目要求找到最小正整数 \`c\`，使得 \`(a + c) % 10 == b % 10\`。
+2. 由于只需要匹配个位数，可以直接从 \`c=1\` 开始枚举，直到满足条件。
+3. 循环一定会在 10 次以内找到答案（因为个位数只有 0-9），所以效率很高。
+`
+  },
 "3994": {
     id: "3994",
     title: "星号阵列-25",

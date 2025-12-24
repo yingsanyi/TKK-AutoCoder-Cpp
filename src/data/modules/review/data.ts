@@ -582,7 +582,7 @@ export const reviewProgrammingExercises: ExerciseData[] = [
   },
   {
     title: '生成闭区间随机数并格式输出',
-    description: '输入三个整数 $a$、$b$、$k$（允许 $a > b$），生成 $k$ 个 $[\\min(a,b), \\max(a,b)]$ 区间内的随机整数，用空格分隔输出，末尾无空格。要求使用时间种子。',
+    description: '输入三个整数 $a$、$b$、$k$（允许 $a > b$），生成 $k$ 个 $[\\min(a,b), \\max(a,b)]$ 区间内的随机整数，用空格分隔输出，末尾无空格。',
     initialCode: `#include <iostream>\nusing namespace std;\n\nint main() {\n    \n    return 0;\n}\n`,
     solutionCode: `#include <iostream>
 #include <cstdlib>

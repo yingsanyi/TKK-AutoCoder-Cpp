@@ -54,184 +54,190 @@ export const parseReviewMarkdown = (markdown: string): { quizData: QuizData, exe
     const trimmed = section.trim();
     if (!trimmed) continue;
 
+    let contentToParse = trimmed;
+
     // Check for section headers
-    if (trimmed.match(/^(一、|第一部分：).*选择题/)) {
+    // Use multiline match or just check inclusion
+    if (trimmed.match(/(?:^|\n)(一、|第一部分：).*选择题/)) {
       currentSectionType = 'quiz';
       // Extract description if any
       const descMatch = trimmed.match(/（(.*?)）/);
       if (descMatch) quizDesc = descMatch[1];
-      continue; // The header section itself might not contain questions
+      
+      // Remove the header line and everything before it in this section
+      contentToParse = contentToParse.replace(/^[\s\S]*?(一、|第一部分：).*选择题.*$/m, '').trim();
     }
-    if (trimmed.match(/^(二、|第二部分：).*编程题/)) {
+    
+    if (trimmed.match(/(?:^|\n)(二、|第二部分：).*编程题/)) {
       currentSectionType = 'exercise';
-      continue;
+      contentToParse = contentToParse.replace(/^[\s\S]*?(二、|第二部分：).*编程题.*$/m, '').trim();
     }
+
+    if (!contentToParse) continue;
 
     if (currentSectionType === 'quiz') {
-      // Parse Quiz Question
-      // Format:
-      // 1. Title
-      // Code...
-      // Options
-      // 答案：...
-      // 解析：...
-      
-      // Heuristic: If it contains "答案：" it's likely a question
-      if (trimmed.includes('答案：')) {
-        const lines = trimmed.split('\n');
-        // Title is usually the first line
-        const titleLine = lines[0].trim();
-        // ID extraction
-        const idMatch = titleLine.match(/^(\d+(\.\d+)?)\s+(.*)/);
-        let idStr = "0";
-        let questionText = titleLine;
-        
-        if (idMatch) {
-            idStr = idMatch[1];
-            questionText = idMatch[3];
-        }
+      // Split by question start (Number + dot)
+      // Regex: /(?:^|\n)(\d+\..*?)(?=\n\d+\.|$)/gs
+      // But split is better.
+      const questionBlocks = contentToParse.split(/(?:^|\n)(?=\d+\.\s)/).filter(b => b.trim());
 
-        // Find "答案：" line
-        const answerIdx = lines.findIndex(l => l.trim().startsWith('答案：'));
-        if (answerIdx === -1) continue;
-
-        // Find options (A. ... B. ...)
-        // Usually before answer
-        // Let's assume options are in the lines before answer, after code
-        
-        // Find Explanation
-        const explanationIdx = lines.findIndex(l => l.trim().startsWith('解析：'));
-        let explanation = "";
-        if (explanationIdx !== -1) {
-            explanation = lines.slice(explanationIdx).join('\n').replace('解析：', '').replace(/\[ref:.*?\]/g, '').trim();
-        }
-
-        const answerLine = lines[answerIdx];
-        const correctAnswer = answerLine.replace('答案：', '').replace(/\[ref:.*?\]/g, '').trim();
-
-        // Content between title and options/answer
-        // Detect where options start
-        // Options usually start with A.
-        let contentEndIdx = answerIdx;
-        for (let i = 1; i < answerIdx; i++) {
-            if (lines[i].trim().match(/^[A-E]\.\s/)) {
-                contentEndIdx = i;
-                break;
+      for (const block of questionBlocks) {
+          if (block.includes('答案：')) {
+            const lines = block.trim().split('\n');
+            const titleLine = lines[0].trim();
+            const idMatch = titleLine.match(/^(\d+(\.\d+)?)\s+(.*)/);
+            let idStr = "0";
+            let questionText = titleLine;
+            
+            if (idMatch) {
+                idStr = idMatch[1];
+                questionText = idMatch[3];
             }
-        }
 
-        const contentLines = lines.slice(1, contentEndIdx);
-        let codeBlock = contentLines.join('\n');
-        
-        // If code block is not wrapped in ```, wrap it
-        if (codeBlock.trim() && !codeBlock.trim().startsWith('```')) {
-            codeBlock = `\`\`\`cpp\n${codeBlock}\n\`\`\``;
-        }
+            const allAnswerIndices = lines.map((l, i) => l.trim().startsWith('答案：') ? i : -1).filter(i => i !== -1);
+            
+            if (allAnswerIndices.length === 0) continue;
 
-        // Options
-        const optionsLines = lines.slice(contentEndIdx, answerIdx).join(' ');
-        // Split options: A. ... B. ...
-        // This is tricky if they are on same line.
-        // Simple regex split?
-        const options: string[] = [];
-        const optMatches = optionsLines.matchAll(/([A-E])\.\s+([^A-E]*)/g);
-        for (const m of optMatches) {
-            options.push(`${m[1]}. ${m[2].trim()}`);
-        }
-        
-        // Fallback if regex didn't work (e.g. multiline options or different format)
-        if (options.length === 0) {
-            // Try splitting by A., B., etc
-             const parts = optionsLines.split(/\s+([A-E]\.)\s+/);
-             // This is hard to get perfect without more strict format
-             // Let's just store the raw options line if parsing fails
-             if (optionsLines.trim()) options.push(optionsLines.trim());
-        }
+            const firstAnswerIdx = allAnswerIndices[0];
+            const lastAnswerIdx = allAnswerIndices[allAnswerIndices.length - 1];
 
-        quizQuestions.push({
-            id: parseFloat(idStr), // Use parsed ID or index
-            question: formatInlineCode(questionText) + `\n\n${codeBlock}`,
-            options: options.length > 0 ? options : ["See description"],
-            correctAnswer: correctAnswer,
-            explanation: formatInlineCode(explanation)
-        });
+            const explanationIdx = lines.findIndex(l => l.trim().startsWith('解析：'));
+            let explanation = "";
+            if (explanationIdx !== -1) {
+                explanation = lines.slice(explanationIdx).join('\n').replace(/解析：/g, '**解析：**').replace(/答案：/g, '\n**修正答案：**').replace(/\[ref:.*?\]/g, '').trim();
+                explanation = explanation.replace(/^\*\*解析：\*\*/, '').trim();
+            }
+
+            const answerLine = lines[lastAnswerIdx];
+            const correctAnswer = answerLine.replace('答案：', '').replace(/\[ref:.*?\]/g, '').trim();
+
+            let contentEndIdx = firstAnswerIdx;
+            for (let i = 1; i < firstAnswerIdx; i++) {
+                if (lines[i].trim().match(/^[A-E]\.\s/)) {
+                    contentEndIdx = i;
+                    break;
+                }
+            }
+
+            const contentLines = lines.slice(1, contentEndIdx);
+            let codeBlock = contentLines.join('\n');
+            
+            if (codeBlock.trim() && !codeBlock.trim().startsWith('```')) {
+                codeBlock = `\`\`\`cpp\n${codeBlock}\n\`\`\``;
+            }
+
+            const optionsLines = lines.slice(contentEndIdx, firstAnswerIdx).join(' ');
+            const optionsParts = optionsLines.split(/(?:^|\s+)([A-E])\.\s+/).filter(p => p.trim());
+            const options: string[] = [];
+            
+            for (let i = 0; i < optionsParts.length; i += 2) {
+                if (i + 1 < optionsParts.length) {
+                    const label = optionsParts[i];
+                    const content = optionsParts[i+1];
+                    options.push(`${label}. ${content.trim()}`);
+                }
+            }
+            
+            if (options.length === 0 && optionsLines.trim()) {
+                options.push(optionsLines.trim());
+            }
+
+            quizQuestions.push({
+                id: parseFloat(idStr),
+                question: formatInlineCode(questionText) + `\n\n${codeBlock}`,
+                options: options.length > 0 ? options : ["See description"],
+                correctAnswer: correctAnswer,
+                explanation: formatInlineCode(explanation)
+            });
+          }
       }
     } else if (currentSectionType === 'exercise') {
-      // Parse Exercise
-      // Format:
-      // Title
-      // 输入：
-      // 输出：
-      // 参考代码：
-      // 解释：
-      
-      const lines = trimmed.split('\n');
-      const titleLine = lines[0].trim();
-      
-      // Clean title (remove number)
-      let cleanTitle = titleLine.replace(/^\d+\.\s*/, '');
-      // Remove [ref:...]
-      cleanTitle = cleanTitle.replace(/\[ref:.*?\]/g, '').trim();
-      
-      // *** FILTERING LOGIC ***
-      if (cleanTitle.includes('数组求和与平均值') || cleanTitle.includes('统计字符串中的数字个数')) {
-          continue; // Skip this exercise
+      const exerciseBlocks = contentToParse.split(/(?:^|\n)(?=\d+\.\s)/).filter(b => b.trim());
+
+      for (const block of exerciseBlocks) {
+          const lines = block.trim().split('\n');
+          const titleLine = lines[0].trim();
+          
+          if (!titleLine.match(/^\d+\./)) continue;
+          
+          let cleanTitle = titleLine.replace(/^\d+\.\s*/, '').replace(/\[ref:.*?\]/g, '').trim();
+          
+          if (cleanTitle.includes('数组求和与平均值') || cleanTitle.includes('统计字符串中的数字个数')) {
+             // continue; // Re-enable filter if needed, but logic below handles it
+          }
+
+          cleanTitle = formatInlineCode(cleanTitle);
+
+          let description = "";
+          let solutionCode = "";
+          
+          const inputIdx = lines.findIndex(l => l.trim().startsWith('输入：'));
+          const outputIdx = lines.findIndex(l => l.trim().startsWith('输出：'));
+          const codeIdx = lines.findIndex(l => l.trim().startsWith('参考代码：'));
+          const explainIdx = lines.findIndex(l => l.trim().startsWith('解释：'));
+          
+          // NEW LOGIC FOR DOCS 2
+          const descIdx = lines.findIndex(l => l.trim().startsWith('题目：'));
+          const parseIdx = lines.findIndex(l => l.trim().startsWith('解析：'));
+          const cppIdx = lines.findIndex(l => l.trim() === 'C++' || l.trim().startsWith('```cpp'));
+
+          if (descIdx !== -1) {
+              const endDesc = parseIdx !== -1 ? parseIdx : (cppIdx !== -1 ? cppIdx : lines.length);
+              description = lines.slice(descIdx, endDesc).join('\n').replace('题目：', '').trim();
+              
+              if (parseIdx !== -1) {
+                  const endParse = cppIdx !== -1 ? cppIdx : lines.length;
+                  const explanation = lines.slice(parseIdx, endParse).join('\n').replace('解析：', '').trim();
+                  description += `\n\n**解析**：\n${explanation}`;
+              }
+
+              if (cppIdx !== -1) {
+                  solutionCode = lines.slice(cppIdx + 1).join('\n').trim();
+                  solutionCode = solutionCode.replace(/^```cpp\s*/, '').replace(/```$/, '');
+              }
+          } else {
+              // Validity check for old format
+              if (codeIdx === -1 && (inputIdx === -1 || outputIdx === -1)) {
+                  // continue;
+              }
+              
+              if (inputIdx !== -1 && outputIdx !== -1) {
+                  const inputDesc = lines.slice(inputIdx + 1, outputIdx).join('\n').trim();
+                  const outputDesc = lines.slice(outputIdx + 1, codeIdx !== -1 ? codeIdx : undefined).join('\n').trim();
+                  description = `**输入**：\n${inputDesc}\n\n**输出**：\n${outputDesc}`;
+              } else {
+                  description = lines.slice(1, codeIdx !== -1 ? codeIdx : undefined).join('\n').trim();
+              }
+
+              description = description.replace(/\[ref:.*?\]/g, '').trim();
+
+              if (codeIdx !== -1) {
+                  const endCodeIdx = explainIdx !== -1 ? explainIdx : lines.length;
+                  solutionCode = lines.slice(codeIdx + 1, endCodeIdx).join('\n').trim();
+                  solutionCode = solutionCode.replace(/^```cpp\s*/, '').replace(/```$/, '').replace(/\[ref:.*?\]/g, '');
+              }
+
+              let explanation = "";
+              if (explainIdx !== -1) {
+                  explanation = lines.slice(explainIdx + 1).join('\n').replace(/\[ref:.*?\]/g, '').trim();
+              }
+              
+              if (cleanTitle.includes('随机生成不重复的数')) {
+                  cleanTitle = '生成指定区间的随机数';
+                  description = `生成 5 个 [1, 10] 之间的随机整数。要求设定时间种子。\n\n` + description;
+              }
+
+              if (explanation) description += `\n\n**解释**：\n${explanation}`;
+          }
+
+          exercises.push({
+              title: cleanTitle,
+              description: formatInlineCode(description),
+              initialCode: "",
+              solutionCode: solutionCode,
+              hints: []
+          });
       }
-
-      // Apply math formatting to title
-      cleanTitle = formatInlineCode(cleanTitle);
-
-      let description = "";
-      let initialCode = "";
-      let solutionCode = "";
-      
-      // Parse sections
-      const inputIdx = lines.findIndex(l => l.trim().startsWith('输入：'));
-      const outputIdx = lines.findIndex(l => l.trim().startsWith('输出：'));
-      const codeIdx = lines.findIndex(l => l.trim().startsWith('参考代码：'));
-      const explainIdx = lines.findIndex(l => l.trim().startsWith('解释：'));
-      
-      if (inputIdx !== -1 && outputIdx !== -1) {
-          const inputDesc = lines.slice(inputIdx + 1, outputIdx).join('\n').trim();
-          const outputDesc = lines.slice(outputIdx + 1, codeIdx !== -1 ? codeIdx : undefined).join('\n').trim();
-          description = `**输入**：\n${inputDesc}\n\n**输出**：\n${outputDesc}`;
-      } else {
-          // Fallback
-          description = lines.slice(1, codeIdx !== -1 ? codeIdx : undefined).join('\n').trim();
-      }
-
-      // Clean refs from description
-      description = description.replace(/\[ref:.*?\]/g, '').trim();
-
-      if (codeIdx !== -1) {
-          const endCodeIdx = explainIdx !== -1 ? explainIdx : lines.length;
-          solutionCode = lines.slice(codeIdx + 1, endCodeIdx).join('\n').trim();
-          // Remove ```cpp and ``` if present
-          solutionCode = solutionCode.replace(/^```cpp\s*/, '').replace(/```$/, '').replace(/\[ref:.*?\]/g, '');
-      }
-
-      let explanation = "";
-      if (explainIdx !== -1) {
-          explanation = lines.slice(explainIdx + 1).join('\n').replace(/\[ref:.*?\]/g, '').trim();
-      }
-      
-      // *** MODIFICATION LOGIC ***
-      if (cleanTitle.includes('随机生成不重复的数')) {
-          cleanTitle = '生成指定区间的随机数';
-          // Update description if needed, or keep it.
-          // The user mentioned "将25题改成生成与指定区间的随机数的题目"
-          // I will append a note or modify slightly to match the new title intent if known.
-          // For now, I'll update the description header to match the new title.
-          description = `生成 5 个 [1, 10] 之间的随机整数。要求设定时间种子。\n\n` + description;
-      }
-
-      exercises.push({
-          title: cleanTitle,
-          description: formatInlineCode(description + (explanation ? `\n\n**解释**：\n${explanation}` : "")),
-          initialCode: "",
-          solutionCode: solutionCode,
-          hints: []
-      });
     }
   }
 

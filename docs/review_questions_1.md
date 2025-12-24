@@ -1,4 +1,4 @@
-一、选择题（50 题，五选一，代码阅读）
+一、选择题
 1.1 递归终止条件
 #include <iostream>
 using namespace std;
@@ -45,7 +45,7 @@ void p(int n){
 }
 int main(){ p(3); }
 A. 123321  B. 321123  C. 123123  D. 332211  E. 321321
-答案：A
+答案：B
 解析： 先序输出 3 2 1，回溯再输出 1 2 3[ref:2,5]。
 
 ---
@@ -98,22 +98,6 @@ int main(){
 A. 9  B. 12  C. 16  D. 20  E. 24
 答案：B
 解析： inc(2)=3,inc(3)=4，乘积 12[ref:2,5]。
-
----
-1.7 嵌套调用与可读性
-#include <iostream>
-using namespace std;
-
-int a(){ cout<<"A"; return 1; }
-int b(){ cout<<"B"; return 2; }
-int add(int x,int y){ return x+y; }
-
-int main(){
-    cout << add(a(), b());
-}
-A. AB3  B. BA3  C. AB12  D. BA12  E. 输出顺序不确定
-答案：E
-解析： 函数实参求值顺序在标准中可能不保证固定（不同标准/实现差异），但结果数值为 3[ref:2,5]。
 
 ---
 1.8 静态局部变量（只初始化一次）

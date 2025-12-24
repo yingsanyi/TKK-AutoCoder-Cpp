@@ -1,5 +1,5 @@
 import React from 'react';
-import { Section } from '../../types';
+import { Section } from '../../types/index';
 import { SectionHeader } from '../../components/Lesson/SectionHeader';
 import { ListChecks, Play, Pause, RotateCcw } from 'lucide-react';
 import { DescriptionRenderer } from '../../components/Common/DescriptionRenderer';

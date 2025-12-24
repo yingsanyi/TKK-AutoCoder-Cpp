@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ExternalLink, Trophy, Search, ChevronLeft, ChevronRight, BookOpen, X } from 'lucide-react';
-import { OnlineProblem } from '../../data/modules/online_high_pass_data';
-import { solutions, SolutionData } from '../../data/modules/solution_data';
+import { OnlineProblem } from '../../data/modules/online_high_pass/data';
+import { solutions, SolutionData } from '../../data/modules/solution/data';
 import { MarkdownRenderer } from '../Common/MarkdownRenderer';
 
 interface OnlineHighPassListProps {

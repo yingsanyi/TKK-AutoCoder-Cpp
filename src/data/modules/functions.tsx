@@ -1,5 +1,5 @@
 import React from 'react';
-import { Section } from '../../types';
+import { Section } from '../../types/index';
 import { CodeBlock } from '../../components/Common/CodeBlock';
 import { MarkdownRenderer } from '../../components/Common/MarkdownRenderer';
 import { SectionHeader } from '../../components/Lesson/SectionHeader';

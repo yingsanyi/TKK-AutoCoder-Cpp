@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { X, ChevronLeft, ChevronRight, BookOpen, Maximize2, Minimize2 } from 'lucide-react';
-import { Section } from '../../types';
+import { Section } from '../../types/index';
 import { ExerciseArea } from '../Exercise/ExerciseArea';
 import { QuizArea } from '../Quiz/QuizArea';
 

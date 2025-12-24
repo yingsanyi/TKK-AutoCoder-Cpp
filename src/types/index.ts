@@ -28,6 +28,10 @@ export interface ExerciseData {
   description: string;
   initialCode: string;
   solutionCode: string;
+  extraSolutions?: {
+    label: string;
+    code: string;
+  }[];
   hints: string[];
   testCases?: TestCase[];
 }

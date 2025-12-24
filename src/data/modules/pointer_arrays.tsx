@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Section } from '../../types';
+import { Section } from '../../types/index';
 import { CodeBlock } from '../../components/Common/CodeBlock';
 import { QuizCard } from '../../components/Lesson/QuizCard';
 

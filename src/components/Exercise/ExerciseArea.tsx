@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ExerciseData } from '../../types';
+import { ExerciseData } from '../../types/index';
 import { Play, RotateCcw, CheckCircle2, AlertCircle, Terminal, Loader2, XCircle, Trash2 } from 'lucide-react';
 import { CodeBlock } from '../Common/CodeBlock';
 import { DescriptionRenderer } from '../Common/DescriptionRenderer';
@@ -20,7 +20,7 @@ interface ExecutionResult {
 export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
   const [userCode, setUserCode] = useState(data.initialCode);
   const [stdin, setStdin] = useState('');
-  const [activeTab, setActiveTab] = useState<'edit' | 'solution'>('edit');
+  const [activeTab, setActiveTab] = useState<string>('edit');
   
   // Execution states
   const [isRunning, setIsRunning] = useState(false);
@@ -270,6 +270,19 @@ export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
           >
             查看参考答案
           </button>
+          {data.extraSolutions?.map((sol, idx) => (
+            <button
+              key={idx}
+              onClick={() => setActiveTab(`extra-${idx}`)}
+              className={`px-4 py-2 text-sm font-medium rounded-md transition-all ${
+                activeTab === `extra-${idx}`
+                  ? 'bg-white dark:bg-slate-700 text-indigo-600 dark:text-indigo-300 shadow-sm'
+                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
+              }`}
+            >
+              {sol.label}
+            </button>
+          ))}
         </div>
         
         <div className="flex items-center gap-3">
@@ -515,7 +528,18 @@ export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
           </>
         ) : (
           <div className="min-h-[400px] bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 p-1">
-             <CodeBlock code={data.solutionCode} label="参考答案" />
+             <CodeBlock 
+               code={
+                 activeTab === 'solution' 
+                   ? data.solutionCode 
+                   : (data.extraSolutions?.[parseInt(activeTab.split('-')[1])]?.code || data.solutionCode)
+               } 
+               label={
+                 activeTab === 'solution' 
+                   ? "参考答案" 
+                   : (data.extraSolutions?.[parseInt(activeTab.split('-')[1])]?.label || "参考答案")
+               } 
+             />
              <div className="p-4 bg-green-50 dark:bg-green-900/20 border border-green-100 dark:border-green-900/30 rounded-lg mt-4 mx-2">
                 <div className="flex gap-2">
                     <CheckCircle2 className="text-green-600 dark:text-green-500 shrink-0" size={20} />
@@ -526,7 +550,11 @@ export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
                             <br/>
                             <button 
                                 onClick={() => {
-                                    setUserCode(data.solutionCode);
+                                    setUserCode(
+                                      activeTab === 'solution' 
+                                        ? data.solutionCode 
+                                        : (data.extraSolutions?.[parseInt(activeTab.split('-')[1])]?.code || data.solutionCode)
+                                    );
                                     setActiveTab('edit');
                                     setOutput(null);
                                 }}

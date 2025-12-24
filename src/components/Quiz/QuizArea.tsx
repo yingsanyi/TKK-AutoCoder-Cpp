@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { QuizData } from '../../types';
+import { QuizData } from '../../types/index';
 import { CheckCircle2, XCircle, AlertCircle, RefreshCw } from 'lucide-react';
 import { MarkdownRenderer } from '../Common/MarkdownRenderer';
 

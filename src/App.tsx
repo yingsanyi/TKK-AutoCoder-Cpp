@@ -7,6 +7,7 @@ import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { ThemeToggle } from './components/Theme/ThemeToggle';
 import { DrawingCanvas } from './components/Presentation/DrawingCanvas';
 import { PresentationView } from './components/Presentation/PresentationView';
+import { ScrollToTopBottom } from './components/Common/ScrollToTopBottom';
 
 // --- Components ---
 
@@ -91,6 +92,7 @@ function AppContent() {
   const [sidebarWidth, setSidebarWidth] = useState(288); // Default 18rem (288px)
   const [isResizing, setIsResizing] = useState(false);
   const sidebarRef = useRef<HTMLElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   
   // Presentation mode state
   const [isPresentationMode, setIsPresentationMode] = useState(false);
@@ -510,7 +512,10 @@ function AppContent() {
         </div>
 
         {/* Scrollable Content Area */}
-        <div className="flex-1 overflow-y-auto bg-white scroll-smooth">
+        <div 
+          ref={scrollContainerRef}
+          className="flex-1 overflow-y-auto bg-white scroll-smooth"
+        >
           {activeSectionId === 'home' ? (
              <LandingPage 
                onStart={() => {
@@ -619,6 +624,8 @@ function AppContent() {
              </div>
           )}
         </div>
+
+        <ScrollToTopBottom targetRef={scrollContainerRef} />
       </main>
     </div>
   );

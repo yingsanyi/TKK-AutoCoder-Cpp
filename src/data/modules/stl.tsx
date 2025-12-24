@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Section } from '../../types';
+import { Section } from '../../types/index';
 import { CodeBlock } from '../../components/Common/CodeBlock';
 import { Layers, RefreshCw, Box, ArrowRight, Factory, Cog, Truck } from 'lucide-react';
 

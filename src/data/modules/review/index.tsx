@@ -1,35 +1,9 @@
 import React from 'react';
-import { Section } from '../../types';
-import { SectionHeader } from '../../components/Lesson/SectionHeader';
+import { Section } from '../../../types/index';
+import { SectionHeader } from '../../../components/Lesson/SectionHeader';
 import { ListChecks } from 'lucide-react';
-import { DescriptionRenderer } from '../../components/Common/DescriptionRenderer';
-import { parseProgrammingMarkdown, parseReviewMarkdown } from '../../utils/reviewParser';
-import exercisesMd from '../markdowns/review_questions_1.md?raw';
-import exercisesMd2 from '../markdowns/review_questions_2.md?raw';
-import programmingMd from '../markdowns/programming_exercises.md?raw';
-
-const { quizData } = parseReviewMarkdown(exercisesMd);
-const { quizData: quizData2 } = parseReviewMarkdown(exercisesMd2);
-const programmingExercises = parseProgrammingMarkdown(programmingMd);
-
-// Merge quiz questions
-const allQuizQuestions = [
-  ...quizData.questions,
-  ...quizData2.questions.map(q => ({
-    ...q,
-    id: q.id + quizData.questions.length // Ensure unique IDs
-  }))
-];
-
-// Merge exercises
-const allExercises = programmingExercises;
-
-const mergedQuizData = {
-  ...quizData,
-  title: "选择题",
-  description: `本部分包含 ${allQuizQuestions.length} 道选择题，涵盖递归、函数、数组、指针、字符串等核心知识点。`,
-  questions: allQuizQuestions
-};
+import { DescriptionRenderer } from '../../../components/Common/DescriptionRenderer';
+import { reviewQuestionsQuizData, reviewProgrammingExercises } from './data';
 
 export const reviewClassSections: Section[] = [
   {
@@ -172,10 +146,10 @@ export const reviewClassSections: Section[] = [
     // subGroup: '选择题',
     title: '选择题',
     type: 'quiz',
-    quizData: mergedQuizData
+    quizData: reviewQuestionsQuizData
   },
   // 2. Programming Exercises Sections
-  ...allExercises.map((ex, index) => ({
+  ...reviewProgrammingExercises.map((ex, index) => ({
     id: `online-high-pass-review-ex-${index + 1}`,
     category: '复习课',
     group: '练习题',

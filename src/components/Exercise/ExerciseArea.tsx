@@ -34,7 +34,7 @@ export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
   // Reset state when exercise changes
   useEffect(() => {
     setUserCode(data.initialCode);
-    setStdin('');
+    setStdin(data.testCases?.[0]?.input ?? '');
     setActiveTab('edit');
     setOutput(null);
     setExecutionError(null);
@@ -406,7 +406,7 @@ export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
         )}
 
         {/* Hints */}
-        {activeTab === 'edit' && (
+        {activeTab === 'edit' && data.hints.length > 0 && (
           <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-100 dark:border-amber-900/30 rounded-xl p-4 mt-2">
             <div className="flex items-start gap-3">
               <AlertCircle className="text-amber-600 dark:text-amber-500 mt-0.5 shrink-0" size={20} />

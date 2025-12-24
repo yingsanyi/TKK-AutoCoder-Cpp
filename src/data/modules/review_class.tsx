@@ -3,12 +3,14 @@ import { Section } from '../../types';
 import { SectionHeader } from '../../components/Lesson/SectionHeader';
 import { ListChecks } from 'lucide-react';
 import { DescriptionRenderer } from '../../components/Common/DescriptionRenderer';
-import { parseReviewMarkdown } from '../../utils/reviewParser';
+import { parseProgrammingMarkdown, parseReviewMarkdown } from '../../utils/reviewParser';
 import exercisesMd from '../../../docs/review_questions_1.md?raw';
 import exercisesMd2 from '../../../docs/review_questions_2.md?raw';
+import programmingMd from '../../../docs/期末/编程题目.md?raw';
 
-const { quizData, exercises } = parseReviewMarkdown(exercisesMd);
-const { quizData: quizData2, exercises: exercises2 } = parseReviewMarkdown(exercisesMd2);
+const { quizData } = parseReviewMarkdown(exercisesMd);
+const { quizData: quizData2 } = parseReviewMarkdown(exercisesMd2);
+const programmingExercises = parseProgrammingMarkdown(programmingMd);
 
 // Merge quiz questions
 const allQuizQuestions = [
@@ -20,7 +22,7 @@ const allQuizQuestions = [
 ];
 
 // Merge exercises
-const allExercises = [...exercises, ...exercises2];
+const allExercises = programmingExercises;
 
 const mergedQuizData = {
   ...quizData,

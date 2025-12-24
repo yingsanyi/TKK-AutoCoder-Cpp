@@ -1,0 +1,1 @@
+- 不要再提示运行npm有关的指令了，我让你提示才提示：比如`npm install`、`npm run dev`、`npm run build`、`npm run test`等

@@ -38,6 +38,118 @@ const formatInlineCode = (text: string) => {
   return formattedParts.join('');
 };
 
+const findFencedCodeBlock = (text: string, fromIndex: number): { code: string; endIndex: number } | null => {
+  const openIdx = text.indexOf('```', fromIndex);
+  if (openIdx === -1) return null;
+  const nlAfterOpen = text.indexOf('\n', openIdx + 3);
+  if (nlAfterOpen === -1) return null;
+  const closeIdx = text.indexOf('```', nlAfterOpen + 1);
+  if (closeIdx === -1) return null;
+  const code = text.slice(nlAfterOpen + 1, closeIdx);
+  return { code, endIndex: closeIdx + 3 };
+};
+
+export const parseProgrammingMarkdown = (markdown: string): ExerciseData[] => {
+  const parts = markdown.split(/^##\s+/m);
+  if (parts.length <= 1) return [];
+
+  const exercises: ExerciseData[] = [];
+
+  for (let i = 1; i < parts.length; i++) {
+    const section = `## ${parts[i]}`.trim();
+    if (!section) continue;
+
+    const lines = section.split('\n');
+    const headerLine = (lines[0] ?? '').trim();
+    const headerMatch = headerLine.match(/^##\s*(\d+)\.\s*(.+?)\s*$/);
+    if (!headerMatch) continue;
+    const questionNo = parseInt(headerMatch[1], 10);
+    if (questionNo === 6) continue;
+    const title = formatInlineCode(headerMatch[2].trim());
+
+    const body = lines.slice(1).join('\n');
+
+    let solutionCode = '';
+    const answerLabelIdx = body.search(/\*\*答案：\*\*/);
+    if (answerLabelIdx !== -1) {
+      const block = findFencedCodeBlock(body, answerLabelIdx);
+      if (block) {
+        solutionCode = block.code.trim();
+      }
+    }
+
+    const bodyWithoutAnswer = answerLabelIdx !== -1 ? body.slice(0, answerLabelIdx).trim() : body.trim();
+
+    const analysisLabel = '**解析：**';
+    const analysisLabelIdx = bodyWithoutAnswer.indexOf(analysisLabel);
+    const analysisText =
+      analysisLabelIdx !== -1 ? bodyWithoutAnswer.slice(analysisLabelIdx + analysisLabel.length).trim() : '';
+
+    const hints: string[] = [];
+    if (analysisText) {
+      const rawLines = analysisText.split('\n');
+      for (const line of rawLines) {
+        const trimmed = line.trim();
+        if (!trimmed) continue;
+        const numbered = trimmed.match(/^\d+\.\s*(.+)$/);
+        if (numbered) {
+          hints.push(formatInlineCode(numbered[1].trim()));
+          continue;
+        }
+        const dashed = trimmed.match(/^-\s*(.+)$/);
+        if (dashed) {
+          hints.push(formatInlineCode(dashed[1].trim()));
+        }
+      }
+    }
+
+    const descriptionSource = analysisLabelIdx !== -1 ? bodyWithoutAnswer.slice(0, analysisLabelIdx).trim() : bodyWithoutAnswer.trim();
+
+    const testCases: TestCase[] = [];
+    let cursor = 0;
+    let caseNo = 1;
+    while (cursor < bodyWithoutAnswer.length) {
+      const inputLabelMatch = bodyWithoutAnswer.slice(cursor).match(/\*\*输入样例[^*]*\*\*[:：]?\s*/);
+      if (!inputLabelMatch || inputLabelMatch.index === undefined) break;
+      const inputLabelAbs = cursor + inputLabelMatch.index;
+      const inputBlock = findFencedCodeBlock(bodyWithoutAnswer, inputLabelAbs + inputLabelMatch[0].length);
+      if (!inputBlock) break;
+
+      cursor = inputBlock.endIndex;
+
+      let output: string | undefined = undefined;
+      const outputLabelMatch = bodyWithoutAnswer.slice(cursor).match(/\*\*输出样例[^*]*\*\*[:：]?\s*/);
+      if (outputLabelMatch && outputLabelMatch.index !== undefined) {
+        const outputLabelAbs = cursor + outputLabelMatch.index;
+        const outputBlock = findFencedCodeBlock(bodyWithoutAnswer, outputLabelAbs + outputLabelMatch[0].length);
+        if (outputBlock) {
+          output = outputBlock.code.trim();
+          cursor = outputBlock.endIndex;
+        }
+      }
+
+      testCases.push({
+        input: inputBlock.code.trim(),
+        output,
+        description: `样例 ${caseNo++}`
+      });
+    }
+
+    const initialCode = `#include <iostream>\nusing namespace std;\n\nint main() {\n    \n    return 0;\n}\n`;
+
+    exercises.push({
+      title,
+      description: formatInlineCode(descriptionSource.replace(/\[ref:.*?\]/g, '').trim()),
+      initialCode,
+      solutionCode,
+      hints,
+      testCases: testCases.length > 0 ? testCases : undefined
+    });
+  }
+
+  return exercises;
+};
+
 export const parseReviewMarkdown = (markdown: string): { quizData: QuizData, exercises: ExerciseData[] } => {
   const lines = markdown.split('\n');
   const sections = markdown.split(/^---$/m);
@@ -124,6 +236,11 @@ export const parseReviewMarkdown = (markdown: string): { quizData: QuizData, exe
             }
 
             const contentLines = lines.slice(1, contentEndIdx);
+            // Filter out standalone "C++" or "c++" line at the beginning
+            if (contentLines.length > 0 && contentLines[0].trim().toLowerCase() === 'c++') {
+                contentLines.shift();
+            }
+            
             let codeBlock = contentLines.join('\n');
             
             if (codeBlock.trim() && !codeBlock.trim().startsWith('```')) {
@@ -202,7 +319,7 @@ export const parseReviewMarkdown = (markdown: string): { quizData: QuizData, exe
           } else {
               // Validity check for old format
               if (codeIdx === -1 && (inputIdx === -1 || outputIdx === -1)) {
-                  // continue;
+                  continue;
               }
               
               if (inputIdx !== -1 && outputIdx !== -1) {

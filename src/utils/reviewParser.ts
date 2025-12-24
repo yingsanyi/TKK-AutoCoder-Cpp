@@ -92,6 +92,10 @@ export const parseReviewMarkdown = (markdown: string): { quizData: QuizData, exe
             if (idMatch) {
                 idStr = idMatch[1];
                 questionText = idMatch[3];
+            } else {
+                // If regex didn't match, maybe it starts with number but format is slightly different
+                // or just strip leading number and dot/space
+                questionText = titleLine.replace(/^\d+(\.\d+)?\s*\.?\s*/, '');
             }
 
             const allAnswerIndices = lines.map((l, i) => l.trim().startsWith('答案：') ? i : -1).filter(i => i !== -1);

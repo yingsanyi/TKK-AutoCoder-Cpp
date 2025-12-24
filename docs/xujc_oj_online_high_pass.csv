@@ -1,0 +1,2174 @@
+标题,题目名称,问题描述,输入描述,输出描述,提示说明,样例输入,样例输出,通过率,Submit,题目URL,题目列表URL,补题传送门URL,补题题目URL
+25-26(1)第4次线上赛,1：因数的数量,"求一堆整数的因数数量。
+例如有3个整数10、7、14，这些数的因数有1、2、5、7、10、14共六个，所以这些整数的因数数量为6。","这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=100）
+每组案例先是一个正整数m，然后是m个正整数。（m<=100，每个正整数均不大于1000）","针对每组案例，输出这m个正整数的因数数量。
+每组案例输出完都要换行。",,"2
+3
+10 7 14
+2
+100 27","6
+12",63.45%,290,https://www.xujcoj.com/home/contest/2554/problem/1,https://www.xujcoj.com/home/contest/2554/problem,https://www.xujcoj.com/home/problem?keyword3=2554,https://www.xujcoj.com/home/problem/detail/5669
+25-26(1)第4次线上赛,2：排序-3,有m个同学的考试成绩，现在希望按照与平均分的差距进行排序，与平均分越接近的分数排前面，如果两个分数与平均分的差距相同，则分数比较高的排前面。,"这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=100）
+每组案例中，先是一个正整数m，表示同学的数量；（m<=1000）
+然后是m个非负整数，表示这m个同学各自的考试成绩。（均不大于100）","针对每组案例，按排序后的顺序依次输出每位同学的成绩，两两分数之间有一个空格。
+每组案例输出完要换行。","平均分84。84离平均分最近，所以在最前面；86和82离平均分都是2分，但86比82大，所以86在82前面；88和80离平均分都是4分，但88比80大，所以88在80前面
+注意算平均分的时候要考虑有可能平均分不是整数。","1
+5
+80 84 88 86 82",84 86 82 88 80,53.92%,217,https://www.xujcoj.com/home/contest/2554/problem/2,https://www.xujcoj.com/home/contest/2554/problem,https://www.xujcoj.com/home/problem?keyword3=2554,https://www.xujcoj.com/home/problem/detail/5693
+25-26(1)第4次线上赛,3：相同的生日,有m个人报出了各自的生日日期（公历），问其中是否至少有3人的生日在同一天？（指的是月份和日期相同，不需要年份相同）,"这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=100）
+每组案例先是一个正整数m，表示人数;（m<=1000）
+然后是m行数据，每行数据由三个整数a、b、c构成，表示一个人的生日是a年b月c日。（保证是合法的日期）","针对每组案例，如果存在至少3人的生日在同一天，那么输出Yes，否则输出No。
+每组案例输出完都要换行。",,"2
+4
+2000 4 6
+2001 4 6
+2017 1 1
+1990 4 6
+4
+2000 1 1
+2000 1 2
+2000 1 3
+2000 1 4","Yes
+No",64.71%,221,https://www.xujcoj.com/home/contest/2554/problem/3,https://www.xujcoj.com/home/contest/2554/problem,https://www.xujcoj.com/home/problem?keyword3=2554,https://www.xujcoj.com/home/problem/detail/5694
+25-26(1)第4次线上赛,4：数字变换-3,"把一个正整数a按如下规律输出。
+例如a=1234，要求输出1 12 123 1234。","这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=100）
+每组案例由一个正整数a组成。（a<=1e9）","针对每组案例，按【问题描述】中呈现的规律输出结果，两两数字之间有一个空格。
+每组案例输出完要换行。",,"2
+1234
+10086","1 12 123 1234
+1 10 100 1008 10086",70.45%,264,https://www.xujcoj.com/home/contest/2554/problem/4,https://www.xujcoj.com/home/contest/2554/problem,https://www.xujcoj.com/home/problem?keyword3=2554,https://www.xujcoj.com/home/problem/detail/5695
+25-26(1)第4次线上赛,5：盆地,"用一个二维数组表示地图，每个元素的值表示那块地面的海拔高度。如果一块地面的海拔高度低于相邻的8个方向（上、下、左、右、左上、左下、右上、右下）所有地面，那么称该点是盆地点。特别规定，地图边缘一圈都不是盆地点。
+给定一张地图，求地图上盆地点的数量。","这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=100）
+每组案例先是两个正整数a和b，表示地图是一个a行b列的二维数组。（a<=100，b<=100）
+然后是a行b列整数数据，表示地图上各块地面的海拔高度。（绝对值不大于10000）","针对每组案例，输出一个正整数，表示地图上盆地点的数量。
+每组案例输出完要换行。",-2所在的点比相邻的8个点都小，所以是盆地点,"1
+3 4
+10 9 8 7
+-5 1 -2 4
+6 6 6 6",1,72.41%,87,https://www.xujcoj.com/home/contest/2554/problem/5,https://www.xujcoj.com/home/contest/2554/problem,https://www.xujcoj.com/home/problem?keyword3=2554,https://www.xujcoj.com/home/problem/detail/5696
+25-26(1)第4次线上赛,6：数列-18,有一个数列，第一项是a，后面每一项是前一项*b+c的结果除以10007的余数，求数列数值最接近10007的一项是多少？,"这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=100）
+每组案例由三个正整数a、b、c组成。（均不大于10000）","针对每组案例，输出数列中的一项，该项是所有项中最接近10007的。
+每组案例输出完都要换行。",,"1
+2 1 2",10006,59.70%,134,https://www.xujcoj.com/home/contest/2554/problem/6,https://www.xujcoj.com/home/contest/2554/problem,https://www.xujcoj.com/home/problem?keyword3=2554,https://www.xujcoj.com/home/problem/detail/5697
+25-26(1)第3次线上赛,2：质数-7,输入若干个整数，反向输出其中的质数。,"这是一道多组案例的题目。一个正整数n，表示案例的数量。(n<=100)
+每组案例先是一个正整数m，表示有m个整数，（m<=1000）
+然后是m个整数。（绝对值均不大于1e7）","针对每组案例，输出这m个整数中的质数，要求后输入的数先输出。输出的数字两两之间有一个空格。
+每组案例输出完都要换行。",,"3
+4
+2 5 4 3
+2
+10 8
+3
+1 2 3","3 5 2
+3 2",51.32%,454,https://www.xujcoj.com/home/contest/2516/problem/2,https://www.xujcoj.com/home/contest/2516/problem,https://www.xujcoj.com/home/problem?keyword3=2516,https://www.xujcoj.com/home/problem/detail/5637
+25-26(1)第3次线上赛,4：数字阵列,输出一个由某个正整数开始的连续整数组成的数字阵列。,"这是一道多组案例的题目。一个正整数n，表示案例的数量（n<=100）
+每组案例由两个正整数a和x组成。（a<=1e8，x<=100）","针对每组案例，输出一个由数字构成的x行x列的数字阵列，用到的数字为从a开始起的连续正整数。
+每组案例输出结束后需要有一个额外的换行。","因为每组案例输出结束后需要有一个额外的换行，所以样例中可以明显看出各组样例之间隔了一行空行。
+第二组样例最后一行最后一列那个1是下一个数字105的第一位数。","3
+1 2
+100 4
+1000 2","12
+34
+1001
+0110
+2103
+1041
+10
+00",45.31%,245,https://www.xujcoj.com/home/contest/2516/problem/4,https://www.xujcoj.com/home/contest/2516/problem,https://www.xujcoj.com/home/problem?keyword3=2516,https://www.xujcoj.com/home/problem/detail/5640
+25-26(1)第3次线上赛,5：最大质因数,"12的因数有1、2、3、4、6、12，其中最大的质数是3，所以12的最大质因数是3。
+计算一个正整数的最大质因数。","这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=100）
+每组案例由一个正整数a组成。（2<=a<=1e7）","针对每组案例，输出一个整数，表示a的最大质因数。
+每组案例输出完都要换行。",,"2
+
+12
+
+19
+
+
+
+","3
+
+19
+
+
+
+
+",58.97%,351,https://www.xujcoj.com/home/contest/2516/problem/5,https://www.xujcoj.com/home/contest/2516/problem,https://www.xujcoj.com/home/problem?keyword3=2516,https://www.xujcoj.com/home/problem/detail/5642
+25-26(1)第2次线上赛,2：相同的余数,有四个正整数a、b、c、d，问这四个整数是否可以两两一组，使得第一组中两数相除的余数恰好等于第二组中两数相除的余数。,"这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=1000）
+每组案例由四个正整数a、b、c、d组成。（均不大于10000）","针对每组案例，如果可以找到【问题描述】中的分组，那么输出Yes，否则输出No。
+每组案例输出完都要换行。",第一组案例中，1除以2的余数是1，4除以3的余数是1，故可以1、2一组，3、4一组。,"2
+1 2 3 4
+2 3 10 10","Yes
+No",42.29%,525,https://www.xujcoj.com/home/contest/2453/problem/2,https://www.xujcoj.com/home/contest/2453/problem,https://www.xujcoj.com/home/problem?keyword3=2453,https://www.xujcoj.com/home/problem/detail/5601
+25-26(1)第2次线上赛,3：快乐位运算-5,"已知两个无符号整数 a 和 b，你需要找到一个无符号整数 c 使得 (a ^ c) & (~b ^ c) 的值尽可能大，由于这样的 c 可能会有很多，所以你只要输出满足要求的最小的 c 就可以。
+注意：b前面那个符号~是按位取反运算符，不是减号。","这是一道多组案例的题目。一个正整数n，表示案例的数量。（n <= 10000）
+每组案例由两个无符号长整数a和b组成。（a,b <= 1e16）","针对每组案例，输出一个无符号长整数c，c的含义见问题描述。
+每组案例输出完都要换行。",,"2
+10 8
+5 7","0
+2",47.67%,193,https://www.xujcoj.com/home/contest/2453/problem/3,https://www.xujcoj.com/home/contest/2453/problem,https://www.xujcoj.com/home/problem?keyword3=2453,https://www.xujcoj.com/home/problem/detail/5598
+25-26(1)第2次线上赛,4：下一站的距离,"某市1路车的路线是一条无限长度的直线，从起点站出发，中间安排了多个站点，其中第1站离起点站a千米，第2站离起点站b千米，从第3站开始，每站距离起点站的距离是前两站离起点站距离之和。
+例如，当a=1，b=2时，前5站离起点的距离分别是1、2、3、5、8千米。
+现在已知一辆1路车距离起点x千米，问该公交车离下一站还有多少千米？（如果公交车当前恰好位于某个站点，那么下一站指的是接下来到达的站点，而非当前所在站点）","这是一道多组案例的题目。一个正整数n，表示案例的数量。（n <= 100）
+每组案例由三个正整数a、b、x组成。（a < b <= 1e5, x <= 1e9）","针对每组案例，输出一个整数，表示公交车离下一站还有多少千米。
+每组案例输出完都要换行。",,"2
+1 2 5
+1 2 6","3
+2",44.44%,405,https://www.xujcoj.com/home/contest/2453/problem/4,https://www.xujcoj.com/home/contest/2453/problem,https://www.xujcoj.com/home/problem?keyword3=2453,https://www.xujcoj.com/home/problem/detail/5599
+25-26(1)第2次线上赛,5：求和,计算1+2+...+m的和,"这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=100）
+每组案例由一个正整数m组成。（m<=1000）","针对每组案例，输出一个整数，表示1+2+...+m的和。
+每组案例输出完都要换行。",,"2
+3
+5","6
+15",80.85%,376,https://www.xujcoj.com/home/contest/2453/problem/5,https://www.xujcoj.com/home/contest/2453/problem,https://www.xujcoj.com/home/problem?keyword3=2453,https://www.xujcoj.com/home/problem/detail/5602
+25-26(1)第2次线上赛,6：质数个质数,"判断闭区间[a,b]之内质数的数量是质数个吗？","这是一道多组案例的题目。一个正整数n，表示案例的数量。（n <= 100）
+每组案例由两个正整数a和b组成。（a <= b <= 1e5）","针对每组案例，如果[a,b]之内有质数个质数，输出Yes，否则输出No。
+每组案例输出完都要换行。","[2,10]之间有4个质数，4不是质数。
+[3,10]之间有3个质数，3是质数。","2
+2 10
+3 10","No
+Yes",40.56%,466,https://www.xujcoj.com/home/contest/2453/problem/6,https://www.xujcoj.com/home/contest/2453/problem,https://www.xujcoj.com/home/problem?keyword3=2453,https://www.xujcoj.com/home/problem/detail/5600
+25-26(1)第1次线上赛,1：Hello World,在屏幕上输出//Hello World\\,无,//Hello World\\,,,//Hello World\\,44.29%,998,https://www.xujcoj.com/home/contest/2389/problem/1,https://www.xujcoj.com/home/contest/2389/problem,https://www.xujcoj.com/home/problem?keyword3=2389,https://www.xujcoj.com/home/problem/detail/5550
+25-26(1)第1次线上赛,6：风水,"古代西方占星家认为，水、火、土、风四种元素构成生物体从而繁衍万物，十二星座按风、土、水、火分为四类。风象星座代表头脑（天秤座、水瓶座、双子座）；火象星座代表能量（白羊座、狮子座、射手座）；水象星座代表情感（巨蟹座、天蝎座、双鱼座）；土象星座代表身体（摩羯座、金牛座、处女座）。
+现在已知某人的生日，问属于按风、土、水、火哪一类？",三个整数，表示生日的年、月、日,"根据所属的风、土、水、火种类，输出对应的英文单词。不用换行。
+风-Wind
+土-Earth
+水-Water
+火-Fire","水瓶座‌：1月20日~2月18日
+
+‌双鱼座‌：2月19日~3月20日
+
+‌白羊座‌：3月21日~4月19日
+
+‌金牛座‌：4月20日~5月20日
+
+‌双子座‌：5月21日~6月21日
+
+‌巨蟹座‌：6月22日~7月22日
+
+‌狮子座‌：7月23日~8月22日
+
+‌处女座‌：8月23日~9月22日
+
+‌天秤座‌：9月23日~10月23日
+
+‌天蝎座‌：10月24日~11月22日
+
+‌射手座‌：11月23日~12月21日
+
+‌摩羯座‌：12月22日~1月19日",2000 1 1,Earth,68.21%,302,https://www.xujcoj.com/home/contest/2389/problem/6,https://www.xujcoj.com/home/contest/2389/problem,https://www.xujcoj.com/home/problem?keyword3=2389,https://www.xujcoj.com/home/problem/detail/5548
+24-25(2)第6次线上赛,2：最大的等差数列,"给出$$4$$个数字$$a,b,c,d$$请你找到三个数字$$x,y,z$$，满足：
+- $$0 \le x \le a$$
+- $$0 \le y \le b$$
+- $$0 \le z \le c$$
+- $$x + d = y$$
+- $$y + d = z$$
+请你输出$$x+y+z$$的最大值，如果没有满足条件的数字，那么输出$$0$$。","第一行是一个正整数 T 代表测试案例的数量。(1 <= T <= 10000)
+每组测试案例包含四个整数 a、b、c、d。(0 <= a、b、c、d <= 1e9)",针对每组案例，输出$$x+y+z$$的最大值，没有则输出$$0$$。,"在第一组案例中，$$x=1,y=2,z=3$$。
+在第二组案例中，$$x=0,y=2,z=4$$。","3
+1 2 3 1
+3 3 4 2
+5 5 5 3","6
+6
+0",40.38%,260,https://www.xujcoj.com/home/contest/2304/problem/2,https://www.xujcoj.com/home/contest/2304/problem,https://www.xujcoj.com/home/problem?keyword3=2304,https://www.xujcoj.com/home/problem/detail/2590
+24-25(2)第6次线上赛,6： 二叉搜索树的信息,"二叉搜索树或者是一棵空树，或者是具有下列性质的二叉树：
+
+- 若它的左子树不空，则左子树上所有结点的值均小于它的根结点的值
+
+- 若它的右子树不空，则右子树上所有结点的值均大于它的根结点的值
+
+- 它的左、右子树也分别为二叉搜索树
+
+现在向一棵初始为空的二叉搜索树依次插入互不相同的元素$$a_1, a_2, ..., a_n$$。
+
+请你按照节点值从小到大的顺序输出每个节点的信息。","第一行一个正整数$$n$$表示元素的数量。（$$1 \le n \le 1000$$）
+接下来一行$$n$$个正整数$$a_1, a_2, ..., a_n$$表示待插入的元素。（$$1 \le a_i \le 10^9$$）","总共输出$$n$$行，按照节点值从小到大的顺序输出以下信息：
+
+该节点的值 其父节点的值 其兄弟节点的值 其左孩子的值 其右孩子的值 该节点的深度
+若无对应节点，则以$$0$$代替。",,"5
+
+200 400 100 500 300","100 200 400 0 0 2
+
+200 0 0 100 400 1
+
+300 400 500 0 0 3
+
+400 200 100 300 500 2
+
+500 400 300 0 0 3",41.67%,12,https://www.xujcoj.com/home/contest/2304/problem/6,https://www.xujcoj.com/home/contest/2304/problem,https://www.xujcoj.com/home/problem?keyword3=2304,https://www.xujcoj.com/home/problem/detail/2152
+24-25(2)第5次线上赛,3：主元素,"判断一个数组里是否存在主元素。
+
+主元素定义：给定一个包含m个元素的数组a，x称为数组a的主元素，如果这个数组里等于x的元素数目
+大于
+m/2个。
+
+例如在数组a={2,3,2,2,5,3,2,4,2}，x=2就是主元素。
+
+
+
+","这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=100）
+每组案例首先是一个正整数m，表示数组元素的数目；（m<=1e6，且n·m<=1e6）
+然后是m个整数，表示数组中每个元素的值。（取值范围在[-1e9, 1e9]）","针对每组案例，如果存在主元素，那么输出主元素的值，以及在数组中等于主元素的元素数目；如果不存在主元素，则输出None。
+每组案例输出完都要换行。",,"2
+9
+2 3 2 2 5 3 2 4 2
+10
+-2 -2 -2 -2 -1 -1 -1 0 0 1","2 5
+None",45.81%,179,https://www.xujcoj.com/home/contest/2290/problem/3,https://www.xujcoj.com/home/contest/2290/problem,https://www.xujcoj.com/home/problem?keyword3=2290,https://www.xujcoj.com/home/problem/detail/5429
+24-25(2)第5次线上赛,5：方程组,"已知如下关于未知数(x
+1
+,x
+2
+,x
+3
+,x
+4
+)的四元一次方程组的系数，问该方程组有多少个实数解。","这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=1000）
+每组案例由四行数据组成，（数值均在[-10000,10000]区间中）
+第一行是第一个方程的系数a
+1
+,b
+1
+,c
+1
+,d
+1
+；
+第二行是第二个方程的系数a
+2
+,b
+2
+,c
+2
+,d
+2
+；
+第三行是第三个方程的系数a
+3
+,b
+3
+,c
+3
+,d
+3
+；
+第四行是第四个方程的系数a
+4
+,b
+4
+,c
+4
+,d
+4。","针对每组案例，输出方程组实数解的数量。如果无解则输出0，如果无穷多解则输出INF。
+每组案例输出完都要换行。",,"2
+1 2 3 4
+2 3 4 5
+3 4 5 6
+4 5 6 7
+1 0 0 0
+0 2 0 0
+0 0 3 0
+0 0 0 4","INF
+1",58.33%,12,https://www.xujcoj.com/home/contest/2290/problem/5,https://www.xujcoj.com/home/contest/2290/problem,https://www.xujcoj.com/home/problem?keyword3=2290,https://www.xujcoj.com/home/problem/detail/5431
+24-25(2)第4次线上赛,1：一道水题,"蔡老师突然不想出题了，于是给出了一道水题。
+输出1314
+行520",无,根据题目要求进行输出。,,,,41.67%,468,https://www.xujcoj.com/home/contest/2264/problem/1,https://www.xujcoj.com/home/contest/2264/problem,https://www.xujcoj.com/home/problem?keyword3=2264,https://www.xujcoj.com/home/problem/detail/5402
+24-25(2)第4次线上赛,5：朋友圈,"高中毕业时，班上m个同学每人都准备了一份礼物，每个人都把自己的礼物送给班上的某个同学。规定一个同学只能收到一份礼物，也就是说不允许多个同学把礼物送给同一个人。
+定义：如果a
+1
+的礼物送给了a
+2
+，a
+2
+的礼物送给了a
+3
+，...，a
+i
+的礼物送给了a
+i+1
+，...，a
+n
+的礼物送给了a
+1
+，则称a
+1
+、a
+2
+、a
+3
+、...、a
+n
+这n个同学构成了一个朋友圈。
+特殊地，如果某人把礼物送给了自己，则他一个人构成了一个朋友圈。
+问班上构成了多少个朋友圈？","只有一组案例。
+一个正整数m，表示班级同学的数量。（m<=2e6）
+然后是m行数据，每行数据由两个正整数a和b组成，表示a号同学把礼物送给了b号同学。（1<=a,b<=m，保证所有的a都互不相等，所有的b都互不相等）","输出一个整数，表示班级里构成了多少个朋友圈。
+不要换行。","1、2、3号构成一个朋友圈
+4、5号构成一个朋友圈","5
+3 1
+4 5
+1 2
+5 4
+2 3",2,41.51%,53,https://www.xujcoj.com/home/contest/2264/problem/5,https://www.xujcoj.com/home/contest/2264/problem,https://www.xujcoj.com/home/problem?keyword3=2264,https://www.xujcoj.com/home/problem/detail/5405
+24-25(2)第3次线上赛,1：特殊的整数-2,"一个由0到9构成的正整数，每个数字最多使用三次，0不能作为最高位，位于高位的数字必须不小于低位的数字。例如98832是一个符合要求的数字，因为任意高位数字都不小于低位数字；307不符合要求，因为高位数字3不大于低位数字7，高位数字0也不大于低位数字7；77771不符合条件，因为数字7使用超过三次。
+
+问满足条件的数字一共有多少个？
+
+",无,"一个整数，表示满足条件的数字个数。
+
+不要换行。
+
+",,,《自己算》,40.16%,122,https://www.xujcoj.com/home/contest/2244/problem/1,https://www.xujcoj.com/home/contest/2244/problem,https://www.xujcoj.com/home/problem?keyword3=2244,https://www.xujcoj.com/home/problem/detail/5371
+24-25(2)第3次线上赛,2：可能的分数,"一张考卷里有a道题，每道题有各自对应的分值。
+Bob做对了其中至少b道题，问Bob可能得到的分数。","只有一组案例。
+两个整数a和b，表示题目的总数和至少作对的题数；（0<=b<=a<=10，且保证a大于0）
+然后是a个正整数，表示每道题的分值。（均不大于100）",按从小到大的顺序依次可能得到的分数，每个数输出完都要换行。,,"3 2
+10 30 60","40
+70
+90
+100",50.85%,59,https://www.xujcoj.com/home/contest/2244/problem/2,https://www.xujcoj.com/home/contest/2244/problem,https://www.xujcoj.com/home/problem?keyword3=2244,https://www.xujcoj.com/home/problem/detail/5362
+24-25(2)第3次线上赛,4：位运算24~25(2)-1,"已知非负长整数a和b，求一个非负长整数c，使得(~a|c)^(b|c)的值尽可能大，如果有多个满足条件的c，选取其中的最大值作为c的值。
+注：~是按位取反运算，|是按位或运算，^是按位异或运算，上述所有运算的值都按无符号长整数记。","这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=10000）
+每组案例由两个非负长整数a和b组成。（a<=1e14，b<=1e14）","针对每组案例，输出一个非负长整数c，是满足(~a|c)^(b|c)的值尽可能大的最大非负长整数。
+每组案例输出完都要换行。",,"2
+5 8
+
+10 10
+
+
+
+","13
+0",77.78%,18,https://www.xujcoj.com/home/contest/2244/problem/4,https://www.xujcoj.com/home/contest/2244/problem,https://www.xujcoj.com/home/problem?keyword3=2244,https://www.xujcoj.com/home/problem/detail/5382
+24-25(2)第3次线上赛,5：4*100米接力,在一场4*100米接力赛跑比赛中，有m支队伍，每支队伍有4名选手分别负责100米跑，已知每支队伍每名选手跑100米需要的时间，假设交接棒不需要花费额外的时间，4*100米跑需要的总时间，由队伍里4名选手100米的时间相加得到。按队伍的名次从第1名到最后1名，依次输出每支队伍每个人的时间。,"只有一组案例。
+一个正整数m，表示队伍的数量。（m<=100）
+然后是m行数据，每行数据由4个正整数组成，表示一支队伍里4名选手跑100米需要的时间。（均不大于1000）
+保证不会有两支队伍的总时间相同。","按名次从第1名到最后1名，依次输出每支队伍4名选手跑100米的时间。每支队伍占一行，每行有4个选手的时间。
+输出时不要改变一支队伍里4名选手的成绩顺序。",,"3
+40 50 40 40
+30 60 45 40
+50 30 30 40","50 30 30 40
+40 50 40 40
+30 60 45 40",50.00%,96,https://www.xujcoj.com/home/contest/2244/problem/5,https://www.xujcoj.com/home/contest/2244/problem,https://www.xujcoj.com/home/problem?keyword3=2244,
+24-25(2)第2次线上赛,3：数字构建,"用e、n、o这三个字母可以构成数字one，用e、n、s、v这四个字母可以构成数字seven。现在提供了若干个小写英文字母，每个字母可以重复使用，问能构建出多少个[1,19]之间的英文整数单词？","这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=1000）
+每组案例由一个字符串s组成，s由小写字母组成，表示可以使用的英文字母。","针对每组案例，输出一个整数，表示可以组成的[1,19]之间的英文整数单词的个数。
+每组案例输出完都要换行。",第二组案例可以构建出one和seven,"2
+abc
+ensov","0
+2",45.87%,109,https://www.xujcoj.com/home/contest/2228/problem/3,https://www.xujcoj.com/home/contest/2228/problem,https://www.xujcoj.com/home/problem?keyword3=2228,https://www.xujcoj.com/home/problem/detail/5323
+24-25(2)第2次线上赛,4：细胞繁衍,"在一个a行b列的空间中，每个格子称为一个方块，里面住着一个活细胞或者死细胞。每个方块有8个方向（上下左右、左上、左下、右上、右下）的邻居，如果是边缘方块，邻居数量可能达不到8个。
+（1）存活法则：一个具有2个或者3个活邻居的活细胞存活
+（2）诞生法则：刚好具有3个活邻居的死细胞成为活细胞
+（3）死亡法则：除了（1）（2）情况外，一个细胞死去或者保持死亡。仅有0和1个活邻居的情况下，死于孤独；多余3个活邻居的情况下，死于拥挤。
+已知时间t=0时空间中各个方块细胞的死活情况，求t=m时的情况。","只有一组案例。
+两个正整数a和b，表示空间有a行b列。（a<=100，b<=100）
+然后是a行由0和1组成的长度为b的字符串，表示空间中每一格的细胞在t=0时是死是活，0表示死细胞，1表示活细胞。
+最后是一个正整数m，表示需要求t=m时的情况。（m<=200）",输出a行b列由0和1表示的数据，表示t=m时每一格子的细胞是死是活，0表示死细胞，1表示活细胞。,,"5 6
+000000
+000100
+010100
+001100
+000000
+4","000000
+000000
+000010
+001010
+000110",62.50%,8,https://www.xujcoj.com/home/contest/2228/problem/4,https://www.xujcoj.com/home/contest/2228/problem,https://www.xujcoj.com/home/problem?keyword3=2228,https://www.xujcoj.com/home/problem/detail/5324
+24-25(2)第1次线上赛,4：完美假期,"在某未知星球上有一个牛马程序员Bob，每天要么是工作日，要么是假期。这个星球的一年与地球不同，不是365或366天。
+Bob有年假，在该星球的一年时间内，可以把若干个工作日变为假期。
+Bob希望拥有一个尽可能长的连续假期。","这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=10）
+每组案例中先是一个正整数a，表示年假的天数；（a<=1e6）
+然后是一个由0和1构成的字符串，0表示假期，1表示工作日。（字符串长度<=1e6）","针对每组案例，输出一个整数，表示Bob最长连续假期的天数。
+每组案例输出完都要换行。","第一组案例，没有年假，都是工作日，没有假期，最长连续假期为0
+第二组案例，5天年假，把4天工作日都请假，最长连续假期为8
+第三组案例，1天年假，把第6天工作日请假，能得到从第5天到第7天连续3天的假期","3
+0 1111111
+5 10101010
+1 1011010","0
+8
+3",56.64%,113,https://www.xujcoj.com/home/contest/2118/problem/4,https://www.xujcoj.com/home/contest/2118/problem,https://www.xujcoj.com/home/problem?keyword3=2118,https://www.xujcoj.com/home/problem/detail/5232
+24-25(1)第6次线上赛,1：三角形分类,"给出一个三角形的三个内角度数，请你报告他是哪种类型的三角形。
+在本题中，你只需要按照给出的类型依次判断该三角形属于哪一类（若同时满足多个类型，按先满足的输出）：
+1、等边三角形
+2、等腰直角三角形
+3、等腰锐角三角形
+4、等腰钝角三角形
+5、直角三角形
+
+6、锐角三角形
+
+7、钝角三角形
+
+
+
+","第一行是一个正整数$$T$$表示测试案例的数量。（$$1 \le T \le 20000$$）
+每组案例包含三个正整数$$a,b,c$$代表三个内角度数。（$$a+b+c=180$$）",针对每组案例，在一行中输出该三角形对应的类型编号。,,"2
+60 60 60
+120 30 30","1
+4",42.88%,667,https://www.xujcoj.com/home/contest/2008/problem/1,https://www.xujcoj.com/home/contest/2008/problem,https://www.xujcoj.com/home/problem?keyword3=2008,https://www.xujcoj.com/home/problem/detail/2341
+24-25(1)第5次线上赛,5：报数,"老师让Alice报[a,b]范围内的所有整数，Alice没按照顺序报数，导致最后漏了一个数字，请找出那个遗漏的数字。","这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=1000）
+每组案例先是两个整数a和b，（-100<=a，b<=100，且[a,b]范围内至少有2个整数）
+然后是(b-a)个整数。（均在[a,b]范围内，且互不相同）","针对每组案例，输出一个整数，表示遗漏的那个数字。
+每组案例输出完都要换行。",,"2
+1 10
+10 9 8 6 1 2 3 4 5
+3 6
+4 3 5","7
+6",79.57%,235,https://www.xujcoj.com/home/contest/1968/problem/5,https://www.xujcoj.com/home/contest/1968/problem,https://www.xujcoj.com/home/problem?keyword3=1968,https://www.xujcoj.com/home/problem/detail/5036
+24-25(1)第4次线上赛,1：倍数问题,有10个非负整数，问：后9个数字中，有多少个是第1个数字的倍数？（当b≠0且a除以b的余数为0时，称a是b的倍数）,"这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=100）
+每组案例由10个非负整数组成。（均不大于10000）","针对每组案例，输出一个整数，表示后9个数字中，有多少个是第1个数字的倍数。
+每组案例输出完都要换行。",,"2
+0 1 2 3 4 5 6 7 8 9
+2 0 1 2 3 4 5 6 7 8","0
+5",41.85%,779,https://www.xujcoj.com/home/contest/1936/problem/1,https://www.xujcoj.com/home/contest/1936/problem,https://www.xujcoj.com/home/problem?keyword3=1936,https://www.xujcoj.com/home/problem/detail/5005
+24-25(1)第3次线上赛,5：乘积的和,"输入由多行组成。
+
+如果某行由两个正整数a和b组成，那么把a乘b的结果累加到总和中；
+
+如果某行只有一个整数0，那么输出当前累加的总和，并换行，然后把累加的和重置为0。
+
+如果某行只有一个整数-1，那么输出当前累加的总和，并结束程序。
+
+
+
+
+
+","输入由多行组成。
+每行要么是两个正整数，要么是一个整数0，要么是一个整数-1。（保证只有最后一行是一个整数-1，累加的和不会超出int整数范围）",根据问题描述输出结果。,,"2 3
+3 5
+0
+6 8
+-1","21
+48",67.08%,322,https://www.xujcoj.com/home/contest/1890/problem/5,https://www.xujcoj.com/home/contest/1890/problem,https://www.xujcoj.com/home/problem?keyword3=1890,https://www.xujcoj.com/home/problem/detail/4925
+24-25(1)第2次线上赛,2：进货价和售价,已知小卖部对某样商品的进货价是a元，小卖部准备把这件商品标价x元出售，x是个整数，且相对于进货价至少要挣b元。问x的最小值是多少？,两个正浮点数a和b，含义见问题描述。（a<=10000，b<=10000）,"一个正整数x，含义见问题描述。
+不要换行。",,10.5 1.6,13,41.77%,711,https://www.xujcoj.com/home/contest/1846/problem/2,https://www.xujcoj.com/home/contest/1846/problem,https://www.xujcoj.com/home/problem?keyword3=1846,https://www.xujcoj.com/home/problem/detail/4889
+24-25(1)第1次线上赛,2：输出三行,输出三行。,无,"第一行5个*，第二行9个+，第三行4个\
+
+第三行结尾处不要换行。
+
+",, ,"*****
+
++++++++++
+
+\\\\
+
+
+
+",47.52%,827,https://www.xujcoj.com/home/contest/1808/problem/2,https://www.xujcoj.com/home/contest/1808/problem,https://www.xujcoj.com/home/problem?keyword3=1808,https://www.xujcoj.com/home/problem/detail/4822
+24-25(1)第1次线上赛,3：两个较大数的和,输入三个整数，输出其中较大的两个数之和,三个整数，绝对值均不大于10000。,"一个整数，表示三个数中较大的两个数之和。
+不要换行。",,"2
+-10
+-3",-1,40.46%,734,https://www.xujcoj.com/home/contest/1808/problem/3,https://www.xujcoj.com/home/contest/1808/problem,https://www.xujcoj.com/home/problem?keyword3=1808,https://www.xujcoj.com/home/problem/detail/4823
+24-25(1)第1次线上赛,4：元音字母辅音字母,"英文中的元音字母是A、E、I、O、U（大小写都算），辅音字母是其它21个英文字母（大小写都算）。
+输入一个字符，判断这个字符是大写元音字母、小写元音字母、大写辅音字母、小写辅音字母，还是别的字符？",一个字符,"如果字符是大写元音字母，那么输出Upper vowel
+如果字符是小写元音字母，那么输出Lower vowel
+如果字符是大写辅音字母，那么输出Upper consonant
+
+如果字符是小写辅音字母，那么输出Lower consonant
+如果不是上述情况，那么输出Other
+输出后不要换行。
+
+",,T,Upper consonant,45.99%,574,https://www.xujcoj.com/home/contest/1808/problem/4,https://www.xujcoj.com/home/contest/1808/problem,https://www.xujcoj.com/home/problem?keyword3=1808,https://www.xujcoj.com/home/problem/detail/4824
+24-25(1)第1次线上赛,5：结果为0,"输入4个整数，不调整这4个数的顺序，在这4个数的两两之间添加加号或者减号（一共添加了3个符号），希望能够让组成的计算表达式的结果为0。
+问：有没有这种可能性？
+注意：如果一个数是负数，在组成计算表达式时，会在这个负数的两边添加上括号()，以保证符合数学上写表达式的规范。",4个整数,"如果有可能计算出0，那么输出Yes，否则输出No。
+输出后不要换行。",4+(-6)+3-1,4 -6 3 1,Yes,41.65%,413,https://www.xujcoj.com/home/contest/1808/problem/5,https://www.xujcoj.com/home/contest/1808/problem,https://www.xujcoj.com/home/problem?keyword3=1808,https://www.xujcoj.com/home/problem/detail/4825
+23-24(2)第5次线上赛,2：字符串的截取,"给你一个字符串$$a$$，你需要从$$a$$中截取一段字符使得剩下的字符全部相同，请问你有多少种截法？（可以截完，但不能不截）
+认为两种截取方法是不同的，当且仅当截取的首位置不同或末位置不同。","第一行是一个正整数$$T$$代表测试案例的数量。（$$1 \le T \le 100$$）
+每组案例是一个仅包含小写字母且长度不超过$$20$$的字符串$$a$$。
+保证$$a$$中的字符不会全部相等。",针对每组案例，在一行中输出有多少种满足题意的截取方法。,"在第一组案例中，你可以截取 ab、aba、abaa、b、ba、baa。
+在第二组案例中，你可以截取 aacd、aacde、aacdee、aacdeee、cdeee、acdeee。
+在第三组案例中，你可以截取 a、b、ab。","3
+abaa
+aacdeee
+ab","6
+6
+3",48.72%,39,https://www.xujcoj.com/home/contest/1732/problem/2,https://www.xujcoj.com/home/contest/1732/problem,https://www.xujcoj.com/home/problem?keyword3=1732,https://www.xujcoj.com/home/problem/detail/2127
+23-24(2)第5次线上赛,4：幻方,"幻方（Magic Square）是一种将数字安排在正方形格子中，使每行、列和对角线上的数字和都相等的方法。
+现在给你一个$$n \times n$$的空方阵，你需要在这个方阵中填入$$1-n \times n$$的数字各一次使得这个方阵满足幻方。","第一行是一个正整数$$T$$代表测试案例的数量。($$1 \le T \le 25$$)
+每组案例包含一个奇数$$n$$。($$1 \le n \le 25$$)","针对每组案例，输出一个$$n$$行$$n$$列的方阵。
+输出时，每行最后一个数字后面没有空格，每行输出结束以后都要换行。
+如果有多种填法满足幻方，输出任意一种即可。",,"2
+1
+3","1
+8 1 6
+3 5 7
+4 9 2",55.17%,58,https://www.xujcoj.com/home/contest/1732/problem/4,https://www.xujcoj.com/home/contest/1732/problem,https://www.xujcoj.com/home/problem?keyword3=1732,https://www.xujcoj.com/home/problem/detail/2653
+23-24(2)第5次线上赛,6：ovo和他的汉堡店-3,"ovo 汉堡店又上新品了，如下：
+• $$2$$片面包 +$$1$$片鸡肉 = 普通汉堡，售价$$x$$元
+• $$3$$片面包 +$$2$$片鸡肉 = 超级汉堡，售价$$y$$元
+ovo 准备了$$a$$片面包和$$b$$片鸡肉，问：这些材料最多可以卖出多少钱。","第一行是一个正整数$$T$$表示测试案例的数量。（$$1 \le T \le 20000$$）
+每组案例包含$$4$$个不大于$$100$$的正整数$$a、b、x、y$$含义如描述。",针对每组样例，输出 ovo 最多可以卖出的钱，然后换行。,,"2
+5 3 4 6
+6 4 5 8","10
+16",41.38%,29,https://www.xujcoj.com/home/contest/1732/problem/6,https://www.xujcoj.com/home/contest/1732/problem,https://www.xujcoj.com/home/problem?keyword3=1732,
+23-24(2)第4次线上赛,1：字符串重排,请你输出两个字符串$$s$$和$$t$$能否通过重排字符使得$$s=t$$。,"第一行是一个正整数$$T$$表示测试案例的数量。（$$1 \leq T \leq 100$$）
+每组案例包含两个字符串$$s$$和$$t$$，保证两个字符串长度均不超过$$100$$且仅包含小写字符。",针对每组案例，输出YES如果可以，否则输出NO。,,"2
+abc cba
+abb baa","YES
+NO",60.78%,204,https://www.xujcoj.com/home/contest/1716/problem/1,https://www.xujcoj.com/home/contest/1716/problem,https://www.xujcoj.com/home/problem?keyword3=1716,https://www.xujcoj.com/home/problem/detail/1866
+23-24(2)第3次线上赛,5：异画师的技能组合,"异画师是英雄联盟技能组合最为全面的英雄，其技能分为 Q（灾系）W（靖系）E（悚系）R（终极技能）四种。
+为了方便描述，我们把 QWE 三系技能称为小技能，R 称为大招。
+异画师每次施放小技能前需要先按下 QWE 中的一个，表示准备施放该系的技能，我们将这种状态称为准备就绪阶段。
+异画师在准备就绪阶段时，可以再次按下 QWE 中的一个进行技能的施放。
+例如：异画师先按下 Q 进入准备就绪阶段，接着再按下 W 施放了灾系的 W 技能，我们把这个技能组合称为 QW。
+我们不难发现异画师的小技能总共有：QQ、QW、QE、WQ、WW、WE、EQ、EW、EE 这九种。
+接下来介绍异画师的 R（终极技能），其有两个作用：
+1、在准备就绪阶段时按下 R 会取消准备就绪状态
+2、非准备就绪阶段时按下 R 会施放终极技能
+例如：异画师先按下 Q 进入准备就绪阶段，接着再按下 R 取消准备就绪状态，然后按下 W 再次进入准备就绪阶段，最后按下 E 施放了技能组合 WE。
+我们假设技能没有冷却时间，异画师的九种小技能及大招分别会对战局产生一定的影响，现在给一个按键序列，请你输出异画师对战局造成的影响之和。","第一行$$10$$个不大于$$1000$$的正整数分别表示 QQ、QW、QE、WQ、WW、WE、EQ、EW、EE、R 对战局产生的影响。
+第二行是一个长度不超过$$10^5$$的字符串表示按键序列，保证这个字符串仅由大写字母$$\text{QWER}$$组成。",在一行中输出异画师对战局造成的影响之和。,在样例中，异画师分别施放了 QQ、WQ、R、EW 这四个技能，共造成$$1+4+10+8=23$$的影响。,"1 2 3 4 5 6 7 8 9 10
+QQERWQREW",23,68.18%,22,https://www.xujcoj.com/home/contest/1709/problem/5,https://www.xujcoj.com/home/contest/1709/problem,https://www.xujcoj.com/home/problem?keyword3=1709,https://www.xujcoj.com/home/problem/detail/2493
+23-24(2)第1次线上赛,1：打卡时间,"某企业规定了上班打卡时间，例如0830，表示上班打卡时间是08:30。
+现在有某位员工一周5天的打卡时间，例如某天是0826，表示该员工那天的打卡时间是08:26，比规定的打卡时间早，没有迟到；如果某天是0832，表示该员工那天的打卡时间是08:32，迟到了2分钟。
+统计一下该员工这5天时间里，一共迟到了几分钟。","第一行是一个4位整数，表示企业规定的上班打卡时间，其中前两位是小时，后两位是分钟。
+第二行有5个4位整数，表示员工从星期一到星期五的打卡时间，每个整数的前两位是小时，后两位是分钟。","一个整数，表示一共迟到了几分钟。
+不要换行。",,"0830
+0826 0832 0800 0900 0820",32,50.46%,329,https://www.xujcoj.com/home/contest/1635/problem/1,https://www.xujcoj.com/home/contest/1635/problem,https://www.xujcoj.com/home/problem?keyword3=1635,https://www.xujcoj.com/home/problem/detail/4446
+23-24(2)第1次线上赛,2：最小的平方和,"有偶数个正整数a
+1
+、a
+2
+、a
+3
+、...、a
+m
+（即m是偶数），现在把这些数字两两相加，生成m/2个正整数。这m/2个正整数的平方和的最小值是多少？","这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=100）
+每组案例先是一个正偶数m，（m<=1000）
+然后是m个正整数a
+1
+、a
+2
+、a
+3
+、...、a
+m
+。（均不大于10000）","针对每组案例，输出一个长整数，表示【问题描述】要求计算的最小值。
+每组案例输出完都要换行。","如果是2和3组合，1和5组合，构成两个数字5和6，5平方+6平方=61；
+如果是2和5组合，1和3组合，构成两个数字7和4，平方和是65；
+如果是2和1组合，5和3组合，构成两个数字3和8，平方和是73。
+所有组合方案中，平方和最小值是61。","1
+4
+2 1 5 3",61,40.00%,175,https://www.xujcoj.com/home/contest/1635/problem/2,https://www.xujcoj.com/home/contest/1635/problem,https://www.xujcoj.com/home/problem?keyword3=1635,https://www.xujcoj.com/home/problem/detail/4447
+23-24(2)第1次线上赛,3：英文字母,"有一段很长的英文文字，只含有大写字母和小写字母，没有空格或者其他字符。
+问这段英文文字中是否包含所有26个英文字母（大小写字母都可以）？","这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=100）
+每组案例有一段英文字母组成的字符串。（字符串长度不超过1000）","针对每组案例，如果字符串里包含所有26个英文字母，则输出Yes，否则输出No。
+每组案例输出完都要换行。",,"2
+efgABCDHIJKLMNOPQWRSTUVWXYZabc
+abcd","Yes
+No",51.88%,239,https://www.xujcoj.com/home/contest/1635/problem/3,https://www.xujcoj.com/home/contest/1635/problem,https://www.xujcoj.com/home/problem?keyword3=1635,https://www.xujcoj.com/home/problem/detail/4448
+23-24(2)第1次线上赛,4：防空覆盖网,"在一个a行b列的方格地图上有n门防空炮，每门防空炮由于型号不同，拥有各自的射程。当射程为p时，表示该防空炮能火力覆盖距离自身小于等于p范围的所有方格。
+定义方格坐标(x1, y1)到(x2, y2)的距离是|x1-x2|+|y1-y2|，其中| |是数学上的绝对值运算。
+由于飞机的速度很快，某个格子需要在至少m门防空炮的火力覆盖范围内，才能称为安全的格子。
+求安全格子的数量。","只有一组案例。
+第一行是四个正整数a、b、n、m，表示地图是a行b列的，一共有n门防空炮，安全格子至少需要m门防空炮的火力覆盖。（a<=50，b<=50，n<=100000，m<=50000）
+接下来是n行数据，每行数据由三个正整数x、y、p组成，代表一门防空炮的数据，表示该防空炮的坐标是(x, y)，即位于第x行第y列（地图的左上角称为第1行第1列），射程是p。（1<=x<=a，1<=y<=b，p<=50）","一个整数，表示地图中安全格子的数量。
+不要换行。",图中黄色的格子是安全的，一共7格。灰色的格子只有1门防空炮火力覆盖，白色的格子没有火力覆盖。,"3 4 3 2
+2 3 1
+2 3 2
+3 1 1",7,51.16%,43,https://www.xujcoj.com/home/contest/1635/problem/4,https://www.xujcoj.com/home/contest/1635/problem,https://www.xujcoj.com/home/problem?keyword3=1635,https://www.xujcoj.com/home/problem/detail/4456
+23-24(2)第1次线上赛,6：姓名和成绩,"在一行的输入信息中，包括了姓名和成绩，其中姓名中可能包含若干个空格字符，把姓名分割成了若干个小段，成绩是一个浮点数形式。
+要求在输出姓名成绩时，把姓名中的空格都去掉，同时每个由空格分隔的小段都要遵循首字母大写、其他字母小写的原则。","这是一道多组案例的题目。一个正整数n，表示案例的数量。
+每组案例是一行输入信息，信息内容见【问题描述】的第一行。（字符串长度不会超过100，姓名部分只会有大写字母、小写字母、空格字符）","针对每组案例，输出一行信息，先是遵循【问题描述】第二行原则的姓名，然后是一个空格字符，最后是成绩。
+每组案例输出完都要换行。",,"2
+joseph      robinette   biden 59.5
+doNALD trUMP 80","JosephRobinetteBiden 59.5
+DonaldTrump 80",40.70%,86,https://www.xujcoj.com/home/contest/1635/problem/6,https://www.xujcoj.com/home/contest/1635/problem,https://www.xujcoj.com/home/problem?keyword3=1635,https://www.xujcoj.com/home/problem/detail/4499
+23-24(1)第8次线上赛,1：删除一些字符,"给出字符串$$str$$并删除其中所有$$ASCII$$码介于$$[L,R]$$的字符，然后输出$$str$$。","第一行是一个正整数$$T$$代表测试案例的数量。（$$1 \leq T \leq 100$$）
+每组案例包含一个字符串$$str$$和两个整数$$L,R$$含义见描述。（$$0 \leq L \leq R \leq 127$$）
+保证字符串$$str$$仅由大小写字母和数字组成且长度在$$1-100$$之间。",针对每组案例，输出删除指定字符后的$$str$$。,,"2
+abc 97 98
+abc 65 90","c
+abc",60.49%,162,https://www.xujcoj.com/home/contest/1622/problem/1,https://www.xujcoj.com/home/contest/1622/problem,https://www.xujcoj.com/home/problem?keyword3=1622,https://www.xujcoj.com/home/problem/detail/2553
+23-24(1)第6次线上赛,2：字符串接龙,"如果一个字符串$$a$$的后$$x$$个字符和另一个字符串$$b$$的前$$x$$个字符完全一样的话（包括顺序），我们称$$a$$和$$b$$可以接龙并记$$x$$分。
+例如字符串$$abcde$$和字符串$$cdelyf$$可以接龙，并记$$3$$分（因为$$cde$$是完全一样的）。
+而字符串$$abcde$$和字符串$$cedbc$$不可以接龙，因此记$$0$$分。
+有一些比较特殊的接龙串，例如$$aaa$$和$$aaaa$$：
+他们不但可以接龙，并且可以记$$1,2,3$$分（因为$$a,aa,aaa$$都能接上），此时我们记$$1+2+3=6$$分。
+再比如字符串$$ababa$$和字符串$$abaab$$，他们可以接$$a,aba$$，所以记$$1+3=4$$分。
+现在给你$$n$$个字符串，请计算除最后一个串外，每个串与后一个串的接龙得分之和。","第一行是一个正整数$$n$$。（$$2 \leq n \leq 100$$）
+第二行$$n$$个仅包含小写字母的字符串，保证每个字符串的长度不超过$$100$$。",在一行中输出，除最后一个串外，每个串与后一个串的接龙得分之和。,"$$ababa$$和$$ababb$$可以接龙，记$$1+3=4$$分。
+$$ababb$$和$$bb$$可以接龙，记$$1+2=3$$分。
+共记$$7$$分。","3
+ababa ababb bb",7,60.00%,100,https://www.xujcoj.com/home/contest/1582/problem/2,https://www.xujcoj.com/home/contest/1582/problem,https://www.xujcoj.com/home/problem?keyword3=1582,https://www.xujcoj.com/home/problem/detail/1785
+23-24(1)第6次线上赛,3：嵌套三角形,"用大写字母打印一个嵌套等腰三角形，这个三角形最外层是
+A
+，里面一层是
+B
+，在里面一层是
+C
+，以此类推。
+A
+B
+C","第一行是一个正整数$$T$$表示测试案例的数量。（$$1 \leq T \leq 50$$）
+每组案例包含一个正整数$$n$$表示这个三角形的高度。（$$1 \leq n \leq 50$$）",针对每组案例，输出一个【描述】中的三角形，每行最后一个字符后面没有空格。,,"2
+8
+9","       A
+      ABA
+     ABCBA
+    ABCDCBA
+   ABCDDDCBA
+  ABCCCCCCCBA
+ ABBBBBBBBBBBA
+AAAAAAAAAAAAAAA
+        A
+       ABA
+      ABCBA
+     ABCDCBA
+    ABCDEDCBA
+   ABCDDDDDCBA
+  ABCCCCCCCCCBA
+ ABBBBBBBBBBBBBA
+AAAAAAAAAAAAAAAAA
+",45.45%,55,https://www.xujcoj.com/home/contest/1582/problem/3,https://www.xujcoj.com/home/contest/1582/problem,https://www.xujcoj.com/home/problem?keyword3=1582,https://www.xujcoj.com/home/problem/detail/1786
+23-24(1)第5次线上赛,1：染色问题,"有若干个格子排成一行，要求相邻的格子必须染上不同的颜色。已知有a个格子，b种不同颜色的染料供选择。假设每种颜色的染料都是无限多的，可以有某些颜色的染料没有用到，求有多少种不同的染色方法。
+下图是当a=5，b=4时的一种染色方法。","这是一道多组案例的题目。一个正整数，表示案例的数量。（n<=40）
+每组案例由两个正整数a和b组成。（a<=10, b<=4）","针对每组案例，输出一个整数，表示染色方法的数量。
+每组案例输出完都要换行。",,"2
+3 1
+5 4","0
+324",46.12%,399,https://www.xujcoj.com/home/contest/1566/problem/1,https://www.xujcoj.com/home/contest/1566/problem,https://www.xujcoj.com/home/problem?keyword3=1566,https://www.xujcoj.com/home/problem/detail/4391
+23-24(1)第5次线上赛,6：位运算23~24(1)-2,"已知两个无符号整数（unsigned int）a、b，现在需要求一个无符号整数c，使得(a & c) | (b ^ c)的值尽可能小。
+
+如果有多个c都满足条件，选其中最小的。
+
+","这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=1000）
+
+每组案例由3个无符号整数a、b、c组成。（0<=a、b<=1亿）
+
+","针对每组案例，输出一个无符号整数c，使得(a & c) | (b ^ c)的值尽可能小。如果有多个c都满足条件，输出其中最小的。
+
+每组案例输出完都要换行。
+
+",,"2
+
+10 2
+3 5","0
+4",47.86%,117,https://www.xujcoj.com/home/contest/1566/problem/6,https://www.xujcoj.com/home/contest/1566/problem,https://www.xujcoj.com/home/problem?keyword3=1566,https://www.xujcoj.com/home/problem/detail/4389
+23-24(1)第4次线上赛,3：满足条件的数字和,有m个正整数，要求统计满足这样条件的数字之和：该数字至少是其他p个数字的因子。,"这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=100）
+每组案例先是两个正整数m和p，（m<=100，p<=10）
+然后是m个正整数。（均不大于100）","针对每组案例，输出一个整数，表示满足条件的数字之和。
+每组案例输出完都要换行。",第一组案例中，符合条件的数是4、5、4这三个，因为4是另一个4以及8的因子，5是10和30的因子。,"2
+6 2
+10 4 5 4 8 30
+6 3
+10 4 5 4 8 30","13
+0",53.38%,133,https://www.xujcoj.com/home/contest/1543/problem/3,https://www.xujcoj.com/home/contest/1543/problem,https://www.xujcoj.com/home/problem?keyword3=1543,https://www.xujcoj.com/home/problem/detail/4359
+23-24(1)第4次线上赛,5：斐波那契程序员-3,"一个很有个性的程序员，给自己制定了前十天的目标，具体到每一天该写多少份代码，到了第11天开始，每天写的代码量，都是前面所有天写的代码总和的末两位数。例如，如果前15天写了1135份代码，则第16天写35份代码。
+现在已知前十天每一天的代码量，求该程序员在总共m天里一共写了多少份代码？","这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=100）
+每组案例先是10个非负整数，分别表示第1天、第2天、...、第10天的代码量，（均小于100）
+然后是一个正整数m，表示总天数。（1<=m<=10万）","针对每组案例，输出一个整数，表示该程序员在总共m天时间里一共写了多少份代码。
+每组案例输出完都要换行。",第一组案例中，第11-13天写的代码量分别是30、60、20,"2
+1 2 3 4 5 1 2 3 4 5
+13
+1 2 3 4 5 1 2 3 4 5
+5","140
+15",49.14%,175,https://www.xujcoj.com/home/contest/1543/problem/5,https://www.xujcoj.com/home/contest/1543/problem,https://www.xujcoj.com/home/problem?keyword3=1543,https://www.xujcoj.com/home/problem/detail/4357
+23-24(1)第3次线上赛,2：字母表,输入一个英文字母，先输出“几乎”所有大写英文字母，再输出“几乎”所有小写英文字母，其中输入英文字母对应的大小写均不要输出。,只有一组案例。一个英文字母字符a。,"第一行输出“几乎”所有大写英文字母，第二行输出“几乎”所有小写英文字母，其中输入英文字母字符a对应的大小写均不要输出。
+第二行输出完也要换行。",,c,"ABDEFGHIJKLMNOPQRSTUVWXYZ
+abdefghijklmnopqrstuvwxyz",49.76%,418,https://www.xujcoj.com/home/contest/1515/problem/2,https://www.xujcoj.com/home/contest/1515/problem,https://www.xujcoj.com/home/problem?keyword3=1515,https://www.xujcoj.com/home/problem/detail/4334
+23-24(1)第3次线上赛,5：世纪,给定一个年份，写出该年份在哪个世纪？例如当前的2023年在21世纪。,"这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=1000）
+每组案例由一个正整数a组成，表示年份。（a<=1000000）","针对每组案例，输出年份a所在的世纪，要求按英文格式输出。
+例如21世纪应该写成21st century，22世纪应该写成22nd century，23世纪应该写成23rd century，24世纪应该写成24th century...
+每组案例输出完都要换行。",,"3
+2023
+2356
+2000","21st century
+24th century
+21st century",60.64%,559,https://www.xujcoj.com/home/contest/1515/problem/5,https://www.xujcoj.com/home/contest/1515/problem,https://www.xujcoj.com/home/problem?keyword3=1515,https://www.xujcoj.com/home/problem/detail/4333
+23-24(1)第2次线上赛,1：星号阵列27,"又见星号阵列。
+
+有一个n行n列的星号阵列（n为不小于5奇数），其中最边缘一圈正方形是星号，正方形的最大内接菱形也是星号，请输出这个阵列。
+例如当n=7时，阵列如下：
+
+","只有一组案例。
+一个不小于5的奇数n，含义见题目描述。",输出该星号阵列，最后一行结尾正常换行。,,9,,55.48%,301,https://www.xujcoj.com/home/contest/1484/problem/1,https://www.xujcoj.com/home/contest/1484/problem,https://www.xujcoj.com/home/problem?keyword3=1484,https://www.xujcoj.com/home/problem/detail/4310
+23-24(1)第1次线上赛,1：复数乘法,复数运算是高中数学里的一个基本知识，现在有两个复数，分别是a+bi和c+di，求这两个复数相乘后的乘积，实部和虚部分别是多少？,4个整数a、b、c、d，表示第一个复数的实部、虚部，第二个复数的实部、虚部。,两个整数，表示复数乘积的实部和虚部。中间间隔一个空格，不要换行。,,1 2 3 4,-5 10,75.06%,397,https://www.xujcoj.com/home/contest/1452/problem/1,https://www.xujcoj.com/home/contest/1452/problem,https://www.xujcoj.com/home/problem?keyword3=1452,https://www.xujcoj.com/home/problem/detail/4303
+23-24(1)第1次线上赛,4：比日期,比较两个日期，如果第一个日期比第二个日期更早，则输出Early；如果第一个日期比第二个日期更晚，则输出Late；如果两个日期是同一天，则输出Same。,"第一行有三个整数y1、m1、d1，表示第一个日期的年月日。
+第二行有三个整数y2、m2、d2，表示第二个日期的年月日。
+保证日期都是合法的。","如果第一个日期比第二个日期更早，则输出Early；
+如果第一个日期比第二个日期更晚，则输出Late；
+如果两个日期是同一天，则输出Same。
+不要换行。",,"2023 9 27
+2023 9 30",Early,52.39%,439,https://www.xujcoj.com/home/contest/1452/problem/4,https://www.xujcoj.com/home/contest/1452/problem,https://www.xujcoj.com/home/problem?keyword3=1452,https://www.xujcoj.com/home/problem/detail/4304
+23-24(1)第1次线上赛,6：数的乘积,有4个整数，问是否能从中挑选出两个数，使得这两个数的乘积是负数？,4个整数,如果能找到两个数的乘积是负数，则输出Yes，否则输出No。不要换行。,,3 4 -1 -5,Yes,51.06%,470,https://www.xujcoj.com/home/contest/1452/problem/6,https://www.xujcoj.com/home/contest/1452/problem,https://www.xujcoj.com/home/problem?keyword3=1452,https://www.xujcoj.com/home/problem/detail/4302
+22-23(2)第5次线上赛,1：输出-3,输出两个整数中较小数的3倍。如果两个数相等，随便把其中一个数看作较小数。,"这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=1000）
+每组案例由两个整数组成。（绝对值均不大于5亿）
+
+","针对每组案例，输出其中较小数的3倍。
+
+每组案例输出完都要换行。
+
+",,"2
+
+10 5
+
+3 3","15
+9",73.91%,69,https://www.xujcoj.com/home/contest/1385/problem/1,https://www.xujcoj.com/home/contest/1385/problem,https://www.xujcoj.com/home/problem?keyword3=1385,https://www.xujcoj.com/home/problem/detail/3975
+22-23(2)第5次线上赛,2：ABCD,有A、B、C、D四种商品，单价分别是1元、2元、3元、4元，已知罗少一共买了x件商品，花了总共y元，问每种商品分别买了多少件？,"只有一组案例。两个正整数x和y，表示商品的件数和商品的总价。（x<=1000，y<=1000）
+
+","输出4个整数，代表购买A、B、C、D的件数。每两个数之间有一个空格。
+
+当然可能有好几种合法解，如果遇到这种情况，优先输出A的件数比较少的解；如果A的件数一样，则优先输出B的件数比较少的解；...；以此类推。
+
+每一组合法解输出完都要换行。
+
+如果无解，输出None，换行。
+
+
+
+
+
+",,4 10,"0 2 2 0
+
+0 3 0 1
+
+1 0 3 0
+
+1 1 1 1
+
+2 0 0 2",42.31%,26,https://www.xujcoj.com/home/contest/1385/problem/2,https://www.xujcoj.com/home/contest/1385/problem,https://www.xujcoj.com/home/problem?keyword3=1385,https://www.xujcoj.com/home/problem/detail/4194
+22-23(2)第5次线上赛,3：下雨了,从宿舍到教学楼一共有a米路，沿路共有b把雨伞，每把雨伞可以覆盖一定范围，保证这个范围内的地面不会被雨淋到。问罗少不带伞的情况下，从宿舍到教学楼，是否会被雨淋到？,"这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=100）
+每组案例先是两个正整数a和b，表示有a米的路，b把雨伞。（a<=10000，b<=1000）
+然后是b行数据，每行数据由两个正整数c和d组成，表示某一把雨伞的覆盖范围从第c米到第d米（含第c米和第d米，假设路是从第1米到第a米，每把伞的覆盖范围不会超过100米）。（1<=c<=d<=a）","针对每组案例，如果伞可以覆盖所有区域，则输出Yes，否则输出No。
+每组案例输出完都要换行。",,"2
+10 3
+1 5
+8 10
+4 7
+8 2
+1 3
+5 8","Yes
+No",53.57%,56,https://www.xujcoj.com/home/contest/1385/problem/3,https://www.xujcoj.com/home/contest/1385/problem,https://www.xujcoj.com/home/problem?keyword3=1385,https://www.xujcoj.com/home/problem/detail/4195
+22-23(2)第5次线上赛,5：拆解,从一个9位正整数中抽取2个数字，构成最大的两位数，问该数字是多少？,"这是一道多组案例题。一个正整数n，表示案例的数量。（n<=100）
+每组案例由一个9位正整数a组成。","针对每组案例，输出一个两位数，该数字是从a中的9位数字里抽取2个数字构成的最大两位数。
+每组案例输出完都要换行。","案例1中，从123456789中抽取8和9两个数字，构成最大两位数98。
+案例2中，从102887645中抽取2个8数字，构成最大两位数88。","2
+123456789
+102887645","98
+88",62.26%,53,https://www.xujcoj.com/home/contest/1385/problem/5,https://www.xujcoj.com/home/contest/1385/problem,https://www.xujcoj.com/home/problem?keyword3=1385,https://www.xujcoj.com/home/problem/detail/4198
+22-23(2)第3次线上赛,1：符合条件的数-3,有两个正整数a和b，希望得到一个符合条件的最小正整数c，使得a加c结果的个位数与b的个位数相同。,"这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=1000）
+每组案例由两个正整数a和b组成。（均不大于10亿）
+
+","针对每组案例，输出一个符合条件的最小正整数c，使得a加c结果的个位数与b的个位数相同。
+
+每组案例输出完都要换行。
+
+",,"2
+5 25
+5 6","10
+1",45.02%,231,https://www.xujcoj.com/home/contest/1360/problem/1,https://www.xujcoj.com/home/contest/1360/problem,https://www.xujcoj.com/home/problem?keyword3=1360,https://www.xujcoj.com/home/problem/detail/3978
+22-23(2)第3次线上赛,4：星号阵列-23,"输出一个星号阵列，每行星号的数量满足以下规律：
+1、第一行有a个星号；
+2、从第二行开始，每行星号的数量是上一行星号数量的因子的个数，例如上一行有6个星号，由于6有1、2、3、6共4个因子，故该行有4个星号；
+3、当某一行有1个或者2个星号时，该行是星号阵列的最后一行，最后一行打完星号以后也有换行。","只有一组案例。
+一个正整数a，表示第一行星号的数量。（a<=100）",按要求输出星号阵列。,,6,"******
+****
+***
+**",52.55%,137,https://www.xujcoj.com/home/contest/1360/problem/4,https://www.xujcoj.com/home/contest/1360/problem,https://www.xujcoj.com/home/problem?keyword3=1360,https://www.xujcoj.com/home/problem/detail/3992
+22-23(2)第2次线上赛,1：输出-2,输出两个整数中较大数减较小数的结果。如果两个数相等，随意视其中一个为较大数，另一个为较小数。,"这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=1000）
+每组案例由两个整数组成。（绝对值均不大于5亿）","针对每组案例，输出较大数减较小数的结果。
+每组案例输出完都要换行。",,"2
+10 5
+3 3","5
+0",72.56%,215,https://www.xujcoj.com/home/contest/1326/problem/1,https://www.xujcoj.com/home/contest/1326/problem,https://www.xujcoj.com/home/problem?keyword3=1326,https://www.xujcoj.com/home/problem/detail/3974
+22-23(2)第2次线上赛,2：日期-2,输入年月日，输出该年有多少天，该月有多少天。,"这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=1000）
+每组案例由3个正整数组成，表示年、月、日。","针对每组案例，输出两个整数，第一个是该年的天数，第二个是该月的天数。两个数之间有一个空格。
+每组案例输出完都要换行。",闰年满足以下任意一种情况即可：1、年份是400的倍数，但必须不是3200的倍数；2、年份是4的倍数，但必须不是100的倍数。,"2
+2022 11 27
+2020 5 5","365 30
+366 31",53.20%,250,https://www.xujcoj.com/home/contest/1326/problem/2,https://www.xujcoj.com/home/contest/1326/problem,https://www.xujcoj.com/home/problem?keyword3=1326,https://www.xujcoj.com/home/problem/detail/3971
+22-23(2)第2次线上赛,3：星号阵列-24,"输出一个星号阵列，每行星号的数量满足以下规律：
+
+1、第一行有a个星号；
+
+2、从第二行开始，每行星号的数量是上一行星号数量的最大因子（除了自身以外的），例如上一行有6个星号，由于6除了自身以外的最大因子是3，故该行应该有3个星号；
+
+3、当某一行只有1个星号时，该行是星号阵列的最后一行，最后一行打完星号以后也有换行。
+
+
+
+
+
+","第一行是一个正整数 n 表示测试案例的数量。
+每组案例是一个正整数a，表示第一行星号的数量。（a<=100）
+
+",针对每组案例，按要求输出星号阵列。,,"2
+6
+4","******
+***
+*
+****
+**
+*",51.30%,154,https://www.xujcoj.com/home/contest/1326/problem/3,https://www.xujcoj.com/home/contest/1326/problem,https://www.xujcoj.com/home/problem?keyword3=1326,https://www.xujcoj.com/home/problem/detail/3993
+22-23(2)第2次线上赛,4：名字和成绩,输出5个学生中排名第3的名字和成绩。,"只有一组案例。
+
+有5行数据，每行数据由一个不含空格的字符串a和一个整数b组成，表示学生的名字和成绩。（保证不会有相同的成绩）
+
+","输出成绩居中（即排第3名）的学生名字和成绩。
+
+名字和成绩之间有个空格，输出完换行。
+
+",,"AAA 70
+
+BBB 90
+
+CCC 100
+
+DDD 80
+
+EEE 60
+
+
+
+
+
+
+
+","DDD 80
+
+
+",63.64%,110,https://www.xujcoj.com/home/contest/1326/problem/4,https://www.xujcoj.com/home/contest/1326/problem,https://www.xujcoj.com/home/problem?keyword3=1326,https://www.xujcoj.com/home/problem/detail/4027
+22-23(2)第2次线上赛,5：0和1,"判断两个整数之和里是否有相邻的两位数字分别是0和1。
+例如总和为3012，这个数字里有相邻的数字0和1，这就符合条件；同理3102也符合条件；但3120不符合条件，因为虽然有0和1，但不相邻。","这是一道多组案例的题目。一个正整数n，表示案例的数量。
+
+每组案例由两个整数a和b组成。
+
+","针对每组案例，如果a+b之和里有相邻的数字0和1，则输出Yes，否则输出No。
+每组案例输出完都要换行。
+
+",,"3
+3000 12
+3000 102
+3000 120","Yes
+Yes
+No",46.43%,112,https://www.xujcoj.com/home/contest/1326/problem/5,https://www.xujcoj.com/home/contest/1326/problem,https://www.xujcoj.com/home/problem?keyword3=1326,
+22-23(2)第1次线上赛,1：输出-1,输出两个整数中较大数的2倍。如果两个数相等，随便把其中一个数看作较大数。,"这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=1000）
+每组案例由两个整数组成。（绝对值均不大于5亿）","针对每组案例，输出其中较大数的2倍。
+每组案例输出完都要换行。",,"2
+10 5
+3 3","20
+6",65.33%,300,https://www.xujcoj.com/home/contest/1307/problem/1,https://www.xujcoj.com/home/contest/1307/problem,https://www.xujcoj.com/home/problem?keyword3=1307,https://www.xujcoj.com/home/problem/detail/3973
+22-23(2)第1次线上赛,2：符合条件的数-1,有两个正整数a和b，希望得到一个符合条件的最小正整数c，使得a乘以c的结果大于b。,"这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=1000）
+每组案例由两个正整数a和b组成。（均不大于10亿）","针对每组案例，输出一个符合条件的最小正整数c，使得a乘以c的结果大于b。
+每组案例输出完都要换行。",,"2
+5 10
+20 10","3
+1",64.23%,246,https://www.xujcoj.com/home/contest/1307/problem/2,https://www.xujcoj.com/home/contest/1307/problem,https://www.xujcoj.com/home/problem?keyword3=1307,https://www.xujcoj.com/home/problem/detail/3976
+22-23(1)第6次线上赛,5：重组的字符串,一个只含有大写英文字母和小写英文字母的字符串，现在要把其中的大写英文字母往前靠，小写英文字母往后靠，同时不改变大写英文字母之间的顺序，也不改变小写英文字母之间的顺序。例如AlPhaBet重组后变成了APBlhaet。,"这是一道多组案例的题。一个正整数n，表示案例的数量。（n<=100）
+每组案例由一个只含有大写英文字母和小写英文字母的字符串组成。（长度不大于20）","针对每组案例，输出重组后的字符串。
+每组案例输出完都要换行。",,"2
+AlPhaBet
+AaBbAa","APBlhaet
+ABAaba",76.71%,146,https://www.xujcoj.com/home/contest/1286/problem/5,https://www.xujcoj.com/home/contest/1286/problem,https://www.xujcoj.com/home/problem?keyword3=1286,https://www.xujcoj.com/home/problem/detail/4020
+22-23(1)第5次线上赛,2：几个6,"计算2个正整数之和里一共有几个6。例如102和504，它们的和是606，这个数字里有2个6。
+还有一个额外规定，如果这个和是6的倍数，那么额外多算1个6，所以如果输入是102和504，由于它们的和606是6的倍数，故输出结果应该是3，而不是2。","这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=1000）
+每组案例由2个正整数a、b组成。（均不大于10亿）","针对每组案例，输出一个整数，表示a+b的结果中6的数量。如果a+b的和是6的倍数，要多算1个6。
+每组案例输出完都要换行。",,"2
+102 504
+16 52","3
+1",53.79%,383,https://www.xujcoj.com/home/contest/1268/problem/2,https://www.xujcoj.com/home/contest/1268/problem,https://www.xujcoj.com/home/problem?keyword3=1268,https://www.xujcoj.com/home/problem/detail/3964
+22-23(1)第5次线上赛,3：姓名顺序,"有10个同学的姓名拼音，使用名字在前，姓氏在后的方式输入，名字和姓氏之间有一个空格。
+现在按照我国习惯的姓氏+名字的拼音顺序从小到大排序（即把姓氏放前面，姓氏和名字之间留一个空格，按这样的字符串从小到大排序），然后依次输出每个同学的姓名，
+输出时还是按照名字在前，姓氏在后的方式输出。",有10行数据，每行是一个同学的名字和姓氏，用一个空格隔开。（姓氏不会超过10个字符，名字不会超过20个字符）,"按姓氏+名字的拼音顺序从小到大输出每个同学的姓名，
+输出时还是按照名字在前，姓氏在后的方式输出，中间有个空格。
+每个同学姓名输出完都要换行。",,"Yu  Pei
+
+Shen Lu
+
+YueLong Chen
+
+Rong Chen
+
+ZhengNan Cai
+
+Tiantian Zha
+
+Kaifeng Gao
+
+Qiyuan Liu
+
+Zitong Ding
+
+Ken Ye
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+","ZhengNan Cai
+Rong Chen
+YueLong Chen
+Zitong Ding
+Kaifeng Gao
+Qiyuan Liu
+Shen Lu
+Yu Pei
+Ken Ye
+Tiantian Zha",65.03%,143,https://www.xujcoj.com/home/contest/1268/problem/3,https://www.xujcoj.com/home/contest/1268/problem,https://www.xujcoj.com/home/problem?keyword3=1268,https://www.xujcoj.com/home/problem/detail/3958
+22-23(1)第4次线上赛,3：成绩排名,"已知班级里有m个同学（从1号到m号），在C++考试时，有一些同学因为疫情原因无法参加考试，故没有考试成绩，输入时用-1代替这些同学的成绩。
+现在有位a号同学想知道自己的班级名次。","这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=1000）
+每组案例先是一个正整数m，表示班级同学的数量，（m<=200）
+然后是m个整数，表示从1号到m号同学的成绩，其中-1表示该位同学缺考，（-1到100之间的整数）
+最后是一个正整数a，表示查询的是a号同学的名次。（1<=a<=m）","针对每组案例，输出一个整数，表示a号同学的名次。如果该位同学缺考，则应该输出N/A。
+每组案例输出完都要换行。",,"4
+5
+90 100 -1 80 100
+1
+5
+90 100 -1 80 100
+2
+5
+90 100 -1 80 100
+5
+5
+90 100 -1 80 90
+
+3
+
+","3
+1
+1
+N/A",50.98%,102,https://www.xujcoj.com/home/contest/1250/problem/3,https://www.xujcoj.com/home/contest/1250/problem,https://www.xujcoj.com/home/problem?keyword3=1250,https://www.xujcoj.com/home/problem/detail/3917
+22-23(1)第3次线上赛,1：质数数量和总和,输入一个m，统计不大于m的质数个数及总和。,"这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=100）
+每组案例由一个正整数m组成。（m<=10000）","针对每组案例，输出两个整数，表示不大于m的质数个数和总和，用一个空格相隔。
+每组案例输出完都要换行。",,"2
+10
+13","4 17
+6 41",48.45%,355,https://www.xujcoj.com/home/contest/1218/problem/1,https://www.xujcoj.com/home/contest/1218/problem,https://www.xujcoj.com/home/problem?keyword3=1218,https://www.xujcoj.com/home/problem/detail/3846
+22-23(1)第3次线上赛,3：走法的数量,有一个a行b列的网格，一个人要从左上方的格子走到右下方的格子，每次只能向右、向下或者向右下移动一格，问一共有多少种不同的走法？下图是一个3行5列的网格。,"这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=100）
+每组案例由一个正整数a和b组成，表示这是一个a行b列的网格。（a、b均不大于10）","针对每组案例，输出一个整数，表示走法的数量。
+每组案例输出完都要换行。",,"2
+3 5
+4 4","41
+63",65.22%,161,https://www.xujcoj.com/home/contest/1218/problem/3,https://www.xujcoj.com/home/contest/1218/problem,https://www.xujcoj.com/home/problem?keyword3=1218,https://www.xujcoj.com/home/problem/detail/3848
+22-23(1)第3次线上赛,5：曼城球童,"在足球比赛开始之前的上场仪式中，上场球员会分别携带一名球童一同上场。
+这一天，曼城上场11名球员，按道理应该有11名球童，然而由于哈兰德的存在，球童少了几个，这样有的球员就没有带球童上场。
+球员上场也有顺序问题，谁先谁后都有可能。每个球童跟随哪个球员上场也存在各种可能性。
+每个球员都有不同的名字，每个球童也有不同的名字。问：在有11名球员和m名球童的情况下，有多少种不同的上场顺序。","这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=12）
+每组案例由一个非负整数m组成。（0<=m<=11）","针对每组案例，输出一个长整数，表示组合的数量。
+每组案例输出完都要换行。",,"2
+1
+11","439084800
+1593350922240000",45.19%,135,https://www.xujcoj.com/home/contest/1218/problem/5,https://www.xujcoj.com/home/contest/1218/problem,https://www.xujcoj.com/home/problem?keyword3=1218,https://www.xujcoj.com/home/problem/detail/3867
+22-23(1)第3次线上赛,6：等差三位数,"如果一个三位整数的百位、十位、个位数恰好构成了一个等差数列，则称该数字为等差三位数。
+现在给定一个三位整数，如果该数字是等差三位数，则输出Yes，否则输出No。","这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=1000）
+每组案例由一个三位整数m构成。（100<=m<=999）","针对每组案例，如果m是等差三位数，则输出Yes，否则输出No。
+每组案例输出完都要换行。",,"2
+357
+455","Yes
+No",58.53%,299,https://www.xujcoj.com/home/contest/1218/problem/6,https://www.xujcoj.com/home/contest/1218/problem,https://www.xujcoj.com/home/problem?keyword3=1218,https://www.xujcoj.com/home/problem/detail/3868
+22-23(1)第2次线上赛,4：谁是大佬,根据学号1号到m号依次给出m个学生的期中考试成绩，其中有且仅有一个最高分，问最高分是几号学生。,"这是一道多组案例的题目，首先是一个正整数n，表示案例的数量。（n<=10）
+每组案例中先是一个正整数m，表示学生的数量，（m<=100）
+然后是m个0到100之间的整数，表示从1号到m号学生的成绩。","针对每组案例，输出一个整数，表示成绩最高的学生学号。
+每组案例输出完都要换行。",,"2
+
+3
+
+80 90 100
+
+4
+
+94 96 92 90
+
+
+
+
+
+
+
+","3
+2",43.72%,247,https://www.xujcoj.com/home/contest/1192/problem/4,https://www.xujcoj.com/home/contest/1192/problem,https://www.xujcoj.com/home/problem?keyword3=1192,https://www.xujcoj.com/home/problem/detail/3819
+22-23(1)第2次线上赛,5：强质数,"定义一个正整数a的Q集合元素由以下3条规律迭代生成：1、a属于Q集合；2、如果某个整数b属于Q集合，则b除了最高位数以外的剩下数字也属于Q集合，除非被规则3排除；3、整数0永远不属于Q集合。
+例如127的Q集合是{127，27，7}，1020的Q集合是{1020，20}（因为020就是20）
+定义如果某个整数m的Q集合的所有元素都是质数，那么称m是强质数。
+统计区间[x,y]之内有多少个强质数，以及强质数之和。（包含区间边缘）","这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=10）
+每组案例由两个正整数x和y组成。（x<=y<=100000）","针对每组案例，输出两个整数，以空格相隔，表示区间[x,y]之内有多少个强质数，以及强质数之和。
+每组案例输出完都要换行。","5到8之间的强质数是5和7。
+100到150之间的强质数是103、107、113、137。","2
+5 8
+100 150","2 12
+4 460",65.79%,38,https://www.xujcoj.com/home/contest/1192/problem/5,https://www.xujcoj.com/home/contest/1192/problem,https://www.xujcoj.com/home/problem?keyword3=1192,https://www.xujcoj.com/home/problem/detail/3829
+22-23(1)第2次线上赛,6：缝合怪,有一个6位正整数，要求把高两位和低两位对调，然后输出。,"这是一道多组案例的题目。一个正整数n，表示案例的数量。（n<=1000）
+每组案例由一个6位正整数a构成。（100000<=a<=999999）","针对每组案例，输出一个数字，是a高两位和低两位对调后的结果。如果对调后的数字开头是0，不要输出这些前置0。
+每组案例输出完都要换行。",,"3
+123456
+123406
+123400","563412
+63412
+3412",43.30%,224,https://www.xujcoj.com/home/contest/1192/problem/6,https://www.xujcoj.com/home/contest/1192/problem,https://www.xujcoj.com/home/problem?keyword3=1192,https://www.xujcoj.com/home/problem/detail/3830
+22-23(1)第1次线上赛,1：Hello TKK,输出Hello TKK yyyy.mm.dd，其中yyyy、mm、dd表示的年、月、日由输入决定,一行，三个整数，分别表示年、月、日，保证表示的日期是合法的。,"Hello TKK yyyy.mm.dd，其中yyyy、mm、dd表示的年、月、日由输入决定。
+不要换行。",,2022 9 8,Hello TKK 2022.9.8,63.79%,464,https://www.xujcoj.com/home/contest/1155/problem/1,https://www.xujcoj.com/home/contest/1155/problem,https://www.xujcoj.com/home/problem?keyword3=1155,https://www.xujcoj.com/home/problem/detail/3768
+22-23(1)第1次线上赛,2：总和最大,"输入三个整数，从中挑选若干个数字，使得这些数的总和尽可能的大。
+若干个指的是0个、1个、2个或3个，如果是0个，那么总和就是0；如果是1个，总和就是选中的那个数字。",一行，三个整数。,"一个整数，表示最大的总和。
+不要换行。",,6 -5 7,13,43.13%,531,https://www.xujcoj.com/home/contest/1155/problem/2,https://www.xujcoj.com/home/contest/1155/problem,https://www.xujcoj.com/home/problem?keyword3=1155,https://www.xujcoj.com/home/problem/detail/3770
+22-23(1)第1次线上赛,3：优秀的成绩,有三门课的成绩，如果每门课都不低于85分，且三门课的平均分不低于90分，则称为优秀。,一行，三个整数，表示三门课的成绩,"如果满足优秀条件，则输出Excellent，否则输出Not Excellent。
+不要换行。",,89 95 96,Excellent,50.82%,547,https://www.xujcoj.com/home/contest/1155/problem/3,https://www.xujcoj.com/home/contest/1155/problem,https://www.xujcoj.com/home/problem?keyword3=1155,https://www.xujcoj.com/home/problem/detail/3767
+22-23(1)第1次线上赛,4：英文字母,"涂涂非常擅长英语（bushi），他可以从任意一个英文字母开始按照顺序念出26个英文字母，例如从E开始，依次是EFGH...XYZABCD。
+现在已知一个开始的英文字母，要求按顺序把26个英文字母输出出来。",一个英文字母,"如果输入的是大写的英文字母，则从该英文字母开始，依次输出26个大写英文字母，不要空格不要换行。
+如果输入的是小写的英文字母，则从该英文字母开始，依次输出26个小写英文字母，不要空格不要换行。",如果输入的是e，那么应该输出efghijklmnopqrstuvwxyzabcd,E,EFGHIJKLMNOPQRSTUVWXYZABCD,53.18%,314,https://www.xujcoj.com/home/contest/1155/problem/4,https://www.xujcoj.com/home/contest/1155/problem,https://www.xujcoj.com/home/problem?keyword3=1155,https://www.xujcoj.com/home/problem/detail/3766
+22-23(1)第1次线上赛,6：老人与海,"在某游戏中，钓鱼技能随着每一次成功的钓鱼提升。玩家初始的钓鱼技能是1。在技能点没达到50之前，每钓到一条鱼都可以提升1点。
+到了50后，需要钓更多的鱼才能提升钓鱼技能。具体来说是50->51需要2条鱼，51->52需要3条鱼，52->53需要4条鱼，...，以此类推。
+所以如果玩家一开始只要钓上49条鱼就可以把钓鱼技能升到50点。然而如果要升到100点，连同前面的49条鱼，总共需要钓到1374条鱼才行。
+现在已知玩家总共钓到了a条鱼，问玩家的钓鱼技能是多少点？",一个正整数a，表示鱼的数量。（a<=10亿）,"一个整数，表示玩家钓鱼技能点。
+不要换行。",,1377,100,43.40%,212,https://www.xujcoj.com/home/contest/1155/problem/6,https://www.xujcoj.com/home/contest/1155/problem,https://www.xujcoj.com/home/problem?keyword3=1155,https://www.xujcoj.com/home/problem/detail/3764
+21-22(2)第4次线上赛,1：TQL的三年级语文,"中文词汇经常有AAB、ABB、AABB、ABAB、ABAC、AABC、ABCC等形式，例如“人才济济”属于ABCC形式，“悄悄话”属于AAB形式。
+现在给定一个中文词汇，判断是否属于上述七种形式中的某一种。","多组案例。一个正整数n，表示案例的数量。（n<=100）
+每组案例由一个中文词汇组成。（3个汉字或者4个汉字）","针对每组案例，如果词汇属于AAB、ABB、AABB、ABAB、ABAC、AABC、ABCC中的某一种形式，那么输出之，否则输出NONE。
+每组案例输出完要换行。
+保证一个词汇不会同时满足多种形式。",,"3
+人才济济
+悄悄话
+程序设计","ABCC
+AAB
+NONE",40.50%,121,https://www.xujcoj.com/home/contest/1081/problem/1,https://www.xujcoj.com/home/contest/1081/problem,https://www.xujcoj.com/home/problem?keyword3=1081,https://www.xujcoj.com/home/problem/detail/3587
+21-22(2)第4次线上赛,4：TQL的六年级数学,TQL学习了阶乘运算a!=1*2*3*...*(n-1)*n，现在TQL想要计算一个不太大的a的阶乘。,"多组案例。一个正整数n，表示案例的数量。（n<=100）
+每组案例由一个正整数a组成。（a<=15）","针对每组案例，输出a的阶乘。
+每组案例输出完要换行。",,"2
+3
+13","6
+6227020800",68.72%,211,https://www.xujcoj.com/home/contest/1081/problem/4,https://www.xujcoj.com/home/contest/1081/problem,https://www.xujcoj.com/home/problem?keyword3=1081,https://www.xujcoj.com/home/problem/detail/3588
+21-22(2)第4次线上赛,6：TQL的十年级数学,"向量a+bi逆时针旋转α度后得到的向量为(acosα-bsinα)+(asinα+bcosα)i
+已知平面直角坐标系中一个点(x,y)，求把该点绕原点逆时针旋转90度后的点坐标(x',y')","多组案例。一个正整数n，表示案例的数量。（n<=100）
+每组案例由两个整数x和y组成。（绝对值均不大于10000）","针对每组案例，输出两个数，表示旋转后的坐标(x',y')，中间用一个空格相隔。
+每组案例输出完都要换行。",,"2
+1 1
+0 0","-1 1
+0 0",70.80%,137,https://www.xujcoj.com/home/contest/1081/problem/6,https://www.xujcoj.com/home/contest/1081/problem,https://www.xujcoj.com/home/problem?keyword3=1081,https://www.xujcoj.com/home/problem/detail/3585
+21-22(2)第3次线上赛,1：涂涂的小黄鸭,"涂涂驾驶一艘游艇以相对于静水恒定的速度在河水里逆流行驶，水流速度小于游艇的速度，在经过一座桥的时候小黄鸭不慎掉落水中，过了t秒时间后，涂涂发现小黄鸭不见了，这时候船已经距离桥s1米。涂涂这时候调头向下游行驶，顺流而下了s2米之后终于追上了小黄鸭。
+问涂涂从发现小黄鸭不见到追上小黄鸭，一共花费了多少秒？","多组案例。一个正整数n，表示案例的数量。（n<=100）
+每组案例由3个正整数t、s1、s2组成。（均不大于10000，s2保证大于s1）","针对每组案例，输出一个整数，表示涂涂从发现小黄鸭不见到追上小黄鸭，一共花费了多少秒。如果这个数不是整数，那么输出其整数部分。
+每组案例输出完都要换行。",,"2
+5 10 20
+3 10 17",自己算,47.78%,203,https://www.xujcoj.com/home/contest/1069/problem/1,https://www.xujcoj.com/home/contest/1069/problem,https://www.xujcoj.com/home/problem?keyword3=1069,https://www.xujcoj.com/home/problem/detail/3581
+21-22(2)第3次线上赛,5：TQL的七年级生物,"TQL在做生物实验时发现，一种名叫高鼠的生物是单性繁殖生物，在繁殖后代时存在一定的规律。可以用一个字符串c1表示一只高鼠的遗传基因，它生成的下一代遗传基因用字符串c2表示，规则为：
+（1）如果字符串a是c1的子串，那么把c1中的第一次出现的子串a替换成另一个子串b，生成c2；
+（2）如果字符串a不是c1的子串，那么c2与c1相等。
+例如c1=""ABCABCD""，a=""AB""，b=""Z""，则c2=""ZCABCD""。
+现在已知一只第1代袋鼠的遗传基因字符串c1和a、b，问由它生成的第2代袋鼠的遗传基因c2是什么？","多组案例。一个正整数T，表示案例的数量。（T<=100）
+每组案例中由3个字符串c1、a、b组成。数据规模满足：
+（1）c1长度不超过100
+（2）a和b的长度均不超过10
+（3）b的长度不超过a
+（4）a、b是不同的字符串
+（5）c1、a、b都是由纯大写英文字母组成","针对每组案例，输出一个字符串，表示第2代袋鼠的遗传基因c2的值。
+每组案例输出完要换行。",,"3
+DABCABCD AB Z
+DABCABCD AD Z
+DAAAAAAA AA A","DZCABCD
+DABCABCD
+DAAAAAA",49.44%,89,https://www.xujcoj.com/home/contest/1069/problem/5,https://www.xujcoj.com/home/contest/1069/problem,https://www.xujcoj.com/home/problem?keyword3=1069,https://www.xujcoj.com/home/problem/detail/3577
+21-22(2)第2次线上赛,1：罗少的一年级数学,"罗少做数学题经常把加法题看成减法题。有一天涂涂出了两个整数相加的算术题，罗少当成了这两个整数相减，于是给出了减法计算的结果。
+大范手上有罗少的减法计算结果和涂涂的加法计算答案，但没有题目。大范想要知道题目中两个整数分别是多少。","多组案例。一个正整数n，表示案例的数量。（n<=100）
+每组案例由两个整数a和b组成，其中a表示两个整数相减的结果，b表示两个整数相加的结果。（-1e6<=a,b<=1e6）","针对每组案例，如果无解，输出-1；如果有多个解，输出-2；如果只有唯一解，输出两个整数，这两个数之差等于a（第一个数减第二个数），之和等于b。两个数之间有一个空格。
+每组案例输出都要换行。",,"2
+10 6
+8 11","8 -2
+-1",65.41%,266,https://www.xujcoj.com/home/contest/1054/problem/1,https://www.xujcoj.com/home/contest/1054/problem,https://www.xujcoj.com/home/problem?keyword3=1054,https://www.xujcoj.com/home/problem/detail/3559
+21-22(2)第2次线上赛,4：罗少的七年级生物,"罗少在做生物实验时，发现有一种生物的遗传链由一长串的0和1组成。该生物父系和母系具有相同长度的遗传链；同一位置上如果都是0，那么后代该位置上一定也是0；同一位置上如果都是1，那么后代该位置上一定也是1；同一位置上如果一个0一个1，那么后代该位置上可能是0也可能是1。
+现在已知三个该种生物的遗传链，问有没有可能其中一个是另外两个的后代？如果有可能，输出Yes；如果不可能，输出No。","多组案例。一个正整数n，表示案例的数量。（n<=100）
+每组案例由3个字符串组成，每个字符串都是由字符0和字符1组成。保证这三个字符串的长度是相同的。（长度不大于100）","针对每组案例，根据问题描述中的说明，输出Yes或No。
+每组案例输出完都要换行。",,"2
+1101 0111 0101
+111 100 010","Yes
+No",41.48%,229,https://www.xujcoj.com/home/contest/1054/problem/4,https://www.xujcoj.com/home/contest/1054/problem,https://www.xujcoj.com/home/problem?keyword3=1054,https://www.xujcoj.com/home/problem/detail/3562
+21-22(2)第0次线上赛,4：单调环,"给你一个数组，下标从 1 到 n ，把它的首位相连，就形成了一个环，也就是下标为 n 的元素的下一个元素的下标为 1。
+我们定义单调环为，每一个元素与其下一个元素的大小关系全部相等，很明显，除非所有数字都一样，否则无法构成单调环。
+于是我们稍作修改，如果至少有 n - 1 个元素与其下一个元素的大小关系相等，我们就称它为单调环。","第一行是一个正整数 T 表示测试案例的数量。（1 <= T <= 200）
+每组案例先是一个正整数 n 表示数字的数量。（3 <= n <= 100）
+然后是 n 个不大于 100 的正整数。",针对每组案例，如果给定数组可以形成单调环则输出 YES，否则输出 NO，最后换行。,数字的大小关系只有 大于、小于 和 等于，所以最后一组输出 NO。,"4
+5
+1 1 1 1 1
+5
+4 5 1 2 3
+5
+5 4 1 2 3
+3
+1 1 2","YES
+YES
+NO
+NO",58.54%,41,https://www.xujcoj.com/home/contest/1020/problem/4,https://www.xujcoj.com/home/contest/1020/problem,https://www.xujcoj.com/home/problem?keyword3=1020,https://www.xujcoj.com/home/problem/detail/3507
+21-22(1)第4次线上赛,1：没出现的数字,判断一个正整数的每一位数字中是否出现了0~9这10个数字，统计有多少个数字没出现过。例如12345678，没出现过的数字是0和9，故共有2个数字没出现过。,"第一行是一个正整数 n 表示测试案例的数量。（n ≤ 100）
+每组案例由一个正整数 m 组成。（m ≤ 1e9）","针对每组案例，输出一个整数，表示 m 中有多少个数字没出现过。
+每组案例输出完要换行。",,"2
+10
+12345678","8
+2",52.57%,409,https://www.xujcoj.com/home/contest/990/problem/1,https://www.xujcoj.com/home/contest/990/problem,https://www.xujcoj.com/home/problem?keyword3=990,https://www.xujcoj.com/home/problem/detail/3432
+21-22(1)第4次线上赛,4：OJ新人,"有一位OJ新人在一次OJ线上赛中，做出了所有6道题，并且都是一遍通过。其中，第1题是比赛开始后a1分钟做出，第2题是比赛开始后a2分钟做出，...，第6题是比赛开始后a6分钟做出。例如a1~a6分别为10、15、30、80、50、150，则我们认为第1题做了10分钟，第2题做了5分钟，第3题做了15分钟，然后先用了20分钟做了第5题，再用30分钟做了第4题，用70分钟做了第6题，所有6题总共花了150分钟完成。
+OJ计算小分的方法是：先计算每道做出的题按照比赛开始到该题做出的时间，然后把所有题的该时间累加。小分越小越好。由于都是一次通过，所以不用考虑罚时。故上述案例中，小分是10+15+30+80+50+150=335。
+Tql学姐认为，该新人有更好的完成顺序，使得在每道题花费的时间不变的前提下，小分更小。
+问最优的做题顺序下的小分比当前顺序下的小分，能少多少？","多组案例。一个正整数n，表示案例的数量。（n<=100）
+每组案例由6个整数组成，表示每道题是在比赛开始后多少分钟做出的。（均不大于10000）","针对每组案例，输出一个整数，表示最优的做题顺序下的小分比当前顺序下的小分少多少。
+每组案例输出完都要换行。",,"1
+10 15 30 80 50 150",5,68.14%,113,https://www.xujcoj.com/home/contest/990/problem/4,https://www.xujcoj.com/home/contest/990/problem,https://www.xujcoj.com/home/problem?keyword3=990,https://www.xujcoj.com/home/problem/detail/3428
+21-22(1)第3次线上赛,2：简易算24点,"有4个正整数，要求在不改变数字顺序、不添加括号的前提之下，在每两个数字之间添加一个加法+或者乘法*运算符，凑成一个完整的运算表达式，使得表达式的运算结果为24。
+已知这4个正整数，问可以凑出多少种不同的满足要求的表达式？","多组案例。一个正整数n，表示案例的数量。（n<=200000）
+每组案例由4个不大于20的正整数组成。","针对每组案例，输出一个整数，表示有多少种不同的满足条件的表达式。
+每组案例输出完都要换行。",,"3
+2 2 2 3
+2 2 2 2
+1 2 3 18","1
+0
+2",57.41%,324,https://www.xujcoj.com/home/contest/972/problem/2,https://www.xujcoj.com/home/contest/972/problem,https://www.xujcoj.com/home/problem?keyword3=972,https://www.xujcoj.com/home/problem/detail/3395
+21-22(1)第3次线上赛,3：星号阵列-18,"输入一个不小于6的偶数，输出如下星号阵列。周围一圈是*；正中间两横两竖是+；然后四个角落根据方位，按照类似坐标系的象限，输出1、2、3、4。
+例如输入8时，应输出：
+当输入12时，应输出：","只有一组案例。
+一个正整数n，表示阵列的宽度和高度。（6<=n<=50）",根据要求输出阵列，阵列的最后一行结束后也有换行。,,12,,69.52%,315,https://www.xujcoj.com/home/contest/972/problem/3,https://www.xujcoj.com/home/contest/972/problem,https://www.xujcoj.com/home/problem?keyword3=972,https://www.xujcoj.com/home/problem/detail/3397
+21-22(1)第2次线上赛,1：静默的质数,班上有m个同学玩报数游戏。1号同学想了一个正整数a，并且保证a不是质数，然后大声地喊出来，报给了2号同学；2号同学把a加1，这个数字如果不是质数，则该同学会大声地喊出来，报给3号同学，如果这个数字是质数，则2号同学会通过传纸条的方式静默地把这个数字报给3号同学；...；以此类推，每个同学都要把上一个同学传递来的数字加1，并且根据该数字是质数与否，决定是喊出来还是静默传递，包括最后一名同学（虽然他不需要再往下传递了）。这样当所有m个同学完成游戏后，到底有多少名同学选择了静默的方式。,"多组案例。一个正整数n，表示案例的数量。(n<=20)
+每组案例由2个正整数m和a，分别表示同学的数量和1号同学想的数字。(m<=100, 2<=a<=10000)","针对每组案例，输出一个正整数，表示有多少个同学的数字是质数。
+每组案例输出完都要换行。",,"2
+6 12
+2 15","2
+0",43.69%,428,https://www.xujcoj.com/home/contest/948/problem/1,https://www.xujcoj.com/home/contest/948/problem,https://www.xujcoj.com/home/problem?keyword3=948,https://www.xujcoj.com/home/problem/detail/3361
+21-22(1)第2次线上赛,6：输出字符,输出指定数量的指定字符。,"多组案例。一个正整数n，表示案例的数量。
+每组案例由一个正整数m和一个字符a组成。","针对每组案例，如果m是奇数，则输出m个a，中间不要有空格；如果m是偶数，则输出m/2个a，每两个a之间都要有一个空格，最后一个a后面没有空格。
+每组案例输出完都要换行。",,"2
+5 B
+6 N","BBBBB
+N N N",42.34%,640,https://www.xujcoj.com/home/contest/948/problem/6,https://www.xujcoj.com/home/contest/948/problem,https://www.xujcoj.com/home/problem?keyword3=948,https://www.xujcoj.com/home/problem/detail/3359
+21-22(1)第1次线上赛,1：老王又卖瓜,老王第一天卖n个瓜，第二天只卖第一天一半的瓜（如果不是整数，则取整，任何一天皆如此处理），第三天只卖第二天一半的瓜，...，直到某一天一个瓜都不卖了。问老王总共卖了多少瓜？,一个正整数n，表示老王第一天卖的瓜。（n<=10000）,一个正整数，表示老王总共卖了多少瓜，不要换行。,5+2+1=8,5,8,58.35%,485,https://www.xujcoj.com/home/contest/935/problem/1,https://www.xujcoj.com/home/contest/935/problem,https://www.xujcoj.com/home/problem?keyword3=935,https://www.xujcoj.com/home/problem/detail/3326
+21-22(1)第1次线上赛,2：星号阵列-17,输出左下三角形区域以及右下三角形区域都由*构成的星号阵列,一个正整数n，表示星号阵列由多少行组成,"输出左下三角形区域以及右下三角形区域都由*构成的星号阵列。
+最后一行阵列输出完毕后也要换行。",,6,,54.07%,344,https://www.xujcoj.com/home/contest/935/problem/2,https://www.xujcoj.com/home/contest/935/problem,https://www.xujcoj.com/home/problem?keyword3=935,https://www.xujcoj.com/home/problem/detail/3323
+21-22(1)第1次线上赛,4：数字和,计算0到n之间所有整数的和,一个整数n（-10000<=n<=10000）,"一个整数，表示0到n之间所有整数的和。
+不要换行。",,-4,-10,57.49%,541,https://www.xujcoj.com/home/contest/935/problem/4,https://www.xujcoj.com/home/contest/935/problem,https://www.xujcoj.com/home/problem?keyword3=935,https://www.xujcoj.com/home/problem/detail/3324
+21-22(1)第1次线上赛,5：最大分差,一个班级里有n名学生，现在已知这n名学生的C++考试成绩，求其中的成绩差距最大的两个学生之间相差了多少分,"一个正整数n，表示班级学生的数量。（2<=n<=100）
+然后是n个非负整数，表示这n名学生的成绩。（分数范围在0到100之间）","一个整数，表示分差最大的两个学生之间的差距。
+不要换行。",100-40=60,"5
+40 100 80 90 65",60,69.01%,284,https://www.xujcoj.com/home/contest/935/problem/5,https://www.xujcoj.com/home/contest/935/problem,https://www.xujcoj.com/home/problem?keyword3=935,https://www.xujcoj.com/home/problem/detail/3322
+20-21(2)第6次线上赛,4：韩信分兵,韩信得到探马报告，项羽率大军来袭。由于营中兵力不足，韩信需要尽可能地拖延项羽的部队。韩信有n名士兵可供调度，他希望把这n名士兵尽可能多地分散成小股部队（至少2队），用于骚扰项羽部队，每个小队的士兵人数都是质数（不要问为什么）。问这n名士兵最多可能分成多少个小队（要求所有士兵都分配完毕）？,"多组案例。一个正整数T，表示案例的数量。（T<=1e5）
+每组案例由一个正整数n组成，表示士兵的数量。(n<=1e6）","针对每组案例，输出一个整数，表示答案；如果无解，那么输出-1。
+每组案例输出完都要换行。",,"2
+3
+5","-1
+2",48.62%,181,https://www.xujcoj.com/home/contest/900/problem/4,https://www.xujcoj.com/home/contest/900/problem,https://www.xujcoj.com/home/problem?keyword3=900,https://www.xujcoj.com/home/problem/detail/3262
+20-21(2)第5次线上赛,1：签到题-6,"先前竞赛组的培训采用签字的方式进行签到，某个同学签完到以后去买了瓶水，回来时忘记自己已经签过到于是又在纸上写了一次名字，你可以找出这位同学吗？
+为了方便起见，我们用一个正整数表示一个同学。","第一行是一个正整数 n 代表纸上名字的数量。(2 <= n <= 100)
+然后是 n 个正整数表示每个同学的编号，对于每个编号 x 都有 1 <= x <= 10000。
+保证有且只有两个数字是相同的。",这个同学的编号，然后换行。,6 重复出现了两次。,"4
+5 6 7 6",6,67.43%,304,https://www.xujcoj.com/home/contest/896/problem/1,https://www.xujcoj.com/home/contest/896/problem,https://www.xujcoj.com/home/problem?keyword3=896,https://www.xujcoj.com/home/problem/detail/3212
+20-21(2)第4次线上赛,3：于老师的三大爱好,"众所周知，于老师的三大爱好是抽烟、喝酒、烫头。于老师会记录每次抽烟喝酒烫头花费的时间（用C表示抽烟、D表示喝酒、H表示烫头，整数数字表示时间），例如“C 2”表示抽烟2分钟，“H 15”表示烫头15分钟。有一个特例，就是当花费时间是1分钟时，会省略1这个数字，例如“D”表示喝酒1分钟。
+本来这样是可以井井有条地记录，但不知道什么原因，所有的空格和换行符都不见了，只剩下完全连在一起的字符和数字，看起来只能当字符串看了。
+你的任务就是在这样的情况下，帮于老师统计抽烟总共花费多少时间、喝酒总共多少时间、烫头总共多少时间。","多组案例。一个正整数n，表示案例的数量。（n<=20）
+每组案例中，有一个不带空格的字符串，表示【描述】中的记录。（字符串长度不大于10000，字符串中表示每次花费时间的数字不会大于1000）","针对每组案例，输出3个整数，分别表示抽烟、喝酒、烫头花费的总时间，两两之间有一个空格字符。
+每组案例输出完都要换行。",,"2
+CDH
+C2D3DH12C8","1 1 1
+10 4 12",54.00%,50,https://www.xujcoj.com/home/contest/880/problem/3,https://www.xujcoj.com/home/contest/880/problem,https://www.xujcoj.com/home/problem?keyword3=880,https://www.xujcoj.com/home/problem/detail/3228
+20-21(2)第4次线上赛,6：特殊的加法,"规定一种特殊的加法，计算两个加数的和时，按以下3个步骤
+（1）把两个加数分别看成二进制数字（去掉前置0），即只要加数不为0，那么对应二进制的最高位必须是1，例如9应看成二进制的1001，而不可以是01001；0看成二进制的0；
+（2）把二进制形式的加数高位对齐，如果有某个加数二进制位数较少，则低位补0；逐位进行加法，并且不进位，即某一位上0+0=0，0+1=1，1+0=1，1+1=0；
+（3）算出来的二进制结果最后转换回十进制。
+现在已知两个加数a和b，求经过特殊的加法后的结果。","多组案例。一个正整数n，表示案例的数量。（n<=20）
+每组案例由两个非负整数a和b组成。（a<=10000，b<=10000）","针对每组案例，输出一个整数，表示a、b经过特殊的加法后的结果。
+每组案例输出完都要换行。",第2组案例中，3的二进制是11，10的二进制是1010，把11和1010高位对齐、11的低位补0，所以实际上是1100和1010进行逐位加，按照上述规则，加的结果是0110，即十进制的6。,"2
+0 1
+3 10","1
+6",57.14%,28,https://www.xujcoj.com/home/contest/880/problem/6,https://www.xujcoj.com/home/contest/880/problem,https://www.xujcoj.com/home/problem?keyword3=880,https://www.xujcoj.com/home/problem/detail/3231
+20-21(2)第3次线上赛,3：回文数-1,"如果一个数字从左往右读和从右往左读是相同的，则称该数字为回文数字。
+已知两个正整数，问它们的总和是否构成回文数字。","多组案例。一个正整数n，表示案例的数量。（n<=20）
+每组案例由两个正整数a、b组成。（均不大于1e8）","针对每组案例，如果a+b是回文数，则输出Yes，否则输出No。
+每组案例输出完都要换行。",,"3
+99 11
+120 1
+35 53","No
+Yes
+Yes",48.71%,464,https://www.xujcoj.com/home/contest/863/problem/3,https://www.xujcoj.com/home/contest/863/problem,https://www.xujcoj.com/home/problem?keyword3=863,https://www.xujcoj.com/home/problem/detail/3222
+20-21(2)第1次线上赛,4：多才多艺的同学们,"辅导员对同学们各自擅长的才艺做了一番统计，在调查问卷中列举了30种不同的才艺，每位同学可以在自己擅长的才艺后面打勾，可以多选。这样每当举行活动需要某些才艺特长的同学参加时，辅导员就可以事先了解总共有多少名同学符合要求。比如某次歌舞表演需要同时拥有唱歌和舞蹈特长的同学才能参加，如果一个同学只擅长唱歌而不擅长舞蹈，就不能认定为符合要求。
+由于辅导员要提前规划一整个学年的活动安排，因此需要对多个活动分别统计各有多少名同学符合要求。","多组案例。一个正整数n，表示案例的数量。（n<=10）
+每组案例中，先是一个正整数m，表示学生的总人数；（m<=100000）
+然后是m行数据，每行数据表示一个学生的资料：一个非负整数a，表示该名学生共有多少项擅长的才艺，然后是a个1到30之间的不重复数字，表示擅长的才艺编号（1号到30号分别表示30种不同的才艺），a=0代表没有擅长的才艺；（a<=30）
+接下来是一个正整数p，表示有多少场活动；（p<=20）
+然后是p行数据，每行数据表示一场活动要求的才艺信息：一个非负整数b，表示该场活动需要同时具备多少项才艺，然后是b个1到30之间不重复的数字，表示需要的才艺编号，b=0表示不需要才艺，全员皆可参与。（b<=30）","针对每组案例，输出p个整数，表示每场活动满足才艺要求的同学人数，每两个数字之间留一个空格。
+每组案例输出完都要换行。",,"2
+5
+2 1 20
+3 5 2 8
+0
+3 2 20 5
+4 20 5 8 1
+3
+0
+2 8 5
+1 20
+3
+1 30
+2 5 30
+3 3 2 20
+2
+2 20 30
+1 15","5 2 3
+0 0",100.00%,7,https://www.xujcoj.com/home/contest/836/problem/4,https://www.xujcoj.com/home/contest/836/problem,https://www.xujcoj.com/home/problem?keyword3=836,https://www.xujcoj.com/home/problem/detail/3194
+20-21(2)第0次线上赛,5：WSAD,罗少在玩一个游戏，用 W S A D 分别控制角色进行 上 下 左 右 移动，我们可以把地图看作一个二维平面，罗少初始站在原点，现在他操作了 n 次，请你输出他的位置。,"第一行是一个正整数 n 代表测试案例的数量。(1 <= n <= 100)
+每组案例是一个仅包含字符WSAD的字符串 t 代表罗少的操作。(1 <= length(t) <= 100)",针对每组案例，输出罗少操作以后所在位置的横纵坐标，两者之间用空格隔开，然后换行。,,"2
+WWW
+SSD","0 3
+1 -2",64.41%,177,https://www.xujcoj.com/home/contest/817/problem/5,https://www.xujcoj.com/home/contest/817/problem,https://www.xujcoj.com/home/problem?keyword3=817,https://www.xujcoj.com/home/problem/detail/3178
+20-21(1)第6次线上赛,1：结巴的外星人-1,Tql在与外星人接触的过程中了解到，外星人说话的规律是每次只说3个单词，其中第1个和第3个单词都只说一遍，而第2个单词要重复m遍。Tql需要根据这样的规律把这3个单词拼凑成外星人看得懂的信号发送出去。,"多组案例，一个正整数n，表示案例的数量。（n<=20）
+每组案例先是3个不含空格的字符串a、b、c，然后是一个正整数m，表示字符串b要重复的次数。（a、b、c长度均不大于10，m<=10）","针对每组案例，输出一个字符串，表示最终发出的信号。其中第1个单词后面要留一个空格，第3个单词前面也要留一个空格，重复m遍的第2个单词中间不要留空格。
+每组案例输出完都要换行。",,"1
+ovo tql ! 3",ovo tqltqltql !,52.81%,356,https://www.xujcoj.com/home/contest/792/problem/1,https://www.xujcoj.com/home/contest/792/problem,https://www.xujcoj.com/home/problem?keyword3=792,https://www.xujcoj.com/home/problem/detail/3099
+20-21(1)第5次线上赛,5：迷路的Tql,"Tql初次来到厦门，在老城区里迷了路。老城区里有很多蜿蜒的道路，还有很多不能穿越围墙，Tql想从当前的位置回到码头，请帮忙找到一条最近的路径，并且告诉Tql要走到码头需要移动多少步。
+假设把老城区看成一个a行b列的二维网格，Tql所在的位置标为1，码头的位置标为2，道路标为0，围墙标为9。Tql每一步只能向上、下、左、右的某一个方向移动一格。","多组案例。一个正整数n，表示案例的数量。（n<=20）
+每组案例先是两个正整数a和b，然后是a行b列的数字字符，代表地图，其中1表示Tql所在的位置，2表示码头的位置，0表示道路，9表示不能通过的围墙。地图上只会有一格是1，也只会有一格是2。（2<=a<=10，2<=b<=10）","针对每组案例，输出一个整数，表示移动到码头最少需要多少步。如果无法移动至码头，则输出-1。
+每组案例输出完都要换行。",,"2
+3 4
+1992
+0090
+9000
+3 3
+192
+090
+090","7
+-1",60.00%,10,https://www.xujcoj.com/home/contest/777/problem/5,https://www.xujcoj.com/home/contest/777/problem,https://www.xujcoj.com/home/problem?keyword3=777,https://www.xujcoj.com/home/problem/detail/3033
+20-21(1)第4次线上赛,4：胖胖的优惠,"某宝商家为了庆祝双12举行商品优惠活动，有两种优惠活动，作为买家，胖胖只能选择其中一种优惠。
+其中之一是商品总价格每满a元则减b元，另一种是按照商品总价格打c折。（b<=a-1，1<=c<=9）
+另外还要根据商品的件数支付每件d元的邮费，邮费不参与优惠活动。
+已知胖胖共买了e件商品，每件商品的价格是f元，问以最优惠的方式购买商品需要花多少钱？","多组案例。一个正整数n，表示案例的数量。
+每组案例由6个正整数a、b、c、d、e、f组成。
+（值都不大）","针对每组案例，输出一个浮点数，表示最优惠的购买费用。输出浮点数时，不要输出无意义的0，例如浮点数的3，应输出3，而不能是3.0。
+每组案例输出完都要换行。",,"2
+100 50 7 1 1 5
+100 50 7 1 7 50","4.5
+207",56.34%,142,https://www.xujcoj.com/home/contest/765/problem/4,https://www.xujcoj.com/home/contest/765/problem,https://www.xujcoj.com/home/problem?keyword3=765,https://www.xujcoj.com/home/problem/detail/3022
+20-21(1)第4次线上赛,6：落花生,小调在家里的庭院中种了许多花生。到了收获的季节，小调收获了a个花生荚果，每个荚果里含有1~3颗花生仁。小调数了一下，总共有b颗花生仁。这时有人问小调，有几个荚果里是1颗花生仁，几个荚果里是2颗花生仁，几个荚果里是3颗花生仁？由于小调剥花生的时候没有去统计，故完全不知道，只能靠推导，然而一推导就发现有很多种可能的答案。请帮忙小调算算看有多少种可能的答案。,"多组案例。一个正整数n，表示案例的数量。（n<=20）
+每组案例由两个正整数a和b组成。（a<=10000，a<=b<=3a）","针对每组案例，输出一个整数，表示有多少种可能性。
+每组案例输出完都要换行。","第一组案例中，只有一种可能性，10000个荚果，每个荚果都是3颗花生仁。
+第二组案例中，第一种可能是1个单花生仁的荚果，2个双花生仁的荚果；第二种可能是2个单花生仁的荚果，1个三个花生仁的荚果。","2
+10000 30000
+3 5","1
+2",43.24%,37,https://www.xujcoj.com/home/contest/765/problem/6,https://www.xujcoj.com/home/contest/765/problem,https://www.xujcoj.com/home/problem?keyword3=765,https://www.xujcoj.com/home/problem/detail/3023
+20-21(1)第3次线上赛,6：最大的长方形,有m个长方形，在排除正方形的情况下，输出其中面积最大的长方形的长和宽以及面积。,"多组案例。一个正整数n，表示案例的数量。（n<=20）
+每组案例中，先是一个正整数m，表示长方形（包括正方形）的数量；然后是m组数据，每组数据由两个正整数组成，表示一个长方形（也有可能是正方形）相邻两边的长度。（m<=20，面积不会超出int范围）
+保证每组案例中至少有一个长方形，并且不会有多个长方形的面积并列最大。","针对每组案例，输出其中面积最大的长方形（不能是正方形）的长、宽、面积（长必须比宽大），这三个数据两两之间有一个空格。
+每组案例输出完都要换行。",,"1
+3
+4 4
+3 5
+6 2",5 3 15,40.67%,209,https://www.xujcoj.com/home/contest/753/problem/6,https://www.xujcoj.com/home/contest/753/problem,https://www.xujcoj.com/home/problem?keyword3=753,https://www.xujcoj.com/home/problem/detail/3006
+20-21(1)第2次线上赛,5：质数对,"把a到b范围内（包括a和b）的所有质数组成质数对，组成方法为：最小质数与最大质数组成一对，第二小质数和第二大质数组成一对，第三小质数和第三大质数组成一对，...，以此类推。这样有可能会有一个质数无法凑成质数对，那么它单独成对。
+依次输出每个质数对中两个质数之和。","多组案例。一个正整数n，表示案例的数量。（n<=20）
+每组案例由两个正整数a和b组成。（a<=b<=10000，a到b之间保证至少有1个质数）","针对每组案例，依次输出每个质数对中两个质数之和。每两个输出数字之间要有一个空格字符。最后一个数字后面不得有空格。
+每组案例输出完都要换行。","1~10之间的质数为2、3、5、7，其中2和7是第一个质数对，和为9；3和5是第二个质数对，和为8。注意9后有一个空格，8后面没有空格。
+2~18之间的质数为2、3、5、7、11、13、17，其中2和17是第一个质数对，和为19；3和13是第二个质数对，和为16；5和11是第三个质数对，和为16；7自己单独成对，和就是7。","2
+1 10
+2 18","9 8
+19 16 16 7",57.14%,28,https://www.xujcoj.com/home/contest/741/problem/5,https://www.xujcoj.com/home/contest/741/problem,https://www.xujcoj.com/home/problem?keyword3=741,https://www.xujcoj.com/home/problem/detail/2965
+20-21(1)第2次线上赛,6：校庆歌手,"为了庆祝校庆，嘉庚学院请了a名歌手来演出，并计划开b场演唱会，每场演唱会只用一名歌手。每名歌手都有各自不同的出场费，从第1名到第a名歌手的出场费分别是c1、c2、...、ca。第1场演唱会由第1名歌手负责，第2场演唱会由第2名歌手负责，...，第a场演唱会由第a名歌手负责，第a+1场演唱会又由第1名歌手负责，...，以此类推。当一名歌手不止负责一场演唱会时，每次演唱会都会得到一笔出场费。当b小于a时，会出现有的歌手没有上场的情况，那么将不会给这些歌手发出场费，而是给从没有上场的歌手每人发一笔候场费d。
+学院想要计算总共要花多少费用。","多组案例。一个正整数n，表示案例的数量。（n<=20）
+每组案例中，先是两个正整数a和b（a<=2000000, b<=2000000），表示歌手数量和演唱会数量；
+然后是a个正整数c1、c2、...、ca，表示每名歌手的出场费（均不大于1000）；
+最后是一个正整数d，表示给每名未上场歌手发放的候场费（d<=1000）。",针对每组案例，输出一个正整数，表示学院花费的总费用。每组案例输出完都要换行。,,"2
+2 5
+10 16
+1
+2 1
+10 16
+1","62
+11",73.17%,41,https://www.xujcoj.com/home/contest/741/problem/6,https://www.xujcoj.com/home/contest/741/problem,https://www.xujcoj.com/home/problem?keyword3=741,https://www.xujcoj.com/home/problem/detail/2963
+20-21(1)第1次线上赛,6：最近的坐标点,在平面直角坐标系中依次给出3个坐标点的x轴和y轴值，输出其中离原点最近的坐标点的x轴和y轴值。,"只有一组案例。
+分三行，每行表示一个坐标点的信息，每行由两个浮点数a和b组成，表示该点在平面直角坐标系中的坐标是(a,b)。（a和b的绝对值均不大于10000）",按坐标点在数学中的格式输出两个浮点数（参考样例输出格式），表示离原点最近的坐标点的x轴和y轴值。不要换行。,输出中的括号和逗号都是英文输入法状态下的符号，逗号前后都没有空格,"1.5 2.5
+1 2
+-3 4","(1,2)",43.51%,285,https://www.xujcoj.com/home/contest/713/problem/6,https://www.xujcoj.com/home/contest/713/problem,https://www.xujcoj.com/home/problem?keyword3=713,https://www.xujcoj.com/home/problem/detail/2927
+厦大附中线上赛（2020/9/6）,1：求和,一个大小为n的数组（1<=n<=1000000），存有n个数字a[i]（1<=i<=n，1<=a[i]<=1000000），然后进行Q次查询（1<=Q<=100000），每次查询提供L和R，要求输出sum=a[L]+2*a[L+1]+3*a[L+2]+...+(R-L+1)*a[R]（1<=L<=R<=n）,"只有一组案例。
+两个正整数n和Q，表示数组大小和查询次数，
+然后是n个整数，表示数组各个元素的值，
+接下来的Q行，每行由两个整数L和R组成，表示一次查询。",输出每次查询的结果，每个查询结果输出完都要换行。,,"5 3
+1 2 3 4 5
+3 4
+2 2
+1 5","11
+2
+55",44.44%,18,https://www.xujcoj.com/home/contest/698/problem/1,https://www.xujcoj.com/home/contest/698/problem,https://www.xujcoj.com/home/problem?keyword3=698,https://www.xujcoj.com/home/problem/detail/2902
+厦大附中线上赛（2020/9/6）,2：四边形,"已知四条线段的长度，问以这四条线段为边，是否有可能构成四边形？
+判定规则：两条最短边之和应大于剩下两条边之差。","一个正整数T，表示案例的数量。（T<=30）
+每组案例由四个整数a、b、c、d组成，表示四条线段的长度。（1<=a,b,c,d<=10000）","针对每组案例，如果四条线段能构成四边形，则输出Yes，否则输出No。
+每组案例输出完都要换行。",,"2
+1 2 3 4
+1 2 5 10","Yes
+No",66.67%,18,https://www.xujcoj.com/home/contest/698/problem/2,https://www.xujcoj.com/home/contest/698/problem,https://www.xujcoj.com/home/problem?keyword3=698,https://www.xujcoj.com/home/problem/detail/2910
+厦大附中线上赛（2020/9/6）,4：质数的和,"Alice想把一个不大于100000的数分解成多个（至少2个）不同的质数的和，请帮她看看有多少种不同的分解方法。因为方法数量可能非常多，因此要求输出该值除以100000007的余数。
+质数是大于等于2，且只有1和自身两个因数的整数。","一个正整数T，表示案例的数量。（T<=1000）
+每组案例中，有一个正整数n，表示待分解的数。（1<=n<=100000）","针对每组案例，输出一个整数，表示n能分解成至少两个不同质数之和的方案数量除以100000007的余数。注意5=2+3和5=3+2是同一种方案。
+每组案例输出完都要换行。","5=2+3，但不能5=5，因为要求至少2个不同质数之和。
+14=3+11，14=2+5+7，但不能14=7+7，因为质数必须不同。","2
+5
+14","1
+2",50.00%,4,https://www.xujcoj.com/home/contest/698/problem/4,https://www.xujcoj.com/home/contest/698/problem,https://www.xujcoj.com/home/problem?keyword3=698,https://www.xujcoj.com/home/problem/detail/2907
+厦大附中线上赛（2020/8/16）,1：土地,有一块N*N大小的土地（1<=N<=250），每一小块土地都对应着一个价值v（0<=v<=250）。现在有Q次查询（1<=Q<=100000），每次查询针对一块固定大小为M*M的土地（1<=M<=N），但这块M*M土地的起始左上角位置会随着每次查询而改变。求这块M*M土地上，最大价值的小块土地减去最小价值的小块土地的结果。,"只有一组案例。
+先是三个整数N、M、Q（1<=N<=250，1<=M<=N，1<=Q<=100000）
+然后是N行N列个整数，表示每小块土地的价值（0~250之间）
+最后是Q行，每行两个数字，代表查询土地左上角的行和列值（土地的行和列值从第1行和第1列开始算起）","针对每次查询，输出一个整数，表示范围内的最大价值减最小价值的结果。
+每次查询输出结果后都要换行。","有1次查询，第3行第2列（数字4）为左上角，边长为2的土地是
+4 3
+1 1
+其中最大值是4，最小值是1，相减得3","5 2 1
+1 2 3 4 5
+1 2 3 4 5
+5 4 3 2 1
+1 1 1 1 1
+2 2 2 2 2
+3 2",3,57.14%,21,https://www.xujcoj.com/home/contest/697/problem/1,https://www.xujcoj.com/home/contest/697/problem,https://www.xujcoj.com/home/problem?keyword3=697,https://www.xujcoj.com/home/problem/detail/2893
+厦大附中线上赛（2020/8/16）,3：阔绰的国王,国王为了奖励两个有功劳的将军，拿出了两个国际象棋棋盘，在每个棋盘都分别做了如下操作：在第一格放了1粒米，然后第二格放了2粒米，第三格放了4粒米，第四格放了8粒米，...，第64格放了2^63粒米。然后让两位将军各自针对属于自己的那一个棋盘，取走其中若干格里放置的所有米。两位将军有各自喜欢的数字和不喜欢的数字，所以取走米的格子可能不尽相同。已知两位将军各自取走的米粒数量，求共有几格的米两位将军都选择了取走？,"一个正整数n，表示案例的数量。
+每组案例由两个整数a和b组成（a<=2^64-1，b<=2^64-1），a表示第一位将军取走的米粒总数，b表示第二位将军取走的米粒总数。","针对每组案例，输出一个整数，表示共同选择取走米粒的格子的数量。
+每组案例输出完要换行。",第一个将军取走了第一、三、四格，共获得1+4+8=13粒米。第二个将军取走了第一、二、三格，共获得1+2+4=7粒米。两位共同取走米粒的格子是第一、三格，共2个格子，故答案是2。,"1
+13 7",2,40.91%,44,https://www.xujcoj.com/home/contest/697/problem/3,https://www.xujcoj.com/home/contest/697/problem,https://www.xujcoj.com/home/problem?keyword3=697,https://www.xujcoj.com/home/problem/detail/2896
+厦大附中线上赛（2020/8/16）,8：国际象棋,在国际象棋中，“车”是一种可以上下或者左右方向移动的棋子。棋盘上面有一些墙，可以阻止墙两侧同一行或者同一列的两个“车”互相攻击。现在要求在棋盘上放置尽可能多的车（不能放在墙上），必须保证任意两个“车”之间都不能互相攻击到。,"一个正整数T，表示案例的数量。（T<=10）
+每组案例先是一个正整数n，表示棋盘的大小是n*n。（n<=4）
+然后是n行n列字符，每个字符要么是'.'表示棋盘，要么是'X'表示墙。","针对每组案例，输出一个整数，表示棋盘上最多可以放置的“车”的数量。
+每组案例输出完要换行。",,"2
+4
+.X..
+....
+XX..
+....
+2
+XX
+.X","5
+1",40.00%,15,https://www.xujcoj.com/home/contest/697/problem/8,https://www.xujcoj.com/home/contest/697/problem,https://www.xujcoj.com/home/problem?keyword3=697,https://www.xujcoj.com/home/problem/detail/2901
+19-20(2)第6次线上赛,1：快乐位运算-3,"把一个无符号
+整数
+的二进制形式的前16位和后16位交换，形成一个新的无符号整数，输出该数。","多组案例。
+一个正整数n，表示案例的数量。
+每组案例中，只有一个无符号整数。",每组案例，输出一个无符号整数，表示变换后的数。输出完换行。,,"1
+1570897999",你猜，是情侣之间经常说的一个数字暗语。,40.46%,131,https://www.xujcoj.com/home/contest/690/problem/1,https://www.xujcoj.com/home/contest/690/problem,https://www.xujcoj.com/home/problem?keyword3=690,https://www.xujcoj.com/home/problem/detail/2873
+19-20(2)第6次线上赛,2：对称图形,"用一个数字矩阵（二维数组）表示图像，数组每个元素表示图像对应位置像素点的色彩，值相同表示色彩相同。图像有时会是上下对称或者左右对称，也有可能既上下对称也左右对称。
+给定一个二维数组，判断其表示图像的对称性。","多组案例。
+一个正整数n，表示案例的数量。
+每组案例中，第一行是正整数a和b，表示二维数组的行数和列数。（a<=10, b<=10）
+然后是a行数据，每行数据由b个非负整数组成，表示二维数组每个元素的值，也就是
+图像在
+对应位置的色彩。",每组案例，如果图像仅是左右对称，那么输出L-R；如果仅是上下对称，那么输出U-D；如果既是左右对称又是上下对称，那么输出Both；如果都不对称，那么输出None。输出后换行。,,"2
+2 2
+3 5
+3 5
+2 3
+1 2 1
+1 2 1","U-D
+Both",48.80%,250,https://www.xujcoj.com/home/contest/690/problem/2,https://www.xujcoj.com/home/contest/690/problem,https://www.xujcoj.com/home/problem?keyword3=690,https://www.xujcoj.com/home/problem/detail/2869
+19-20(2)第6次线上赛,3：lo养成计划,"某位同学喜欢lo装，为了达到心目中理想的造型，她购置了10种不同的装饰物，每种装饰物都买了很多件（保证肯定够用）。
+她把每种装饰物都分别选择了1~3件佩戴在身上，并且佩戴都相当合理，可以用装饰物的总数量表示lo装的优美程度。
+这位同学期待配置出优美程度为m的lo装，请问有多少种不同的装饰物选择方案？","多组案例。
+一个正整数n，表示案例的数量。
+每组案例中，只有一个正整数m（含义见【描述】）。（m<=5000）",每组案例，输出一个整数，表示选择方案的数量。输出后换行。,,"2
+50
+11","0
+10",44.74%,38,https://www.xujcoj.com/home/contest/690/problem/3,https://www.xujcoj.com/home/contest/690/problem,https://www.xujcoj.com/home/problem?keyword3=690,
+19-20(2)第6次线上赛,4：最长对称子串,"如果一个字符串从左向右读和从右向左读是一样的，那么称此字符串是对称的。
+给定一个字符串，想要在该字符串中找到一个长度最长的对称的子字符串。","多组案例。
+一个正整数n，表示案例的数量。
+每组案例中，只有一个不含空格、制表符等特殊符号的字符串。（字符串长度<=100）",每组案例，输出一个正整数，表示最大对称子字符串的长度。输出后换行。,"第一组案例的最大对称子串是abacaba
+第二组案例的最大对称子串是其中任意单个字符","2
+xabacabad
+abcdefg","7
+1",40.69%,145,https://www.xujcoj.com/home/contest/690/problem/4,https://www.xujcoj.com/home/contest/690/problem,https://www.xujcoj.com/home/problem?keyword3=690,https://www.xujcoj.com/home/problem/detail/2871
+19-20(2)第6次线上赛,5：身高排序,"涂涂想把参加竞赛的队员们按身高从低到高排序排成一列纵队，也就是任意
+一对
+相邻的队员，排前面的队员身高总是小于等于后面的队员。
+但他不想把这个问题变得如此简单，于是他给了自己一个例外的特权，允许在排序时，可以最多存在一对相邻的
+队员
+，排在前面的
+队员
+反而比后面的
+队员
+高。
+已知所有队员的身高，问涂涂有多少种合理的排队方法？
+注意：如果两个队员身高相同，他们之间交换位置，也算作另一种排队方法。涂涂可以选择不使用特权，就按顺序排序。","多组案例。
+一个正整数n，表示案例的数量。
+每组案例中，第一行是正整数m，表示队员的数量。第二行是m个正整数，表示每个队员的身高。（m<=10）",每组案例，输出一个正整数，表示合理的排队方法数量。输出后换行。,"第一组案例，合法的排序有：170 180 185、170 185 180、180 170 185、180 185 170、185 170 180
+第二组案例，合法的排序有：175(1) 175(2) 190、175(2) 175(1) 190、175(1) 190 175(2)、175(2) 190 175(1)、190 175(1) 175(2)、190 175(2) 175(1)","2
+3
+170 180 185
+3
+175 175 190","5
+6",40.00%,10,https://www.xujcoj.com/home/contest/690/problem/5,https://www.xujcoj.com/home/contest/690/problem,https://www.xujcoj.com/home/problem?keyword3=690,https://www.xujcoj.com/home/problem/detail/2870
+19-20(2)第4次线上赛,1：现在几点了？,输出现在的时间（精确到分钟）,无,现在的时间（格式见样例）,看右下角,,2020/4/18 15:00,51.11%,315,https://www.xujcoj.com/home/contest/673/problem/1,https://www.xujcoj.com/home/contest/673/problem,https://www.xujcoj.com/home/problem?keyword3=673,https://www.xujcoj.com/home/problem/detail/2812
+19-20(2)第4次线上赛,2：paper-cut,"罗少有一张长方形的纸，他每次都会把这张纸剪成面积相同的两半（这两半也都是长方形），然后丢掉其中的一半。
+罗少总共这样做了 n 次，最后剩下一张长为 a，宽为 b 的长方形，现在请你猜想一下，刚开始的那张纸的周长最短可能是多少。","第一行是一个正整数 T 代表测试案例的数量。(1 <= T <= 1000)
+每组案例包含三个正整数 n、a、b 含义如描述所述。(1 <= n、a、b <= 10)",针对每组案例，输出刚开始的那张纸的周长最短可能是多少，然后换行。,"刚开始的那张纸可能是 
+长为4宽为4的长方形
+ 或 
+长为8宽为2的长方形
+。
+(4 + 4) × 2 < (8 + 2) × 2，所以周长最短可能为16。","1
+1 4 2",16,46.47%,269,https://www.xujcoj.com/home/contest/673/problem/2,https://www.xujcoj.com/home/contest/673/problem,https://www.xujcoj.com/home/problem?keyword3=673,
+19-20(2)第3次线上赛,1：异或运算-3,这道题目很简单，你只需要输出 n 个 n 按位异或的结果就可以了。,"第一行是一个正整数 T 代表测试案例的数量。(1 ≤ T ≤ 1000)
+每组案例包含一个正整数 n。(1 ≤ n ≤ 1e9)",针对每组案例，输出 n 个 n 按位异或的结果，然后换行。,3 ^ 3 ^ 3 = 3,"1
+3",3,45.56%,417,https://www.xujcoj.com/home/contest/666/problem/1,https://www.xujcoj.com/home/contest/666/problem,https://www.xujcoj.com/home/problem?keyword3=666,https://www.xujcoj.com/home/problem/detail/2787
+19-20(2)第3次线上赛,4：最后一根稻草,"Alice和Bob拿了一堆稻草玩游戏，规定由Alice开始依次轮流拾取一些稻草。每个人每次要么可以拿走一根，要么如果稻草数量是偶数根，还可以选择拿走其中的一半（即如果当前稻草是奇数根，则不能选择拿走一半，只能选择拿走一根）。如果有人拿到了最后一根稻草则获胜。
+假设最开始稻草有m根，且Alice和Bob足够聪明，每次都可以做出最正确的选择，那么谁能取胜？","一个正整数n，表示案例的数量。（n<=20）
+每组案例由一个正整数m组成，表示稻草的初始数量。（m<=100000）","针对每组案例，如果Alice获胜，则输出Alice，如果Bob获胜，则输出Bob。
+每组案例输出完都要换行。",,"2
+1
+5","Alice
+Bob",48.73%,275,https://www.xujcoj.com/home/contest/666/problem/4,https://www.xujcoj.com/home/contest/666/problem,https://www.xujcoj.com/home/problem?keyword3=666,https://www.xujcoj.com/home/problem/detail/2794
+19-20(2)第2次线上赛,1：线上赛打卡题3-星号阵列,输出一个边长为 m 的正六边形。,一个正整数 m 代表正六边形的边长。(2 <= m <= 20),一个边长为 m 的正六边形，每行最后一个星号后面没有空格，最后一行输出完成以后也要换行。,,3,"  ***
+ *   *
+*     *
+ *   *
+  ***",57.24%,297,https://www.xujcoj.com/home/contest/653/problem/1,https://www.xujcoj.com/home/contest/653/problem,https://www.xujcoj.com/home/problem?keyword3=653,https://www.xujcoj.com/home/problem/detail/2780
+19-20(2)第1次线上赛,1：菱形阵列,输出一个边长为m个星号的空心菱形。,"只有一组案例。
+一个正整数m（2<=m<=15），表示菱形的边长是m个星号。",边长为m个星号的空心菱形。每行最后一个星号后面不能有多余的空格，最后一行星号输出后需要换行。,,4,,60.32%,315,https://www.xujcoj.com/home/contest/641/problem/1,https://www.xujcoj.com/home/contest/641/problem,https://www.xujcoj.com/home/problem?keyword3=641,https://www.xujcoj.com/home/problem/detail/2770
+19-20(2)第1次线上赛,2：字符串扩充,"把一个字符串几乎原样输出，但是其中如果遇到数字字符，那么该字符需要重复输出该数字那么多遍。
+如果遇到数字字符0，则不要输出该字符。","一个正整数n，表示测试案例的数量。
+每组案例由一个不含空格、tab的字符串组成。","针对每组案例，把字符串几乎原样输出，但是其中如果遇到数字字符，那么该字符需要重复输出该数字那么多遍。如果遇到数字字符0，则不要输出该字符。
+每组案例输出完都要换行。",,"1
+ab3c2",ab333c22,55.56%,270,https://www.xujcoj.com/home/contest/641/problem/2,https://www.xujcoj.com/home/contest/641/problem,https://www.xujcoj.com/home/problem?keyword3=641,https://www.xujcoj.com/home/problem/detail/2773
+19-20(1)第4次线上赛,1：格式输出,输出一个正整数a，如果a的位数不到m位，则输出时需要在a前面补若干个0，以达到m位；如果a达到或者超过m位，则直接输出a。," 一个正整数n，表示有n组案例。（n<=20）
+每组案例由一个正整数a和一个正整数m组成。 ","针对每组案例，如果a的位数不到m位，则输出时需要在a前面补若干个0，以达到m位；如果a达到或者超过m位，则直接输出a。
+每组案例输出完毕后都要换行。", ,"2
+1234 6
+1234 3 ","001234
+1234
+ ",67.71%,223,https://www.xujcoj.com/home/contest/602/problem/1,https://www.xujcoj.com/home/contest/602/problem,https://www.xujcoj.com/home/problem?keyword3=602,https://www.xujcoj.com/home/problem/detail/2669
+19-20(1)第4次线上赛,2：猜数字,"涂涂和lyf玩猜数字的游戏。lyf心里想了一个4位的正整数，保证每位上的数字互不相同，而且可以以0作为最高位（例如0754）。涂涂可以多次尝试猜测lyf想的数字究竟是多少。 
+每次猜测时，涂涂会报一个数字，然后lyf会根据涂涂猜测的情况回答xAyB，其中x表示有多少个数字猜对了，而且数字的位置也是对的；y表示有多少个数字猜对了，而且数字的位置是错的。
+例如当lyf想的数字是0754，涂涂猜的数字是5780，那么lyf回答是1A2B。其中数字7猜对了，而且7的位置也是对的（百位数上），所以是1A。而数字0和数字5也猜对了，但0和5出现的位置都与答案不一致，所以是2B。
+经过涂涂一系列的猜测后，涂涂就可能推断出lyf想的数字是多少了，但涂涂那天要准备CET考试，没时间思考问题，请写段代码帮涂涂回答。","一个正整数n，表示有n组案例。
+每组案例先是一个正整数m，表示涂涂猜了几次。然后是m行数据，每行数据是一个四位正整数a和四个字符组成的字符串b。（m<=20, a保证各位数字都不相同，b是形如xAyB的形式，其中x和y是0~4之间的整数，且x+y<=4）","针对每组案例，如果可以推断出lyf想的4位正整数是多少，那么输出该正整数（注意如果千位数是0，那么也要输出这个0）；如果无解，那么输出-1；如果不止一个解，则输出-2。
+每组案例输出完都要换行。 ",,"3
+1
+1234 0A0B
+2
+1234 3A1B
+5678 2A1B
+2
+3210 2A2B
+3120 0A4B","-2
+-1
+0213
+ ",100.00%,3,https://www.xujcoj.com/home/contest/602/problem/2,https://www.xujcoj.com/home/contest/602/problem,https://www.xujcoj.com/home/problem?keyword3=602,https://www.xujcoj.com/home/problem/detail/2670
+19-20(1)第4次线上赛,5：双向箭头,"根据a和b的值输出由*组成的双向箭头形状。
+其中a是正奇数，代表图案有几行；
+b是正整数，代表双向箭头中间的横线有多长。",只有一组案例，由两个正整数a和b组成。,根据a和b的值输出由*组成的双向箭头形状。每行最后不要有多余空格。最后一行星号输出完有个换行。,, 5 3,,60.54%,147,https://www.xujcoj.com/home/contest/602/problem/5,https://www.xujcoj.com/home/contest/602/problem,https://www.xujcoj.com/home/problem?keyword3=602,
+19-20(1)第3次线上赛,1：HCZ的头发,"HCZ的头发每天增加a厘米长度，当某一天头发增加后的长度大于等于b厘米时，HCZ会在当天就去理发，使得头发变成一半的长度。（如果遇到除成小数，则保留整数部分，例如9厘米的头发剪完，变成4厘米）
+已知HCZ的初始头发长度为c厘米，求经过d天后，HCZ头发的长度。","一个正整数n，表示有n组案例。
+每组案例由4个正整数a、b、c、d组成，其中a<=10, b<=100, c<=b-1, d<=100。","针对每组案例，输出一个正整数，表示
+HCZ头发最终的长度。
+每组案例输出完都要换行。","第1天结束时，头发长度6
+第2天结束时，头发长度8
+第3天结束时，头发长度5
+第4天结束时，头发长度7
+第5天结束时，头发长度4","1
+2 9 4 5",4,53.87%,349,https://www.xujcoj.com/home/contest/583/problem/1,https://www.xujcoj.com/home/contest/583/problem,https://www.xujcoj.com/home/problem?keyword3=583,https://www.xujcoj.com/home/problem/detail/2644
+19-20(1)第3次线上赛,5：正方形的数量,"有一个a行b列的网格，其中每个1*1的格子都是同样大小的正方形。问总共有多少个正方形。（注意不仅仅是1*1的a*b个
+正方形
+）","一个正整数n，表示案例的数量。
+每组案例由两个正整数a、b组成，其中a<=10000, b<=10000","针对每组案例，输出一个整数，表示矩形的数量。
+每组案例输出完都要换行。",,"3
+1 2
+2 2
+10000 9000","2
+5
+283545001500",52.83%,159,https://www.xujcoj.com/home/contest/583/problem/5,https://www.xujcoj.com/home/contest/583/problem,https://www.xujcoj.com/home/problem?keyword3=583,https://www.xujcoj.com/home/problem/detail/2647
+19-20(1)第3次线上赛,6：三天花完的钱,"涂涂拿了a元奖学金，计划三天之内花光。每天花的钱都是个正整数，并且第一天花钱<第二天花钱<第三天花钱。
+问总共有多少种不同的花法。","一个正整数n，表示有n组案例。（n<=10）
+每组案例由一个正整数a构成。（
+a<=1500
+）","针对每组案例，输出一个整数，表示
+有多少种不同的花法。
+每组案例输出完都要换行。","1+2+5
+1+3+4","1
+8",2,56.03%,141,https://www.xujcoj.com/home/contest/583/problem/6,https://www.xujcoj.com/home/contest/583/problem,https://www.xujcoj.com/home/problem?keyword3=583,https://www.xujcoj.com/home/problem/detail/2645
+19-20(1)第1次线上赛,3：反向输出四位数,把一个四位正整数反向输出,一个四位正整数,"反向输出这个四位数，也就是个位数、十位数、百位数、千位数的顺序。不用管反向后是否0开头的问题。
+不要换行。",,1280,0821,63.54%,362,https://www.xujcoj.com/home/contest/546/problem/3,https://www.xujcoj.com/home/contest/546/problem,https://www.xujcoj.com/home/problem?keyword3=546,https://www.xujcoj.com/home/problem/detail/2539
+19-20(1)第1次线上赛,4：等差数列,已知一个等差数列第a项的值是b，第c项的值是d，输出该数列第n项的值,"五个整数a、b、c、d、n，含义见【描述】（a>0, c>0, n>0, a≠c)。
+保证数列的每一项都是整数。","一个整数，表示第n项数列的值。
+不要换行。",,2 3 3 5 4,7,64.81%,341,https://www.xujcoj.com/home/contest/546/problem/4,https://www.xujcoj.com/home/contest/546/problem,https://www.xujcoj.com/home/problem?keyword3=546,https://www.xujcoj.com/home/problem/detail/2540
+19-20(1)第1次线上赛,6：除法,"按照小学数学的写法输出两个数相除的结果。能除得尽的时候输出商，除不尽的时候输出商和余数。
+例如42/6=7，43/6=7......1  
+商和余数之间是6个小数点字符。",两个正整数a和b。,"如果a除以b没有余数，那么输出a/b=c，其中a和b用具体数字代替，c是a除以b的商。
+如果a除以b有余数，那么输出a/b=c......d，其中
+a和b用具体数字代替，c是a除以b的商，d是a除以b的余数，c和d之间是
+6个小数点字符。
+不要换行。",,43 6,43/6=7......1,53.25%,415,https://www.xujcoj.com/home/contest/546/problem/6,https://www.xujcoj.com/home/contest/546/problem,https://www.xujcoj.com/home/problem?keyword3=546,https://www.xujcoj.com/home/problem/detail/2541
+18-19(2)第3次线上赛,3：青蛙公主教化学,"青蛙公主有一天在教一群小青蛙学化学，在讲到烃类物质的时候，小青蛙们被复杂的化学分子式搞糊涂了。
+
+例如甲苯的化学分子式是C7H8，可是调皮的小青蛙们会把这个简单的分子式写成各种不规范的形式，例如有的写成了H8C7，有的写成了(CH)7H1，有的写成了C1((CH2)2C)2，有的写成了(C)7(H)7(H)。
+
+现在已知小青蛙写的一个分子式，请帮青蛙公主改写成规范的分子式。
+
+定义：
+
+1、规范的分子式写法：CaHb，其中a和b是两个数字，分别表示C原子的个数和H原子的个数。如果a为1，则不用写这个1；如果a为0，则连前面的C以及这个0都不用写。同样的如果b为1，则不用写这个1；如果b为0，则连前面的H以及这个0都不用写。
+
+2、小青蛙们的写法：
+
+（1）任意一个C或者H后面跟着一个正整数，表示原子的个数。当数字是1时，也有可能会省略这个1，也有可能不会省略。
+
+（2）有可能用小括号把一些分子结构括起来，后面跟着一个正整数，表示分子结构的个数。当数字是1时，也有可能会省略这个1，也有可能不会省略。","一个正整数n，表示有n组案例。
+
+每组案例由一个字符串构成，表示小青蛙写的不规范的分子式。
+
+字符串仅由小括号（保证是合法匹配的）、C、H、数字（有可能不止一位数的整数）字符组成，并且保证字符串长度不大于10000，最后C和H原子的个数都不会超过int范围。","针对每组案例，输出一个字符串，表示规范的分子式。
+
+每组案例输出完都要换行。",,"2
+
+C(C2H1)2
+
+((CH)10(C2H3)2)5(CH)","C5H2
+C71H81",40.00%,5,https://www.xujcoj.com/home/contest/501/problem/3,https://www.xujcoj.com/home/contest/501/problem,https://www.xujcoj.com/home/problem?keyword3=501,https://www.xujcoj.com/home/problem/detail/2387
+18-19(2)第2次线上赛,1：逆袭的Jerry,"Tom的血量是a，攻击力是b，而Jerry的血量是c，而攻击力是d，他们按照回合制进行互相攻击，每个回合都是Jerry先进攻，然后才轮到Tom。
+进攻时，防守方的血量会降低，降低的数值等于进攻方的攻击力。当某一方在任何时候血量小于等于0时，就会投降认输，打斗立即结束。
+由于Jerry攻击力不高，而且血量也有点脆，所以每次总是输。因而Jerry希望能够把攻击力提升到某个值，使得他能打得过Tom。
+提升每一点攻击力都要花钱，所以Jerry希望在能打得赢Tom的前提下尽可能地少花钱。问Jerry的攻击力应提升到多少？","一个正整数n，表示有n组案例。
+每组案例由4个正整数a、b、c、d组成，含义见描述。（a、b、c、d<=1亿）","针对每组案例，输出一个正整数，表示Jerry的攻击力应至少提升到该值才能打得赢Tom。
+每组案例输出完都要换行。",,"1
+100 20 50 10",34,40.22%,465,https://www.xujcoj.com/home/contest/453/problem/1,https://www.xujcoj.com/home/contest/453/problem,https://www.xujcoj.com/home/problem?keyword3=453,https://www.xujcoj.com/home/problem/detail/2246
+18-19(2)第1次线上赛,4：平行四边形,已知平行四边形逆时针方向4个顶点中的前3个顶点坐标，求第4个顶点坐标。,"一个正整数n，表示有n组案例。
+每组案例由6个整数构成，前2个表示第一个顶点的坐标（数学上的x轴和y轴），中间2个表示第二个顶点的坐标，最后2个表示第三个顶点的坐标。
+这三个
+顶点
+的位置保证可以找到第四个顶点按逆时针顺序连在一起构成平行四边形","针对每组案例，输出两个整数，用空格隔开，表示第四个顶点的坐标。
+每组案例输出完都要换行。",,"1
+2 0 5 6 2 12",-1 6,58.15%,325,https://www.xujcoj.com/home/contest/437/problem/4,https://www.xujcoj.com/home/contest/437/problem,https://www.xujcoj.com/home/problem?keyword3=437,https://www.xujcoj.com/home/problem/detail/2177
+18-19(2)第1次线上赛,5：你的大佬,"班上有m名学生，学号分别从1到m。有一天，老师给每个
+学生
+发了一张纸，要求
+学生
+在纸上写一个大佬的学号（1~m范围内，可以是自己）。
+然后老师叫了学号为a的
+学生
+起立，打开他写的纸条，假设他纸条上写的是b，于是又叫学号为b的
+学生
+起立，继续打开b
+学生
+写的纸条，以此类推......
+这个操作直到某位
+学生
+的纸条上写的
+学生
+已经处于起立状态为止。
+问：此时共有几名
+学生
+处于起立状态？","一个正整数n，表示有n组案例。
+每组案例首先是一个正整数m，表示班级学生的数量。然后是m个整数d1、d2、...、dm，其中di表示第i个学生写下的大佬的学号。最后是一个整数a，表示老师最开始叫起立的学生的学号。
+（1<=m<=10000, 1<=di<=m, 1<=a<=m）","针对每组案例，输出一个正整数，表示处于起立状态的学生的总数。
+每组案例输出完都要换行。","第一组案例中，依次起立的是3、2、1号学生，然后1号学生认为2号学生是大佬，然而2号已经起立了，因而到此结束，总共3人起立。
+第二组案例中，依次起立的是3、2号学生，然后2号学生认为自己是大佬，然而自己已经起立了，
+因而到此结束，总共2人起立。","2
+4
+2 1 2 2
+3
+3
+1 2 2
+3","3
+2",45.45%,88,https://www.xujcoj.com/home/contest/437/problem/5,https://www.xujcoj.com/home/contest/437/problem,https://www.xujcoj.com/home/problem?keyword3=437,https://www.xujcoj.com/home/problem/detail/2172
+18-19(1)第5次线上赛,3：距离原点最近的点,"三维空间中有m个点（p1、p2、...、pm），编号分别为1、2、...、m。问编号是几的点距离原点(0,0,0)最近？如果有多个点距离原点都最近，那么取编号小的那个点作为最近的点。","一个正整数n，表示有n组案例。
+
+每组案例先是一个正整数m，表示点的数量。然后是m个点的x、y、z轴坐标值。（m<=50万；x、y、z都是整数，且绝对值都小于等于1000）
+
+","针对每组案例，输出一个整数，表示编号是几的点距离原点最近。如果有并列最近，则输出较小的编号。
+
+每组案例输出完都要换行。
+
+",,"1
+3
+2 3 4
+0 1 2
+5 7 9",2,44.92%,305,https://www.xujcoj.com/home/contest/362/problem/3,https://www.xujcoj.com/home/contest/362/problem,https://www.xujcoj.com/home/problem?keyword3=362,https://www.xujcoj.com/home/problem/detail/2064
+18-19(1)第5次线上赛,4：出现过的数字,输入m个整数，问1到10000之间有多少个数字至少出现过一次。,"一个正整数n，表示有n组案例。
+每组案例先是一个正整数m，然后是m个整数。","针对每组案例，输出一个整数，表示
+在
+输入的m个整数中，
+1到10000之间有多少个数字至少出现过一次。
+每组案例输出后都要换行。",在输入的5个整数中，1和3都是1到10000之间的数字，0不属于该范围，所以一共有2个1到10000之间的数字出现过。,"1
+5 1 1 3 0 3",2,40.40%,297,https://www.xujcoj.com/home/contest/362/problem/4,https://www.xujcoj.com/home/contest/362/problem,https://www.xujcoj.com/home/problem?keyword3=362,https://www.xujcoj.com/home/problem/detail/2054
+18-19(1)第4次线上赛,1：十六进制,输入一个十进制正整数，输出这个数的十六进制表示，其中十六进制的10~15用大写字母A~F表示。,"一个正整数n，表示有n组案例。
+每组案例由一个正整数（10进制）组成。",针对每组案例，输出该整数的十六进制表示。每组案例输出完都要换行。,,"2
+65535
+100","FFFF
+64",51.97%,127,https://www.xujcoj.com/home/contest/352/problem/1,https://www.xujcoj.com/home/contest/352/problem,https://www.xujcoj.com/home/problem?keyword3=352,https://www.xujcoj.com/home/problem/detail/1496
+18-19(1)第4次线上赛,3：五毒教主吃苹果,"有一天，邪恶的巫师送给了五毒教主一筐苹果，里面有一些正常的苹果和一些有毒的苹果。凡人吃毒苹果轻则吐血，重则暴毙，然而五毒教主吃一个毒苹果后只会昏睡一天，并无大碍。
+昏睡的那天，
+五毒教主
+不吃苹果。例如，第1天吃了一个毒苹果，则第2天昏睡不吃，第3天继续吃。
+恰逢五毒教主最近减肥，每天最多只吃1个苹果，直到吃完这一筐苹果为止。
+问：有多少种不同的吃法？
+如果有一个正常的苹果和一个毒苹果，那么先吃正常
+苹果
+再吃毒苹果，和先吃毒苹果再吃正常苹果，属于2种不同的吃法。","一个正整数n，表示有n组案例。
+每组案例由两个非负整数a、b组成，a表示正常苹果的数量，b表示毒苹果的数量。（a和b不会同时为0，答案会在int范围内）","针对每组案例，输出一个整数，表示有
+多少种不同的吃法。
+每组案例输出完都要换行。",,"2
+2 0
+1 2","1
+3",61.26%,111,https://www.xujcoj.com/home/contest/352/problem/3,https://www.xujcoj.com/home/contest/352/problem,https://www.xujcoj.com/home/problem?keyword3=352,https://www.xujcoj.com/home/problem/detail/2044
+18-19(1)第4次线上赛,6：画矩形,根据要求画出矩形。,"只有一组案例。
+先是两个正整数m和n（3<=m,n<=10），然后是一个字符c，最后是一个0或者1的整数d。
+m代表矩形图案的高，n代表矩形图案的宽，c是用来画矩形的符号，如果d是0则画空心的矩形，如果d是1则画实心的矩形。",按要求输出一个空心或者实心的矩形。最后一行后面也要换行。,如果输入是5 3 # 1，那么输出结果是,7 7 @ 0,,49.36%,314,https://www.xujcoj.com/home/contest/352/problem/6,https://www.xujcoj.com/home/contest/352/problem,https://www.xujcoj.com/home/problem?keyword3=352,https://www.xujcoj.com/home/problem/detail/1500
+18-19(1)第3次线上赛,1：奇数的和,输出a到b之间（包含a和b）所有奇数的和。（保证不会超出int范围）,"一个正整数n，表示有n组案例。
+每组案例由两个整数a和b组成（a<b）。","针对每组案例，输出一个整数，表示
+a到b之间（包含a和b）所有奇数的和。
+每组案例输出完都要换行。",,"2
+5 6
+1 10","5
+25",56.10%,328,https://www.xujcoj.com/home/contest/344/problem/1,https://www.xujcoj.com/home/contest/344/problem,https://www.xujcoj.com/home/problem?keyword3=344,https://www.xujcoj.com/home/problem/detail/2013
+18-19(1)第3次线上赛,3：超级质数,"一个六位正整数m，把m从中间切开，分成两个三位数a和b（例如123456从中间切开，分成了123和456）。
+如果m、a、b都是质数，则称m是超级质数。
+现在需要验证，x到y之间（包含x和y）有多少个这样的超级质数？（x<=y，且x和y都是六位数）","一个正整数n，表示有n组案例。
+每组案例由两个六位正整数x和y组成。（
+x<=y）","针对每组案例，输出一个整数，表示
+x到y之间（包含x和y）超级质数的数量。
+每组案例输出完都要换行。",,"1
+100000 999999",3223,40.43%,188,https://www.xujcoj.com/home/contest/344/problem/3,https://www.xujcoj.com/home/contest/344/problem,https://www.xujcoj.com/home/problem?keyword3=344,https://www.xujcoj.com/home/problem/detail/2015
+18-19(1)第3次线上赛,4：星号阵列-14,根据行数m，输出倒三角形状的星号阵列（以下是m=7时的样子，m为其他值时类推）。每行最后一个星号后面不得有多余的空格字符，最后一行星号输出后也要换行。,"一个正整数n，表示有n组案例。
+每组案例由一个正整数m组成。（m>=3）","针对每组案例，输出一个倒三角形的星号阵列。
+每组案例的最后一行星号后都要换行。",,"1
+7",,62.61%,222,https://www.xujcoj.com/home/contest/344/problem/4,https://www.xujcoj.com/home/contest/344/problem,https://www.xujcoj.com/home/problem?keyword3=344,https://www.xujcoj.com/home/problem/detail/2016
+18-19(1)第2次线上赛,2：最近的点,"平面直角坐标系中有m个点（第1个、第2个、...、第m个），已知每个点的横纵坐标，求第几个点距离原点(0,0)最近。如果有多个点并列最近，那么输出比较小的序号。","一个正整数n，表示有n组案例。（n<=200）
+每组案例先是一个正整数m，表示点的个数；（m<=10000）
+然后是2*m个整数，每2个整数表示一个点的横坐标和纵坐标（横纵坐标都在-10000到10000范围内）。","针对每组案例，输出距离
+原点(0,0)最近的点的序号。如果有多个点并列最近，那么输出比较小的序号。
+每组案例输出完都要换行。",若要使用INT_MAX、INT_MIN，需要头文件limits.h,"2
+3
+3 3 2 1 1 3
+3
+1 3 4 4 3 1","2
+1",43.12%,109,https://www.xujcoj.com/home/contest/331/problem/2,https://www.xujcoj.com/home/contest/331/problem,https://www.xujcoj.com/home/problem?keyword3=331,https://www.xujcoj.com/home/problem/detail/1984
+18-19(1)第2次线上赛,6：0之通道,有m个整数，输出其中有几个0。,"一个正整数n，表示有n组案例。
+每组案例先是一个正整数m，表示整数的个数，然后是m个整数。","针对每组案例，输出一个整数，表示这m个整数中0的个数。
+每组案例输出完都要换行。",,"2
+3 1 2 3
+4 0 1 2 0","0
+2",51.41%,249,https://www.xujcoj.com/home/contest/331/problem/6,https://www.xujcoj.com/home/contest/331/problem,https://www.xujcoj.com/home/problem?keyword3=331,
+18-19(1)第1次线上赛,4：长方形,有4根木棍，不能折断，问是否能构成长方形？,四个正整数，分别表示四根木棍的长度。,"如果这四根木棍能构成长方形（不能是正方形），则输出Yes，否则输出No。
+不要换行。",,1 4 4 1,Yes,40.20%,296,https://www.xujcoj.com/home/contest/315/problem/4,https://www.xujcoj.com/home/contest/315/problem,https://www.xujcoj.com/home/problem?keyword3=315,https://www.xujcoj.com/home/problem/detail/1953
+17-18(2)第5次线上赛,1：逆序对,"有一个长度为 m 的数组 A（下标从 0 到 m - 1），如果存在 0 ≤ i < j ≤ m - 1 且 A[i] > A[j]，则称 A[i] 和 A[j] 是一个逆序对。
+现在给出数组 A，请你计算逆序对的数量。","一个正整数 n，表示有 n 组案例。（n<=10）
+每组案例首先是一个正整数 m，然后输入 m 个 int 类型的数字，表示 A 数组中各元素的值。（m<=1000）",针对每组案例，输出一个整数，表示数组中逆序对的数量，然后换行。,第2组案例中，4和1、4和3、4和2、3和2是逆序对。,"2
+5 1 2 3 4 4
+4 4 1 3 2","0
+4",72.77%,191,https://www.xujcoj.com/home/contest/280/problem/1,https://www.xujcoj.com/home/contest/280/problem,https://www.xujcoj.com/home/problem?keyword3=280,https://www.xujcoj.com/home/problem/detail/1895
+17-18(2)第5次线上赛,3：青蛙公主的日常游戏,"青蛙公主把 m * m 只青蛙关在了 m 行 m 列个房间里，每个房间里关一只青蛙，有的青蛙是正面朝上，有的青蛙是反面朝上。
+公主喜欢每次把两只相邻（左右相邻或者上下相邻）的青蛙同时翻面（正面变反面，反面变正面）。
+问是否有可能通过有限次的翻面，把所有青蛙都变成正面朝上的状态。
+下图就是一个案例，案例中是 5 * 5 的房间，0 表示该房间的青蛙是反面朝上，1 表示正面朝上。期望能把所有的数字都翻成 1。","一个正整数 n，表示有 n 组案例。
+每组案例中首先是一个正整数 m ( m ≤ 100 )，然后是 m * m 个数字（只会是 0 或者 1）。
+表示自上向下、自左向右的每只青蛙是正面还是反面朝上。",针对每组案例，如果可以把所有青蛙变成正面朝上，则输出Yes，否则输出No，然后换行。,,"2
+2
+1 1
+0 0
+3
+0 0 0
+0 0 0
+0 0 0","Yes
+No",47.78%,90,https://www.xujcoj.com/home/contest/280/problem/3,https://www.xujcoj.com/home/contest/280/problem,https://www.xujcoj.com/home/problem?keyword3=280,https://www.xujcoj.com/home/problem/detail/1896
+17-18(2)第4次线上赛,1：MJ开女装店,"MJ开了一间女装店，规定每件衣服的价格是m元。MJ同时又推出了两项优惠活动：
+1、多买优惠活动：第2件衣服的售价比原价低1元，第3件衣服的售价比原价低2元，以此类推，第t件衣服的售价比原价低t-1元。但如果某件衣服优惠后的价格低于p元，那么就按p元销售。
+2、学弟优惠活动：如果是学弟前来购买，则在第1项优惠算好总价格后，再次进行九折优惠，并且只收九折计算后的整数部分。
+现在已知某人来MJ的女装店买了t件衣服，问优惠后的总价格是多少？","一个正整数n，表示有n组案例。
+每组案例由3个正整数m、t和p，以及一个字符c组成，其中m代表一件衣服的原价，t代表买衣服的件数，p表示多买打折优惠中的最低售价，c等于Y时表示是学弟，等于N时表示不是学弟。（1<=p<=m<=1000, 1<=t<=1000）","针对每组案例，输入一个正整数，表示优惠后的总价格。
+每组案例输出完都要换行。",,"2
+10 1 5 Y
+10 3 9 N","9
+28",52.50%,280,https://www.xujcoj.com/home/contest/276/problem/1,https://www.xujcoj.com/home/contest/276/problem,https://www.xujcoj.com/home/problem?keyword3=276,https://www.xujcoj.com/home/problem/detail/1877
+17-18(2)第4次线上赛,4：MJ开医院,"MJ开了一家精神病医院。有一天，医院里开门时，门外来了m个残暴的病人。第i个病人在等待wi时间后都会进入狂暴状态（1<=i<=m），然后愤然离开医院。
+第i个病人
+需要一个医生花ti时间进行治疗
+（1<=i<=m）。一旦治疗开始，医生就不得分心去做别的事（比如同时治疗别的病人），只有治好一个病人后，医生才可以去治疗下一个未狂暴的病人。正在治疗中的病人是不会进入狂暴状态的（即使在治疗过程中，时间超过了wi）。
+MJ是个黑心老板，只雇了一名医生。问是否存在一种合理的治疗顺序，能保证所有的病人都不会进入狂暴状态。
+注意：如果某个病人刚好在wi时刻受到了治疗，那么不会进入狂暴状态。","一个正整数n，表示有n组案例。
+每组案例先是一个正整数m
+（1<=m<=10000）
+，然后是m个正整数w1~wm
+（1<=wi<=10000000），最后是m个正整数t1~tm
+（1<=ti<=10000）。","针对每组案例，
+存在一种合理的治疗顺序，能保证所有的病人都不会进入狂暴状态，则输出Y，否则输出N。
+每组案例输出后都要换行。",,"2
+3
+20 30 40
+1 2 3
+3
+10 20 20
+5 16 18","Y
+N",43.40%,53,https://www.xujcoj.com/home/contest/276/problem/4,https://www.xujcoj.com/home/contest/276/problem,https://www.xujcoj.com/home/problem?keyword3=276,https://www.xujcoj.com/home/problem/detail/1876
+17-18(2)第3次线上赛,1：打印裙子,"女装大佬特别喜欢用星号（*）打出裙子的形状，形状如同一个等腰梯形，第一行有a个星号，然后第二行有a+2个
+星号
+（即两侧各多一个
+星号
+），第三行有a+4个
+星号，...，最后一行有b个星号，并且最后一行的星号是顶格的，前面没有空格。每行星号打完后，后面不能再有空格字符。
+例如，当a=3，b=9时，输出如下：","只有一组案例。
+两个正整数a和b（a和b保证要么都是偶数，要么都是奇数，且a<=b）","第一行为a个星号，最后一行为b个星号的形如等腰梯形的形状。注意最后一行的星号是顶格的，
+前面没有空格。每行星号打完后（包括最后一行），应直接换行，后面不能再有空格字符。",,2 6,,54.57%,339,https://www.xujcoj.com/home/contest/265/problem/1,https://www.xujcoj.com/home/contest/265/problem,https://www.xujcoj.com/home/problem?keyword3=265,https://www.xujcoj.com/home/problem/detail/1843
+17-18(2)第3次线上赛,2：做裙子,"女装涂大佬有一次要用一块布料做裙子，这块布料是一个凸四边形。已知四边形四个顶点在直角坐标系中的坐标，求布料的面积。
+提示：海伦公式算三角形面积","一个正整数n，表示有n组案例。
+每组案例由8个浮点数组成，分别表示四边形逆时针顺序的第1个顶点的x轴和y轴坐标，第2个
+顶
+点的x轴和y轴坐标，
+第3个
+顶
+点的x轴和y轴坐标，第4个
+顶
+点的x轴和y轴坐标。","针对每组案例，输出一个浮点数，表示四边形的面积。（精度误差在0.001以内）
+每组案例输出完都要换行。",,"2
+0 0 1 0 1 1 0 1
+0 -1 1 0 0 1 -1 0","1
+2",46.64%,268,https://www.xujcoj.com/home/contest/265/problem/2,https://www.xujcoj.com/home/contest/265/problem,https://www.xujcoj.com/home/problem?keyword3=265,https://www.xujcoj.com/home/problem/detail/1842
+17-18(2)第3次线上赛,5：Trick or Treat,"在万圣节，孩子们常穿着古灵精怪的衣服，挨家挨户按响门铃，索要糖果。
+
+有一群孩子，每个孩子都要到了一定数量的糖果。这群孩子中混入了一个假扮小女孩的女装大佬，从外形上完全看不出来是假扮的。
+
+唯一能够分辨出来的方法是：如果真的是孩子，那么至少能找到另一个孩子，他们要到的糖果之间是倍数关系，即假设他们要到的糖果数量分别是a颗和b颗，则要么a是b的倍数，要么b是a的倍数，至少会满足一种情况。
+
+而如果是女装大佬，则与任意一个孩子之间，要到的糖果数量都不会满足倍数关系。
+
+现在已知孩子的数量是m个（m已经包含那一个女装大佬），编号分别是1、2、...、m，并且知道这m个孩子要到的糖果数量分别是q1、q2、...、qm，求女装大佬的编号？","一个正整数n，表示有n组案例。
+每组案例中，首先是一个正整数m（3<=m<=100），然后是m个正整数q1、q2、...、qm（qi<=10000），表示这m个孩子分别要到的糖果数量。","针对每组案例，输出一个整数，表示女装大佬的编号。（案例保证每组都有唯一解）
+
+每组案例输出完都要换行。","第一组案例中，1号2颗糖，2号5颗糖，3号6颗糖，很明显，5和2、6都不存在倍数关系，故5颗糖对应的2号是女装大佬。
+
+第二组案例中，9与2、10、14都不是倍数关系，故是2号。","2
+
+3 2 5 6
+
+4 2 9 10 14","2
+2",51.58%,95,https://www.xujcoj.com/home/contest/265/problem/5,https://www.xujcoj.com/home/contest/265/problem,https://www.xujcoj.com/home/problem?keyword3=265,https://www.xujcoj.com/home/problem/detail/1840
+17-18(2)第2次线上赛,1：四维,"赵大佬做了一款三国题材的手游，需要设计很多架空人物的智力、政治、武力、统率力这四维属性值，以及人物的美工。
+机智的赵大佬想到了使用同学的考试成绩和照片的方法，拍摄了大柱等很多位同学的美（hei）照，并获取了他们C++、数据结构、算法、语文这四门课的成绩。
+赵大佬制定了成绩->
+四维属性值的转换公式：
+智力=[(C++)+(算法)]/2
+政治=(语文)
+武力=(C++)
+统率力=
+[(
+数据结构
+)+(算法)]/2
+如果上述计算中出现小数部分，则舍弃小数部分。请帮助赵大佬完成这样的转换工作。","一个正整数 n 表示有 n 组案例。
+每组案例由4个正整数构成，分别表示
+C++、数据结构、算法、语文这四门课的成绩。","针对每组案例，输出转换后的
+智力、政治、武力、统率力这四维属性值，每两个数字之间有一个空格。
+每组案例输出完都要换行。",,"2
+100 90 85 80
+100 100 100 100","92 80 100 87
+100 100 100 100",71.60%,250,https://www.xujcoj.com/home/contest/238/problem/1,https://www.xujcoj.com/home/contest/238/problem,https://www.xujcoj.com/home/problem?keyword3=238,https://www.xujcoj.com/home/problem/detail/1707
+17-18(2)第2次线上赛,3：关系代数,"赵大佬最近在自学离散数学，在学到关系代数的时候，了解到了一些关系的自反与反自反性。
+对于自反性和反自反性的定义如下：
+
+设 R 是 A 上的关系：
+
+1、若 ∀x (x ∈ A → ∈ R)，则称 R 在 A 上是自反的
+2、若 ∀x (x ∈ A → ∉ R)，则称 R 在 A 上是反自反的
+
+简单地说，如果对于 A 上的任意元素 x，关系 R 中包含所有 (x，x) 元组，则关系 R 是自反的；
+
+如果对于 A 上的任意元素 x，关系 R 中都没有包含任何一个的 (x，x) 元组，则关系 R 是反自反的。
+
+赵大佬写了集合 A 和关系 R，想知道 R 在 A 上是自反的（reflexive）、反自反的（anti-reflexive）、还是两者都不是（neither）。","一个正整数 n，表示有 n 组案例。
+每组案例先是两个正整数 m 和 p，其中 m 表示集合 A 里元素的个数，对应的元素编号分别从 1 到 m，而 p 表示关系 R 中元组的个数。
+然后是 p 个元组的信息，每个元组由两个整数（1 到 m 之间）构成。",针对每组案例，输出 R 在 A 上的关系，然后换行。,关系中不会有重复的元组,"3
+3 2
+1 1
+2 2
+3 4
+1 1
+2 2
+3 3
+1 2
+3 1
+1 3","neither
+reflexive
+anti-reflexive",72.00%,25,https://www.xujcoj.com/home/contest/238/problem/3,https://www.xujcoj.com/home/contest/238/problem,https://www.xujcoj.com/home/problem?keyword3=238,https://www.xujcoj.com/home/problem/detail/1705
+17-18(2)第2次线上赛,4：和与积,"大柱有一次写了两个正整数a和b，告诉赵大佬，a是某两个正整数的和，而b恰好是这
+两
+个正整数的积，问这
+两
+个正整数分别是多少？（这两个正整数可以是相等的）","一个正整数n，表示有n组案例。
+每组案例由两个正整数a和b构成。（1<=a，b<=100000000）","针对每组案例，如果无解，则输出-1；如果有解，则按从小到大顺序输出这两个正整数，两个数字之间有一个空格。
+每组案例输出完都要换行。",,"2
+9 20
+100000000 
+100000000","4 5
+-1",41.40%,215,https://www.xujcoj.com/home/contest/238/problem/4,https://www.xujcoj.com/home/contest/238/problem,https://www.xujcoj.com/home/problem?keyword3=238,https://www.xujcoj.com/home/problem/detail/1706
+17-18(2)第2次线上赛,5：神奇的衣架,"赵大佬
+有a个神奇的衣架（
+衣架
+编号从1到a）和b件衣服（
+衣服
+编号从1到b），每个衣架上最多可以挂一件衣服。
+如果某天
+赵大佬
+想穿的衣服刚好挂在其中某个衣架上，
+赵大佬
+整天都会心情愉快，在当天结束时，
+赵大佬
+又会把今天穿的衣服挂回到那个衣架上（假设衣服不会弄脏不需要清洗）。
+如果
+赵大佬
+想穿的衣服不在这a个衣架上，机智的
+赵大佬
+会从衣柜里取出想穿的衣服，然后挂在编号最小的空衣架上（如果还有衣架是空的，注意不能挂在已经挂着衣服的衣架上），然后
+整天心情愉快。当然，有的时候，
+赵大佬
+想把衣柜里的衣服
+挂在衣架上时，会发现所有衣架都挂着衣服，这时
+赵大佬
+就会把衣架上最早以前挂上去的一件衣服取下，放回衣柜中，这样空出的衣架就可以挂
+赵大佬
+今天想穿的那件衣服了。
+假设
+赵大佬
+每天只穿一件衣服，a个
+衣架在最开始的时候都是空的，没有挂衣服，b件衣服的编号分别从1到b。已知
+赵大佬
+在c天里每天想穿的衣服编号，问在c天结束后，
+赵大佬
+的这a个衣架上的衣服编号分别是多少？","一个正整数n，表示有n组案例。
+每组案例先是有三个正整数a、b、c（1<=
+a、b、c
+<=100），表示衣架的数量、衣服的数量、天数，
+然后是c个整数（1到b之间），分别表示每天
+赵大佬
+想要穿的衣服编号。","针对每组案例，输出a个整数，分别表示a个衣架上各自挂的衣服编号。如果某个衣架上没有衣服，则相应位置的输出是0。每两个编号之间有一个空格。
+每组案例输出完都要换行。",,"2
+5 2 3
+2 1 2
+3 5 7
+2 1 3 2 4 5 4","2 1 0 0 0
+4 5 3",58.33%,36,https://www.xujcoj.com/home/contest/238/problem/5,https://www.xujcoj.com/home/contest/238/problem,https://www.xujcoj.com/home/problem?keyword3=238,https://www.xujcoj.com/home/problem/detail/1703
+17-18(2)第1次线上赛,1：赛跑,大柱和黄大佬比赛跑步，黄大佬会把比赛总时间T小时中的s小时拿来睡觉。现在已知比赛总时间T、黄大佬睡觉时间s、黄大佬的跑步速度a、大柱的跑步速度b。问在比赛总时间内谁跑得更远。,"一个正整数n，表示有n组案例。
+每组案例由4个整数T、s、a、b组成。（1<=T<=1000，0<=s<=T，1<=a<=100，1<=b<=100）","针对每组案例，如果黄大佬跑得远，则输出huang；如果大柱跑得远，则输出dazhu；如果跑得一样远，则输出dual。
+每组案例输出完都要换行。",,"2
+2 2 2 2
+8 4 8 4","dazhu
+dual",68.98%,274,https://www.xujcoj.com/home/contest/224/problem/1,https://www.xujcoj.com/home/contest/224/problem,https://www.xujcoj.com/home/problem?keyword3=224,https://www.xujcoj.com/home/problem/detail/1631
+17-18(2)第1次线上赛,3：孤独骑士,"国际象棋棋盘由 8 × 8 的方格组成，每个方格由所在的行和列的编号唯一标识，其中列编号从 A 到 H，行编号从 1 到 8，记录一个方格的位置。例如下图中白棋国王的位置可以用 E1 表示。国际象棋中“马”的规则几乎和中国象棋一致，走“日”字。
+现在假设棋盘上只有唯一的棋子“马”，问“马”下一步能走的位置总共有几个？","一个正整数n，表示有n组案例。
+每组案例中，有一个字符串，表示“马”所在的棋盘位置编号。","针对每组案例，输出一个整数，表示“马”下一步能走的位置总共有几个。
+每组案例输出完都要换行。",,"2
+B1
+E5","3
+8",51.27%,158,https://www.xujcoj.com/home/contest/224/problem/3,https://www.xujcoj.com/home/contest/224/problem,https://www.xujcoj.com/home/problem?keyword3=224,https://www.xujcoj.com/home/problem/detail/1628
+17-18(2)第1次线上赛,5：数字变换,"一个整数的合法变换有以下两种：
+1. 翻转：例如，如果数字是123456，则翻转后是654321。
+2. 除以10：注意是整数范畴下的除以10，例如，如果数字是123456，则除以10后是12345（而不是12345.6）。
+大柱写了两个正整数a和b，想知道是否可以对a做若干次合法变换后，变成数字b。","一个正整数n，表示有n组案例。
+每组案例有两个正整数，分别表示a和b。","针对每组案例，如果a经过若干次合法变换后可以变成数字b，则输出Yes，否则输出No。
+每组案例输出完都要换行。",,"2
+11111 1
+1 11111","Yes
+No",40.00%,55,https://www.xujcoj.com/home/contest/224/problem/5,https://www.xujcoj.com/home/contest/224/problem,https://www.xujcoj.com/home/problem?keyword3=224,https://www.xujcoj.com/home/problem/detail/1627
+17-18(1)第5次线上赛,1：花的颜色,"zt喜欢花，于是fzm经常去森林里采花。对于花的颜色，zt归结为三种：红、绿、蓝。然而有些花的颜色会介于这三种颜色之间，故zt把花的颜色定义为
+红、绿、蓝三个分量，每个分量用0~255之间的一个整数来描述，例如红色分量如果等于0，则说明颜色中完全不含红色；如果等于255，则说明颜色中的红色达到了饱和。这样任意一种颜色就可以用三个
+0~255之间的
+整数来描述。例如纯蓝可以用（0，0，255）来表示。zt规定，以
+红、绿、蓝三个分量中，值最大的那个颜色作为花的颜色（输入中保证只有1个最大值，没有并列最大）
+。
+fzm采了一大堆花回来，想知道红色的有几朵，绿色的有几朵，蓝色的有几朵？","只有一组案例。
+一个正整数n，表示花的数量。然后有n行数据，每行数据由3个0~255之间的整数构成，表示一朵花的
+红、绿、蓝三个分量的颜色。（不会出现两种颜色分量值并列最大）","3个整数，表示这n朵花中，红色、绿色、蓝色的数量。
+每两个数之间留一个空格，最后一个数后面没有空格，不要换行。",,"3
+0 255 0
+120 130 110
+230 100 100",1 2 0,82.53%,166,https://www.xujcoj.com/home/contest/196/problem/1,https://www.xujcoj.com/home/contest/196/problem,https://www.xujcoj.com/home/problem?keyword3=196,https://www.xujcoj.com/home/problem/detail/1544
+17-18(1)第5次线上赛,2：花店,"zt开了一家花店。为了方便客户，zt把一些鲜花散装（即一
+捆里只有1束花
+），另一些鲜花每a束扎成一捆（即一捆里有a束花）。一个顾客想要买b束花，而zt只想按捆出售，问zt最少需要给顾客几捆花？假设花店里花的数量是无限的。","一个正整数n，表示n组案例。
+每组案例由两个正整数a和b构成。(a>=2, b>=1)","针对每组案例，输出一个整数，表示最少的捆数。
+每组案例输出完都要换行。",,"2
+5 12
+10 20","4
+2",86.21%,145,https://www.xujcoj.com/home/contest/196/problem/2,https://www.xujcoj.com/home/contest/196/problem,https://www.xujcoj.com/home/problem?keyword3=196,https://www.xujcoj.com/home/problem/detail/1545
+17-18(1)第4次线上赛,2：青蛙王子（Story 2）,"在大径村的井边，聚集着m只刚从井口爬出来的青蛙（王子），他们在猜测大径村小仙女hqy今年芳龄几许。
+
+每只青蛙都给出了自己的答案，并决定选择其中重复出现次数最多的数字作为hqy的年龄。（保证只会有1个值出现次数最多）
+
+问：hqy的年龄？","一个正整数n，表示n组案例。
+
+每组案例中，先是一个正整数m，表示青蛙的数量；然后是m个正整数a1~am，表示每只青蛙猜测的年龄。(m<=5000, a<=5000)","针对每组案例，输出一个整数，表示m个数中出现次数最多的数字。
+
+每组案例输出完都要换行。",,"1
+
+5 1 8 8 20 100",8,48.93%,233,https://www.xujcoj.com/home/contest/183/problem/2,https://www.xujcoj.com/home/contest/183/problem,https://www.xujcoj.com/home/problem?keyword3=183,https://www.xujcoj.com/home/problem/detail/1507
+17-18(1)第4次线上赛,3：青蛙王子（Story 3）,"一个不愿意透露名字的郑姓巫师告诉大径村小仙女hqy，如果能够成功地消灭一只青蛙，就可以保持容颜不老。
+
+hqy在井边抓住了m只青蛙，又不忍心伤害它们，决定把他们中的一只抓起来带给巫师。
+
+为了让自己轻松点，hqy决定选择最轻的一只带回去。
+
+问：hqy带回的那只青蛙有多重？","一个正整数n，表示n组案例。
+
+每组案例中有一个正整数m，表示青蛙的数量；然后是m个正整数，表示这m只青蛙的重量。(m<=5000)","针对每组案例，输出一个整数，表示最轻的青蛙重量。
+
+每组案例输出完都要换行。",,"1
+
+5 1 2 3 4 5",1,61.47%,218,https://www.xujcoj.com/home/contest/183/problem/3,https://www.xujcoj.com/home/contest/183/problem,https://www.xujcoj.com/home/problem?keyword3=183,https://www.xujcoj.com/home/problem/detail/1506
+17-18(1)第4次线上赛,4：青蛙王子（Story 4）,"小仙女hqy又去井边抓了m只青蛙，然后把它们分别编成了1、2、3、4、...、m号，正面（背部）朝上放着。然后hqy想了一个数字，把编号为这个数字倍数的青蛙翻面（正面变反面，反面变正面）。接下来，hqy又想了一系列的数字，每想一个数字，就把编号为这个数字倍数的青蛙翻面。
+
+问：最后有只青蛙正面朝上？","一个正整数n，表示n组案例。
+
+每组案例中，先是两个正整数m和p(m<=5000, p<=100)，分别表示青蛙的数量和数字的总个数；然后是p个正整数，表示每个数字的值。","针对每组案例，输出一个整数，表示正面朝上的青蛙数量。
+
+每组案例输出完都要换行。","第一个数字2后，10只青蛙的正反情况是：正反正反正反正反正反
+
+第二个数字3后，10只青蛙的正反情况是：正反反反正正正反反反
+
+正面朝上的青蛙数量为4","1
+
+10 2
+
+2 3",4,64.41%,118,https://www.xujcoj.com/home/contest/183/problem/4,https://www.xujcoj.com/home/contest/183/problem,https://www.xujcoj.com/home/problem?keyword3=183,https://www.xujcoj.com/home/problem/detail/1504
+17-18(1)第4次线上赛,5：青蛙王子（Story 5）,"小仙女hqy把m只青蛙分别编成了1、2、3、4、...、m号，然后先把编号为2的倍数的青蛙涂成了黑色，接着是3的倍数的青蛙涂成了黑色，然后是4的倍数、5的倍数、...。一只青蛙可能被涂黑多次，但并不妨碍它仍是一只黑色的青蛙。每涂完编号为某个数字倍数的青蛙后，hqy就会去数剩余没有涂成黑色的青蛙数量。当这个数量小于等于p的时候，hqy就不再继续涂下一个数字倍数的青蛙。
+
+问：当hqy停止涂色时，还有多少只青蛙没有被涂成黑色？","一个正整数n，表示n组案例。
+
+每组案例由两个正整数m和p构成。（1<=p<m<=5000）","针对每组案例，输出一个整数，表示最后仍然保持绿色的青蛙的数量。
+
+每组案例输出完都要换行。","第一轮2、4、6、8、10号青蛙变黑。
+
+第二轮3、6、9号青蛙变黑。
+
+第三轮4、8号青蛙变黑。
+
+第四轮5、10号青蛙变黑。
+
+当前仅剩1、7号这2只青蛙还是绿的，满足2<=p，故输出2。","1
+
+10 2",2,62.13%,169,https://www.xujcoj.com/home/contest/183/problem/5,https://www.xujcoj.com/home/contest/183/problem,https://www.xujcoj.com/home/problem?keyword3=183,https://www.xujcoj.com/home/problem/detail/1501
+17-18(1)第3次线上赛,1：老刘头是谁,"关于老刘头的姓，毫无疑问是Liu，但老刘头的名字，却众说纷纭。jp大佬说老刘头叫xinling，YY学姐说老刘头叫xinglin，老徐说老刘头叫xinxin。
+但这道题跟老刘头叫什么一点关系也没有。
+n个大佬分别猜测了老刘头今天多少岁，现在需要根据猜测的结果看看老刘头的年龄范围。","只有一组案例。
+一个正整数n，然后是n个整数，分别表示每个人猜测老刘头的年龄。",两个整数，分别表示这n个整数中的最小值和最大值。两个数之间有一个空格，不要换行。,,"3
+18 19 20",18 20,73.41%,267,https://www.xujcoj.com/home/contest/178/problem/1,https://www.xujcoj.com/home/contest/178/problem,https://www.xujcoj.com/home/problem?keyword3=178,https://www.xujcoj.com/home/problem/detail/1484
+17-18(1)第3次线上赛,3：老刘头的数学,老刘头有一天在思考一个数学问题，m以内（包括m）的正整数中，有多少个数字满足以下条件：个位数字的平方大于其他位数字的平方和？,"一个正整数n，表示n组案例。
+每组案例由一个正整数m构成。（m<=10000）","针对每组案例，输出一个整数，表示m以内（包括m）的正整数中，满足条件的数字个数。
+每组案例输出完都要换行。",," 2
+1
+10000"," 1
+1372",48.84%,172,https://www.xujcoj.com/home/contest/178/problem/3,https://www.xujcoj.com/home/contest/178/problem,https://www.xujcoj.com/home/problem?keyword3=178,https://www.xujcoj.com/home/problem/detail/1486
+17-18(1)第3次线上赛,4：老刘头的数学II,六娃拿了一个整数找到老刘头，说这个整数等于某两个素数的乘积，问老刘头其中较大的素数等于几。,"一个正整数n，表示有n组案例。
+每组案例由一个整数m构成。（m<=1亿）","针对每组案例，输出一个整数，表示构成m的两个素数中较大的那个。（如果相等则任意输出一个）。
+每组案例输出完都要换行。",,"2
+21
+25","7
+5",45.26%,137,https://www.xujcoj.com/home/contest/178/problem/4,https://www.xujcoj.com/home/contest/178/problem,https://www.xujcoj.com/home/problem?keyword3=178,https://www.xujcoj.com/home/problem/detail/1487
+17-18(1)第2次线上赛,3：征服者纯哥,"老徐有一天想知道有多少2017级的学弟喜欢纯哥，就开展了一次问卷调查。为了掩耳盗铃，老徐向学弟和学妹都发了问卷调查，但暗中只观察学弟的问卷结果。
+在老徐的问卷中，只需要填两个内容：性别以及是否喜欢纯哥。
+在回收问卷的时候，老徐发现有的问卷中，关于是否喜欢纯哥的答案不置可否，也就是说也有可能是喜欢，也有可能是不喜欢。不但如此，有的问卷中的性别也是不置雌雄，也就是说可能是学弟，也有可能是学妹。
+根据回收的问卷，老徐想要知道，最少以及最多会有多少学弟喜欢纯哥。","只有一组案例。
+先是一个正整数n，表示一共发放了n张调察问卷。
+然后是n行，每行表示一张问卷的结果，由2个字符构成，字符之间以一个空格间隔。其中第一个字符只可能是M、F、U，分别表示男、女、未知性别，第二个字符只可能是L、N、U，分别表示喜欢、不喜欢、你猜猜看喜不喜欢。","两个整数，整数之间以一个空格间隔。其中第一个整数表示最少有多少学弟喜欢纯哥，第二个整数表示最多有多少学弟喜欢纯哥。
+不要换行。","最小值出现的情况是第一个男生不喜欢，而第三个人是女生
+最大值出现的情况是第一个男生喜欢，第三个人是男生","3
+M U
+F N
+U L",0 2,55.95%,227,https://www.xujcoj.com/home/contest/159/problem/3,https://www.xujcoj.com/home/contest/159/problem,https://www.xujcoj.com/home/problem?keyword3=159,https://www.xujcoj.com/home/problem/detail/1434
+17-18(1)第2次线上赛,4：纯哥的名次,纯哥报名参加了马拉松比赛，已知所有参赛选手的比赛成绩，求纯哥的名次。,"只有一组案例。
+首先是一个正整数n，表示参赛的总人数（包含纯哥）
+接下来的一行是3个整数a、b、c，表示纯哥的比赛成绩是a小时b分c秒
+然后是n-1行，每行3个整数x、y、z，表示其他参赛选手的比赛成绩是x小时y分z秒",一个整数，表示纯哥的名次。不要换行。,1小时2分3秒的成绩仅次于那个1小时的成绩,"4
+1 2 3
+1 0 0
+2 0 10
+1 5 15",2,62.90%,186,https://www.xujcoj.com/home/contest/159/problem/4,https://www.xujcoj.com/home/contest/159/problem,https://www.xujcoj.com/home/problem?keyword3=159,https://www.xujcoj.com/home/problem/detail/1436
+17-18(1)第1次线上赛,1：工作日,星期一到星期五是工作日，星期六和星期日是周末。根据输入的星期几属于工作日还是周末，输出working day或者holiday,"第1行是一个正整数n，表示测试案例的数量。
+从第2行到第n+1行，每行是一组测试案例，每组案例包含一个整数m，表示星期几","针对每组案例，如果m是1到5之间的数字，则输出working day；（注意working和day之间有个空格）
+如果m是6或者7，则输出holiday；
+其他情况输出error。
+每组案例输出完都要换行。",,"3
+2
+6
+8","working day
+holiday
+error",51.34%,261,https://www.xujcoj.com/home/contest/154/problem/1,https://www.xujcoj.com/home/contest/154/problem,https://www.xujcoj.com/home/problem?keyword3=154,https://www.xujcoj.com/home/problem/detail/1407
+17-18(1)第1次线上赛,3：单身情歌,班级里有一群男生女生，有情终成班对，无缘终成单身狗。假设班级里不存在gay或者les，问最多可能组成多少个班对。,"第1行是一个正整数n，表示测试案例的数量。
+从第2行到第n+1行，每行是一组测试案例，每组案例首先是一个正整数a，表示班级的学生人数，然后是a个由M和F构成的字符，其中字符M表示一个男生，字符F表示一个女生。",针对每组案例，输出一个整数，表示最多可能组成多少个班对。每组案例输出完都要换行。,,"2
+5 MMFFF
+6 MFMFMF","2
+3",52.55%,137,https://www.xujcoj.com/home/contest/154/problem/3,https://www.xujcoj.com/home/contest/154/problem,https://www.xujcoj.com/home/problem?keyword3=154,https://www.xujcoj.com/home/problem/detail/1406
+17-18(1)第1次线上赛,5：规范日期格式,"有很多种表示日期的方法，比如对于2017年10月21日而言，中国的表示方法是2017.10.21，英国的表示方法是Oct.21, 2017，美国的表示方法是21 Oct., 2017，十分混乱。
+对于日期的表示方法，班宝hrr比较喜欢按照yyyy-mm-dd的形式表示，其中yyyy表示4位数的年份，不足4位的情况下前面补0，补到4位数；mm表示2位数的月份，不足2位的情况下前面补0；dd表示2位数的天数，不足2位的情况下前面补0。例如2017年1月1日表示成2017-01-01，其中年份和月份之间，以及月份和天数之间是字符减号。","第1行是一个正整数n，表示测试案例的数量。
+从第2行到第n+1行，每行是一组测试案例，有三个正整数a、b、c，其中a表示年份，b表示月份，c表示天数，1<=a<=9999，a、b、c构成的日期是合法有效的。",针对每组案例，按照yyyy-mm-dd的格式输出日期。每组案例输出完都要换行。,,"2
+2017 1 1
+189 3 20","2017-01-01
+0189-03-20",52.00%,100,https://www.xujcoj.com/home/contest/154/problem/5,https://www.xujcoj.com/home/contest/154/problem,https://www.xujcoj.com/home/problem?keyword3=154,https://www.xujcoj.com/home/problem/detail/1409
+16级线上比赛（2017/05/14）,3：Harshad数,DJ很喜欢数字，最近他又发现了一种有趣数字 - Harshad数：比方说，12 和18都是Harshad数，因为12可以被他的数字的和1+2=3整除，而18的可以被1+8=9整除。同理，20/21是第一组连续两个数字都是Harshad数的（20的可以被2+0=2整除，21的可以被2+1=3整除）。请问，有连续三个数字都是Harshad数的吗？,"第1行一个正整数n，代表以下有几行测试数据；
+	第2到第n+1行各是1个正整数m（不小于100，但小于10000）。",每读入一行数据，就输出大于m，但连续三个数字都是Harshad数的最小的那个数。假如没有这样的数，输出0。输出后换行（最后一行输出后也换行）。,110，111，112连续三个数字都是Harshad数；所以输出110。,"1
+
+100","110
+
+",41.67%,12,https://www.xujcoj.com/home/contest/112/problem/3,https://www.xujcoj.com/home/contest/112/problem,https://www.xujcoj.com/home/problem?keyword3=112,https://www.xujcoj.com/home/problem/detail/1332
+16级线上比赛（2017/05/14）,4：罗马数字（四）,"就像罗马数字是用字母来代表数字一样，古代希腊人及犹太人也用字母来代表数字。犹太人甚至用这个方法来计算每一段文字的”和”，然后把它加在每一段文字的后面，这样万一抄错一个字，就可以侦测出来，就像现代计算机中的 checksum 一样。
+所以假如英文字母A~Z分别当作1~26，那么下面每一行英文的”和”是多少？(空白略过/或当作0；为了简化，我们也只取1个数字，也就是最后那一个数字)。","第1行一个正整数n，代表以下有几行测试数据；
+	第2到第n+1行各是一行英文（只有大小写的字母或空格，没有其它任何符号）。","每读入一行数据，就输出一个数字，代表其”和”是多少，然后换行（最后一行也要换行）。
+",第一个例子中，a是1，d是4，所以”和”是1+4+4=9。第二个例子中，o是15，k是11，所以”和”是15+0+11=26，但只取最后一位数，所以是6。,"2
+
+Add
+
+O K","9
+
+6
+
+",71.43%,7,https://www.xujcoj.com/home/contest/112/problem/4,https://www.xujcoj.com/home/contest/112/problem,https://www.xujcoj.com/home/problem?keyword3=112,https://www.xujcoj.com/home/problem/detail/1333
+16级线上比赛（2017/05/14）,5：13日星期五,听说在西洋迷信中，13日星期五是视作不吉利的，因为很难得发生。DJ为了打破这个迷信，特地统计了到现在所有的13日到底都是星期几。请帮他算一下。,"第1行一个正整数n，代表以下有几行测试数据； 
+
+第2到第n+1行各是2个数字，代表从那一年开始算（从那一年的1月1日开始），及那一年的1月1日是星期几（1=星期一，2=星期二，…，7=星期日）。
+
+为了答题方便，这里的年份在1~2017之间；我们也只考虑“四年一闰；百年不闰, 四百年再闰”。（实际的历法在西元4年及1582年有调整，此处暂时忽略，有兴趣的自己上百度去了解）。",7个数字，分别是星期1~星期日的对应数目，数字间以一个空格分开，最后一个数字输出后直接换行，最后一行也要换行（注意：最后一个数字后面没有空格）。,"“现在”是指今天，2017.05.14。
+2017年的1月13日是星期五，2月13日及3月13日都是星期一，4月13日是星期四，5月13日是星期六，所以共有有2个星期一，1个星期四，1个星期五，1个星期六，其他都是0；所以输出是 2 0 0 1 1 1 0。
+同理，2016.1.1到2017.5.14共分别有3/2/3/2/2/3/2个星期一/…/星期日。","2
+
+2017 7
+
+2016 5","2 0 0 1 1 1 0
+
+3 2 3 2 2 3 2
+
+",100.00%,2,https://www.xujcoj.com/home/contest/112/problem/5,https://www.xujcoj.com/home/contest/112/problem,https://www.xujcoj.com/home/problem?keyword3=112,
+16级线上比赛（2017/04/16）,4：亲和数,"古希腊数学家毕达哥拉斯在自然数研究中发现，220的所有真约数(即不是自身的约数)之和为： 
+
+1+2+4+5+10+11+20+22+44+55+110＝284。 
+
+而284的所有真约数为1、2、4、71、 
+142，加起来恰好为220。人们对这样的数感到很惊奇，并称之为亲和数。一般地讲，如果两个数中任何一个数都是另一个数的真约数之和，则这两个数就是亲和数。 
+
+你的任务就编写一个程序，判断给定的两个数是否是亲和数","输入数据第一行包含一个数M(1<=M<=100)，接下有M行，每行一个实例,包含两个整数A,B； 其中 0 <= A,B <= 1000000  ;",对于每个测试实例，如果A和B是亲和数的话输出YES，否则输出NO。 ,,"2
+220 284
+100 200","YES
+NO",100.00%,14,https://www.xujcoj.com/home/contest/101/problem/4,https://www.xujcoj.com/home/contest/101/problem,https://www.xujcoj.com/home/problem?keyword3=101,https://www.xujcoj.com/home/problem/detail/1041
+16级线上比赛（2017/04/16）,6：闰年！闰年！,"我们连续几次都遇到了闰年的问题：“四年一闰；百年不闰，四百年再闰”。
+
+
+DJ为了彻底了解这个问题的根本，特地研究了一下，发现这个问题其实是根源于“地球公转一圈”实际是365日5小时48分46秒，所以才有闰年的调整：
+
+由于每年比365天多了5小时48分46秒，所以每4年就多了23小时15分04秒；因此每4年就调整1天（24小时）。
+但其实这又多加了44分56秒，所以每100年（25次）后又累积了18时43分20秒，因此100年就少“闰”1次。
+可是这样每100年又少了5小时16分40秒，所以每400年（4次）又需要再“闰”回来。
+请帮他算一下，按照这个理论，那么到西元m年的最后一秒时“误差”是多少？（假设西元1年1月1日是“原点”，就是没有误差）。","先是一个正整数 n 表示测试案例的数量。
+每组案例包含一个不大于 2999 的正整数 m。","针对每组案例，输出三个数字（时、分、秒）表示误差的时间（小时可能为负），每两个数字之间用空格隔开。
+每组案例输出结束之后都要换行。",100年总共多了5小时16分40秒，但第101年又多了5小时48分46秒，所以总共多了11小时5分26秒。,"4
+1
+100
+101
+2017","5 48 46
+5 16 40
+11 5 26
+-12 22 22",100.00%,1,https://www.xujcoj.com/home/contest/101/problem/6,https://www.xujcoj.com/home/contest/101/problem,https://www.xujcoj.com/home/problem?keyword3=101,https://www.xujcoj.com/home/problem/detail/1311
+16级线上比赛++（2017/04/02）,1：MJ逛街,"MJ陪妹纸逛街，MJ和妹纸都带了一些钱。逛街的时候MJ都是抢着买单，除非他剩余的钱不够。当MJ的钱不够时，会由妹纸全额买单，除非妹纸的钱也不够，这时候就不买这件物品了。不过如果接下来还有MJ能买得起的物品，MJ依旧还会抢着买单。
+MJ和妹纸依次看上了n件物品，这n件物品有各自的价格，问最后MJ和妹纸分别会剩下多少钱。","只有一组数据。
+第一行是两个非负整数a、b和一个正整数n，其中a和b分别表示MJ的钱和妹纸的钱，n表示物品的数量。
+接下来是n个正整数，分别表示n件物品的价格。",两个整数，用一个空格相隔，不要换行，分别是MJ和妹纸最后剩余的钱。,,"10 10 3
+3 5 6",2 4,61.82%,55,https://www.xujcoj.com/home/contest/87/problem/1,https://www.xujcoj.com/home/contest/87/problem,https://www.xujcoj.com/home/problem?keyword3=87,https://www.xujcoj.com/home/problem/detail/1243
+16级线上比赛++（2017/04/02）,2：MJ刷题目,编程竞赛里有n道题目，MJ做第i道题目需要花费t[i]时间。在统计竞赛小分的时候，规定每道题目的小分是：从比赛开始时间到这道题目做出来经历的时间，而MJ的小分将会是每道题的小分之和。假设MJ能够在比赛结束前做出所有题目，并且可以任意调整做题顺序。他想要让自己的小分的值足够小，问小分的最小值是多少？,"只有一组案例。
+第一行是一个正整数n，表示题目的数量。
+然后是n个正整数，分别表示做每道题需要花费的时间。",一个整数，表示小分的最小值。不要换行。,对于样例而言，最好的方案是先用1分钟做完第1题，再用2分钟做完第2题，再用3分钟做完第3题。这样第1题的小分是1，第2题的小分是3，第3题的小分是6。总的小分是10。,"3
+1 2 3",10,80.77%,26,https://www.xujcoj.com/home/contest/87/problem/2,https://www.xujcoj.com/home/contest/87/problem,https://www.xujcoj.com/home/problem?keyword3=87,https://www.xujcoj.com/home/problem/detail/1241
+16级线上比赛++（2017/04/02）,4：MJ开黑,"MJ喜欢玩游戏，也喜欢开黑。为了不让对手看出开黑的内容，他和WPW定下了开黑的规则。
+如果MJ打的一串字符里，先后出现过a、t、k（这3个字符不需要是挨着一起的，只要先出现了a，a后面某处出现了t，t后面某处出现了k即可），则表示进攻。
+如果这串字符里先后出现过d、e、f，则表示防守。
+如果这串字符里先后出现过g、g（不止两个g也可以），则表示认输。
+当然，这个字符串里可能同时存在多个暗号，例如既出现进攻的暗号，又出现防守的暗号。如果遇到这种情况，WPW认定MJ疯了。","一个正整数n，表示测试案例的数量。
+每组案例中有一个只由小写字母字符构成的字符串s，表示MJ的暗语。","针对每组案例，如果s中不包含任何暗号，则输出None；如果s中包含了两种或者三种不同的暗号，则输出Funny；如果s中的暗号是进攻，则输出Attack；如果s中的暗号是防守，则输出Defend；如果s中的暗号是认输，则输出GG。
+每组案例输出完要换行。",,"5
+abc
+adtkefg
+abstek
+bcdefg
+ffgghh","None
+Funny
+Attack
+Defend
+GG",43.48%,23,https://www.xujcoj.com/home/contest/87/problem/4,https://www.xujcoj.com/home/contest/87/problem,https://www.xujcoj.com/home/problem?keyword3=87,https://www.xujcoj.com/home/problem/detail/1244
+16级线上比赛++（2017/04/02）,5：MJ吃水果,MJ很在乎科学的饮食，每天根据专家建议吃一定量的水果。MJ有n个苹果m个橙子，专家给了几种不同的方案，每种方案都分别标注了他每天该吃的苹果和橙子的数量。MJ每天会任意选择其中一种方案（不同天的方案可以相同也可以不同），同时MJ希望能够最终将苹果和橙子都吃完。在不考虑水果保质期的情况下，一共可以有多少种不同的吃法。（本题可以用递归）,"只有一组案例。
+第一行是三个正整数n、m、p，其中n表示苹果的数量，m表示橙子的数量，p表示专家列出的方案数量（n<=10，m<=10，p<=5）
+从第2行到第p+1行，一共有p组数据，每组数组包含了两个非负整数a和b，表示该种方案中每天该吃a个苹果b个橙子。不同组数据中的a、b两个数字保证不会完全相同，并且不会全都为0。",一个整数，表示有多少种不同的吃法。输出完不要换行。,"4个苹果3个橙子，有3种方案，方案1是1苹果1橙子，方案2是2苹果1橙子，方案3是1苹果2橙子。
+合法的吃法是方案1、1、2，方案1、2、1，方案2、1、1，一共3种不同的吃法，都能刚好把水果都吃完。","4 3 3
+1 1
+2 1
+1 2",3,66.67%,9,https://www.xujcoj.com/home/contest/87/problem/5,https://www.xujcoj.com/home/contest/87/problem,https://www.xujcoj.com/home/problem?keyword3=87,https://www.xujcoj.com/home/problem/detail/1239
+16级线上比赛++（2017/04/02）,6：MJ吃水果-2,MJ很在乎科学的饮食，每天根据专家建议吃一定量的水果。MJ有n个苹果m个橙子，专家给了几种不同的方案，每种方案都分别标注了他每天该吃的苹果和橙子的数量。MJ每天会任意选择其中一种方案（不同天的方案可以相同也可以不同），同时MJ希望能够最终将苹果和橙子都吃完。在不考虑水果保质期的情况下，一共可以有多少种不同的吃法。,"只有一组案例。
+第一行是三个正整数n、m、p，其中n表示苹果的数量，m表示橙子的数量，p表示专家列出的方案数量（n<=100，m<=100，p<=5）
+从第2行到第p+1行，一共有p组数据，每组数组包含了两个非负整数a和b，表示该种方案中每天该吃a个苹果b个橙子。不同组数据中的a、b两个数字保证不会完全相同，并且不会全都为0。",一个整数，表示有多少种不同的吃法。这个数字可能非常巨大，要求精确输出，这个数字最大不会超过10的100次方。输出完不要换行。,,"50 50 5
+3 1
+1 1
+1 2
+0 4
+2 0",263480148051401421493552,66.67%,3,https://www.xujcoj.com/home/contest/87/problem/6,https://www.xujcoj.com/home/contest/87/problem,https://www.xujcoj.com/home/problem?keyword3=87,https://www.xujcoj.com/home/problem/detail/1240
+16级线上比赛（2017/03/26）,4：盈数,"DJ很喜欢数字，尤其是完全数（Perfect Number，就像6可以被1,2,3整除，而1+2+3=6）；但是完全数太少了（小于1,000,000 的只有 6，28，496，8128 等4个）。因此他转身研究盈数（或译：富足数 abundant number；12是盈数，因为1+2+3+4+6=16 大于12。同理，20也是盈数，因为1+2+4+5+10=22大于20）。请问，这样的盈数有多少？","第1行一个正整数n，代表以下有几行测试数据；
+
+第2到第n+1行各是一个正整数m（大于2，但小于10,000）。",每读入一行数据，就输出小于m的盈数的个数，然后换行（最后一行输出后也换行）。,"最前10个盈数是12, 18, 20, 24, 30, 36, 40, 42, 48, 54。","2
+
+25
+
+50","4
+
+9
+
+",56.52%,23,https://www.xujcoj.com/home/contest/77/problem/4,https://www.xujcoj.com/home/contest/77/problem,https://www.xujcoj.com/home/problem?keyword3=77,https://www.xujcoj.com/home/problem/detail/1233
+16级线上比赛++（2017/03/26）,1：石头剪刀布,蔡小佬和苏学长有一次在玩石头剪刀布。由于有JP在一旁协助，蔡小佬开了天眼能预先知道苏学长要出的是石头、剪刀还是布。作为开天眼的代价，蔡小佬不能随心所欲地出石头、剪刀、布，而是有一个上限，即石头最多出a次，剪刀最多出b次，布最多出c次。规定：石头能赢剪刀，剪刀能赢布，布能赢石头；如果出招相同则算打平，不算赢。如果蔡小佬某一次玩的时候不能做出任何一种选择（即石头、剪刀、布都达到上限，或者不想出），也算他这一次没有赢。问：蔡小佬最多能赢几次？,"一个正整数n，表示测试案例的数量。
+每组案例的有一个字符串p和三个非负整数a、b、c。其中p中的每个字符表示苏学长的出招（字符s表示石头，字符j表示剪刀，字符b表示布）。整数a、b、c分别代表蔡小佬石头、剪刀、布最多出的次数。","针对每组案例，输出一个整数，表示最多能赢的次数。
+每组案例输出完要换行。",,"1
+sjbsjb 3 1 0",3,48.28%,87,https://www.xujcoj.com/home/contest/78/problem/1,https://www.xujcoj.com/home/contest/78/problem,https://www.xujcoj.com/home/problem?keyword3=78,https://www.xujcoj.com/home/problem/detail/1229
+16级线上比赛++（2017/03/26）,3：扫雷,"在扫雷游戏中，有的格子里是地雷，其他不是地雷的格子会用一个数字表示周围8格共有几个地雷。周围8格指的是上、下、左、右、左上、右上、左下、右下。
+现有a行b列的地雷分布情况，要求计算出每个非地雷格子应当填写的数字。","只有一组案例。
+第一行是两个正整数a和b，表示雷区是a行b列的。（a<=100，b<=100）
+然后是a行数据，每行数据由b个字符构成，可能的字符是*和?，其中*表示地雷，?表示非地雷格子。","a行b列的数据，其中*表示该格是地雷，其他非地雷格子上应当是个一位数，表示该格附近8格地雷的数量。
+最后一行输出完以后也要换行。",,"3 3
+*??
+???
+?*?","*10
+221
+1*1",50.00%,38,https://www.xujcoj.com/home/contest/78/problem/3,https://www.xujcoj.com/home/contest/78/problem,https://www.xujcoj.com/home/problem?keyword3=78,https://www.xujcoj.com/home/problem/detail/1225
+16级线上比赛（2017/03/19）,2：不喜欢的数字-简易版,"DJ很喜欢上次竞赛时的第5题：“不喜欢的数字”
+    JP特别不喜欢1到m之间（包括1和m）的某3个数字，不但不喜欢这3个数字，
+    这些数字的倍数他都不喜欢，于是他把1到m之间他不喜欢的数字都删了，只
+    剩下他喜欢的数字。JP想知道，现在还剩多少他喜欢的数字。
+但是DJ提交的答案没有被接受，因为“time limit exceeded”- 超时了，当输入是个
+很大的数字时，耗时太久。
+假如考虑到同学才一年级，不要考虑太大的数字，你可以帮他写一个较简单的编程
+来解决整个问题吗？","第1行一个正整数n，代表以下有几行测试数据。
+第2到第n+1行，各有4个正整数m和p1、p2、p3，其中m表示数字的范围
+从1
+到m（1<=m<=100,000），p1、p2、p3是他不喜欢的3个数字。","n行，每行都是1个数字，就是1到m之间不包含p1、p2、p3的整数倍数字的数量，
+输出后直接换行。",Hint：1到10之间，且不是2、3、5的整数倍的数字只有1、7这两个数字，故输出2。,"1
+10 2 3 5",2,41.18%,51,https://www.xujcoj.com/home/contest/72/problem/2,https://www.xujcoj.com/home/contest/72/problem,https://www.xujcoj.com/home/problem?keyword3=72,https://www.xujcoj.com/home/problem/detail/1217
+16级线上比赛（2017/03/19）,6：某年某月的某一天,"名歌手蔡琴有一首成名曲：“恰似你的温柔“中有一句”某年某月的某一天…”
+请问某年某月的某一天是星期几？","第1行一个正整数n，代表以下有几行测试数据；
+第2到第n+1行各是3个数字，各以1个空格分开，代表年/月/日；
+为了答题方便，这里的年份在1~9999之间，西元1年1月1日是星期一；我们也只考虑“四年一闰；百年不闰, 四百年再闰”。（实际的历法在西元4年及1582年有调整，此处暂时忽略，有兴趣的自己上百度去了解）。",每读入一行数据，就输出对应的星期几的英文（Monday，Tuesday，Wednesday，Thursday，Friday，Saturday，Sunday）然后换行（最后一行也要换行）。,,"2
+2017 3 19
+2016 10 10","Sunday
+Monday",66.67%,3,https://www.xujcoj.com/home/contest/72/problem/6,https://www.xujcoj.com/home/contest/72/problem,https://www.xujcoj.com/home/problem?keyword3=72,https://www.xujcoj.com/home/problem/detail/1216
+16级线上比赛++（2017/03/19）,1：念了一门假课,HX贴了他上个学期各门课程的成绩（各门成绩互不相同），但不小心多贴了一门别人的成绩。YY知道HX上个学期的平均成绩，所以想要以此推测出HX贴出的第几门课程的成绩是别人的。,"1个正整数n，表示测试案例的数量。
+每组测试案例中，先是两个正整数a和m，然后是m个正整数。其中a表示HX上个学期的平均成绩，m表示HX贴出的课程成绩数量，最后的ｍ个互不相同的数字是HX贴出的第1门课到第m门课的成绩（其中某一门不是他的，HX实际上上学期只有m-1门课程）。",针对每组案例，输出一个整数，表示第几门课程不是HX的。每组案例输出后都要换行。,平均成绩是90，HX贴的3门课程成绩中，有某2门是他的，应该是80分和100分的两门，这样平均分才能是90，故第2门课的95分不是HX的。,"1
+90 3 80 95 100",2,67.16%,67,https://www.xujcoj.com/home/contest/75/problem/1,https://www.xujcoj.com/home/contest/75/problem,https://www.xujcoj.com/home/problem?keyword3=75,https://www.xujcoj.com/home/problem/detail/1204
+16级线上比赛++（2017/03/19）,2：风语者,HX和YY之间经常使用密文联络，他们把要说的话转换成0和1构成的流以后觉得还不够保密，于是又做了一层加密，转换成由一堆大写字母字符构成，并且规定：如果相邻的两个字母相同，那么表示0；如果相邻的两个字母不同，那么表示1。例如AABB，相邻的字符分别是AA、AB、BB，于是AABB表示的是010。当然010还有很多不同的表示方法，比如BBDD，表示的也是010。现在HX和YY各说了一句由大写字母字符构成的密文，要确认他们说的是不是相同的一句话。,"1个正整数n，表示测试案例的数量。
+每组测试案例中，有两个字符串，分别表示HX和YY说的密文。",针对每组案例，如果HX和YY说的密文表示的意思是相同的，则输出Yes，否则输出No。每组案例输出后都要换行。,,"2
+ABC ABC
+ABB ABD","Yes
+No",46.48%,71,https://www.xujcoj.com/home/contest/75/problem/2,https://www.xujcoj.com/home/contest/75/problem,https://www.xujcoj.com/home/problem?keyword3=75,https://www.xujcoj.com/home/problem/detail/1218
+16级线上比赛（2017/03/12）,2：MY LITTLE PONY,在一款名为“MY LITTLE PONY-友谊的魔法”的游戏中，可以派遣彩虹小马到不同的商店里打工挣钱，商店每隔一段时间都能发一笔工钱，如果打工时间未到就中止打工，则不发工钱。假设玩家JP拥有一匹小马，并且固定地安排在某家商店里打工，中途不变更商店。JP只想玩一段时间，时间到了就会让小马停止打工。JP想知道，把小马派到哪家商店才能在这段时间内挣到最多的钱。,"1个正整数n，表示测试案例的数量。
+每组测试案例中，第1行是2个正整数t和m，其中t表示JP玩游戏的时间，m表示商店的数量，
+从第2行到第m+1行是这m家商店的信息，每行有两个正整数a和b，表示这家商店每a时间可以挣b元。",针对每组案例，输出最多能挣的金额。每组案例输出后都要换行。,"第一组案例中，应当选择在1秒挣2元的商店里打工，在6秒内能挣12元，另一个商店2秒挣3元，在6秒内只能挣9元，故答案是12。
+第二组案例中，应当选择在2秒挣3元的商店里打工，在5秒内能挣6元（最后1秒挣不到钱），另一个商店4秒挣4元，在5秒内只能挣到4元（同样，最后1秒不挣钱），故答案是6。","2
+6 2
+1 2
+2 3
+5 2
+2 3
+4 4","12
+6",45.88%,85,https://www.xujcoj.com/home/contest/67/problem/2,https://www.xujcoj.com/home/contest/67/problem,https://www.xujcoj.com/home/problem?keyword3=67,https://www.xujcoj.com/home/problem/detail/1192
+16级线上比赛（2017/03/12）,3：Lady first,女生节那天，食堂里有一群男生女生排成了一排准备买饭，JP也在其中。JP提议，让女生先买，于是队列中所有的女生按照原先在队列里的顺序排在队伍的最前方。已知原队列的顺序，现在要求变更后的队列顺序。,"第1行是一个正整数n，表示学生的总人数，
+从第2行到第n+1行分别代表这n个学生，按照原先队列中的顺序，第2行的是原先排在队列中的第一个学生，第n+1行的是原先排在队列中的最后一个学生。每行由一个正整数id和一个字符c构成，id和c之间有一个空格。其中id表示学生的学号，c表示学生的性别（只可能是M或者F，M代表男生，F代表女生）",根据女生在前，男生在后的原则，从前到后依次输出调整顺序后的学生学号，每行输出一个学号，最后一个学号后面也要换行。调整顺序后的女生间的前后关系与原队列中的一致，调整顺序后的男生间的前后关系也要与原队列中的一致。,1001和1003是女生，所以把她们按照原先队列里的先后顺序放在了队列的最前方。,"5
+1000 M
+1001 F
+1002 M
+1003 F
+1004 M","1001
+1003
+1000
+1002
+1004",66.10%,59,https://www.xujcoj.com/home/contest/67/problem/3,https://www.xujcoj.com/home/contest/67/problem,https://www.xujcoj.com/home/problem?keyword3=67,https://www.xujcoj.com/home/problem/detail/1195

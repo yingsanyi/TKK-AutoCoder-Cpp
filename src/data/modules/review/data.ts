@@ -9,21 +9,21 @@ export const reviewQuestionsQuizData: QuizData = {
       question: '递归终止条件：\n\n```cpp\n#include <iostream>\nusing namespace std;\n\nint f(int n){\n    if(n==0) return 0;\n    return f(n-1) + n;\n}\nint main(){\n    cout << f(4);\n}\n```',
       options: ['6', '8', '10', '12', '无限递归'],
       correctAnswer: 2,
-      explanation: '递归求和 (1+2+3+4=10)，终止条件 n==0。'
+      explanation: '## 题目解析\n这段代码实现了一个递归函数 `f(n)`，用于计算从 0 到 n 的累加和。\n\n### 1. 递归拆解 (递推过程)\n程序调用 `f(4)`，执行过程如下：\n- `f(4)` 返回 `f(3) + 4`\n- `f(3)` 返回 `f(2) + 3`\n- `f(2)` 返回 `f(1) + 2`\n- `f(1)` 返回 `f(0) + 1`\n- `f(0)` 满足 `n==0`，**返回 0** (递归终止)\n\n### 2. 回溯计算 (回归过程)\n当 `f(0)` 返回后，各层函数依次计算结果并返回：\n- `f(1) = 0 + 1 = 1`\n- `f(2) = 1 + 2 = 3`\n- `f(3) = 3 + 3 = 6`\n- `f(4) = 6 + 4 = 10`\n\n### 3. 最终结果\n`main` 函数输出 `f(4)` 的结果，即 **10**。\n\n### 总结\n该函数本质上计算的是数学公式：\n$$ \\sum_{i=0}^{n} i = 0 + 1 + 2 + \\dots + n $$'
     },
     {
       id: 2,
       question: '递归返回值：\n\n```cpp\n#include <iostream>\nusing namespace std;\n\nint g(int n){\n    if(n<=1) return 1;\n    return n * g(n-2);\n}\nint main(){\n    cout << g(6);\n}\n```',
       options: ['36', '48', '72', '120', '240'],
       correctAnswer: 1,
-      explanation: '递归步长为 2。g(6) = 6 * g(4) = 6 * 4 * g(2) = 6 * 4 * 2 * g(0) = 48 * 1 = 48。'
+      explanation: '## 题目解析\n\n### 1. 代码逻辑分析\n函数 `g(n)` 的递归逻辑如下：\n- **终止条件**：当 `n <= 1` 时，返回 `1`。\n- **递归步骤**：返回 `n * g(n-2)`。这意味着每次递归 `n` 减少 2，并将当前的 `n` 乘到结果中。\n\n### 2. 执行流程追踪 (g(6))\n我们逐步展开 `g(6)` 的调用过程：\n\n1. **第一层**：`n = 6` (大于 1)\n   - 返回 `6 * g(4)`\n\n2. **第二层**：`n = 4` (大于 1)\n   - 返回 `4 * g(2)`\n   - 此时累计表达式为：`6 * (4 * g(2))`\n\n3. **第三层**：`n = 2` (大于 1)\n   - 返回 `2 * g(0)`\n   - 此时累计表达式为：`6 * 4 * (2 * g(0))`\n\n4. **第四层**：`n = 0` (满足 `<= 1`)\n   - 触发终止条件，**返回 1**\n\n### 3. 回溯计算\n将结果代回计算：\n$$ g(6) = 6 \\times 4 \\times 2 \\times 1 = 48 $$\n\n### 4. 知识拓展\n这个函数计算的是类似**双阶乘**（Double Factorial, 记作 $n!!$）的逻辑：\n- 对于偶数 $n$，计算 $n \\times (n-2) \\times \\dots \\times 2$\n- 对于奇数 $n$，计算 $n \\times (n-2) \\times \\dots \\times 1$'
     },
     {
       id: 3,
       question: '递归与栈深度（读输出）：\n\n```cpp\n#include <iostream>\nusing namespace std;\n\nvoid p(int n){\n    if(n==0) return;\n    cout << n;\n    p(n-1);\n    cout << n;\n}\nint main(){ p(3); }\n```',
       options: ['123321', '321123', '123123', '332211', '321321'],
       correctAnswer: 1,
-      explanation: '先序输出 3 2 1，回溯再输出 1 2 3。'
+      explanation: '## 题目解析\n\n### 1. 代码结构分析\n函数 `p(n)` 的执行顺序是一个典型的“三明治”结构：\n1. **前序操作**：`cout << n;`（递归调用**前**执行）\n2. **递归调用**：`p(n-1);`\n3. **后序操作**：`cout << n;`（递归调用**后**执行）\n\n这意味着对于每一个 `n`，都会先打印一次 `n`，然后处理更深层的递归，回来后再打印一次 `n`。\n\n### 2. 详细执行追踪 (Call Stack)\n调用 `p(3)` 的完整流程如下：\n\n- **进入 p(3)**\n  - 输出 `3`\n  - 调用 `p(2)`\n    - **进入 p(2)**\n      - 输出 `2`\n      - 调用 `p(1)`\n        - **进入 p(1)**\n          - 输出 `1`\n          - 调用 `p(0)` -> **直接返回** (终止条件)\n          - 输出 `1` (回溯)\n        - **退出 p(1)**\n      - 输出 `2` (回溯)\n    - **退出 p(2)**\n  - 输出 `3` (回溯)\n- **退出 p(3)**\n\n### 3. 输出序列拼接\n将上述输出按时间顺序拼接：\n`3` -> `2` -> `1` -> `1` -> `2` -> `3`\n\n最终结果：**321123**'
     },
     {
       id: 4,
@@ -156,7 +156,7 @@ export const reviewQuestionsQuizData: QuizData = {
       question: 'rand 区间映射（概念结果）：\n\n```cpp\nint x = rand() % 6 + 1;\n```\nx 的可能范围是：',
       options: ['[0,6]', '[1,6]', '[1,7]', '[0,5]', '不确定'],
       correctAnswer: 1,
-      explanation: 'rand()%6 得 0..5，加 1 得 1..6（均匀性仍可能受取模影响）。\n公式：要生成 $[a, b]$ 之间的随机整数，通用的公式是：\n$$rand() \\% (b - a + 1) + a$$\\n其中：\n- `b - a + 1` 计算区间长度\n- `rand() % 长度` 生成 `[0, 长度-1]` 的偏移量\n- `+ a` 将偏移量平移到起始位置 `a`'
+      explanation: 'rand()%6 得 0..5，加 1 得 1..6（均匀性仍可能受取模影响）。\n公式：要生成 $[a, b]$ 之间的随机整数，通用的公式是：\n$$rand() \\% (b - a + 1) + a$$其中：\n- `b - a + 1` 计算区间长度\n- `rand() % 长度` 生成 `[0, 长度-1]` 的偏移量\n- `+ a` 将偏移量平移到起始位置 `a`'
     },
     {
       id: 23,
@@ -177,304 +177,290 @@ export const reviewQuestionsQuizData: QuizData = {
       question: '指针算术与输出：\n\n```cpp\n#include <iostream>\nusing namespace std;\n\nint main(){\n    int a[]={1,4,9,16};\n    int* p=a+3;\n    cout << *(p-2);\n}\n```',
       options: ['1', '4', '9', '16', '未定义'],
       correctAnswer: 1,
-      explanation: 'p 指向 a[3]，p-2 指向 a[1]，值为 4。'
+      explanation: '1. `a` 是数组 `{1, 4, 9, 16}`，对应下标 `0` 到 `3`。\n2. `p = a + 3`：`a` 退化为首元素指针，`+3` 后 `p` 指向 `a[3]`（值为 16）。\n3. `p - 2`：指针向低地址移动 2 个单位，指向 `a[3-2]` 即 `a[1]`。\n4. `*(p-2)`：解引用得到 `a[1]` 的值，即 4。'
     },
     {
       id: 26,
       question: '指针修改数组元素：\n\n```cpp\n#include <iostream>\nusing namespace std;\n\nint main(){\n    int a[3]={1,2,3};\n    int* p=a;\n    *(p+1)=9;\n    cout << a[1];\n}\n```',
       options: ['2', '3', '9', '未定义', '编译错误'],
       correctAnswer: 2,
-      explanation: '指针指向数组，修改第二个元素。'
+      explanation: '1. `p` 指向数组 `a` 的首元素 `a[0]`。\n2. `p + 1` 指向数组的第二个元素 `a[1]`。\n3. `*(p + 1) = 9` 将 `a[1]` 的值修改为 9。\n4. 输出 `a[1]`，即 9。'
     },
     {
       id: 27,
-      question: '二维数组传参：列数必须固定\n\n```cpp\n#include <iostream>\nusing namespace std;\n\nvoid print(int a[][]){ cout << a[0][0]; }\n\nint main(){\n    int x[2][3]={{1,2,3},{4,5,6}};\n    print(x);\n}\n```',
-      options: ['输出 1', '输出 4', '编译错误', '运行错误', '未定义'],
-      correctAnswer: 2,
-      explanation: '形参二维数组必须给出第二维（列数）以确定寻址。'
-    },
-    {
-      id: 28,
       question: '正确的行指针形参：\n\n```cpp\n#include <iostream>\nusing namespace std;\n\nvoid print(int (*a)[3]){ cout << a[1][2]; }\n\nint main(){\n    int x[2][3]={{1,2,3},{4,5,6}};\n    print(x);\n}\n```',
       options: ['3', '4', '5', '6', '编译错误'],
       correctAnswer: 3,
-      explanation: '访问第 2 行第 3 列元素 6。'
+      explanation: '1. **形参解析**：`int (*a)[3]` 是行指针，指向含 3 个 int 的数组。\n2. **实参传递**：`x` 是二维数组，传参时退化为指向首行的指针，传给 `a`。\n3. **定位行**：`a[1]` 相当于 `*(a+1)`，指向 `x` 的第二行（下标 1），即 `{4, 5, 6}`。\n4. **定位元素**：`a[1][2]` 访问该行的第 3 个元素（下标 2），即 6。'
     },
     {
-      id: 29,
+      id: 28,
       question: 'string 内容比较：\n\n```cpp\n#include <iostream>\n#include <string>\nusing namespace std;\n\nint main(){\n    string a="hi", b="hi";\n    cout << (a==b);\n}\n```',
       options: ['0', '1', 'hi', '编译错误', '未定义'],
       correctAnswer: 1,
       explanation: 'std::string 的 == 比较内容。'
     },
     {
-      id: 30,
+      id: 29,
       question: 'getline 读取空格：\n\n```cpp\n#include <iostream>\n#include <string>\nusing namespace std;\n\nint main(){\n    string s;\n    getline(cin,s);\n    cout << s.size();\n}\n```\n输入：`a b`',
       options: ['1', '2', '3', '4', '5'],
       correctAnswer: 2,
       explanation: '包含空格整行读取，"a␠b" 长度 3。'
     },
     {
-      id: 31,
+      id: 30,
       question: '递归：缺少终止条件\n\n```cpp\n#include <iostream>\nusing namespace std;\n\nint f(int n){\n    return f(n-1) + 1;\n}\nint main(){ cout << f(3); }\n```',
       options: ['3', '0', '4', '编译错误', '运行时无限递归/栈溢出'],
       correctAnswer: 4,
       explanation: '无终止条件，递归不会停止，导致栈溢出。'
     },
     {
-      id: 32,
+      id: 31,
       question: '数组遍历边界：\n\n```cpp\n#include <iostream>\nusing namespace std;\n\nint main(){\n    int a[3]={1,2,3};\n    for(int i=0;i<=3;i++) cout<<a[i];\n}\n```',
       options: ['123', '1230', '1233', '未定义行为', '编译错误'],
       correctAnswer: 3,
-      explanation: 'i==3 时越界访问。'
+      explanation: '1. **数组定义**：`int a[3]` 定义了大小为 3 的数组，有效下标范围是 `0, 1, 2`。\n2. **循环条件**：`for(int i=0; i<=3; i++)`，当 `i` 增加到 3 时，`i<=3` 依然成立，循环继续执行。\n3. **越界访问**：循环体内执行 `cout << a[3]`，访问了数组第 4 个元素，属于越界访问（Undefined Behavior）。\n4. **结果**：越界可能读到垃圾值，或者导致程序崩溃，行为不可预测。'
     },
     {
-      id: 33,
+      id: 32,
       question: '嵌套调用与重载（返回类型匹配）：\n\n```cpp\n#include <iostream>\nusing namespace std;\n\nint t(double x){ return (int)(x*2); }\ndouble t(int x){ return x/2.0; }\n\nint main(){\n    cout << t(t(3));\n}\n```',
       options: ['1', '2', '3', '6', '12'],
       correctAnswer: 2,
       explanation: '内层 t(3) 选 double t(int) 得 1.5；外层 t(1.5) 选 int t(double) 得 3。嵌套时关注返回类型触发的重载选择。'
     },
     {
-      id: 34,
+      id: 33,
       question: '阅读以下代码，输出结果是？\n\n```cpp\nvoid f(int x) { cout << "INT"; }\nvoid f(double x) { cout << "DBL"; }\nint main() {\n    f(5);\n    f(5.0);\n    return 0;\n}\n```',
       options: ['INT INT', 'DBL DBL', 'INT DBL', 'DBL INT', '编译错误'],
       correctAnswer: 2,
       explanation: '函数重载。5 是 int 字面量匹配第一个，5.0 是 double 字面量匹配第二个。'
     },
     {
-      id: 35,
+      id: 34,
       question: '阅读以下递归代码，输出结果是？\n\n```cpp\nint func(int n) {\n    if (n == 0) return 0;\n    return n + func(n - 1);\n}\nint main() { cout << func(5); }\n```',
       options: ['10', '15', '5', '0', '120'],
       correctAnswer: 1,
-      explanation: '计算 $5+4+3+2+1+0 = 15$。'
+      explanation: '1. **递推逻辑**：`func(n)` 返回 `n + func(n-1)`，即累加 `n` 到 `1` 的和。\n2. **递归展开**：\n   - `func(5) = 5 + func(4)`\n   - `func(4) = 4 + func(3)`\n   - ...\n   - `func(1) = 1 + func(0)`\n3. **终止条件**：`func(0)` 返回 `0`。\n4. **回溯求和**：`5 + 4 + 3 + 2 + 1 + 0 = 15`。'
     },
     {
-      id: 36,
+      id: 35,
       question: '阅读以下代码，分析输出：\n\n```cpp\nint x = 1;\nint func(int a) { return a + x; }\nint main() {\n    int x = 5;\n    cout << func(x);\n}\n```',
       options: ['2', '6', '10', '5', '1'],
       correctAnswer: 1,
-      explanation: 'main 中的局部变量 x 为5，作为参数传给 func 的形参 a。func 内部使用的全局变量 x 为1。返回 $5+1=6$。'
+      explanation: '1. **变量查找规则**：在函数内部使用变量时，优先查找局部变量，如果找不到，再查找全局变量。\n2. **`main` 函数**：定义了局部变量 `x = 5`，调用 `func(x)`，即将 `5` 传给 `func` 的形参 `a`。\n3. **`func` 函数**：\n   - 形参 `a` 接收到的值是 `5`。\n   - 函数体 `return a + x;` 中使用了变量 `x`。\n   - `func` 内部没有定义局部变量 `x`，因此查找全局变量 `x`（其值为 `1`）。\n4. **计算结果**：`a + x` 即 `5 + 1 = 6`。'
     },
     {
-      id: 37,
+      id: 36,
       question: '如下代码的运行结果是？\n\n```cpp\nvoid foo(int n) {\n    if (n > 0) {\n        foo(n - 1);\n        cout << n << " ";\n    }\n}\nint main() { foo(3); }\n```',
       options: ['3 2 1', '1 2 3', '3 2 1 0', '0 1 2 3', '死循环'],
       correctAnswer: 1,
-      explanation: '递归调用在 cout 之前，因此先深入到最底层 n=0（不输出），回溯时依次输出 1, 2, 3。'
+      explanation: '1. **递归顺序**：函数 `foo` 先进行递归调用 `foo(n-1)`，然后再执行 `cout << n`。这意味着“先深入，后输出”。\n2. **执行流程**：\n   - `foo(3)` 调用 `foo(2)`\n   - `foo(2)` 调用 `foo(1)`\n   - `foo(1)` 调用 `foo(0)`\n   - `foo(0)` 不满足 `n > 0`，直接返回（不输出）。\n3. **回溯输出**（栈弹出顺序）：\n   - `foo(1)` 继续执行：输出 `1`\n   - `foo(2)` 继续执行：输出 `2`\n   - `foo(3)` 继续执行：输出 `3`\n4. **最终结果**：`1 2 3`。'
     },
     {
-      id: 38,
-      question: '关于函数重载的匹配，以下代码会发生什么？\n\n```cpp\nvoid t(int a, float b) {}\nvoid t(float a, int b) {}\nint main() {\n    t(10, 10);\n}\n```',
-      options: ['调用第一个', '调用第二个', '编译错误（二义性）', '运行时崩溃', '随机调用'],
-      correctAnswer: 2,
-      explanation: '两个参数都是 int，两个重载版本都需要进行一次隐式类型转换，编译器无法判断哪个更优，报二义性错误。'
-    },
-    {
-      id: 39,
+      id: 37,
       question: '阅读嵌套调用代码：\n\n```cpp\nint sq(int x) { return x * x; }\nint add(int a, int b) { return a + b; }\nint main() {\n    cout << sq(add(2, 3));\n}\n```',
       options: ['13', '25', '10', '5', '36'],
       correctAnswer: 1,
       explanation: '先计算 add(2,3) 得到 5，再计算 sq(5) 得到 25。'
     },
     {
-      id: 40,
+      id: 38,
       question: '若函数定义如下，main 中的调用结果是？\n\n```cpp\nint f(int n) {\n    return (n <= 1) ? 1 : n * f(n-1);\n}\nint main() { cout << f(4); }\n```',
       options: ['10', '24', '12', '4', '1'],
       correctAnswer: 1,
-      explanation: '计算阶乘 $4! = 4 \\times 3 \\times 2 \\times 1 = 24$。'
+      explanation: '1. **递推逻辑**：`f(n)` 使用三目运算符：若 `n <= 1` 返回 1，否则返回 `n * f(n-1)`（即阶乘定义）。\n2. **递归展开**：\n   - `f(4) = 4 * f(3)`\n   - `f(3) = 3 * f(2)`\n   - `f(2) = 2 * f(1)`\n3. **终止条件**：`f(1)` 满足 `n <= 1`，返回 1。\n4. **回溯计算**：`4 * 3 * 2 * 1 = 24`。'
     },
     {
-      id: 41,
+      id: 39,
       question: '假设 rand() 最大值为 32767，以下代码输出值的范围？\n\n```cpp\ncout << rand() % 20 + 10;\n```',
       options: ['[0, 19]', '[10, 30]', '[10, 29]', '[10, 20]', '[11, 30]'],
       correctAnswer: 2,
-      explanation: 'rand() % 20 范围是 $[0, 19]$，加上 10 后范围是 $[10, 29]$。'
+      explanation: '1. **取模运算**：`rand() % 20` 的结果范围是 `[0, 19]`。\n2. **平移区间**：将结果加上 10，即 `[0+10, 19+10]`，最终范围是 `[10, 29]`。\n3. **通用公式**：生成 `[a, b]` 范围的随机数公式为 `rand() % (b - a + 1) + a`。本题中 `a=10`，`length=20`，故 `b - 10 + 1 = 20` $\Rightarrow$ `b = 29`。'
     },
     {
-      id: 42,
+      id: 40,
       question: '连续运行两次以下程序的输出结果是？\n\n```cpp\nint main() {\n    srand(1);\n    cout << rand();\n}\n```',
       options: ['两次输出不同的随机数', '两次输出相同的数', '第一次输出0，第二次输出1', '编译错误', '无法确定'],
       correctAnswer: 1,
       explanation: '种子固定为 1，每次运行程序生成的伪随机序列相同。'
     },
     {
-      id: 43,
+      id: 41,
       question: '阅读代码，分析 x 的可能值：\n\n```cpp\nint x = rand() % 5;\nif (x == 5) cout << "Yes";\nelse cout << "No";\n```',
       options: ['一定输出 Yes', '一定输出 No', '可能输出 Yes', '编译错误', '运行时错误'],
       correctAnswer: 1,
-      explanation: '% 5 的结果范围是 $[0, 4]$，永远不可能是 5。'
+      explanation: '1. **取模运算**：`rand() % 5` 的结果范围是 `0` 到 `4`（即 `[0, 4]`）。\n2. **条件判断**：`if (x == 5)` 判断 `x` 是否等于 5。\n3. **逻辑分析**：由于 `x` 的最大可能值是 4，因此 `x == 5` 永远为假（false）。\n4. **执行结果**：程序始终执行 `else` 分支，输出 "No"。'
     },
     {
-      id: 44,
+      id: 42,
       question: '如下代码输出什么？\n\n```cpp\nvoid f() {\n    static int i = 0;\n    cout << ++i << " ";\n}\nint main() { f(); f(); f(); }\n```',
       options: ['1 1 1', '0 0 0', '1 2 3', '0 1 2', '编译错误'],
       correctAnswer: 2,
       explanation: 'static 局部变量只初始化一次，后续调用会保留上次的值。'
     },
     {
-      id: 45,
+      id: 43,
       question: '阅读代码，输出结果是？\n\n```cpp\nint a = 10;\nint main() {\n    int a = 20;\n    {\n        int a = 30;\n        cout << a << " ";\n    }\n    cout << a;\n}\n```',
       options: ['10 10', '30 30', '30 20', '20 20', '30 10'],
       correctAnswer: 2,
-      explanation: '块作用域遮蔽。最内层 {} 输出 30，退出内层块后，main 的局部变量 a (20) 恢复可见。'
+      explanation: '1. **全局作用域**：定义了全局变量 `a = 10`。\n2. **`main` 函数作用域**：定义了局部变量 `a = 20`，此时全局变量 `a` 被遮蔽（shadowed）。\n3. **内层块作用域**：定义了更内层的局部变量 `a = 30`，此时外层的 `a = 20` 被遮蔽。\n4. **第一次输出**：在内层块中 `cout << a`，访问的是最近的 `a`，输出 `30`。\n5. **第二次输出**：退出内层块后，内层 `a` 销毁，`main` 函数的 `a = 20` 恢复可见，`cout << a` 输出 `20`。'
     },
     {
-      id: 46,
+      id: 44,
       question: '以下代码中，变量 y 的生命周期何时结束？\n\n```cpp\nvoid func() {\n    int y = 10; \n    cout << y;\n}\n```',
       options: ['程序结束时', 'main 函数结束时', 'func 函数被调用时', 'func 函数返回时', '文件关闭时'],
       correctAnswer: 3,
       explanation: 'y 是自动变量（栈变量），函数执行完毕弹栈销毁。'
     },
     {
-      id: 47,
+      id: 45,
       question: '阅读代码，输出结果是？\n\n```cpp\nint a[5] = {1, 2};\ncout << a[3];\n```',
       options: ['1', '2', '0', '垃圾值', '编译错误'],
       correctAnswer: 2,
       explanation: '聚合初始化部分元素后，其余元素自动补零。'
     },
     {
-      id: 48,
+      id: 46,
       question: '以下代码会发生什么？\n\n```cpp\nint arr[] = {1, 2, 3};\ncout << sizeof(arr) / sizeof(int);\n```',
       options: ['1', '3', '4', '8', '编译错误'],
       correctAnswer: 1,
       explanation: '计算数组元素个数。数组总大小(12) / 单个int大小(4) = 3。'
     },
     {
-      id: 49,
+      id: 47,
       question: '阅读代码，输出是什么？\n\n```cpp\nint a[3][2] = {{1, 2}, {3, 4}, {5, 6}};\ncout << a[1][1];\n```',
       options: ['2', '3', '4', '5', '6'],
       correctAnswer: 2,
       explanation: '索引从0开始。a[1] 是第二行 {3, 4}，a[1][1] 是该行第二个元素 4。'
     },
     {
-      id: 50,
+      id: 48,
       question: '如下代码中 p 指向哪里？\n\n```cpp\nint a[4] = {10, 20, 30, 40};\nint *p = a + 2;\ncout << *p;\n```',
       options: ['10', '20', '30', '40', '编译错误'],
       correctAnswer: 2,
-      explanation: '数组名 a 是首地址，+2 偏移两个 int 大小，指向 30。'
+      explanation: '1. **数组名**：`a` 代表数组首元素 `a[0]` 的地址，即 `&a[0]`。\n2. **指针运算**：`a + 2` 意味着从首地址开始，向高地址方向移动 2 个 `int` 的长度，指向 `a[2]`。\n3. **指针赋值**：`int *p = a + 2`，此时 `p` 指向 `a[2]`（值为 30）。\n4. **解引用**：`*p` 获取 `p` 指向的值，即 30。'
     },
     {
-      id: 51,
+      id: 49,
       question: '阅读代码，分析输出：\n\n```cpp\nint arr[5];\n// 假设 arr 内存地址是 1000 (十进制), int 占 4 字节\n// cout << arr + 1; 输出多少？\n```',
       options: ['1001', '1004', '1000', '1005', '1008'],
       correctAnswer: 1,
       explanation: '指针算术运算单位是元素类型的大小。1000 + 1 * 4 = 1004。'
     },
     {
-      id: 52,
+      id: 50,
       question: '二维数组访问，代码如下：\n\n```cpp\nint m[2][3] = {1, 2, 3, 4, 5, 6};\ncout << m[0][3]; \n```',
       options: ['3', '4', '0', '编译错误', '尽管越界，但通常输出4（取决于内存布局）'],
       correctAnswer: 4,
       explanation: '这是一个典型的数组越界（Undefined Behavior）。但在连续内存布局中，m[0][3] 越过了第一行的末尾，恰好访问到了第二行的开头 4。虽然结果通常是4，但这是不安全代码。'
     },
     {
-      id: 53,
+      id: 51,
       question: '遍历数组的逻辑：\n\n```cpp\nint a[] = {1, 2, 3};\nfor(int i=0; i<=3; i++) cout << a[i];\n```',
       options: ['123', '1230', '123 + 垃圾值', '编译错误', '死循环'],
       correctAnswer: 2,
       explanation: '循环条件 i<=3 导致访问下标 0, 1, 2, 3。下标 3 越界，输出未定义值。'
     },
     {
-      id: 54,
+      id: 52,
       question: '二维数组部分初始化：\n\n```cpp\nint a[2][2] = {{1}, {2}};\ncout << a[0][1] << a[1][1];\n```',
       options: ['1 2', '0 0', '垃圾值 垃圾值', '1 0', '0 2'],
       correctAnswer: 1,
       explanation: '每行只初始化了第一个元素，每行剩余元素补0。'
     },
     {
-      id: 55,
+      id: 53,
       question: '阅读代码：\n\n```cpp\nstring s = "123";\ns += \'4\';\ncout << s;\n```',
       options: ['123', '7 (数值相加)', '1234', '编译错误', '127'],
       correctAnswer: 2,
       explanation: 'string 重载了 +=，支持字符追加。'
     },
     {
-      id: 56,
+      id: 54,
       question: 'cin 读取行为：\n\n```cpp\nstring s;\n// 输入: Hello World\ncin >> s;\ncout << s;\n```',
       options: ['Hello World', 'Hello', 'World', 'Hello\\n', '编译错误'],
       correctAnswer: 1,
       explanation: 'cin 遇空格停止。'
     },
     {
-      id: 57,
+      id: 55,
       question: 'string 子串操作：\n\n```cpp\nstring s = "ABCDEF";\ncout << s.substr(2, 2);\n```',
       options: ['AB', 'BC', 'CD', 'CDE', 'DE'],
       correctAnswer: 2,
       explanation: '从索引2 (\'C\') 开始，截取长度2，得到 "CD"。'
     },
     {
-      id: 58,
+      id: 56,
       question: '查找子串：\n\n```cpp\nstring s = "banana";\ncout << s.find("na");\n```',
       options: ['1', '2', '3', '4', '0'],
       correctAnswer: 1,
       explanation: '第一次出现 "na" 是在索引 2。'
     },
     {
-      id: 59,
+      id: 57,
       question: '字符串比较：\n\n```cpp\nstring s1 = "apple";\nstring s2 = "banana";\ncout << (s1 > s2);\n```',
       options: ['1', '0', 'true', '编译错误', '-1'],
       correctAnswer: 1,
-      explanation: '字典序比较，\'a\' 小于 \'b\'，所以 s1 > s2 为假（0）。'
+      explanation: '1. **比较操作符**：`std::string` 的 `>` 操作符执行字典序比较（Lexicographical Comparison）。\n2. **逐字符比较**：\n   - 第一个字符：`s1[0]` 是 `\'a\'`，`s2[0]` 是 `\'b\'`。\n   - 比较 ASCII 码：`\'a\'` (97) < `\'b\'` (98)。\n   - 在第一位就决定了 `s1 < s2`。\n3. **结论**：`s1 > s2` 为假（false），输出 `0`。\n\n**自然排序（Natural Sort）科普**：\n- **普通字典序**：`"z11" < "z2"`（因为字符 `\'1\'` < `\'2\'`）。\n- **自然排序**：`"z2" < "z11"`（将数字部分识别为数值 2 和 11 进行比较）。\n- C++ 默认的 `string` 比较是**普通字典序**，不是自然排序。'
     },
     {
-      id: 60,
+      id: 58,
       question: 'string 修改：\n\n```cpp\nstring s = "Top";\ns[0] = \'P\';\ncout << s;\n```',
       options: ['Pop', 'Top', 'pop', '编译错误', 'P'],
       correctAnswer: 0,
       explanation: '字符串可变，直接修改索引0。'
     },
     {
-      id: 61,
+      id: 59,
       question: '访问字符串最后一位：\n\n```cpp\nstring s = "Code";\ncout << s[s.size() - 1];\n```',
       options: ['d', 'e', '\\0', '越界', 'o'],
       correctAnswer: 1,
-      explanation: '长度为4，最后一位下标是3，即 \'e\'。'
+      explanation: '1. **长度计算**：`s.size()` 或 `s.length()` 返回字符串长度，`"Code"` 长度为 4。\n2. **下标范围**：字符串下标从 0 开始，有效下标是 `0` 到 `size()-1`（即 3）。\n3. **最后一位**：`s[s.size() - 1]` 访问下标 3 的字符，即 `\'e\'`。\n4. **常见错误**：`s[s.size()]` 访问的是末尾的空字符 `\\0`（在 C++11 后标准保证），虽然不一定会崩溃，但通常不是想要的数据。'
     },
     {
-      id: 62,
+      id: 60,
       question: '指针基本操作：\n\n```cpp\nint a = 50;\nint *p = &a;\n*p = 20;\ncout << a;\n```',
       options: ['50', '20', '编译错误', '随机值', '地址值'],
       correctAnswer: 1,
       explanation: '通过指针解引用修改了原变量的值。'
     },
     {
-      id: 63,
+      id: 61,
       question: '指针与数组关系：\n\n```cpp\nint a[] = {1, 2, 3};\nint *p = a;\ncout << *(p + 1);\n```',
       options: ['1', '2', '3', 'a[0]的地址', '编译错误'],
       correctAnswer: 1,
       explanation: 'p 指向 1，p+1 指向 2，解引用得到 2。'
     },
     {
-      id: 64,
+      id: 62,
       question: '指针自增操作：\n\n```cpp\nint a[] = {10, 20};\nint *p = a;\ncout << *++p; \n```',
       options: ['11', '20', '10', '21', '编译错误'],
       correctAnswer: 1,
       explanation: '详细步骤解析：\n1. 前缀自增运算符 `++` 的优先级与解引用运算符 `*` 相同，结合方向为从右向左。但更直观的理解是：前缀 `++` 先生效。\n2. `++p` 的规则是“先自增，再返回”。指针 `p` 从指向 `a[0]` 自增移动到指向 `a[1]`。\n3. 然后对新地址进行解引用 `*`，得到 `a[1]` 的值，即 **20**。\n\n易错点对比：\n- `*p++`：后缀自增，先返回 `p` 当前指向的地址（指向 10），再自增指针。解引用得到 10。\n- `(*p)++`：先解引用得到 10，再对数值 10 自增，结果是 11。'
     },
     {
-      id: 65,
+      id: 63,
       question: '空指针解引用：\n\n```cpp\nint *p = nullptr;\n// cout << *p; // 运行这行会发生什么？\n```',
       options: ['输出 0', '输出 null', '运行时崩溃 (Segfault)', '编译错误', '输出随机值'],
       correctAnswer: 2,
       explanation: '访问非法内存。'
     },
     {
-      id: 66,
+      id: 64,
       question: '指针比较：\n\n```cpp\nint a[5];\nint *p1 = &a[1];\nint *p2 = &a[3];\ncout << (p2 > p1);\n```',
       options: ['0', '1', 'false', '编译错误', '无法确定'],
       correctAnswer: 1,
       explanation: '同一数组中，高下标元素的地址大于低下标元素的地址。'
     },
     {
-      id: 67,
-      question: '指针减法：\n\n```cpp\nint a[] = {1, 2, 3, 4, 5};\nint *p1 = a;\nint *p2 = a + 4;\ncout << p2 - p1;\n```',
+      id: 65,
+      question: '指针减法：\n\n```cpp\nint a[] = {10, 20, 30, 40, 50};\nint *p1 = a;\nint *p2 = a + 4;\ncout << p2 - p1;\n```',
       options: ['16', '4', '3', '5', '编译错误'],
       correctAnswer: 1,
-      explanation: '指针相减返回的是两个指针之间的元素个数，不是字节数。'
+      explanation: '## 题目详解\n\n### 代码分析\n\n```cpp\nint a[] = {10, 20, 30, 40, 50};\nint *p1 = a;\nint *p2 = a + 4;\ncout << p2 - p1;\n```\n\n---\n\n## 逐步解析\n\n### 1. 数组定义\n```cpp\nint a[] = {10, 20, 30, 40, 50};\n```\n- 创建包含 5 个元素的数组\n- 内存布局（假设起始地址为 1000）：\n\n| 元素 | a[0] | a[1] | a[2] | a[3] | a[4] |\n|---|---|---|---|---|---|\n| 值 | 10 | 20 | 30 | 40 | 50 |\n| 地址 | 1000 | 1004 | 1008 | 1012 | 1016 |\n\n---\n\n### 2. 指针 p1\n```cpp\nint *p1 = a;\n```\n- `a` 表示数组首地址，即 `&a[0]`\n- **p1 指向 a[0]**，地址为 1000\n\n---\n\n### 3. 指针 p2\n```cpp\nint *p2 = a + 4;\n```\n- `a + 4` 表示 "数组首地址 + 4 个元素"\n- **p2 指向 a[4]**，地址为 1016\n- 注意：指针加法以**元素大小**为单位（int 是 4 字节）\n\n---\n\n### 4. 指针相减\n```cpp\ncout << p2 - p1;\n```\n\n**关键规则**：两个指针相减，结果是**它们之间相隔多少个元素**\n\n计算：\n- p2 地址：1016\n- p1 地址：1000\n- 字节差：1016 - 1000 = 16\n- **元素差**：16 ÷ 4 = **4**\n\n---\n\n## 输出结果\n\n```\n4\n```\n\n---\n\n## 核心要点\n\n| 概念 | 说明 |\n|---|---|\n| 指针加法 `p + n` | 移动 n 个**元素**（不是 n 个字节） |\n| 指针减法 `p2 - p1` | 返回**元素个数差**（不是字节差） |\n| 数组名 `a` | 等价于 `&a[0]`（首元素地址） |\n\n---\n\n## 图示理解\n\n```\np1 → [10] [20] [30] [40] [50] ← p2\n      ↑               ↑\n    a[0]            a[4]\n    \np2 - p1 = 4 (相隔4个元素)\n```'
     },
     {
-      id: 68,
+      id: 66,
       question: '数组名作函数参数的退化：\n\n```cpp\nvoid f(int a[100]) {\n    // 这里的 a 是什么类型？\n}\n```',
       options: ['int 数组，大小100', 'int*', 'const int*', 'int&', 'int'],
       correctAnswer: 1,
@@ -700,7 +686,84 @@ int main() {
     title: '冒泡排序（含提前结束）',
     description: '输入整数 $n$ 和 $n$ 个整数，使用冒泡排序将数组升序排序。如果某一趟遍历中没有发生交换，说明数组已经有序，提前结束排序。输出排序后的数组。',
     initialCode: `#include <iostream>\nusing namespace std;\n\nint main() {\n    \n    return 0;\n}\n`,
-    solutionCode: `#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    int arr[100];\n    \n    for(int i = 0; i < n; i++) {\n        cin >> arr[i];\n    }\n    \n    // 冒泡排序（带提前结束优化）\n    for(int i = 0; i < n - 1; i++) {\n        bool swapped = false;  // 标记本轮是否有交换\n        \n        for(int j = 0; j < n - 1 - i; j++) {\n            if(arr[j] > arr[j + 1]) {\n                // 交换\n                int temp = arr[j];\n                arr[j] = arr[j + 1];\n                arr[j + 1] = temp;\n                swapped = true;\n            }\n        }\n        \n        // 如果本轮没有交换，说明已经有序\n        if(!swapped) break;\n    }\n    \n    // 输出排序后的数组\n    for(int i = 0; i < n; i++) {\n        cout << arr[i];\n        if(i < n - 1) cout << " ";\n    }\n    cout << endl;\n    \n    return 0;\n}`,
+    solutionCode: `#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    int arr[100];
+    
+    for(int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    
+    // 冒泡排序（优化版：带提前结束）
+    for(int i = 0; i < n - 1; i++) {
+        bool swapped = false;  // 标记本轮是否有交换
+        
+        for(int j = 0; j < n - 1 - i; j++) {
+            if(arr[j] > arr[j + 1]) {
+                // 交换
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+                swapped = true;
+            }
+        }
+        
+        // 如果本轮没有交换，说明已经有序
+        if(!swapped) break;
+    }
+    
+    // 输出排序后的数组
+    for(int i = 0; i < n; i++) {
+        cout << arr[i];
+        if(i < n - 1) cout << " ";
+    }
+    cout << endl;
+    
+    return 0;
+}`,
+    extraSolutions: [
+      {
+        label: '朴素冒泡排序 (无优化)',
+        code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    int arr[100];
+    
+    for(int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    
+    // 朴素冒泡排序
+    // 外层循环控制比较轮数：共需 n-1 轮
+    for(int i = 0; i < n - 1; i++) {
+        // 内层循环控制每轮的比较次数
+        // 第 i 轮结束时，最大的 i+1 个数已归位，因此只需比较前 n-1-i 个元素
+        for(int j = 0; j < n - 1 - i; j++) {
+            if(arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+    
+    for(int i = 0; i < n; i++) {
+        cout << arr[i];
+        if(i < n - 1) cout << " ";
+    }
+    cout << endl;
+    
+    return 0;
+}`
+      }
+    ],
     hints: [
       '冒泡排序原理：每次将最大元素"冒泡"到末尾',
       '外层循环控制轮数（最多 $n-1$ 轮）',
@@ -718,7 +781,7 @@ int main() {
   },
   {
     title: '字符串字母排序',
-    description: '输入一行字符串（可能包含大写字母、小写字母、数字、空格和其他字符），要求：\\n1. 提取其中所有的字母（大写和小写）\\n2. 将所有字母按照字典序排序（忽略大小写，即 \'a\' 和 \'A\' 视为相同）\\n3. 排序后，原本是大写的保持大写，原本是小写的保持小写\\n4. 输出排序后的字母序列（字母间无空格）',
+    description: '输入一行字符串（可能包含大写字母、小写字母、数字、空格和其他字符），要求：\n\n1. 提取其中所有的字母（大写和小写）\n2. 将所有字母按照字典序排序（忽略大小写，即 \'a\' 和 \'A\' 视为相同）\n3. 排序后，原本是大写的保持大写，原本是小写的保持小写\n4. 输出排序后的字母序列（字母间无空格）',
     initialCode: `#include <iostream>\nusing namespace std;\n\nint main() {\n    \n    return 0;\n}\n`,
     solutionCode: `#include <iostream>\n#include <string>\nusing namespace std;\n\nchar toLowerCase(char c) {\n    if (c >= 'A' && c <= 'Z') return c + 32;\n    return c;\n}\n\nbool isLetter(char c) {\n    return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');\n}\n\nbool compareChar(char a, char b) {\n    char lowerA = toLowerCase(a);\n    char lowerB = toLowerCase(b);\n\n    if (lowerA != lowerB) return lowerA < lowerB;\n    return a > b;\n}\n\nint main() {\n    string s;\n    getline(cin, s);\n\n    char letters[200];\n    int cnt = 0;\n    for (int i = 0; i < (int)s.length(); i++) {\n        if (isLetter(s[i])) letters[cnt++] = s[i];\n    }\n\n    for (int i = 0; i < cnt - 1; i++) {\n        for (int j = 0; j < cnt - 1 - i; j++) {\n            if (!compareChar(letters[j], letters[j + 1])) {\n                char t = letters[j];\n                letters[j] = letters[j + 1];\n                letters[j + 1] = t;\n            }\n        }\n    }\n\n    for (int i = 0; i < cnt; i++) cout << letters[i];\n    cout << '\\n';\n    return 0;\n}`,
     hints: [

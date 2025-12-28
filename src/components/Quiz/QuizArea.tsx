@@ -22,6 +22,19 @@ export const QuizArea: React.FC<QuizAreaProps> = ({ data }) => {
     setSubmitted(prev => ({ ...prev, [qIndex]: true }));
   };
 
+  const handleRetryQuestion = (qIndex: number) => {
+    setSelections(prev => {
+      const next = { ...prev };
+      delete next[qIndex];
+      return next;
+    });
+    setSubmitted(prev => {
+      const next = { ...prev };
+      delete next[qIndex];
+      return next;
+    });
+  };
+
   const resetQuiz = () => {
     setSelections({});
     setSubmitted({});
@@ -174,12 +187,19 @@ export const QuizArea: React.FC<QuizAreaProps> = ({ data }) => {
                         ) : (
                            <AlertCircle size={20} className="shrink-0 mt-0.5" />
                         )}
-                        <div>
+                        <div className="flex-1">
                            <p className="font-bold text-sm mb-1">{isCurrentCorrect ? '回答正确' : '回答错误'}</p>
                            <div className="text-sm opacity-90">
                              <MarkdownRenderer content={q.explanation || ''} className="!space-y-1" />
                            </div>
                         </div>
+                        <button
+                          onClick={() => handleRetryQuestion(qIndex)}
+                          className="p-1.5 hover:bg-black/5 dark:hover:bg-white/10 rounded-md transition-colors text-slate-500 dark:text-slate-400"
+                          title="重做此题"
+                        >
+                          <RefreshCw size={16} />
+                        </button>
                       </div>
                     )}
                   </div>

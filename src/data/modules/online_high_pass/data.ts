@@ -114,7 +114,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     passRate: '52.55%',
     submitCount: 137,
     acCount: 72,
-    url: 'https://www.xujcoj.com/home/problem/detail/3992',
+    url: 'https://www.xujcoj.com/home/problem/detail/2016',
     tags: ['数学', '因子', '循环']
   },
   {
@@ -456,7 +456,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     passRate: '52.55%',
     submitCount: 137,
     acCount: 72,
-    url: 'https://www.xujcoj.com/home/problem/detail/3992',
+    url: 'https://www.xujcoj.com/home/problem/detail/3323',
     tags: []
   },
   {
@@ -519,7 +519,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     passRate: '52.55%',
     submitCount: 137,
     acCount: 72,
-    url: 'https://www.xujcoj.com/home/problem/detail/3992',
+    url: 'https://www.xujcoj.com/home/problem/detail/3397',
     tags: []
   },
   {
@@ -807,7 +807,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     passRate: '52.55%',
     submitCount: 137,
     acCount: 72,
-    url: 'https://www.xujcoj.com/home/problem/detail/3992',
+    url: 'https://www.xujcoj.com/home/problem/detail/3993',
     tags: []
   },
   {
@@ -816,7 +816,7 @@ export const onlineHighPassProblems: OnlineProblem[] = [
     passRate: '52.55%',
     submitCount: 137,
     acCount: 72,
-    url: 'https://www.xujcoj.com/home/problem/detail/3992',
+    url: 'https://www.xujcoj.com/home/problem/detail/3994',
     tags: []
   },
   {

@@ -563,7 +563,7 @@ function AppContent() {
             ) : activeSection.type === 'quiz' && activeSection.quizData ? (
               <QuizArea data={activeSection.quizData} />
             ) : (
-              activeSection.exerciseData && <ExerciseArea data={activeSection.exerciseData} />
+              activeSection.exerciseData && <ExerciseArea data={activeSection.exerciseData} visualContent={activeSection.content} />
             )
           ) : (
             <div className="p-8 text-center text-slate-500">Section not found</div>

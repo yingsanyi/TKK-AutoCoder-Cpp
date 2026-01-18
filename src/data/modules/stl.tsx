@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Section } from '../../types/index';
 import { CodeBlock } from '../../components/Common/CodeBlock';
-import { Layers, RefreshCw, Box, ArrowRight, Factory, Cog, Truck } from 'lucide-react';
+import { Layers, RefreshCw, Box, ArrowRight, Factory, Cog, Truck, AlertTriangle, CheckCircle2, GitMerge, ArrowLeftRight, Plus, Trash2, ChevronDown, ChevronUp } from 'lucide-react';
 
 // Visualization for STL Architecture
 const STLArchitectureVisual = () => (
@@ -248,6 +248,443 @@ const ArrayVisual = () => (
     </div>
 );
 
+// Visualization for List Structure
+const ListStructureVisual = () => (
+    <div className="my-8 p-6 bg-slate-50 border border-slate-200 rounded-xl">
+        <h4 className="text-center font-bold text-slate-800 mb-6">排队 (Vector) vs 寻宝 (List)</h4>
+        <div className="flex flex-col gap-8">
+            {/* Vector */}
+            <div className="flex flex-col items-center">
+                <div className="text-xs font-bold text-slate-500 mb-2 w-full text-left pl-4">std::vector (连续存储)</div>
+                <div className="flex gap-0.5 bg-indigo-50 p-2 rounded-lg border border-indigo-100">
+                    {[1, 2, 3, 4, 5].map((n, i) => (
+                        <div key={i} className="w-10 h-10 bg-indigo-500 text-white flex items-center justify-center font-bold text-sm border-r border-indigo-400 last:border-0 first:rounded-l last:rounded-r shadow-sm">
+                            {n}
+                        </div>
+                    ))}
+                </div>
+                <div className="text-[10px] text-slate-400 mt-1">邻居紧挨着，找人方便，插队麻烦</div>
+            </div>
+
+            {/* List */}
+            <div className="flex flex-col items-center">
+                <div className="text-xs font-bold text-slate-500 mb-2 w-full text-left pl-4">std::list (链式存储)</div>
+                <div className="flex gap-4 items-center flex-wrap justify-center p-4 bg-emerald-50 rounded-lg border border-emerald-100 border-dashed w-full">
+                    {[1, 2, 3, 4, 5].map((n, i) => (
+                        <React.Fragment key={i}>
+                            <div className="flex flex-col items-center gap-1">
+                                <div className="w-10 h-10 bg-emerald-500 text-white flex items-center justify-center font-bold text-sm rounded-full shadow-sm relative group cursor-help">
+                                    {n}
+                                    <span className="absolute -top-6 text-[10px] text-emerald-600 bg-emerald-100 px-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Addr: 0x{100 + i*40}</span>
+                                </div>
+                            </div>
+                            {i < 4 && <ArrowLeftRight size={16} className="text-emerald-300" />}
+                        </React.Fragment>
+                    ))}
+                </div>
+                <div className="text-[10px] text-slate-400 mt-1">分散在各地，靠指针联系，增删随意</div>
+            </div>
+        </div>
+    </div>
+);
+
+// Visualization for List Operations
+const ListOperationVisual = () => {
+    const [list, setList] = useState([1, 2, 3]);
+
+    const pushFront = () => setList([Math.floor(Math.random() * 10), ...list]);
+    const pushBack = () => setList([...list, Math.floor(Math.random() * 10)]);
+    const popFront = () => setList(list.slice(1));
+    const popBack = () => setList(list.slice(0, -1));
+
+    return (
+        <div className="my-8 p-6 bg-slate-50 border border-slate-200 rounded-xl flex flex-col items-center">
+            <h4 className="text-center font-bold text-slate-800 mb-6">List 增删模拟器</h4>
+            
+            {/* Controls */}
+            <div className="flex flex-wrap gap-4 justify-center mb-8">
+                <div className="flex flex-col gap-2">
+                    <button onClick={pushFront} className="px-3 py-1.5 bg-indigo-100 text-indigo-700 rounded text-xs font-bold hover:bg-indigo-200 transition-colors flex items-center gap-1">
+                        <Plus size={14} /> push_front
+                    </button>
+                    <button onClick={popFront} className="px-3 py-1.5 bg-red-100 text-red-700 rounded text-xs font-bold hover:bg-red-200 transition-colors flex items-center gap-1">
+                        <Trash2 size={14} /> pop_front
+                    </button>
+                </div>
+                
+                <div className="flex flex-col gap-2">
+                    <button onClick={pushBack} className="px-3 py-1.5 bg-indigo-100 text-indigo-700 rounded text-xs font-bold hover:bg-indigo-200 transition-colors flex items-center gap-1">
+                        <Plus size={14} /> push_back
+                    </button>
+                    <button onClick={popBack} className="px-3 py-1.5 bg-red-100 text-red-700 rounded text-xs font-bold hover:bg-red-200 transition-colors flex items-center gap-1">
+                        <Trash2 size={14} /> pop_back
+                    </button>
+                </div>
+            </div>
+
+            {/* List Visualization */}
+            <div className="flex flex-wrap gap-2 items-center justify-center min-h-[60px] p-4 border border-dashed border-slate-300 rounded-lg w-full bg-white">
+                {list.length === 0 ? (
+                    <span className="text-slate-400 text-sm italic">空链表 (Empty List)</span>
+                ) : (
+                    list.map((val, i) => (
+                        <React.Fragment key={i}>
+                             <div className="w-10 h-10 bg-white border-2 border-slate-400 flex items-center justify-center font-bold text-slate-700 rounded-full shadow-sm">
+                                {val}
+                            </div>
+                            {i < list.length - 1 && <ArrowLeftRight size={16} className="text-slate-300" />}
+                        </React.Fragment>
+                    ))
+                )}
+            </div>
+            <p className="text-xs text-slate-400 mt-2">
+                注意：在 list 中，头尾增删的时间复杂度都是 O(1)！
+            </p>
+        </div>
+    );
+};
+
+// Visualization for List Insert/Erase (Principle Level)
+const ListInsertVisual = () => {
+    const [step, setStep] = useState(0); // 0: Initial, 1: Alloc, 2: Link New, 3: Relink Old, 4: Done
+    const [mode, setMode] = useState<'insert' | 'erase'>('insert');
+
+    // Code lines highlighting
+    const getActiveLines = () => {
+        if (mode === 'insert') {
+            if (step === 1) return [1]; // newNode = new Node
+            if (step === 2) return [2, 3]; // new->next = it; new->prev = prev
+            if (step === 3) return [4, 5]; // prev->next = new; it->prev = new
+            if (step === 4) return [];
+        } else {
+            if (step === 1) return [1]; // target = it
+            if (step === 2) return [2]; // it++
+            if (step === 3) return [3, 4]; // prev->next = next; next->prev = prev
+            if (step === 4) return [5]; // delete target
+        }
+        return [];
+    };
+
+    const reset = (newMode: 'insert' | 'erase') => {
+        setMode(newMode);
+        setStep(0);
+    };
+
+    const nextStep = () => setStep(s => Math.min(s + 1, 4));
+    const prevStep = () => setStep(s => Math.max(s - 1, 0));
+
+    // Positions
+    // Insert: A(0), B(2). New(1)
+    // Erase: A(0), B(1), C(2). Erase B.
+    
+    return (
+        <div className="my-8 p-6 bg-slate-50 border border-slate-200 rounded-xl flex flex-col items-center">
+            <h4 className="text-center font-bold text-slate-800 mb-6">
+                {mode === 'insert' ? '链表插入原理演示 (Insert)' : '链表删除原理演示 (Erase)'}
+            </h4>
+
+            {/* Controls */}
+            <div className="flex gap-4 mb-6">
+                <div className="flex bg-slate-200 rounded p-1">
+                    <button 
+                        onClick={() => reset('insert')}
+                        className={`px-3 py-1 rounded text-xs font-bold transition-colors ${mode === 'insert' ? 'bg-white shadow text-indigo-600' : 'text-slate-500'}`}
+                    >
+                        插入模式
+                    </button>
+                    <button 
+                        onClick={() => reset('erase')}
+                        className={`px-3 py-1 rounded text-xs font-bold transition-colors ${mode === 'erase' ? 'bg-white shadow text-red-600' : 'text-slate-500'}`}
+                    >
+                        删除模式
+                    </button>
+                </div>
+                
+                <div className="flex gap-2">
+                    <button onClick={prevStep} disabled={step === 0} className="px-3 py-1 bg-white border border-slate-300 rounded text-xs font-bold hover:bg-slate-50 disabled:opacity-50">
+                        上一步
+                    </button>
+                    <button onClick={nextStep} disabled={step === 4} className="px-3 py-1 bg-indigo-600 text-white rounded text-xs font-bold hover:bg-indigo-700 disabled:opacity-50">
+                        {step === 4 ? '完成' : '下一步'}
+                    </button>
+                </div>
+            </div>
+
+            {/* Code Display */}
+            <div className="w-full max-w-md bg-slate-800 text-slate-300 p-4 rounded-lg font-mono text-xs mb-8 shadow-sm">
+                {mode === 'insert' ? (
+                    <>
+                        <div className={step === 1 ? 'bg-indigo-900/50 text-white font-bold -mx-4 px-4' : ''}>1. Node* newNode = new Node(99);</div>
+                        <div className={step === 2 ? 'bg-indigo-900/50 text-white font-bold -mx-4 px-4' : ''}>2. newNode-&gt;next = it;</div>
+                        <div className={step === 2 ? 'bg-indigo-900/50 text-white font-bold -mx-4 px-4' : ''}>3. newNode-&gt;prev = it-&gt;prev;</div>
+                        <div className={step === 3 ? 'bg-indigo-900/50 text-white font-bold -mx-4 px-4' : ''}>4. it-&gt;prev-&gt;next = newNode;</div>
+                        <div className={step === 3 ? 'bg-indigo-900/50 text-white font-bold -mx-4 px-4' : ''}>5. it-&gt;prev = newNode;</div>
+                    </>
+                ) : (
+                    <>
+                        <div className="text-slate-500">// 假设 it 指向要删的节点 B</div>
+                        <div className={step === 1 ? 'bg-red-900/30 text-white font-bold -mx-4 px-4' : ''}>1. Node* target = it;</div>
+                        <div className={step === 2 ? 'bg-red-900/30 text-white font-bold -mx-4 px-4' : ''}>2. it++; // 迭代器移到 C (防止失效)</div>
+                        <div className={step === 3 ? 'bg-red-900/30 text-white font-bold -mx-4 px-4' : ''}>3. target-&gt;prev-&gt;next = target-&gt;next;</div>
+                        <div className={step === 3 ? 'bg-red-900/30 text-white font-bold -mx-4 px-4' : ''}>4. target-&gt;next-&gt;prev = target-&gt;prev;</div>
+                        <div className={step === 4 ? 'bg-red-900/30 text-white font-bold -mx-4 px-4' : ''}>5. delete target;</div>
+                    </>
+                )}
+            </div>
+
+            {/* Animation Canvas */}
+            <div className="relative w-full h-40 bg-white border border-dashed border-slate-300 rounded-lg overflow-hidden flex items-center justify-center select-none">
+                
+                {mode === 'insert' && (
+                    <>
+                        {/* Node A */}
+                        <div className={`absolute transition-all duration-700 top-1/2 -translate-y-1/2 ${step === 4 ? 'left-[20%]' : 'left-[25%]'}`}>
+                            <div className="w-12 h-12 bg-white border-2 border-slate-400 flex items-center justify-center font-bold text-slate-700 rounded-lg z-10 relative">A</div>
+                            <div className="text-xs text-slate-400 text-center mt-1">prev</div>
+                        </div>
+
+                        {/* Node B (it) */}
+                        <div className={`absolute transition-all duration-700 top-1/2 -translate-y-1/2 ${step === 4 ? 'left-[80%]' : 'left-[75%]'}`}>
+                            <div className="w-12 h-12 bg-amber-50 border-2 border-amber-400 flex items-center justify-center font-bold text-amber-800 rounded-lg z-10 relative">
+                                B
+                                <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-amber-600 text-xs font-bold flex flex-col items-center">
+                                    <span>it</span>
+                                    <ChevronDown size={14}/>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* New Node */}
+                        <div className={`absolute transition-all duration-700 ${
+                            step === 0 ? 'opacity-0 top-0 left-[50%]' : 
+                            step < 4 ? 'opacity-100 top-[20%] left-[50%] -translate-x-1/2' : 
+                            'opacity-100 top-1/2 -translate-y-1/2 left-[50%] -translate-x-1/2'
+                        }`}>
+                            <div className="w-12 h-12 bg-emerald-100 border-2 border-emerald-500 flex items-center justify-center font-bold text-emerald-700 rounded-lg shadow-lg z-20 relative">99</div>
+                        </div>
+
+                        {/* SVG Arrows */}
+                        <svg className="absolute inset-0 w-full h-full pointer-events-none">
+                            <defs>
+                                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8" />
+                                </marker>
+                                <marker id="arrowhead-new" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#10b981" />
+                                </marker>
+                            </defs>
+
+                            {/* A -> B (Original) */}
+                            {step < 3 && (
+                                <line x1="33%" y1="50%" x2="67%" y2="50%" stroke="#94a3b8" strokeWidth="2" markerEnd="url(#arrowhead)" strokeDasharray={step > 1 ? "4" : ""} opacity={step > 2 ? 0 : 1} />
+                            )}
+                            
+                            {/* New -> B & New -> A */}
+                            {step >= 2 && step < 4 && (
+                                <>
+                                    <path d="M 53% 35% L 72% 45%" stroke="#10b981" strokeWidth="2" markerEnd="url(#arrowhead-new)" fill="none" />
+                                    <path d="M 47% 35% L 28% 45%" stroke="#10b981" strokeWidth="2" markerEnd="url(#arrowhead-new)" fill="none" />
+                                </>
+                            )}
+
+                            {/* A -> New & B -> New (Final) */}
+                            {step >= 3 && (
+                                <>
+                                    {/* A next -> New */}
+                                    <line x1={step === 4 ? "25%" : "30%"} y1="50%" x2="45%" y2={step === 4 ? "50%" : "35%"} stroke="#10b981" strokeWidth="2" markerEnd="url(#arrowhead-new)" />
+                                    {/* New next -> B */}
+                                    <line x1="55%" y1={step === 4 ? "50%" : "35%"} x2={step === 4 ? "75%" : "70%"} y2="50%" stroke="#10b981" strokeWidth="2" markerEnd="url(#arrowhead-new)" />
+                                </>
+                            )}
+                        </svg>
+                    </>
+                )}
+
+                {mode === 'erase' && (
+                    <>
+                        {/* Nodes: A, B, C */}
+                        {/* A */}
+                        <div className={`absolute transition-all duration-700 top-1/2 -translate-y-1/2 -translate-x-1/2 ${step === 4 ? 'left-[35%]' : 'left-[20%]'}`}>
+                            <div className="w-12 h-12 bg-white border-2 border-slate-400 flex items-center justify-center font-bold text-slate-700 rounded-lg z-10 relative">A</div>
+                        </div>
+                        {/* B (Target) */}
+                        <div className={`absolute left-[50%] -translate-x-1/2 top-1/2 -translate-y-1/2 transition-all duration-500 ${step === 4 ? 'scale-0 opacity-0' : 'scale-100 opacity-100'}`}>
+                            <div className={`w-12 h-12 border-2 flex items-center justify-center font-bold rounded-lg z-10 relative ${step >= 1 ? 'bg-red-50 border-red-400 text-red-800' : 'bg-white border-slate-400 text-slate-700'}`}>
+                                B
+                                {step === 0 && (
+                                    <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-amber-600 text-xs font-bold flex flex-col items-center">
+                                        <span>it</span>
+                                        <ChevronDown size={14}/>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                        {/* C */}
+                        <div className={`absolute transition-all duration-700 top-1/2 -translate-y-1/2 -translate-x-1/2 ${step === 4 ? 'left-[65%]' : 'left-[80%]'}`}>
+                            <div className="w-12 h-12 bg-white border-2 border-slate-400 flex items-center justify-center font-bold text-slate-700 rounded-lg z-10 relative">
+                                C
+                                {step >= 2 && step < 4 && (
+                                    <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-amber-600 text-xs font-bold flex flex-col items-center animate-bounce">
+                                        <span>it</span>
+                                        <ChevronDown size={14}/>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+
+                        {/* Arrows */}
+                        <svg className="absolute inset-0 w-full h-full pointer-events-none">
+                             <defs>
+                                <marker id="arrowhead-del" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8" />
+                                </marker>
+                                <marker id="arrowhead-bypass" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#ef4444" />
+                                </marker>
+                            </defs>
+                            
+                            {/* Normal Links A->B->C */}
+                            <line x1="26%" y1="50%" x2="44%" y2="50%" stroke="#94a3b8" strokeWidth="2" markerEnd="url(#arrowhead-del)" opacity={step >= 3 || step === 4 ? 0 : 1} />
+                            <line x1="56%" y1="50%" x2="74%" y2="50%" stroke="#94a3b8" strokeWidth="2" markerEnd="url(#arrowhead-del)" opacity={step >= 3 || step === 4 ? 0 : 1} />
+
+                            {/* Bypass Links A->C (Step 3) */}
+                            {step === 3 && (
+                                <path d="M 26% 40% Q 50% 20% 74% 40%" fill="none" stroke="#ef4444" strokeWidth="2" markerEnd="url(#arrowhead-bypass)" />
+                            )}
+
+                            {/* Final Link A->C (Step 4) */}
+                            {step === 4 && (
+                                <line x1="41%" y1="50%" x2="59%" y2="50%" stroke="#94a3b8" strokeWidth="2" markerEnd="url(#arrowhead-del)" />
+                            )}
+                        </svg>
+                    </>
+                )}
+
+            </div>
+            
+             <p className="text-xs text-slate-500 mt-4 text-center max-w-md bg-slate-100 p-2 rounded">
+                {mode === 'insert' 
+                    ? "原理：只修改了指针指向，A 和 B 在内存中的位置完全不需要移动！" 
+                    : "原理：让 A 和 C 互指，B 就被“孤立”了，然后安全释放 B 的内存。"}
+            </p>
+        </div>
+    );
+};
+
+// Visualization for List Splice
+const ListSpliceVisual = () => {
+    const [step, setStep] = useState(0); // 0: Initial, 1: Connecting
+    
+    // Initial: List1: 1->2->3, List2: 10->20->30
+    // Target: splice(list1.begin(), list2) -> 10->20->30->1->2->3
+    // list1.begin() points to '1'. insert BEFORE '1'.
+    
+    return (
+        <div className="my-8 p-6 bg-slate-50 border border-slate-200 rounded-xl flex flex-col items-center">
+            <h4 className="text-center font-bold text-slate-800 mb-4">Splice: 链表接轨魔法</h4>
+            
+            <div className="relative w-full h-40 bg-white border border-dashed border-slate-300 rounded-lg overflow-hidden flex items-center justify-center select-none mb-6">
+                
+                {/* List 1 (Blue) */}
+                <div className={`absolute transition-all duration-1000 top-1/2 -translate-y-1/2 flex items-center gap-2 ${step === 0 ? 'left-[60%]' : 'left-[55%]'}`}>
+                    <div className="w-10 h-10 bg-blue-100 border-2 border-blue-500 flex items-center justify-center font-bold text-blue-700 rounded-full shadow-sm z-10">1</div>
+                    <ArrowLeftRight size={16} className="text-slate-300"/>
+                    <div className="w-10 h-10 bg-blue-100 border-2 border-blue-500 flex items-center justify-center font-bold text-blue-700 rounded-full shadow-sm z-10">2</div>
+                    <ArrowLeftRight size={16} className="text-slate-300"/>
+                    <div className="w-10 h-10 bg-blue-100 border-2 border-blue-500 flex items-center justify-center font-bold text-blue-700 rounded-full shadow-sm z-10">3</div>
+                </div>
+
+                {/* List 2 (Orange) */}
+                <div className={`absolute transition-all duration-1000 top-1/2 -translate-y-1/2 flex items-center gap-2 ${step === 0 ? 'left-[10%]' : 'left-[15%]'}`}>
+                    <div className="w-10 h-10 bg-orange-100 border-2 border-orange-500 flex items-center justify-center font-bold text-orange-700 rounded-full shadow-sm z-10">10</div>
+                    <ArrowLeftRight size={16} className="text-slate-300"/>
+                    <div className="w-10 h-10 bg-orange-100 border-2 border-orange-500 flex items-center justify-center font-bold text-orange-700 rounded-full shadow-sm z-10">20</div>
+                    <ArrowLeftRight size={16} className="text-slate-300"/>
+                    <div className="w-10 h-10 bg-orange-100 border-2 border-orange-500 flex items-center justify-center font-bold text-orange-700 rounded-full shadow-sm z-10">30</div>
+                </div>
+
+                {/* Connection Arrow */}
+                <div className={`absolute left-[47%] top-1/2 -translate-y-1/2 transition-opacity duration-1000 ${step === 1 ? 'opacity-100' : 'opacity-0'}`}>
+                     <ArrowLeftRight size={24} className="text-emerald-500 animate-pulse"/>
+                </div>
+            </div>
+
+            <button 
+                onClick={() => setStep(s => s === 0 ? 1 : 0)}
+                className={`px-4 py-2 text-xs font-bold rounded transition-colors flex items-center gap-2 ${step === 1 ? 'bg-slate-200 text-slate-600' : 'bg-indigo-600 text-white hover:bg-indigo-700'}`}
+            >
+                <GitMerge size={14} />
+                {step === 1 ? "复原 (Undo)" : "执行 splice(list1.begin(), list2)"}
+            </button>
+            <p className="text-xs text-slate-400 mt-2 text-center">
+                {step === 1 
+                    ? "List 2 的整列火车直接开到了 List 1 车头前面。零拷贝，只需修改指针！" 
+                    : "点击按钮，把橙色火车接轨到蓝色火车前面"}
+            </p>
+        </div>
+    );
+};
+
+// Visualization for List Remove/Unique/Sort
+const ListMagicVisual = () => {
+    const [nums, setNums] = useState([4, 1, 1, 3, 2, 2, 5]);
+    
+    const reset = () => setNums([4, 1, 1, 3, 2, 2, 5]);
+    const doSort = () => setNums([...nums].sort((a,b) => a-b));
+    const doUnique = () => {
+        // Simple unique for sorted array simulation
+        const res = [];
+        if(nums.length > 0) res.push(nums[0]);
+        for(let i=1; i<nums.length; i++) {
+            if(nums[i] !== nums[i-1]) res.push(nums[i]);
+        }
+        setNums(res);
+    };
+    const doReverse = () => setNums([...nums].reverse());
+    const doRemove2 = () => setNums(nums.filter(n => n !== 2));
+
+    return (
+        <div className="my-8 p-6 bg-slate-50 border border-slate-200 rounded-xl flex flex-col items-center">
+            <h4 className="text-center font-bold text-slate-800 mb-6">List 魔法工具箱</h4>
+            
+            <div className="flex flex-wrap gap-2 justify-center mb-8">
+                <button onClick={reset} className="px-3 py-1 bg-slate-200 text-slate-600 rounded text-xs font-bold hover:bg-slate-300">
+                    重置
+                </button>
+                <button onClick={doRemove2} className="px-3 py-1 bg-red-100 text-red-600 rounded text-xs font-bold hover:bg-red-200">
+                    remove(2)
+                </button>
+                <button onClick={doSort} className="px-3 py-1 bg-indigo-100 text-indigo-600 rounded text-xs font-bold hover:bg-indigo-200">
+                    sort()
+                </button>
+                <button onClick={doUnique} className="px-3 py-1 bg-amber-100 text-amber-600 rounded text-xs font-bold hover:bg-amber-200">
+                    unique()
+                </button>
+                <button onClick={doReverse} className="px-3 py-1 bg-purple-100 text-purple-600 rounded text-xs font-bold hover:bg-purple-200">
+                    reverse()
+                </button>
+            </div>
+
+            <div className="flex flex-wrap gap-2 items-center justify-center min-h-[60px] p-4 border border-dashed border-slate-300 rounded-lg w-full bg-white transition-all">
+                {nums.map((n, i) => (
+                    <React.Fragment key={i}>
+                        <div className={`w-10 h-10 flex items-center justify-center font-bold rounded-full shadow-sm border-2 transition-all duration-500 ${
+                            n === 2 ? 'bg-red-50 border-red-200 text-red-400' : 'bg-white border-slate-300 text-slate-700'
+                        }`}>
+                            {n}
+                        </div>
+                        {i < nums.length - 1 && <ArrowLeftRight size={16} className="text-slate-300" />}
+                    </React.Fragment>
+                ))}
+            </div>
+            
+            <p className="text-xs text-slate-400 mt-4 text-center">
+                提示：unique (去重) 只能去除<strong>相邻</strong>的重复元素，所以通常要先 sort (排序)！
+            </p>
+        </div>
+    );
+};
+
 import { stlBasicExercises } from './stl_exercises';
 
 // 1. Array Fill Animation
@@ -398,6 +835,134 @@ const ArrayStackHeapVisual = () => (
         </div>
     </div>
 );
+
+// Visualization for Josephus Problem
+const JosephusVisual = () => {
+    const [total, setTotal] = useState(8);
+    const [m, setM] = useState(3);
+    const [people, setPeople] = useState<number[]>([]);
+    const [currentIdx, setCurrentIdx] = useState(0);
+    const [count, setCount] = useState(1); // 1..m
+    const [logs, setLogs] = useState<number[]>([]);
+    const [isOver, setIsOver] = useState(false);
+    
+    // Init
+    const init = () => {
+        setPeople(Array.from({length: total}, (_, i) => i + 1));
+        setCurrentIdx(0);
+        setCount(1);
+        setLogs([]);
+        setIsOver(false);
+    };
+
+    // Initialize on load
+    useState(() => {
+        init();
+    });
+
+    const nextStep = () => {
+        if (isOver || people.length === 1) return;
+
+        // Current person
+        const person = people[currentIdx];
+
+        // If count == m, eliminate
+        if (count === m) {
+            const newPeople = [...people];
+            newPeople.splice(currentIdx, 1);
+            setPeople(newPeople);
+            setLogs([...logs, person]);
+            
+            // After delete, currentIdx is now pointing to the next person automatically
+            // But if we deleted the last person, we need to wrap around to 0
+            if (currentIdx >= newPeople.length) {
+                setCurrentIdx(0);
+            }
+            // Count resets to 1 for the *next* person
+            setCount(1);
+
+            if (newPeople.length === 1) {
+                setIsOver(true);
+            }
+        } else {
+            // Just move to next
+            setCount(c => c + 1);
+            setCurrentIdx(idx => (idx + 1) % people.length);
+        }
+    };
+
+    return (
+        <div className="my-8 p-6 bg-slate-50 border border-slate-200 rounded-xl flex flex-col items-center">
+            <h4 className="text-center font-bold text-slate-800 mb-2">约瑟夫环模拟器 (N={total}, M={m})</h4>
+            <p className="text-xs text-slate-500 mb-6">每报数到 {m} 的人出局，最后剩下谁？</p>
+
+            {/* Controls */}
+            <div className="flex gap-4 mb-8">
+                <button onClick={init} className="px-4 py-2 bg-slate-200 text-slate-700 rounded text-xs font-bold hover:bg-slate-300 transition-colors flex items-center gap-2">
+                    <RefreshCw size={14} /> 重置
+                </button>
+                <button onClick={nextStep} disabled={isOver} className="px-4 py-2 bg-indigo-600 text-white rounded text-xs font-bold hover:bg-indigo-700 transition-colors disabled:opacity-50 flex items-center gap-2">
+                    {isOver ? '游戏结束' : `报数 (${count}/${m})`} <ArrowRight size={14} />
+                </button>
+            </div>
+
+            {/* Circle Visual */}
+            <div className="relative w-64 h-64 border-4 border-slate-100 rounded-full flex items-center justify-center mb-8">
+                {people.map((p, i) => {
+                    // Calculate position on circle
+                    // We want the current list to be distributed evenly
+                    // BUT for visual stability, maybe we should keep original positions?
+                    // For simplicity, let's distribute current people evenly.
+                    const angle = (i / people.length) * 2 * Math.PI - Math.PI / 2; // Start from top
+                    const radius = 100;
+                    const x = Math.cos(angle) * radius;
+                    const y = Math.sin(angle) * radius;
+
+                    const isCurrent = i === currentIdx;
+                    
+                    return (
+                        <div 
+                            key={p}
+                            className={`absolute w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm border-2 transition-all duration-500
+                                ${isCurrent 
+                                    ? 'bg-indigo-500 border-indigo-600 text-white scale-125 z-10 shadow-lg' 
+                                    : 'bg-white border-slate-300 text-slate-600'
+                                }`}
+                            style={{
+                                transform: `translate(${x}px, ${y}px)`
+                            }}
+                        >
+                            {p}
+                            {isCurrent && (
+                                <div className="absolute -top-8 bg-amber-500 text-white text-[10px] px-2 py-0.5 rounded-full animate-bounce">
+                                    报 {count}
+                                </div>
+                            )}
+                        </div>
+                    );
+                })}
+                {people.length === 0 && <div className="text-slate-300">空</div>}
+            </div>
+
+            {/* Logs */}
+            <div className="w-full max-w-md bg-white border border-slate-200 rounded-lg p-4">
+                <div className="text-xs font-bold text-slate-500 mb-2">淘汰记录 (Out):</div>
+                <div className="flex flex-wrap gap-2">
+                    {logs.map((p, i) => (
+                        <span key={i} className="px-2 py-1 bg-red-50 text-red-500 rounded text-xs border border-red-100">
+                            {p}
+                        </span>
+                    ))}
+                    {isOver && (
+                        <span className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs border border-green-200 font-bold">
+                            👑 幸存者: {people[0]}
+                        </span>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+};
 
 export const stlSections: Section[] = [
     {
@@ -1515,6 +2080,401 @@ int main() {
         cout << "安全系统提示: " << e.what() << endl;
     }
 
+    return 0;
+}`
+        }
+    },
+    {
+        id: 'stl-list',
+        category: 'C++ STL (标准模板库)',
+        group: '3. 核心容器',
+        subGroup: '3.4 std::list (双向链表)',
+        title: '核心知识',
+        type: 'lesson',
+        content: (
+            <div className="space-y-10">
+                {/* 1. What is list */}
+                <div>
+                    <h3 className="text-2xl font-bold text-slate-900 mb-4">一、什么是 list？(排队 vs 寻宝)</h3>
+                    <ListStructureVisual />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                            <h4 className="font-bold text-indigo-700 mb-2">vector (数组)</h4>
+                            <p className="text-sm text-slate-600">就像大家排队做操。紧挨着，知道第3个是谁。缺点是有人插队时，后面所有人都得往后退。</p>
+                        </div>
+                        <div className="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+                            <h4 className="font-bold text-emerald-700 mb-2">list (链表)</h4>
+                            <p className="text-sm text-slate-600">就像寻宝游戏。大家分散在各地，每个人手里有张纸条写着“下一个人在哪”。插入删除很方便，只要改纸条。</p>
+                        </div>
+                    </div>
+                    
+                    {/* Structure Characteristics */}
+                    <div className="mt-8 bg-amber-50 border border-amber-100 rounded-xl p-6">
+                        <h4 className="font-bold text-amber-900 mb-4 text-lg">2. 结构特点 (核心性质)</h4>
+                        <div className="space-y-4">
+                            <div className="flex gap-3">
+                                <div className="mt-1 text-amber-600"><AlertTriangle size={20} /></div>
+                                <div>
+                                    <strong className="text-amber-800">非连续存储</strong>
+                                    <p className="text-sm text-amber-700 mt-1">就像寻宝点散落在校园各处，内存地址是不连续的。这也是它不支持随机访问的原因。</p>
+                                </div>
+                            </div>
+                            <div className="flex gap-3">
+                                <div className="mt-1 text-amber-600"><RefreshCw size={20} /></div>
+                                <div>
+                                    <strong className="text-amber-800">双向迭代器</strong>
+                                    <p className="text-sm text-amber-700 mt-1">我们可以从头走到尾，也可以从尾走到头 (<code>++</code> 和 <code>--</code> 都可以)。</p>
+                                </div>
+                            </div>
+                            <div className="flex gap-3">
+                                <div className="mt-1 text-amber-600"><ArrowRight size={20} /></div>
+                                <div>
+                                    <strong className="text-amber-800">不支持随机访问</strong>
+                                    <p className="text-sm text-amber-700 mt-1">
+                                        想要找到第10个寻宝点，不能直接“传送” (<code>l[9]</code> ❌)，必须顺着线索一个一个找过去。
+                                    </p>
+                                    <div className="mt-2 bg-white/80 p-3 rounded border border-amber-200">
+                                        <CodeBlock code={`list<int> l = {1, 2, 3};
+// l[1]; // ❌ 报错！不支持下标访问
+// auto it = l.begin() + 2; // ❌ 报错！不支持随机跳跃
+
+auto it = l.begin();
+it++; it++; // ✅ 只能一步步走`} />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* 2. Basic Operations */}
+                <div className="border-t border-slate-200 pt-8">
+                    <h3 className="text-2xl font-bold text-slate-900 mb-4">二、基本操作 (贪吃蛇)</h3>
+                    <div className="space-y-6">
+                         <div className="bg-white border border-slate-200 p-4 rounded-lg shadow-sm">
+                            <h4 className="font-bold text-slate-800 mb-2">1. 创建与增删</h4>
+                            <ListOperationVisual />
+                            <CodeBlock code={`#include <list>
+list<int> snake = {1, 2, 3};
+
+snake.push_front(0); // 头长: 0, 1, 2, 3
+snake.push_back(4);  // 尾长: 0, 1, 2, 3, 4
+
+snake.pop_front();   // 头断
+snake.pop_back();    // 尾断`} />
+                        </div>
+                        <div className="bg-white border border-slate-200 p-4 rounded-lg shadow-sm">
+                            <h4 className="font-bold text-slate-800 mb-2">2. 中间插入 (重点)</h4>
+                            <p className="text-xs text-slate-500 mb-2">插入和删除都不会移动其他元素，只修改指针。</p>
+                            <ListInsertVisual />
+                            <CodeBlock code={`// 找到要插入的位置（比如要在开头之后插入）
+list<int>::iterator it = snake.begin();
+it++; // 移动到第2个位置
+
+// 在 it 指向的位置 *之前* 插入 99
+snake.insert(it, 99); 
+
+// 删除 it 指向的位置
+// 注意：删除后，it 就失效了（纸条撕了），不能再用旧的 it
+snake.erase(it);`} />
+                            
+                            <div className="mt-4 p-4 bg-indigo-50 border border-indigo-100 rounded-lg text-sm text-indigo-900">
+                                <h5 className="font-bold text-lg mb-2">🤔 拆解：list&lt;int&gt;::iterator it</h5>
+                                <div className="space-y-3">
+                                    <div>
+                                        <span className="font-bold bg-white px-1 rounded">1. list&lt;int&gt;</span> —— “娃娃机箱子”
+                                        <p className="text-xs opacity-80 mt-1">表示我们要操作的是一个装满整数（int）的链表。</p>
+                                    </div>
+                                    <div>
+                                        <span className="font-bold bg-white px-1 rounded">2. ::</span> —— “的” (所属关系)
+                                        <p className="text-xs opacity-80 mt-1">读作“里面的”。表示后面要说的东西，是专门属于这个 list 的。</p>
+                                    </div>
+                                    <div>
+                                        <span className="font-bold bg-white px-1 rounded">3. iterator</span> —— “机械爪” (专用工具)
+                                        <p className="text-xs opacity-80 mt-1">链表没有下标，必须用这个专用工具，顺着线索一个一个抓。</p>
+                                    </div>
+                                    <div>
+                                        <span className="font-bold bg-white px-1 rounded">4. it</span> —— “爪子的名字”
+                                        <p className="text-xs opacity-80 mt-1">给这个变量起的名字。后面代码用到 it 时，就是叫这个爪子干活。</p>
+                                    </div>
+                                </div>
+                                <div className="mt-4 pt-3 border-t border-indigo-200">
+                                    <p className="font-bold mb-1">💡 连起来读：</p>
+                                    <p className="italic mb-3">我要申请一个【装整数的链表】专用的【机械爪】，名字叫【it】。</p>
+                                    
+                                    <p className="font-bold mb-1">⚡️ 偷懒小技巧：auto</p>
+                                    <p className="text-xs mb-2">写这么长太累了？现代 C++ 可以让电脑自己猜！</p>
+                                    <div className="bg-white p-2 rounded border border-indigo-100 font-mono text-xs">
+                                        <span className="text-slate-400">// 电脑看到右边是 begin()，自动推导 it 是迭代器</span><br/>
+                                        <span className="text-purple-600">auto</span> it = myList.begin(); 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* 3. Magic Functions */}
+                <div className="border-t border-slate-200 pt-8">
+                    <h3 className="text-2xl font-bold text-slate-900 mb-4">三、list 的特有魔法 (25分钟)</h3>
+                    <p className="text-slate-600 text-sm mb-6">list 自带了很多超级方便的函数，vector 可没有哦！</p>
+                    
+                    {/* 1. Splice */}
+                    <div className="mb-8">
+                        <h4 className="font-bold text-indigo-800 mb-3 text-lg">1. 魔法合体：splice (拼接)</h4>
+                        <div className="bg-indigo-50 border border-indigo-100 p-4 rounded-lg mb-4">
+                            <p className="text-sm text-indigo-900 mb-2">
+                                想象有两条贪吃蛇，我们要把第二条蛇直接接到第一条蛇身上，或者把别人的一部分“偷”过来。
+                            </p>
+                            <div className="flex items-center gap-2 text-xs text-indigo-700">
+                                <span className="bg-white px-2 py-1 rounded border border-indigo-200 font-bold">生活例子</span>
+                                <span>两列小火车接轨。</span>
+                            </div>
+                        </div>
+                        
+                        <ListSpliceVisual />
+
+                        <CodeBlock code={`list<int> list1 = {1, 2, 3};
+list<int> list2 = {10, 20, 30};
+
+// 把 list2 的所有元素，全部移动到 list1 的开头
+// list2 变空了！
+list1.splice(list1.begin(), list2);`} />
+                    </div>
+
+                    {/* 2. Remove */}
+                    <div className="mb-8">
+                        <h4 className="font-bold text-red-800 mb-3 text-lg">2. 魔法消除：remove 和 remove_if</h4>
+                        <ul className="list-disc list-inside text-sm text-slate-600 mb-4 space-y-1">
+                            <li><strong>remove：</strong> 比如要把所有数字为 2 的节点删掉。</li>
+                            <li><strong>remove_if：</strong> 比如要把所有“小于60分”的成绩删掉。</li>
+                        </ul>
+                        
+                        <CodeBlock code={`list<int> scores = {90, 55, 88, 55, 70};
+scores.remove(55); // 删除所有55
+
+// 高级魔法：删除所有小于60的 (了解即可，可以用lambda表达式)
+scores.remove_if([](int n){ return n < 60; });`} />
+                    </div>
+
+                    {/* 3. Unique/Sort/Reverse */}
+                    <div>
+                        <h4 className="font-bold text-purple-800 mb-3 text-lg">3. 魔法整理：unique, sort, reverse</h4>
+                        
+                        <div className="bg-white border border-slate-200 p-4 rounded-lg shadow-sm mb-6">
+                            <ListMagicVisual />
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                             <div className="bg-slate-50 p-3 rounded border border-slate-200">
+                                <div className="font-bold text-slate-700 mb-1">sort()</div>
+                                <div className="text-xs text-slate-500">list 不能用通用的 std::sort，必须用它自带的 .sort()。</div>
+                            </div>
+                            <div className="bg-slate-50 p-3 rounded border border-slate-200">
+                                <div className="font-bold text-slate-700 mb-1">unique()</div>
+                                <div className="text-xs text-slate-500">消除相邻的重复元素（就像消消乐）。</div>
+                            </div>
+                             <div className="bg-slate-50 p-3 rounded border border-slate-200">
+                                <div className="font-bold text-slate-700 mb-1">reverse()</div>
+                                <div className="text-xs text-slate-500">贪吃蛇掉头跑。</div>
+                            </div>
+                        </div>
+
+                        <CodeBlock code={`list<int> nums = {4, 1, 1, 3, 2, 2, 5};
+
+nums.sort();    // 必须先排序：1, 1, 2, 2, 3, 4, 5
+nums.unique();  // 去重：1, 2, 3, 4, 5
+nums.reverse(); // 反转：5, 4, 3, 2, 1`} />
+                    </div>
+                </div>
+
+                {/* 4. Safe Delete */}
+                <div className="border-t border-slate-200 pt-8">
+                    <h3 className="text-2xl font-bold text-slate-900 mb-4">四、难点：安全删除</h3>
+                    <div className="bg-red-50 border-l-4 border-red-500 p-4 text-sm text-slate-700">
+                        <p className="font-bold text-red-700 mb-2">⚠️ 危险动作</p>
+                        <p>删除了当前节点后，迭代器就失效了（纸条撕了），不能再 <code>it++</code>！</p>
+                    </div>
+                    <div className="mt-4 bg-green-50 border-l-4 border-green-500 p-4 text-sm text-slate-700">
+                        <p className="font-bold text-green-700 mb-2">✅ 正确姿势 (背诵)</p>
+                        <CodeBlock code={`for(auto it = myList.begin(); it != myList.end(); ) {
+    if(*it == 5) {
+        it = myList.erase(it); // erase 返回下一个位置
+    } else {
+        ++it;
+    }
+}`} />
+                    </div>
+                </div>
+
+                {/* 5. forward_list */}
+                <div className="border-t border-slate-200 pt-8">
+                    <h3 className="text-2xl font-bold text-slate-900 mb-4">五、了解 forward_list (单向链表)</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                         <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                             <h4 className="font-bold text-slate-800 mb-2">它是谁？</h4>
+                             <p className="text-sm text-slate-600">list 的简易版弟弟。为了省内存，每个节点只存“下一个在哪”，不存“上一个”。</p>
+                         </div>
+                         <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                             <h4 className="font-bold text-slate-800 mb-2">怪异的操作</h4>
+                             <p className="text-sm text-slate-600">因为不知道上一个是谁，所以只能操作“后面”的元素：<code>insert_after</code>, <code>erase_after</code>。</p>
+                         </div>
+                    </div>
+                </div>
+
+                {/* Summary */}
+                <div className="border-t border-slate-200 pt-8">
+                     <div className="bg-indigo-900 text-indigo-100 p-6 rounded-xl shadow-lg">
+                        <h4 className="font-bold text-lg mb-4 flex items-center gap-2">
+                            <span>🧠</span> 课后总结口诀
+                        </h4>
+                        <ul className="space-y-2 text-sm opacity-90 font-mono">
+                            <li>链表就像贪吃蛇，内存分散随意搁。</li>
+                            <li>增删快如闪电侠，查找慢像蜗牛爬。</li>
+                            <li>拼接去重自带挂，删除遍历小心踏。</li>
+                            <li>forward_list 单向跑，省地省力也不差。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        )
+    },
+    {
+        id: 'stl-list-ex1',
+        category: 'C++ STL (标准模板库)',
+        group: '3. 核心容器',
+        subGroup: '3.4 std::list (双向链表)',
+        title: '练习一：图书整理',
+        type: 'exercise',
+        exerciseData: {
+            title: '图书整理 (链表操作)',
+            description: '1. 创建书单: "C++", "Python", "C++", "Algorithm"。\n2. 去重 (删除重复的 "C++")。\n3. 在 "Algorithm" 前插入 "DataStruct"。\n4. 倒序打印所有书名。',
+            initialCode: `#include <iostream>
+#include <list>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    list<string> books = {"C++", "Python", "C++", "Algorithm"};
+    
+    // 1. 去重 (提示：unique需要先排序)
+    // TODO
+    
+    // 2. 查找并插入
+    // TODO: 找到 "Algorithm" 的位置，然后在它前面插入 "DataStruct"
+    
+    // 3. 倒序打印
+    // TODO: 使用 rbegin() 和 rend()
+    
+    return 0;
+}`,
+            hints: ["books.sort(); books.unique();", "it = find(books.begin(), books.end(), \"Algorithm\");", "books.insert(it, \"DataStruct\");"],
+            solutionCode: `#include <iostream>
+#include <list>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    list<string> books = {"C++", "Python", "C++", "Algorithm"};
+    
+    // 1. 去重
+    books.sort();
+    books.unique();
+    
+    // 2. 插入
+    auto it = find(books.begin(), books.end(), "Algorithm");
+    if (it != books.end()) {
+        books.insert(it, "DataStruct");
+    }
+    
+    // 3. 倒序打印
+    for (auto it = books.rbegin(); it != books.rend(); ++it) {
+        cout << *it << " ";
+    }
+    cout << endl;
+    
+    return 0;
+}`
+        }
+    },
+    {
+        id: 'stl-list-ex2',
+        category: 'C++ STL (标准模板库)',
+        group: '3. 核心容器',
+        subGroup: '3.4 std::list (双向链表)',
+        title: '练习二：约瑟夫环',
+        type: 'exercise',
+        content: (
+            <div>
+                <JosephusVisual />
+                <div className="bg-amber-50 border border-amber-200 p-4 rounded-lg text-sm text-amber-800 mt-6">
+                    <p className="font-bold mb-2">💡 编程思路提示：</p>
+                    <ul className="list-disc list-inside space-y-1">
+                        <li><strong>围成圈：</strong> 用 <code>list</code> 模拟。</li>
+                        <li><strong>报数：</strong> 用迭代器 <code>it</code> 移动。如果走到 <code>end()</code>，就让它回到 <code>begin()</code>。</li>
+                        <li><strong>出局：</strong> 报到 M 时，用 <code>erase(it)</code> 删除。记得接住返回值（下一个人的位置）。</li>
+                    </ul>
+                </div>
+            </div>
+        ),
+        exerciseData: {
+            title: '约瑟夫环模拟 (Josephus Problem)',
+            description: 'N 个小朋友围成一圈 (1-N)，从第 1 个开始报数，报到 M 的人出局。问最后剩下的人是多少？\n提示：当迭代器走到 end() 时，要让它回到 begin()。',
+            initialCode: `#include <iostream>
+#include <list>
+using namespace std;
+
+int main() {
+    int N = 10; // 10个人
+    int M = 3;  // 报到3出局
+    list<int> kids;
+    for(int i=1; i<=N; i++) kids.push_back(i);
+
+    auto it = kids.begin();
+    
+    while(kids.size() > 1) {
+        // TODO: 报数 M 次 (移动 M-1 步，删除第 M 个)
+        // 注意处理 it == kids.end() 的情况
+        
+        // TODO: 输出淘汰的人
+        // cout << "淘汰: " << ...
+        
+        // TODO: 删除节点，并更新 it
+    }
+
+    cout << "最后的大赢家是: " << kids.front() << endl;
+    return 0;
+}`,
+            hints: ["循环 M-1 次 it++", "如果 it == end() 则 it = begin()", "erase 返回下一个位置"],
+            solutionCode: `#include <iostream>
+#include <list>
+using namespace std;
+
+int main() {
+    int N = 10;
+    int M = 3;
+    list<int> kids;
+    for(int i=1; i<=N; i++) kids.push_back(i);
+
+    auto it = kids.begin();
+    
+    while(kids.size() > 1) {
+        // 报数 (移动 M-1 次)
+        for(int count = 1; count < M; count++) {
+            it++;
+            if(it == kids.end()) it = kids.begin();
+        }
+
+        cout << "淘汰: " << *it << endl;
+        
+        // 删除
+        it = kids.erase(it);
+        if(it == kids.end()) it = kids.begin();
+    }
+
+    cout << "最后的大赢家是: " << kids.front() << endl;
     return 0;
 }`
         }

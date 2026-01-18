@@ -31,7 +31,7 @@ export const PresentationView: React.FC<PresentationViewProps> = ({
   const slides = useMemo(() => {
     // If it's an exercise, we just return one slide with the ExerciseArea
     if (currentSection.type === 'exercise' && currentSection.exerciseData) {
-        return [<ExerciseArea data={currentSection.exerciseData} />];
+        return [<ExerciseArea data={currentSection.exerciseData} visualContent={currentSection.content} />];
     }
 
     // If it's a quiz, we just return one slide with the QuizArea

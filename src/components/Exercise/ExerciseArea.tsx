@@ -8,6 +8,7 @@ import { Highlight, themes } from 'prism-react-renderer';
 
 interface ExerciseAreaProps {
   data: ExerciseData;
+  visualContent?: React.ReactNode;
 }
 
 interface ExecutionResult {
@@ -17,7 +18,7 @@ interface ExecutionResult {
   signal: string | null;
 }
 
-export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
+export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data, visualContent }) => {
   const [userCode, setUserCode] = useState(data.initialCode);
   const [stdin, setStdin] = useState('');
   const [activeTab, setActiveTab] = useState<string>('edit');
@@ -243,6 +244,12 @@ export const ExerciseArea: React.FC<ExerciseAreaProps> = ({ data }) => {
         <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-6 rounded-xl shadow-sm prose prose-slate dark:prose-invert max-w-none">
           <DescriptionRenderer text={data.description} />
         </div>
+        
+        {visualContent && (
+            <div className="mt-6">
+                {visualContent}
+            </div>
+        )}
       </div>
 
       {/* Toolbar */}

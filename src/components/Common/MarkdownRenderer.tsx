@@ -78,7 +78,7 @@ const renderInline = (text: string): React.ReactNode[] => {
           rel="noopener noreferrer"
           className="text-indigo-600 dark:text-indigo-400 hover:underline inline-flex items-center gap-0.5"
         >
-          {mdLinkMatch[1]} <ExternalLink size={12} />
+          {renderInline(mdLinkMatch[1])} <ExternalLink size={12} />
         </a>
       );
       remaining = remaining.slice(mdLinkMatch[0].length);
@@ -108,7 +108,7 @@ const renderInline = (text: string): React.ReactNode[] => {
     if (boldMatch) {
       tokens.push(
         <strong key={key++} className="font-bold text-slate-900 dark:text-white">
-          {boldMatch[1]}
+          {renderInline(boldMatch[1])}
         </strong>
       );
       remaining = remaining.slice(boldMatch[0].length);
